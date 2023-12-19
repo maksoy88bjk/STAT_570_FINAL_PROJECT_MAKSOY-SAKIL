@@ -27,6 +27,7 @@ library(rnaturalearth)
 library(ncdf4)
 library(R.utils)
 library(sf)
+library(gt)
 ```
 
 ### Assimilated WRF Data
@@ -34,7 +35,8 @@ library(sf)
 Firstly, we opened the assimilated WRF output for domain 1. You can see the content of WRF output below, the data cover time and coverage domain information with meteorological predictions such as wind speed **(U10 & V10)**, precipitation **(RAINC & RAINNC)**, etc. We need to use name of the variables to extract specific data variables from the raw data.
 
 ```{r}
-fname <- "D:/Kitaplar/METU-PHD/Thesis/IsmailHocandanAldim_Aksoy_27092023/aswout/wrfout_d01_2004-08-11_00_00_00"
+fname <- paste0("D:/Kitaplar/METU-PHD/Thesis/IsmailHocandanAldim_Aksoy_27092023/",
+"aswout/wrfout_d01_2004-08-11_00_00_00")
 nc_data <- nc_open(fname)
 ```
 
@@ -91,7 +93,7 @@ dim(rain_c);dim(rain_nc)
 
 ### Forecast Period & Time Interval (Domain 1)
 
-We can also obtained the forecast horizon by getting time steps from the data. After getting time steps, we see that forecast period is between 11 and 16 August, 2004. In this case, the time interval for the forecast period up to +120 hours *(or five days)* is three hour.
+We can also obtained the forecast horizon by getting time steps from the data. After getting time steps, we see that forecast period is between 11 and 16 (00:00 UTC) August, 2004. In this case, the time interval for the forecast period up to +120 hours *(or five days)* is three hour.
 
 ```{r}
 t <- ncvar_get(nc_data, "Times"); t
@@ -104,27 +106,27 @@ ymd_hms(t[41]) - ymd_hms(t[1])
 
 ```{r}
 #| label: fig-domain1
-#| fig-alt: Türkiye with its neighboring countries with coverage of domain 1 for assimilated-WRF precipitation predictions.
+#| fig-cap: 
+#|  Türkiye with its neighboring countries and coverage of domain 1 for assimilated-WRF predictions.
 
 raster_rain_c<- list()
 for (i in 1:dim(rain_c)[3])   {
     raster_rain_c[[i]] <- raster(t(rain_c[, , i]), 
-                                 xmn=min(long), xmx=max(long),
-                                 ymn=min(lat), ymx=max(lat), 
-                                 crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))
+       xmn=min(long), xmx=max(long),
+       ymn=min(lat), ymx=max(lat), 
+       crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))
                               }
 
-rain_c_df <-as.data.frame(raster_rain_c[[41]], xy = TRUE) 
-
+rain_c_df <-as.data.frame(raster_rain_c[[length(t)]], xy = TRUE) 
 world <- rnaturalearth::ne_countries(scale='medium',returnclass = 'sf')
-#turkey <- subset(world, admin == "Turkey")
+
 
 ggplot(data = world)  + geom_sf(fill = "white") + 
-coord_sf(crs = st_crs(4326), xlim = c(10, 55), ylim = c(30,50)) +
-geom_raster(data = rain_c_df, aes(x = x, y = y, fill = layer), alpha=0.6) +
-    scale_fill_viridis_c() + 
-    theme(legend.position = "none") + labs(x="",y="") + 
-    ggtitle("Coverage of Domain 1") 
+  coord_sf(crs = st_crs(4326), xlim = c(10, 55), ylim = c(30,50)) +
+  geom_raster(data = rain_c_df, aes(x = x, y = y, fill = layer), 
+            alpha=0.7, show.legend = FALSE) +
+  scale_fill_viridis_c() +  labs(x="",y="") + 
+  ggtitle("Coverage of Domain 1") 
 ```
 
 ### Precipitation Prediction (Domain 2)
@@ -132,7 +134,8 @@ geom_raster(data = rain_c_df, aes(x = x, y = y, fill = layer), alpha=0.6) +
 There are **121** time steps for second domain since we can inference by dimension of **RAINC** data.
 
 ```{r}
-fname2 <- "D:/Kitaplar/METU-PHD/Thesis/IsmailHocandanAldim_Aksoy_27092023/aswout/wrfout_d02_2004-08-11_00_00_00"
+fname2 <- paste0("D:/Kitaplar/METU-PHD/Thesis/IsmailHocandanAldim_Aksoy_27092023/",
+"aswout/wrfout_d02_2004-08-11_00_00_00")
 nc_data2 <- nc_open(fname2)
 
 long_2<- ncvar_get(nc_data2, "XLONG")
@@ -161,7 +164,7 @@ Spatial resolution of domain 2 is 4 km which is a finer resolution than previous
 
 ### Forecast Period & Time Interval (Domain 2)
 
-Forecast period for domain 2 is same with previous one. However, the time interval is one hour and it is a finer temporal resolution.
+Forecast period for domain 2 is same with previous one. However, the time interval is one hour and it has a finer temporal resolution.
 
 ```{r}
 t2 <- ncvar_get(nc_data2, "Times"); t2
@@ -169,3 +172,62 @@ ymd_hms(t2[121]) - ymd_hms(t2[1])
 ```
 
 ### Study Area (Domain 2)
+
+@fig-domain2 below shows the comparison of two domains and coverage of domain 2 where covers some part of northwest of Türkiye.
+
+```{r}
+#| warning: false
+#| label: fig-domain2
+#| fig-cap: Comparison of domain 1 and 2. 
+
+raster_rain_c_2<- list()
+for (i in 1:dim(rain_c_2)[3])   {
+    raster_rain_c_2[[i]] <- raster(t(rain_c_2[, , i]), 
+       xmn=min(long_2), xmx=max(long_2),
+       ymn=min(lat_2), ymx=max(lat_2), 
+       crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))
+                              }
+
+rain_c_df_2 <-as.data.frame(raster_rain_c_2[[length(t2)]], xy = TRUE) 
+world <- rnaturalearth::ne_countries(scale='medium',returnclass = 'sf')
+
+ggplot(data = world)  + geom_sf(fill = "white") + 
+  coord_sf(crs = st_crs(4326), xlim = c(19, 47.5), ylim = c(33.5,47)) +
+  geom_raster(data = rain_c_df, 
+            aes(x = x, y = y, fill = layer), alpha=0.4, show.legend = FALSE) + 
+  geom_raster(data = rain_c_df_2, 
+            aes(x = x, y = y, fill = layer), alpha=0.7, show.legend = FALSE) + 
+  scale_fill_viridis_c() + labs(x="",y="") + 
+  ggtitle("Coverage of Domain 2") 
+```
+
+```{r}
+turkey <- subset(world, admin == "Turkey")
+
+ggplot(data = turkey)  + geom_sf(fill = "white") + 
+  coord_sf(crs = st_crs(4326), xlim = c(extent(rain_c_df_2)[1], extent(rain_c_df_2)[2]), ylim = c(extent(rain_c_df_2)[3],extent(rain_c_df_2)[4])) +
+ 
+  geom_raster(data = rain_c_df_2, 
+            aes(x = x, y = y, fill = layer), alpha=0.7, show.legend = FALSE) + 
+  scale_fill_viridis_c() + labs(x="",y="") + 
+  ggtitle("Coverage of Domain 2") 
+
+extent(rain_c_df_2)
+```
+
+@tbl-gauges-domain2 shows the main gauges, only one station was selected for each province, across the domain 2.
+
+```{r}
+#| label: tbl-gauges-domain2
+#| tbl-cap: Stations accross the domain 2.
+
+df_gauges <-  read.delim("D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/gauges.txt", sep="|")
+df_gauges<- df_gauges[,-c(3,4)]
+colnames(df_gauges)<- c("Station","Province","Latitude","Longitude","Altitude") ; 
+
+df_gauges$Province <- tolower(df_gauges$Province) |> str_to_title() 
+
+df_gauges |> gt()
+
+
+```
