@@ -1,5 +1,5 @@
 ---
-title: "Data Assimilation for WRF Numerical Weather Prediction Outputs"
+title: "Evaluation of Assimilated and Non-Assimilated WRF Temperature Predictions for Northwestern Part of Türkiye: A case study for the period of 11 and 16 August, 2004"
 author: "Mehmet AKSOY & Sercan AKIL"
 format: html
 editor: visual
@@ -21,7 +21,9 @@ We will need several packages for some implementations in R, for instance; openi
 
 ```{r}
 #| warning: false
+library(readxl)
 library(tidyverse)
+library(ggplot2)
 library(raster)
 library(rnaturalearth)
 library(ncdf4)
@@ -40,28 +42,18 @@ fname <- paste0("D:/Kitaplar/METU-PHD/Thesis/IsmailHocandanAldim_Aksoy_27092023/
 nc_data <- nc_open(fname)
 ```
 
-### Precipitation Prediction (Domain 1)
+### Temperature Prediction in WRF
 
-In the WRF data, **RAINC** is defined as *ACCUMULATED TOTAL CUMULUS PRECIPITATION* which is convective precipitation and **RAINNC** is *ACCUMULATED TOTAL GRID SCALE PRECIPITATION* which is non-convective precipitation. To obtain the total precipitation, we just need sum these two variables: **PRECIPITATION = RAINC + RAINNC**.
-
-```         
-    float RAINC[west_east,south_north,Time]   
-        FieldType: 104
-        MemoryOrder: XY 
-        description: ACCUMULATED TOTAL CUMULUS PRECIPITATION
-        units: mm
-        stagger: 
-        coordinates: XLONG XLAT
-```
+In the WRF data, air temperature at 2 meter, the height of observation at gauges, is available. If 2 meter temperature is not available in netcdf file, the calculation of [Air Temperature Prediction](http://gradsusr.org/pipermail/gradsusr/2011-December/031698.html) from WRF data is described at the given link based on [WRF manual](https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_v4/contents.html). In such a case, *perturbation potential temperature*, *base pressure* and *perturbation pressure* variables has to be extracted to get air temperature prediction.
 
 ```         
-  float RAINNC[west_east,south_north,Time]   
-        FieldType: 104
-        MemoryOrder: XY 
-        description: ACCUMULATED TOTAL GRID SCALE PRECIPITATION
-        units: mm
-        stagger: 
-        coordinates: XLONG XLAT
+float T2[west_east,south_north,Time]   
+    FieldType: 104
+    MemoryOrder: XY 
+    description: TEMP at 2 M
+    units: K
+    stagger: 
+    coordinates: XLONG XLAT
 ```
 
 ### Spatial Resolution (Domain 1)
@@ -80,15 +72,15 @@ Spatial resolution of domain 1 is 12 km as you can see below *(DX: 12000, DY:120
     DY: 12000
 ```
 
-There are **41** time steps which means we can get convective, non-convective and total precipitation predictions along the domain **(191x115)**. Additionally, the data includes information for **27** layers from bottom to top of the atmosphere. However, for the precipitation data we only need to calculate the precipitation that will reach the ground.
+There are **41** time steps which means we can get predictions along the domain **(191x115)** for whole period. Additionally, the data includes information for **27** layers from bottom to top of the atmosphere.
 
 ```{r}
 long<- ncvar_get(nc_data, "XLONG")
 lat<- ncvar_get(nc_data, "XLAT", verbose = F)
-rain_c <- ncvar_get(nc_data, "RAINC") 
-rain_nc <- ncvar_get(nc_data, "RAINNC") 
 
-dim(rain_c);dim(rain_nc)
+temp<- ncvar_get(nc_data, "T2") 
+dim(temp)
+dim(ncvar_get(nc_data, "T"))
 ```
 
 ### Forecast Period & Time Interval (Domain 1)
@@ -109,29 +101,30 @@ ymd_hms(t[41]) - ymd_hms(t[1])
 #| fig-cap: 
 #|  Türkiye with its neighboring countries and coverage of domain 1 for assimilated-WRF predictions.
 
-raster_rain_c<- list()
-for (i in 1:dim(rain_c)[3])   {
-    raster_rain_c[[i]] <- raster(t(rain_c[, , i]), 
+raster_temp<- list()
+for (i in 1:dim(temp)[3])   {
+    raster_temp[[i]] <- raster(t(temp[, , i]), 
        xmn=min(long), xmx=max(long),
        ymn=min(lat), ymx=max(lat), 
        crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))
-                              }
+}
 
-rain_c_df <-as.data.frame(raster_rain_c[[length(t)]], xy = TRUE) 
+temp_df <-as.data.frame(raster_temp[[length(t)]], xy = TRUE) 
+temp_df <- 
+  temp_df |> mutate(temp = layer - 273.15)
 world <- rnaturalearth::ne_countries(scale='medium',returnclass = 'sf')
-
 
 ggplot(data = world)  + geom_sf(fill = "white") + 
   coord_sf(crs = st_crs(4326), xlim = c(10, 55), ylim = c(30,50)) +
-  geom_raster(data = rain_c_df, aes(x = x, y = y, fill = layer), 
-            alpha=0.7, show.legend = FALSE) +
+  geom_raster(data = temp_df, aes(x = x, y = y, fill = temp), 
+            alpha=0.7) +
   scale_fill_viridis_c() +  labs(x="",y="") + 
   ggtitle("Coverage of Domain 1") 
 ```
 
-### Precipitation Prediction (Domain 2)
+### Temperature Prediction (Domain 2)
 
-There are **121** time steps for second domain since we can inference by dimension of **RAINC** data.
+There are **121** time steps for second domain since we can inference by dimension of **T2** data.
 
 ```{r}
 fname2 <- paste0("D:/Kitaplar/METU-PHD/Thesis/IsmailHocandanAldim_Aksoy_27092023/",
@@ -140,10 +133,9 @@ nc_data2 <- nc_open(fname2)
 
 long_2<- ncvar_get(nc_data2, "XLONG")
 lat_2<- ncvar_get(nc_data2, "XLAT", verbose = F)
-rain_c_2 <- ncvar_get(nc_data2, "RAINC") 
-rain_nc_2 <- ncvar_get(nc_data2, "RAINNC") 
+temp_2<- ncvar_get(nc_data2, "T2") 
 
-dim(rain_c_2);dim(rain_nc_2)
+dim(temp_2)
 ```
 
 ### Spatial Resolution (Domain 2)
@@ -180,54 +172,75 @@ ymd_hms(t2[121]) - ymd_hms(t2[1])
 #| label: fig-domain2
 #| fig-cap: Comparison of domain 1 and 2. 
 
-raster_rain_c_2<- list()
-for (i in 1:dim(rain_c_2)[3])   {
-    raster_rain_c_2[[i]] <- raster(t(rain_c_2[, , i]), 
+raster_temp_2<- list()
+for (i in 1:dim(temp_2)[3])   {
+    raster_temp_2[[i]] <- raster(t(temp_2[, , i]), 
        xmn=min(long_2), xmx=max(long_2),
        ymn=min(lat_2), ymx=max(lat_2), 
        crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))
                               }
 
-rain_c_df_2 <-as.data.frame(raster_rain_c_2[[length(t2)]], xy = TRUE) 
+temp_df_2 <-as.data.frame(raster_temp_2[[length(t2)]], xy = TRUE) 
+temp_df_2 <- 
+  temp_df_2 |> mutate(temp = layer - 273.15)
+
 world <- rnaturalearth::ne_countries(scale='medium',returnclass = 'sf')
 
 ggplot(data = world)  + geom_sf(fill = "white") + 
   coord_sf(crs = st_crs(4326), xlim = c(19, 47.5), ylim = c(33.5,47)) +
-  geom_raster(data = rain_c_df, 
-            aes(x = x, y = y, fill = layer), alpha=0.4, show.legend = FALSE) + 
-  geom_raster(data = rain_c_df_2, 
-            aes(x = x, y = y, fill = layer), alpha=0.7, show.legend = FALSE) + 
+  geom_raster(data = temp_df, 
+            aes(x = x, y = y, fill = temp), alpha=0.4, show.legend = FALSE) + 
+  geom_raster(data = temp_df_2, 
+            aes(x = x, y = y, fill = temp), alpha=0.7, show.legend = FALSE) + 
   scale_fill_viridis_c() + labs(x="",y="") + 
   ggtitle("Coverage of Domain 2") 
 ```
 
-```{r}
-turkey <- subset(world, admin == "Turkey")
+### Identification of Meteorological Stations
 
-ggplot(data = turkey)  + geom_sf(fill = "white") + 
-  coord_sf(crs = st_crs(4326), xlim = c(extent(rain_c_df_2)[1], extent(rain_c_df_2)[2]), ylim = c(extent(rain_c_df_2)[3],extent(rain_c_df_2)[4])) +
- 
-  geom_raster(data = rain_c_df_2, 
-            aes(x = x, y = y, fill = layer), alpha=0.7, show.legend = FALSE) + 
-  scale_fill_viridis_c() + labs(x="",y="") + 
-  ggtitle("Coverage of Domain 2") 
-
-extent(rain_c_df_2)
-```
-
-@tbl-gauges-domain2 shows the main gauges, only one station was selected for each province, across the domain 2.
+Domain 2 covers several provinces which are located northwest of Türkiye. Thus, we need to determine meteorological stations for comparing observation versus assimilated and non-assimilated WRF predictions. Only one station was selected for each province to evaluate the performance of both assimilated and non-assimilated WRF predictions. @tbl-gauges-domain2 shows the main gauges across the domain 2.
 
 ```{r}
 #| label: tbl-gauges-domain2
-#| tbl-cap: Stations accross the domain 2.
+#| tbl-cap: Meteorological stations accross the domain 2.
 
 df_gauges <-  read.delim("D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/gauges.txt", sep="|")
 df_gauges<- df_gauges[,-c(3,4)]
 colnames(df_gauges)<- c("Station","Province","Latitude","Longitude","Altitude") ; 
 
 df_gauges$Province <- tolower(df_gauges$Province) |> str_to_title() 
-
 df_gauges |> gt()
 
+
+```
+
+### Get Temperature Observations
+
+```{r}
+temp_obs<- read_excel("D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/df_2023122096C0-Saatlik_Sicaklik.xlsx")
+head(temp_obs)
+
+temp_obs<-
+  temp_obs |>
+  mutate(date= as.Date(with(temp_obs, paste(YIL, AY, GUN,sep="-")), "%Y-%m-%d")) |>
+  mutate(dates= as.POSIXct(paste(date, paste(SAAT, 0, 0, sep = ":")), tz="UTC")) |>
+  dplyr::select(Istasyon_No, dates, SICAKLIK)
+nrow(temp_obs)
+
+temp_obs<-
+  temp_obs |> 
+  group_by(Istasyon_No) |> 
+  tidyr::complete( dates = seq(ymd_hm("2004-08-11 00:00"), ymd_hm("2004-08-16 23:00"), by = "1 hours"))
+nrow(temp_obs)
+
+head(temp_obs)
+
+```
+
+### Extraction of Temperature Predictions from WRF
+
+```{r}
+centroids <- df_gauges[,c(1,3,4)]
+coordinates(centroids)= ~ Longitude + Latitude
 
 ```

@@ -8,7 +8,7 @@
 
 <meta name="author" content="Mehmet AKSOY &amp; Sercan AKIL">
 
-<title>Data Assimilation for WRF Numerical Weather Prediction Outputs</title>
+<title>Evaluation of Assimilated and Non-Assimilated WRF Temperature Predictions for Northwestern Part of Türkiye: A case study for the period of 11 and 16 August, 2004</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Assimilation for WRF Numerical Weather Prediction Outputs</h1>
+<h1 class="title">Evaluation of Assimilated and Non-Assimilated WRF Temperature Predictions for Northwestern Part of Türkiye: A case study for the period of 11 and 16 August, 2004</h1>
 </div>
 
 
@@ -117,13 +117,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="uploading-necessary-packages">Uploading Necessary Packages</h3>
 <p>We will need several packages for some implementations in R, for instance; opening of the netcdf files of WRF data, handling of WRF outputs, visualization and etc.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearth)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ncdf4)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(R.utils)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearth)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ncdf4)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(R.utils)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="assimilated-wrf-data" class="level3">
@@ -135,23 +137,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>nc_data <span class="ot">&lt;-</span> <span class="fu">nc_open</span>(fname)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="precipitation-prediction-domain-1" class="level3">
-<h3 class="anchored" data-anchor-id="precipitation-prediction-domain-1">Precipitation Prediction (Domain 1)</h3>
-<p>In the WRF data, <strong>RAINC</strong> is defined as <em>ACCUMULATED TOTAL CUMULUS PRECIPITATION</em> which is convective precipitation and <strong>RAINNC</strong> is <em>ACCUMULATED TOTAL GRID SCALE PRECIPITATION</em> which is non-convective precipitation. To obtain the total precipitation, we just need sum these two variables: <strong>PRECIPITATION = RAINC + RAINNC</strong>.</p>
-<pre><code>    float RAINC[west_east,south_north,Time]   
-        FieldType: 104
-        MemoryOrder: XY 
-        description: ACCUMULATED TOTAL CUMULUS PRECIPITATION
-        units: mm
-        stagger: 
-        coordinates: XLONG XLAT</code></pre>
-<pre><code>  float RAINNC[west_east,south_north,Time]   
-        FieldType: 104
-        MemoryOrder: XY 
-        description: ACCUMULATED TOTAL GRID SCALE PRECIPITATION
-        units: mm
-        stagger: 
-        coordinates: XLONG XLAT</code></pre>
+<section id="temperature-prediction-in-wrf" class="level3">
+<h3 class="anchored" data-anchor-id="temperature-prediction-in-wrf">Temperature Prediction in WRF</h3>
+<p>In the WRF data, air temperature at 2 meter, the height of observation at gauges, is available. If 2 meter temperature is not available in netcdf file, the calculation of <a href="http://gradsusr.org/pipermail/gradsusr/2011-December/031698.html">Air Temperature Prediction</a> from WRF data is described at the given link based on <a href="https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_v4/contents.html">WRF manual</a>. In such a case, <em>perturbation potential temperature</em>, <em>base pressure</em> and <em>perturbation pressure</em> variables has to be extracted to get air temperature prediction.</p>
+<pre><code>float T2[west_east,south_north,Time]   
+    FieldType: 104
+    MemoryOrder: XY 
+    description: TEMP at 2 M
+    units: K
+    stagger: 
+    coordinates: XLONG XLAT</code></pre>
 </section>
 <section id="spatial-resolution-domain-1" class="level3">
 <h3 class="anchored" data-anchor-id="spatial-resolution-domain-1">Spatial Resolution (Domain 1)</h3>
@@ -165,19 +160,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     BOTTOM-TOP_GRID_DIMENSION: 28
     DX: 12000
     DY: 12000</code></pre>
-<p>There are <strong>41</strong> time steps which means we can get convective, non-convective and total precipitation predictions along the domain <strong>(191x115)</strong>. Additionally, the data includes information for <strong>27</strong> layers from bottom to top of the atmosphere. However, for the precipitation data we only need to calculate the precipitation that will reach the ground.</p>
+<p>There are <strong>41</strong> time steps which means we can get predictions along the domain <strong>(191x115)</strong> for whole period. Additionally, the data includes information for <strong>27</strong> layers from bottom to top of the atmosphere.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>long<span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data, <span class="st">"XLONG"</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>lat<span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data, <span class="st">"XLAT"</span>, <span class="at">verbose =</span> F)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>rain_c <span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data, <span class="st">"RAINC"</span>) </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>rain_nc <span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data, <span class="st">"RAINNC"</span>) </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(rain_c);<span class="fu">dim</span>(rain_nc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>long<span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data, <span class="st">"XLONG"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>lat<span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data, <span class="st">"XLAT"</span>, <span class="at">verbose =</span> F)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>temp<span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data, <span class="st">"T2"</span>) </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(temp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 191 115  41</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(<span class="fu">ncvar_get</span>(nc_data, <span class="st">"T"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 191 115  41</code></pre>
+<pre><code>[1] 191 115  27  41</code></pre>
 </div>
 </div>
 </section>
@@ -212,24 +207,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="study-area-domain-1">Study Area (Domain 1)</h3>
 <p><a href="#fig-domain1">Figure&nbsp;1</a> below shows the coverage of domain 1 where covers Türkiye and its surrounding.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>raster_rain_c<span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(rain_c)[<span class="dv">3</span>])   {</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    raster_rain_c[[i]] <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">t</span>(rain_c[, , i]), </span>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>raster_temp<span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(temp)[<span class="dv">3</span>])   {</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    raster_temp[[i]] <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">t</span>(temp[, , i]), </span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">xmn=</span><span class="fu">min</span>(long), <span class="at">xmx=</span><span class="fu">max</span>(long),</span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">ymn=</span><span class="fu">min</span>(lat), <span class="at">ymx=</span><span class="fu">max</span>(lat), </span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">crs=</span><span class="fu">CRS</span>(<span class="st">"+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"</span>))</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                              }</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>rain_c_df <span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(raster_rain_c[[<span class="fu">length</span>(t)]], <span class="at">xy =</span> <span class="cn">TRUE</span>) </span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>world <span class="ot">&lt;-</span> rnaturalearth<span class="sc">::</span><span class="fu">ne_countries</span>(<span class="at">scale=</span><span class="st">'medium'</span>,<span class="at">returnclass =</span> <span class="st">'sf'</span>)</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> world)  <span class="sc">+</span> <span class="fu">geom_sf</span>(<span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span> </span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="dv">4326</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">55</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">30</span>,<span class="dv">50</span>)) <span class="sc">+</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>(<span class="at">data =</span> rain_c_df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> layer), </span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">alpha=</span><span class="fl">0.7</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">""</span>) <span class="sc">+</span> </span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Coverage of Domain 1"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>temp_df <span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(raster_temp[[<span class="fu">length</span>(t)]], <span class="at">xy =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>temp_df <span class="ot">&lt;-</span> </span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  temp_df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">temp =</span> layer <span class="sc">-</span> <span class="fl">273.15</span>)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>world <span class="ot">&lt;-</span> rnaturalearth<span class="sc">::</span><span class="fu">ne_countries</span>(<span class="at">scale=</span><span class="st">'medium'</span>,<span class="at">returnclass =</span> <span class="st">'sf'</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> world)  <span class="sc">+</span> <span class="fu">geom_sf</span>(<span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span> </span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="dv">4326</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">55</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">30</span>,<span class="dv">50</span>)) <span class="sc">+</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>(<span class="at">data =</span> temp_df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> temp), </span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">alpha=</span><span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">""</span>) <span class="sc">+</span> </span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Coverage of Domain 1"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-domain1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -240,9 +236,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="precipitation-prediction-domain-2" class="level3">
-<h3 class="anchored" data-anchor-id="precipitation-prediction-domain-2">Precipitation Prediction (Domain 2)</h3>
-<p>There are <strong>121</strong> time steps for second domain since we can inference by dimension of <strong>RAINC</strong> data.</p>
+<section id="temperature-prediction-domain-2" class="level3">
+<h3 class="anchored" data-anchor-id="temperature-prediction-domain-2">Temperature Prediction (Domain 2)</h3>
+<p>There are <strong>121</strong> time steps for second domain since we can inference by dimension of <strong>T2</strong> data.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fname2 <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"D:/Kitaplar/METU-PHD/Thesis/IsmailHocandanAldim_Aksoy_27092023/"</span>,</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="st">"aswout/wrfout_d02_2004-08-11_00_00_00"</span>)</span>
@@ -250,13 +246,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>long_2<span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data2, <span class="st">"XLONG"</span>)</span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>lat_2<span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data2, <span class="st">"XLAT"</span>, <span class="at">verbose =</span> F)</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>rain_c_2 <span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data2, <span class="st">"RAINC"</span>) </span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>rain_nc_2 <span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data2, <span class="st">"RAINNC"</span>) </span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(rain_c_2);<span class="fu">dim</span>(rain_nc_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 132  63 121</code></pre>
-</div>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>temp_2<span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data2, <span class="st">"T2"</span>) </span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(temp_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 132  63 121</code></pre>
 </div>
@@ -279,7 +271,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="forecast-period-time-interval-domain-2">Forecast Period &amp; Time Interval (Domain 2)</h3>
 <p>Forecast period for domain 2 is same with previous one. However, the time interval is one hour and it has a finer temporal resolution.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data2, <span class="st">"Times"</span>); t2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data2, <span class="st">"Times"</span>); t2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [1] "2004-08-11_00:00:00" "2004-08-11_01:00:00" "2004-08-11_02:00:00"
   [4] "2004-08-11_03:00:00" "2004-08-11_04:00:00" "2004-08-11_05:00:00"
@@ -323,7 +315,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 [118] "2004-08-15_21:00:00" "2004-08-15_22:00:00" "2004-08-15_23:00:00"
 [121] "2004-08-16_00:00:00"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd_hms</span>(t2[<span class="dv">121</span>]) <span class="sc">-</span> <span class="fu">ymd_hms</span>(t2[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd_hms</span>(t2[<span class="dv">121</span>]) <span class="sc">-</span> <span class="fu">ymd_hms</span>(t2[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Time difference of 5 days</code></pre>
 </div>
@@ -333,25 +325,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="study-area-domain-2">Study Area (Domain 2)</h3>
 <p><a href="#fig-domain2">Figure&nbsp;2</a> below shows the comparison of two domains and coverage of domain 2 where covers some part of northwest of Türkiye.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>raster_rain_c_2<span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(rain_c_2)[<span class="dv">3</span>])   {</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    raster_rain_c_2[[i]] <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">t</span>(rain_c_2[, , i]), </span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">xmn=</span><span class="fu">min</span>(long_2), <span class="at">xmx=</span><span class="fu">max</span>(long_2),</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">ymn=</span><span class="fu">min</span>(lat_2), <span class="at">ymx=</span><span class="fu">max</span>(lat_2), </span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">crs=</span><span class="fu">CRS</span>(<span class="st">"+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"</span>))</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>                              }</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>rain_c_df_2 <span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(raster_rain_c_2[[<span class="fu">length</span>(t2)]], <span class="at">xy =</span> <span class="cn">TRUE</span>) </span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>world <span class="ot">&lt;-</span> rnaturalearth<span class="sc">::</span><span class="fu">ne_countries</span>(<span class="at">scale=</span><span class="st">'medium'</span>,<span class="at">returnclass =</span> <span class="st">'sf'</span>)</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> world)  <span class="sc">+</span> <span class="fu">geom_sf</span>(<span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span> </span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="dv">4326</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">19</span>, <span class="fl">47.5</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fl">33.5</span>,<span class="dv">47</span>)) <span class="sc">+</span></span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>(<span class="at">data =</span> rain_c_df, </span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> layer), <span class="at">alpha=</span><span class="fl">0.4</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>(<span class="at">data =</span> rain_c_df_2, </span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> layer), <span class="at">alpha=</span><span class="fl">0.7</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">""</span>) <span class="sc">+</span> </span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Coverage of Domain 2"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>raster_temp_2<span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(temp_2)[<span class="dv">3</span>])   {</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    raster_temp_2[[i]] <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">t</span>(temp_2[, , i]), </span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">xmn=</span><span class="fu">min</span>(long_2), <span class="at">xmx=</span><span class="fu">max</span>(long_2),</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">ymn=</span><span class="fu">min</span>(lat_2), <span class="at">ymx=</span><span class="fu">max</span>(lat_2), </span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">crs=</span><span class="fu">CRS</span>(<span class="st">"+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"</span>))</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>                              }</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>temp_df_2 <span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(raster_temp_2[[<span class="fu">length</span>(t2)]], <span class="at">xy =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>temp_df_2 <span class="ot">&lt;-</span> </span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  temp_df_2 <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">temp =</span> layer <span class="sc">-</span> <span class="fl">273.15</span>)</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>world <span class="ot">&lt;-</span> rnaturalearth<span class="sc">::</span><span class="fu">ne_countries</span>(<span class="at">scale=</span><span class="st">'medium'</span>,<span class="at">returnclass =</span> <span class="st">'sf'</span>)</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> world)  <span class="sc">+</span> <span class="fu">geom_sf</span>(<span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span> </span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="dv">4326</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">19</span>, <span class="fl">47.5</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fl">33.5</span>,<span class="dv">47</span>)) <span class="sc">+</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>(<span class="at">data =</span> temp_df, </span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> temp), <span class="at">alpha=</span><span class="fl">0.4</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>(<span class="at">data =</span> temp_df_2, </span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> temp), <span class="at">alpha=</span><span class="fl">0.7</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">""</span>) <span class="sc">+</span> </span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Coverage of Domain 2"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-domain2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -361,57 +356,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</section>
+<section id="identification-of-meteorological-stations" class="level3">
+<h3 class="anchored" data-anchor-id="identification-of-meteorological-stations">Identification of Meteorological Stations</h3>
+<p>Domain 2 covers several provinces which are located northwest of Türkiye. Thus, we need to determine meteorological stations for comparing observation versus assimilated and non-assimilated WRF predictions. Only one station was selected for each province to evaluate the performance of both assimilated and non-assimilated WRF predictions. <a href="#tbl-gauges-domain2">Table&nbsp;1</a> shows the main gauges across the domain 2.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>turkey <span class="ot">&lt;-</span> <span class="fu">subset</span>(world, admin <span class="sc">==</span> <span class="st">"Turkey"</span>)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> turkey)  <span class="sc">+</span> <span class="fu">geom_sf</span>(<span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span> </span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="dv">4326</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="fu">extent</span>(rain_c_df_2)[<span class="dv">1</span>], <span class="fu">extent</span>(rain_c_df_2)[<span class="dv">2</span>]), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fu">extent</span>(rain_c_df_2)[<span class="dv">3</span>],<span class="fu">extent</span>(rain_c_df_2)[<span class="dv">4</span>])) <span class="sc">+</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>(<span class="at">data =</span> rain_c_df_2, </span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> layer), <span class="at">alpha=</span><span class="fl">0.7</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">""</span>) <span class="sc">+</span> </span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Coverage of Domain 2"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="WRF_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
-</div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">extent</span>(rain_c_df_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>class      : Extent 
-xmin       : 29.75564 
-xmax       : 36.07526 
-ymin       : 40.0473 
-ymax       : 42.28881 </code></pre>
-</div>
-</div>
-<p><a href="#tbl-gauges-domain2">Table&nbsp;1</a> shows the main gauges, only one station was selected for each province, across the domain 2.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df_gauges <span class="ot">&lt;-</span>  <span class="fu">read.delim</span>(<span class="st">"D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/gauges.txt"</span>, <span class="at">sep=</span><span class="st">"|"</span>)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>df_gauges<span class="ot">&lt;-</span> df_gauges[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>)]</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df_gauges)<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"Province"</span>,<span class="st">"Latitude"</span>,<span class="st">"Longitude"</span>,<span class="st">"Altitude"</span>) ; </span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>df_gauges<span class="sc">$</span>Province <span class="ot">&lt;-</span> <span class="fu">tolower</span>(df_gauges<span class="sc">$</span>Province) <span class="sc">|&gt;</span> <span class="fu">str_to_title</span>() </span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>df_gauges <span class="sc">|&gt;</span> <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df_gauges <span class="ot">&lt;-</span>  <span class="fu">read.delim</span>(<span class="st">"D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/gauges.txt"</span>, <span class="at">sep=</span><span class="st">"|"</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>df_gauges<span class="ot">&lt;-</span> df_gauges[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>)]</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df_gauges)<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"Province"</span>,<span class="st">"Latitude"</span>,<span class="st">"Longitude"</span>,<span class="st">"Altitude"</span>) ; </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>df_gauges<span class="sc">$</span>Province <span class="ot">&lt;-</span> <span class="fu">tolower</span>(df_gauges<span class="sc">$</span>Province) <span class="sc">|&gt;</span> <span class="fu">str_to_title</span>() </span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>df_gauges <span class="sc">|&gt;</span> <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="tbl-gauges-domain2" class="anchored">
 
-<div id="xypxjinmjm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#xypxjinmjm table {
+<div id="audfdosqoj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#audfdosqoj table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#xypxjinmjm thead, #xypxjinmjm tbody, #xypxjinmjm tfoot, #xypxjinmjm tr, #xypxjinmjm td, #xypxjinmjm th {
+#audfdosqoj thead, #audfdosqoj tbody, #audfdosqoj tfoot, #audfdosqoj tr, #audfdosqoj td, #audfdosqoj th {
   border-style: none;
 }
 
-#xypxjinmjm p {
+#audfdosqoj p {
   margin: 0;
   padding: 0;
 }
 
-#xypxjinmjm .gt_table {
+#audfdosqoj .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -437,12 +412,12 @@ ymax       : 42.28881 </code></pre>
   border-left-color: #D3D3D3;
 }
 
-#xypxjinmjm .gt_caption {
+#audfdosqoj .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#xypxjinmjm .gt_title {
+#audfdosqoj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -454,7 +429,7 @@ ymax       : 42.28881 </code></pre>
   border-bottom-width: 0;
 }
 
-#xypxjinmjm .gt_subtitle {
+#audfdosqoj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -466,7 +441,7 @@ ymax       : 42.28881 </code></pre>
   border-top-width: 0;
 }
 
-#xypxjinmjm .gt_heading {
+#audfdosqoj .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -478,13 +453,13 @@ ymax       : 42.28881 </code></pre>
   border-right-color: #D3D3D3;
 }
 
-#xypxjinmjm .gt_bottom_border {
+#audfdosqoj .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xypxjinmjm .gt_col_headings {
+#audfdosqoj .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -499,7 +474,7 @@ ymax       : 42.28881 </code></pre>
   border-right-color: #D3D3D3;
 }
 
-#xypxjinmjm .gt_col_heading {
+#audfdosqoj .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -519,7 +494,7 @@ ymax       : 42.28881 </code></pre>
   overflow-x: hidden;
 }
 
-#xypxjinmjm .gt_column_spanner_outer {
+#audfdosqoj .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -531,15 +506,15 @@ ymax       : 42.28881 </code></pre>
   padding-right: 4px;
 }
 
-#xypxjinmjm .gt_column_spanner_outer:first-child {
+#audfdosqoj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xypxjinmjm .gt_column_spanner_outer:last-child {
+#audfdosqoj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xypxjinmjm .gt_column_spanner {
+#audfdosqoj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -551,11 +526,11 @@ ymax       : 42.28881 </code></pre>
   width: 100%;
 }
 
-#xypxjinmjm .gt_spanner_row {
+#audfdosqoj .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#xypxjinmjm .gt_group_heading {
+#audfdosqoj .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -581,7 +556,7 @@ ymax       : 42.28881 </code></pre>
   text-align: left;
 }
 
-#xypxjinmjm .gt_empty_group_heading {
+#audfdosqoj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -596,15 +571,15 @@ ymax       : 42.28881 </code></pre>
   vertical-align: middle;
 }
 
-#xypxjinmjm .gt_from_md > :first-child {
+#audfdosqoj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xypxjinmjm .gt_from_md > :last-child {
+#audfdosqoj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xypxjinmjm .gt_row {
+#audfdosqoj .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -623,7 +598,7 @@ ymax       : 42.28881 </code></pre>
   overflow-x: hidden;
 }
 
-#xypxjinmjm .gt_stub {
+#audfdosqoj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -636,7 +611,7 @@ ymax       : 42.28881 </code></pre>
   padding-right: 5px;
 }
 
-#xypxjinmjm .gt_stub_row_group {
+#audfdosqoj .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -650,15 +625,15 @@ ymax       : 42.28881 </code></pre>
   vertical-align: top;
 }
 
-#xypxjinmjm .gt_row_group_first td {
+#audfdosqoj .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#xypxjinmjm .gt_row_group_first th {
+#audfdosqoj .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#xypxjinmjm .gt_summary_row {
+#audfdosqoj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -668,16 +643,16 @@ ymax       : 42.28881 </code></pre>
   padding-right: 5px;
 }
 
-#xypxjinmjm .gt_first_summary_row {
+#audfdosqoj .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#xypxjinmjm .gt_first_summary_row.thick {
+#audfdosqoj .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#xypxjinmjm .gt_last_summary_row {
+#audfdosqoj .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -687,7 +662,7 @@ ymax       : 42.28881 </code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#xypxjinmjm .gt_grand_summary_row {
+#audfdosqoj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -697,7 +672,7 @@ ymax       : 42.28881 </code></pre>
   padding-right: 5px;
 }
 
-#xypxjinmjm .gt_first_grand_summary_row {
+#audfdosqoj .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -707,7 +682,7 @@ ymax       : 42.28881 </code></pre>
   border-top-color: #D3D3D3;
 }
 
-#xypxjinmjm .gt_last_grand_summary_row_top {
+#audfdosqoj .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -717,11 +692,11 @@ ymax       : 42.28881 </code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#xypxjinmjm .gt_striped {
+#audfdosqoj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xypxjinmjm .gt_table_body {
+#audfdosqoj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -730,7 +705,7 @@ ymax       : 42.28881 </code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#xypxjinmjm .gt_footnotes {
+#audfdosqoj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -744,7 +719,7 @@ ymax       : 42.28881 </code></pre>
   border-right-color: #D3D3D3;
 }
 
-#xypxjinmjm .gt_footnote {
+#audfdosqoj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -753,7 +728,7 @@ ymax       : 42.28881 </code></pre>
   padding-right: 5px;
 }
 
-#xypxjinmjm .gt_sourcenotes {
+#audfdosqoj .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -767,7 +742,7 @@ ymax       : 42.28881 </code></pre>
   border-right-color: #D3D3D3;
 }
 
-#xypxjinmjm .gt_sourcenote {
+#audfdosqoj .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -775,67 +750,67 @@ ymax       : 42.28881 </code></pre>
   padding-right: 5px;
 }
 
-#xypxjinmjm .gt_left {
+#audfdosqoj .gt_left {
   text-align: left;
 }
 
-#xypxjinmjm .gt_center {
+#audfdosqoj .gt_center {
   text-align: center;
 }
 
-#xypxjinmjm .gt_right {
+#audfdosqoj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xypxjinmjm .gt_font_normal {
+#audfdosqoj .gt_font_normal {
   font-weight: normal;
 }
 
-#xypxjinmjm .gt_font_bold {
+#audfdosqoj .gt_font_bold {
   font-weight: bold;
 }
 
-#xypxjinmjm .gt_font_italic {
+#audfdosqoj .gt_font_italic {
   font-style: italic;
 }
 
-#xypxjinmjm .gt_super {
+#audfdosqoj .gt_super {
   font-size: 65%;
 }
 
-#xypxjinmjm .gt_footnote_marks {
+#audfdosqoj .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#xypxjinmjm .gt_asterisk {
+#audfdosqoj .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#xypxjinmjm .gt_indent_1 {
+#audfdosqoj .gt_indent_1 {
   text-indent: 5px;
 }
 
-#xypxjinmjm .gt_indent_2 {
+#audfdosqoj .gt_indent_2 {
   text-indent: 10px;
 }
 
-#xypxjinmjm .gt_indent_3 {
+#audfdosqoj .gt_indent_3 {
   text-indent: 15px;
 }
 
-#xypxjinmjm .gt_indent_4 {
+#audfdosqoj .gt_indent_4 {
   text-indent: 20px;
 }
 
-#xypxjinmjm .gt_indent_5 {
+#audfdosqoj .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false"><caption>Table&nbsp;1:  <p>Stations accross the domain 2.</p> </caption>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false"><caption>Table&nbsp;1:  <p>Meteorological stations accross the domain 2.</p> </caption>
   <thead>
     
     <tr class="gt_col_headings">
@@ -898,7 +873,7 @@ ymax       : 42.28881 </code></pre>
 <td headers="Longitude" class="gt_row gt_right">35.83530</td>
 <td headers="Altitude" class="gt_row gt_right">409</td></tr>
     <tr><td headers="Station" class="gt_row gt_right">17078</td>
-<td headers="Province" class="gt_row gt_left">Karabuk             </td>
+<td headers="Province" class="gt_row gt_left">Karabuk</td>
 <td headers="Latitude" class="gt_row gt_right">41.19610</td>
 <td headers="Longitude" class="gt_row gt_right">32.62130</td>
 <td headers="Altitude" class="gt_row gt_right">400</td></tr>
@@ -909,6 +884,61 @@ ymax       : 42.28881 </code></pre>
 </div>
 </div>
 </div>
+</div>
+</section>
+<section id="get-temperature-observations" class="level3">
+<h3 class="anchored" data-anchor-id="get-temperature-observations">Get Temperature Observations</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>temp_obs<span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/df_2023122096C0-Saatlik_Sicaklik.xlsx"</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(temp_obs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 x 7
+  Istasyon_No Istasyon_Adi   YIL    AY   GUN  SAAT SICAKLIK
+        &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
+1       17020 BARTIN        2004     8    11     0     19.1
+2       17020 BARTIN        2004     8    11     1     18.8
+3       17020 BARTIN        2004     8    11     2     18.8
+4       17020 BARTIN        2004     8    11     3     18.7
+5       17020 BARTIN        2004     8    11     4     18.8
+6       17020 BARTIN        2004     8    11     5     19.6</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>temp_obs<span class="ot">&lt;-</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  temp_obs <span class="sc">|&gt;</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date=</span> <span class="fu">as.Date</span>(<span class="fu">with</span>(temp_obs, <span class="fu">paste</span>(YIL, AY, GUN,<span class="at">sep=</span><span class="st">"-"</span>)), <span class="st">"%Y-%m-%d"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dates=</span> <span class="fu">as.POSIXct</span>(<span class="fu">paste</span>(date, <span class="fu">paste</span>(SAAT, <span class="dv">0</span>, <span class="dv">0</span>, <span class="at">sep =</span> <span class="st">":"</span>)), <span class="at">tz=</span><span class="st">"UTC"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Istasyon_No, dates, SICAKLIK)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(temp_obs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1458</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>temp_obs<span class="ot">&lt;-</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  temp_obs <span class="sc">|&gt;</span> </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Istasyon_No) <span class="sc">|&gt;</span> </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">complete</span>( <span class="at">dates =</span> <span class="fu">seq</span>(<span class="fu">ymd_hm</span>(<span class="st">"2004-08-11 00:00"</span>), <span class="fu">ymd_hm</span>(<span class="st">"2004-08-16 23:00"</span>), <span class="at">by =</span> <span class="st">"1 hours"</span>))</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(temp_obs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1584</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(temp_obs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 x 3
+# Groups:   Istasyon_No [1]
+  Istasyon_No dates               SICAKLIK
+        &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;
+1       17020 2004-08-11 00:00:00     19.1
+2       17020 2004-08-11 01:00:00     18.8
+3       17020 2004-08-11 02:00:00     18.8
+4       17020 2004-08-11 03:00:00     18.7
+5       17020 2004-08-11 04:00:00     18.8
+6       17020 2004-08-11 05:00:00     19.6</code></pre>
+</div>
+</div>
+</section>
+<section id="extraction-of-temperature-predictions-from-wrf" class="level3">
+<h3 class="anchored" data-anchor-id="extraction-of-temperature-predictions-from-wrf">Extraction of Temperature Predictions from WRF</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>centroids <span class="ot">&lt;-</span> df_gauges[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>)]</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coordinates</span>(centroids)<span class="ot">=</span> <span class="er">~</span> Longitude <span class="sc">+</span> Latitude</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
