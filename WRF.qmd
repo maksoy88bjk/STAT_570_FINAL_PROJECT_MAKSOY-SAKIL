@@ -1,5 +1,5 @@
 ---
-title: "Evaluation of Assimilated and Non-Assimilated WRF Temperature Predictions for Northwestern Part of Türkiye: A case study for the period of 11 and 16 August, 2004"
+title: "Evaluation of Assimilated and Non-Assimilated WRF Temperature Predictions for Northwestern Türkiye: A case study for the period between 11 and 16 August, 2004"
 author: "Mehmet AKSOY & Sercan AKIL"
 format: html
 editor: visual
@@ -103,20 +103,18 @@ ymd_hms(t[41]) - ymd_hms(t[1])
 
 raster_temp<- list()
 for (i in 1:dim(temp)[3])   {
-    raster_temp[[i]] <- raster(t(temp[, , i]), 
+    raster_temp[[i]] <- raster(t(temp[, , i] - 273.15), 
        xmn=min(long), xmx=max(long),
        ymn=min(lat), ymx=max(lat), 
        crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))
 }
 
 temp_df <-as.data.frame(raster_temp[[length(t)]], xy = TRUE) 
-temp_df <- 
-  temp_df |> mutate(temp = layer - 273.15)
 world <- rnaturalearth::ne_countries(scale='medium',returnclass = 'sf')
 
 ggplot(data = world)  + geom_sf(fill = "white") + 
   coord_sf(crs = st_crs(4326), xlim = c(10, 55), ylim = c(30,50)) +
-  geom_raster(data = temp_df, aes(x = x, y = y, fill = temp), 
+  geom_raster(data = temp_df, aes(x = x, y = y, fill = layer), 
             alpha=0.7) +
   scale_fill_viridis_c() +  labs(x="",y="") + 
   ggtitle("Coverage of Domain 1") 
@@ -174,24 +172,21 @@ ymd_hms(t2[121]) - ymd_hms(t2[1])
 
 raster_temp_2<- list()
 for (i in 1:dim(temp_2)[3])   {
-    raster_temp_2[[i]] <- raster(t(temp_2[, , i]), 
+    raster_temp_2[[i]] <- raster(t(temp_2[, , i] - 273.15), 
        xmn=min(long_2), xmx=max(long_2),
        ymn=min(lat_2), ymx=max(lat_2), 
        crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))
                               }
 
 temp_df_2 <-as.data.frame(raster_temp_2[[length(t2)]], xy = TRUE) 
-temp_df_2 <- 
-  temp_df_2 |> mutate(temp = layer - 273.15)
-
 world <- rnaturalearth::ne_countries(scale='medium',returnclass = 'sf')
 
 ggplot(data = world)  + geom_sf(fill = "white") + 
   coord_sf(crs = st_crs(4326), xlim = c(19, 47.5), ylim = c(33.5,47)) +
   geom_raster(data = temp_df, 
-            aes(x = x, y = y, fill = temp), alpha=0.4, show.legend = FALSE) + 
+            aes(x = x, y = y, fill = layer), alpha=0.4, show.legend = FALSE) + 
   geom_raster(data = temp_df_2, 
-            aes(x = x, y = y, fill = temp), alpha=0.7, show.legend = FALSE) + 
+            aes(x = x, y = y, fill = layer), alpha=0.7, show.legend = FALSE) + 
   scale_fill_viridis_c() + labs(x="",y="") + 
   ggtitle("Coverage of Domain 2") 
 ```
@@ -204,7 +199,8 @@ Domain 2 covers several provinces which are located northwest of Türkiye. Thus,
 #| label: tbl-gauges-domain2
 #| tbl-cap: Meteorological stations accross the domain 2.
 
-df_gauges <-  read.delim("D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/gauges.txt", sep="|")
+df_gauges <-  read.delim("D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT_570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/gauges.txt", sep="|")
+
 df_gauges<- df_gauges[,-c(3,4)]
 colnames(df_gauges)<- c("Station","Province","Latitude","Longitude","Altitude") ; 
 
@@ -214,10 +210,29 @@ df_gauges |> gt()
 
 ```
 
+@fig-gauges is shown for the distribution of meteorological stations along the study area.
+
+```{r}
+#| label: fig-gauges
+#| fig-cap: Distribution of Meteorological Stations Over Domain 2.
+extents<- extent(raster_temp_2[[length(t2)]])
+
+ggplot(data = world)  + geom_sf(fill = "white") + 
+  coord_sf(crs = st_crs(4326), xlim = c(extents[1], extents[2]), 
+                               ylim = c(extents[3],extents[4])) +
+  geom_raster(data = temp_df_2, 
+        aes(x = x, y = y, fill = layer), alpha=0.5, show.legend = FALSE) +
+  scale_fill_viridis_c() + labs(x="",y="") +
+  geom_point(data = df_gauges, aes(x=Longitude, y=Latitude),
+             size=3, colour="darkred") + 
+  geom_text(data = df_gauges,  mapping = aes(x=Longitude, y=Latitude, label=Province), nudge_y = -0.1) 
+
+```
+
 ### Get Temperature Observations
 
 ```{r}
-temp_obs<- read_excel("D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/df_2023122096C0-Saatlik_Sicaklik.xlsx")
+temp_obs<- read_excel("D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT_570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/df_2023122096C0-Saatlik_Sicaklik.xlsx")
 head(temp_obs)
 
 temp_obs<-
@@ -242,5 +257,130 @@ head(temp_obs)
 ```{r}
 centroids <- df_gauges[,c(1,3,4)]
 coordinates(centroids)= ~ Longitude + Latitude
+
+# domain1
+raster_temp_stack<- stack(raster_temp)
+raster_temp_value<- raster::extract(raster_temp_stack, centroids)
+
+rt_cpv <- cbind(centroids,raster_temp_value)
+rt_cpv_df<- data.frame(rt_cpv)
+rt_cpv_df<- rt_cpv_df[,-ncol(rt_cpv_df)]
+
+rt_cpv_df<- 
+  rt_cpv_df |> 
+  dplyr::select(Station, Longitude, Latitude,  everything() )
+colnames(rt_cpv_df) <- append(colnames(rt_cpv_df[1:3]),as.character(t))
+head(rt_cpv_df)[,1:5]
+
+```
+
+```{r}
+# domain2
+raster_temp_stack_2<- stack(raster_temp_2)
+raster_temp_value_2<- raster::extract(raster_temp_stack_2, centroids)
+
+rt_cpv_2 <- cbind(centroids,raster_temp_value_2)
+rt_cpv_df_2<- data.frame(rt_cpv_2) 
+rt_cpv_df_2<- rt_cpv_df_2[,-ncol(rt_cpv_df_2)]
+
+rt_cpv_df_2<- 
+  rt_cpv_df_2 |> 
+  dplyr::select(Station, Longitude, Latitude,  everything() )
+colnames(rt_cpv_df_2)<- append(colnames(rt_cpv_df_2[1:3]),as.character(t2))
+head(rt_cpv_df_2)[,1:5]
+```
+
+We need to apply similar procedures on non-assimilated WRF predictions for extraction as shown above.
+
+```{r}
+#domain1
+fname_nas <- paste0("D:/Kitaplar/METU-PHD/Thesis/IsmailHocandanAldim_Aksoy_27092023/",
+"wout/wrfout_d01_2004-08-11_00_00_00")
+nc_data_nas <- nc_open(fname_nas)
+
+long_nas<- ncvar_get(nc_data_nas, "XLONG")
+lat_nas<- ncvar_get(nc_data_nas, "XLAT", verbose = F)
+temp_nas<- ncvar_get(nc_data_nas, "T2") 
+t_nas <- ncvar_get(nc_data_nas, "Times")
+
+raster_temp_nas<- list()
+for (i in 1:dim(temp_nas)[3])   {
+    raster_temp_nas[[i]] <- raster(t(temp_nas[, , i] - 273.15), 
+       xmn=min(long_nas), xmx=max(long_nas),
+       ymn=min(lat_nas), ymx=max(lat_nas), 
+       crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))
+}
+
+#domain2
+fname2_nas <- paste0("D:/Kitaplar/METU-PHD/Thesis/IsmailHocandanAldim_Aksoy_27092023/",
+"wout/wrfout_d02_2004-08-11_00_00_00")
+nc_data2_nas <- nc_open(fname2_nas)
+
+long_2_nas<- ncvar_get(nc_data2_nas, "XLONG")
+lat_2_nas<- ncvar_get(nc_data2_nas, "XLAT", verbose = F)
+temp_2_nas<- ncvar_get(nc_data2_nas, "T2") 
+t2_nas <- ncvar_get(nc_data2_nas, "Times")
+
+raster_temp_2_nas<- list()
+for (i in 1:dim(temp_2_nas)[3])   {
+    raster_temp_2_nas[[i]] <- raster(t(temp_2_nas[, , i] - 273.15), 
+       xmn=min(long_2_nas), xmx=max(long_2_nas),
+       ymn=min(lat_2_nas), ymx=max(lat_2_nas), 
+       crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))
+}
+
+# domain1
+raster_temp_stack_nas<- stack(raster_temp_nas)
+raster_temp_value_nas<- raster::extract(raster_temp_stack_nas, centroids)
+
+rt_cpv_nas <- cbind(centroids,raster_temp_value_nas)
+rt_cpv_df_nas<- data.frame(rt_cpv_nas)
+rt_cpv_df_nas<- rt_cpv_df_nas[,-ncol(rt_cpv_df_nas)]
+
+rt_cpv_df_nas<- 
+  rt_cpv_df_nas |> 
+  dplyr::select(Station, Longitude, Latitude,  everything() )
+colnames(rt_cpv_df_nas) <- append(colnames(rt_cpv_df_nas[1:3]),as.character(t_nas))
+
+# domain2
+raster_temp_stack_2_nas<- stack(raster_temp_2_nas)
+raster_temp_value_2_nas<- raster::extract(raster_temp_stack_2_nas, centroids)
+
+rt_cpv_2_nas <- cbind(centroids,raster_temp_value_2_nas)
+rt_cpv_df_2_nas<- data.frame(rt_cpv_2_nas) 
+rt_cpv_df_2_nas<- rt_cpv_df_2_nas[,-ncol(rt_cpv_df_2_nas)]
+
+rt_cpv_df_2_nas<- 
+  rt_cpv_df_2_nas |> 
+  dplyr::select(Station, Longitude, Latitude,  everything() )
+colnames(rt_cpv_df_2_nas)<- append(colnames(rt_cpv_df_2_nas[1:3]),as.character(t2_nas))
+
+head(rt_cpv_df_2_nas)[,1:5]
+```
+
+```{r}
+# domain1 assimilated prediction: rt_cpv_df
+# domain2 assimilated prediction: rt_cpv_df_2
+
+# domain1 non_assimilated prediction: rt_cpv_df_nas
+# domain2 non_assimilated prediction: rt_cpv_df_2_nas
+
+# temp_obs
+
+d01 <- 
+  rt_cpv_df |> 
+  distinct(Station, .keep_all = TRUE) |> 
+  pivot_longer(
+    cols = starts_with("2004"),
+    names_to = "dates",
+    values_to = "predict_do1",
+    values_drop_na = TRUE
+  ) |> 
+  dplyr:: select(Station, dates, predict_do1)
+
+d01$dates<- str_replace(d01$dates, "_"," ")
+d01$dates<- as.POSIXct(d01$dates)
+
+
 
 ```
