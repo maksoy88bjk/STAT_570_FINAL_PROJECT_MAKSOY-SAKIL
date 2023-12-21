@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -134,7 +134,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fname <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"D:/Kitaplar/METU-PHD/Thesis/IsmailHocandanAldim_Aksoy_27092023/"</span>,</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">"aswout/wrfout_d01_2004-08-11_00_00_00"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>nc_data <span class="ot">&lt;-</span> <span class="fu">nc_open</span>(fname)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>nc_data <span class="ot">&lt;-</span> <span class="fu">nc_open</span>(fname)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>{<span class="fu">sink</span>(<span class="fu">paste0</span>(fname,<span class="st">".txt"</span>))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(nc_data)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sink</span>()}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="temperature-prediction-in-wrf" class="level3">
@@ -218,16 +222,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>temp_df <span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(raster_temp[[<span class="fu">length</span>(t)]], <span class="at">xy =</span> <span class="cn">TRUE</span>) </span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>world <span class="ot">&lt;-</span> rnaturalearth<span class="sc">::</span><span class="fu">ne_countries</span>(<span class="at">scale=</span><span class="st">'medium'</span>,<span class="at">returnclass =</span> <span class="st">'sf'</span>)</span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> world)  <span class="sc">+</span> <span class="fu">geom_sf</span>(<span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span> </span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> world)  <span class="sc">+</span> <span class="fu">geom_sf</span>(<span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
 <span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="dv">4326</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">55</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">30</span>,<span class="dv">50</span>)) <span class="sc">+</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>(<span class="at">data =</span> temp_df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> layer), </span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">alpha=</span><span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">""</span>) <span class="sc">+</span> </span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Coverage of Domain 1"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>(<span class="at">data =</span> temp_df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> layer), <span class="at">alpha=</span><span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">""</span>, <span class="at">fill=</span> <span class="fu">expression</span>(degree<span class="sc">*</span>C)) <span class="sc">+</span> </span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Coverage of Domain 1"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.key.height =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"cm"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-domain1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="WRF_files/figure-html/fig-domain1-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="WRF_files/figure-html/fig-domain1-1.png" class="img-fluid figure-img" width="864"></p>
 <figcaption class="figure-caption">Figure&nbsp;1: Türkiye with its neighboring countries and coverage of domain 1 for assimilated-WRF predictions.</figcaption>
 </figure>
 </div>
@@ -242,11 +245,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="st">"aswout/wrfout_d02_2004-08-11_00_00_00"</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>nc_data2 <span class="ot">&lt;-</span> <span class="fu">nc_open</span>(fname2)</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>long_2<span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data2, <span class="st">"XLONG"</span>)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>lat_2<span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data2, <span class="st">"XLAT"</span>, <span class="at">verbose =</span> F)</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>temp_2<span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data2, <span class="st">"T2"</span>) </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>{<span class="fu">sink</span>(<span class="fu">paste0</span>(fname2,<span class="st">".txt"</span>))</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(nc_data2)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sink</span>()}</span>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(temp_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>long_2<span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data2, <span class="st">"XLONG"</span>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>lat_2<span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data2, <span class="st">"XLAT"</span>, <span class="at">verbose =</span> F)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>temp_2<span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data2, <span class="st">"T2"</span>) </span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(temp_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 132  63 121</code></pre>
 </div>
@@ -345,7 +352,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div id="fig-domain2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="WRF_files/figure-html/fig-domain2-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="WRF_files/figure-html/fig-domain2-1.png" class="img-fluid figure-img" width="864"></p>
 <figcaption class="figure-caption">Figure&nbsp;2: Comparison of domain 1 and 2.</figcaption>
 </figure>
 </div>
@@ -356,33 +363,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="identification-of-meteorological-stations">Identification of Meteorological Stations</h3>
 <p>Domain 2 covers several provinces which are located northwest of Türkiye. Thus, we need to determine meteorological stations for comparing observation versus assimilated and non-assimilated WRF predictions. Only one station was selected for each province to evaluate the performance of both assimilated and non-assimilated WRF predictions. <a href="#tbl-gauges-domain2">Table&nbsp;1</a> shows the main gauges across the domain 2.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df_gauges <span class="ot">&lt;-</span>  <span class="fu">read.delim</span>(<span class="st">"D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT_570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/gauges.txt"</span>, <span class="at">sep=</span><span class="st">"|"</span>)</span>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df_gauges <span class="ot">&lt;-</span>  <span class="fu">read.delim</span>(<span class="st">"D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/gauges.txt"</span>, <span class="at">sep=</span><span class="st">"|"</span>)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>df_gauges<span class="ot">&lt;-</span> df_gauges[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>)]</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df_gauges)<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"Province"</span>,<span class="st">"Latitude"</span>,<span class="st">"Longitude"</span>,<span class="st">"Altitude"</span>) ; </span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>df_gauges<span class="sc">$</span>Province <span class="ot">&lt;-</span> <span class="fu">tolower</span>(df_gauges<span class="sc">$</span>Province) <span class="sc">|&gt;</span> <span class="fu">str_to_title</span>() </span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>df_gauges <span class="sc">|&gt;</span> <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>df_gauges<span class="ot">&lt;-</span> df_gauges <span class="sc">|&gt;</span> <span class="fu">arrange</span>(Station) </span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>df_gauges <span class="sc">|&gt;</span>  <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="tbl-gauges-domain2" class="anchored">
 
-<div id="tkntoalwxt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#tkntoalwxt table {
+<div id="toqcaqbvbh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#toqcaqbvbh table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#tkntoalwxt thead, #tkntoalwxt tbody, #tkntoalwxt tfoot, #tkntoalwxt tr, #tkntoalwxt td, #tkntoalwxt th {
+#toqcaqbvbh thead, #toqcaqbvbh tbody, #toqcaqbvbh tfoot, #toqcaqbvbh tr, #toqcaqbvbh td, #toqcaqbvbh th {
   border-style: none;
 }
 
-#tkntoalwxt p {
+#toqcaqbvbh p {
   margin: 0;
   padding: 0;
 }
 
-#tkntoalwxt .gt_table {
+#toqcaqbvbh .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -408,12 +416,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#tkntoalwxt .gt_caption {
+#toqcaqbvbh .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#tkntoalwxt .gt_title {
+#toqcaqbvbh .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -425,7 +433,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#tkntoalwxt .gt_subtitle {
+#toqcaqbvbh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -437,7 +445,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#tkntoalwxt .gt_heading {
+#toqcaqbvbh .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -449,13 +457,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#tkntoalwxt .gt_bottom_border {
+#toqcaqbvbh .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#tkntoalwxt .gt_col_headings {
+#toqcaqbvbh .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -470,7 +478,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#tkntoalwxt .gt_col_heading {
+#toqcaqbvbh .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -490,7 +498,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#tkntoalwxt .gt_column_spanner_outer {
+#toqcaqbvbh .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -502,15 +510,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#tkntoalwxt .gt_column_spanner_outer:first-child {
+#toqcaqbvbh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tkntoalwxt .gt_column_spanner_outer:last-child {
+#toqcaqbvbh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tkntoalwxt .gt_column_spanner {
+#toqcaqbvbh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -522,11 +530,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#tkntoalwxt .gt_spanner_row {
+#toqcaqbvbh .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#tkntoalwxt .gt_group_heading {
+#toqcaqbvbh .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -552,7 +560,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#tkntoalwxt .gt_empty_group_heading {
+#toqcaqbvbh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -567,15 +575,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#tkntoalwxt .gt_from_md > :first-child {
+#toqcaqbvbh .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tkntoalwxt .gt_from_md > :last-child {
+#toqcaqbvbh .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tkntoalwxt .gt_row {
+#toqcaqbvbh .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -594,7 +602,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#tkntoalwxt .gt_stub {
+#toqcaqbvbh .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -607,7 +615,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#tkntoalwxt .gt_stub_row_group {
+#toqcaqbvbh .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -621,15 +629,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#tkntoalwxt .gt_row_group_first td {
+#toqcaqbvbh .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#tkntoalwxt .gt_row_group_first th {
+#toqcaqbvbh .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#tkntoalwxt .gt_summary_row {
+#toqcaqbvbh .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -639,16 +647,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#tkntoalwxt .gt_first_summary_row {
+#toqcaqbvbh .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#tkntoalwxt .gt_first_summary_row.thick {
+#toqcaqbvbh .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#tkntoalwxt .gt_last_summary_row {
+#toqcaqbvbh .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -658,7 +666,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#tkntoalwxt .gt_grand_summary_row {
+#toqcaqbvbh .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -668,7 +676,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#tkntoalwxt .gt_first_grand_summary_row {
+#toqcaqbvbh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -678,7 +686,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#tkntoalwxt .gt_last_grand_summary_row_top {
+#toqcaqbvbh .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -688,11 +696,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#tkntoalwxt .gt_striped {
+#toqcaqbvbh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#tkntoalwxt .gt_table_body {
+#toqcaqbvbh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -701,7 +709,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#tkntoalwxt .gt_footnotes {
+#toqcaqbvbh .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -715,7 +723,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#tkntoalwxt .gt_footnote {
+#toqcaqbvbh .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -724,7 +732,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#tkntoalwxt .gt_sourcenotes {
+#toqcaqbvbh .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -738,7 +746,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#tkntoalwxt .gt_sourcenote {
+#toqcaqbvbh .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -746,63 +754,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#tkntoalwxt .gt_left {
+#toqcaqbvbh .gt_left {
   text-align: left;
 }
 
-#tkntoalwxt .gt_center {
+#toqcaqbvbh .gt_center {
   text-align: center;
 }
 
-#tkntoalwxt .gt_right {
+#toqcaqbvbh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tkntoalwxt .gt_font_normal {
+#toqcaqbvbh .gt_font_normal {
   font-weight: normal;
 }
 
-#tkntoalwxt .gt_font_bold {
+#toqcaqbvbh .gt_font_bold {
   font-weight: bold;
 }
 
-#tkntoalwxt .gt_font_italic {
+#toqcaqbvbh .gt_font_italic {
   font-style: italic;
 }
 
-#tkntoalwxt .gt_super {
+#toqcaqbvbh .gt_super {
   font-size: 65%;
 }
 
-#tkntoalwxt .gt_footnote_marks {
+#toqcaqbvbh .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#tkntoalwxt .gt_asterisk {
+#toqcaqbvbh .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#tkntoalwxt .gt_indent_1 {
+#toqcaqbvbh .gt_indent_1 {
   text-indent: 5px;
 }
 
-#tkntoalwxt .gt_indent_2 {
+#toqcaqbvbh .gt_indent_2 {
   text-indent: 10px;
 }
 
-#tkntoalwxt .gt_indent_3 {
+#toqcaqbvbh .gt_indent_3 {
   text-indent: 15px;
 }
 
-#tkntoalwxt .gt_indent_4 {
+#toqcaqbvbh .gt_indent_4 {
   text-indent: 20px;
 }
 
-#tkntoalwxt .gt_indent_5 {
+#toqcaqbvbh .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -853,6 +861,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="Latitude" class="gt_row gt_right">41.37100</td>
 <td headers="Longitude" class="gt_row gt_right">33.77560</td>
 <td headers="Altitude" class="gt_row gt_right">800</td></tr>
+    <tr><td headers="Station" class="gt_row gt_right">17078</td>
+<td headers="Province" class="gt_row gt_left">Karabuk</td>
+<td headers="Latitude" class="gt_row gt_right">41.19610</td>
+<td headers="Longitude" class="gt_row gt_right">32.62130</td>
+<td headers="Altitude" class="gt_row gt_right">400</td></tr>
     <tr><td headers="Station" class="gt_row gt_right">17080</td>
 <td headers="Province" class="gt_row gt_left">Cankiri</td>
 <td headers="Latitude" class="gt_row gt_right">40.60820</td>
@@ -868,11 +881,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="Latitude" class="gt_row gt_right">40.66680</td>
 <td headers="Longitude" class="gt_row gt_right">35.83530</td>
 <td headers="Altitude" class="gt_row gt_right">409</td></tr>
-    <tr><td headers="Station" class="gt_row gt_right">17078</td>
-<td headers="Province" class="gt_row gt_left">Karabuk</td>
-<td headers="Latitude" class="gt_row gt_right">41.19610</td>
-<td headers="Longitude" class="gt_row gt_right">32.62130</td>
-<td headers="Altitude" class="gt_row gt_right">400</td></tr>
   </tbody>
   
   
@@ -889,7 +897,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="dv">4326</span>), <span class="at">xlim =</span> <span class="fu">c</span>(extents[<span class="dv">1</span>], extents[<span class="dv">2</span>]), </span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>                               <span class="at">ylim =</span> <span class="fu">c</span>(extents[<span class="dv">3</span>],extents[<span class="dv">4</span>])) <span class="sc">+</span></span>
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>(<span class="at">data =</span> temp_df_2, </span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> layer), <span class="at">alpha=</span><span class="fl">0.5</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> layer), <span class="at">alpha=</span><span class="fl">0.7</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">""</span>) <span class="sc">+</span></span>
 <span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> df_gauges, <span class="fu">aes</span>(<span class="at">x=</span>Longitude, <span class="at">y=</span>Latitude),</span>
 <span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">size=</span><span class="dv">3</span>, <span class="at">colour=</span><span class="st">"darkred"</span>) <span class="sc">+</span> </span>
@@ -897,7 +905,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div id="fig-gauges" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="WRF_files/figure-html/fig-gauges-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="WRF_files/figure-html/fig-gauges-1.png" class="img-fluid figure-img" width="864"></p>
 <figcaption class="figure-caption">Figure&nbsp;3: Distribution of Meteorological Stations Over Domain 2.</figcaption>
 </figure>
 </div>
@@ -907,10 +915,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="get-temperature-observations" class="level3">
 <h3 class="anchored" data-anchor-id="get-temperature-observations">Get Temperature Observations</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>temp_obs<span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT_570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/df_2023122096C0-Saatlik_Sicaklik.xlsx"</span>)</span>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>temp_obs<span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/df_2023122096C0-Saatlik_Sicaklik.xlsx"</span>)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(temp_obs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 7
+<pre><code># A tibble: 6 x 7
   Istasyon_No Istasyon_Adi   YIL    AY   GUN  SAAT SICAKLIK
         &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
 1       17020 BARTIN        2004     8    11     0     19.1
@@ -937,18 +945,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1584</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(temp_obs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(temp_obs)<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"dates"</span>,<span class="st">"observation"</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(temp_obs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 3
-# Groups:   Istasyon_No [1]
-  Istasyon_No dates               SICAKLIK
-        &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;
-1       17020 2004-08-11 00:00:00     19.1
-2       17020 2004-08-11 01:00:00     18.8
-3       17020 2004-08-11 02:00:00     18.8
-4       17020 2004-08-11 03:00:00     18.7
-5       17020 2004-08-11 04:00:00     18.8
-6       17020 2004-08-11 05:00:00     19.6</code></pre>
+<pre><code># A tibble: 6 x 3
+# Groups:   Station [1]
+  Station dates               observation
+    &lt;dbl&gt; &lt;dttm&gt;                    &lt;dbl&gt;
+1   17020 2004-08-11 00:00:00        19.1
+2   17020 2004-08-11 01:00:00        18.8
+3   17020 2004-08-11 02:00:00        18.8
+4   17020 2004-08-11 03:00:00        18.7
+5   17020 2004-08-11 04:00:00        18.8
+6   17020 2004-08-11 05:00:00        19.6</code></pre>
 </div>
 </div>
 </section>
@@ -1005,6 +1014,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 6   17072  31.14880 40.84370            20.31973            22.24160</code></pre>
 </div>
 </div>
+</section>
+</section>
+<section id="operations-on-non-assimilated-wrf" class="level2">
+<h2 class="anchored" data-anchor-id="operations-on-non-assimilated-wrf">Operations on Non-Assimilated WRF</h2>
 <p>We need to apply similar procedures on non-assimilated WRF predictions for extraction as shown above.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#domain1</span></span>
@@ -1012,64 +1025,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="st">"wout/wrfout_d01_2004-08-11_00_00_00"</span>)</span>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>nc_data_nas <span class="ot">&lt;-</span> <span class="fu">nc_open</span>(fname_nas)</span>
 <span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>long_nas<span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data_nas, <span class="st">"XLONG"</span>)</span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>lat_nas<span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data_nas, <span class="st">"XLAT"</span>, <span class="at">verbose =</span> F)</span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>temp_nas<span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data_nas, <span class="st">"T2"</span>) </span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>t_nas <span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data_nas, <span class="st">"Times"</span>)</span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>raster_temp_nas<span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(temp_nas)[<span class="dv">3</span>])   {</span>
-<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>    raster_temp_nas[[i]] <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">t</span>(temp_nas[, , i] <span class="sc">-</span> <span class="fl">273.15</span>), </span>
-<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">xmn=</span><span class="fu">min</span>(long_nas), <span class="at">xmx=</span><span class="fu">max</span>(long_nas),</span>
-<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">ymn=</span><span class="fu">min</span>(lat_nas), <span class="at">ymx=</span><span class="fu">max</span>(lat_nas), </span>
-<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">crs=</span><span class="fu">CRS</span>(<span class="st">"+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"</span>))</span>
-<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a><span class="co">#domain2</span></span>
-<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a>fname2_nas <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"D:/Kitaplar/METU-PHD/Thesis/IsmailHocandanAldim_Aksoy_27092023/"</span>,</span>
-<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a><span class="st">"wout/wrfout_d02_2004-08-11_00_00_00"</span>)</span>
-<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a>nc_data2_nas <span class="ot">&lt;-</span> <span class="fu">nc_open</span>(fname2_nas)</span>
-<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a>long_2_nas<span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data2_nas, <span class="st">"XLONG"</span>)</span>
-<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a>lat_2_nas<span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data2_nas, <span class="st">"XLAT"</span>, <span class="at">verbose =</span> F)</span>
-<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a>temp_2_nas<span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data2_nas, <span class="st">"T2"</span>) </span>
-<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a>t2_nas <span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data2_nas, <span class="st">"Times"</span>)</span>
-<span id="cb36-28"><a href="#cb36-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-29"><a href="#cb36-29" aria-hidden="true" tabindex="-1"></a>raster_temp_2_nas<span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb36-30"><a href="#cb36-30" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(temp_2_nas)[<span class="dv">3</span>])   {</span>
-<span id="cb36-31"><a href="#cb36-31" aria-hidden="true" tabindex="-1"></a>    raster_temp_2_nas[[i]] <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">t</span>(temp_2_nas[, , i] <span class="sc">-</span> <span class="fl">273.15</span>), </span>
-<span id="cb36-32"><a href="#cb36-32" aria-hidden="true" tabindex="-1"></a>       <span class="at">xmn=</span><span class="fu">min</span>(long_2_nas), <span class="at">xmx=</span><span class="fu">max</span>(long_2_nas),</span>
-<span id="cb36-33"><a href="#cb36-33" aria-hidden="true" tabindex="-1"></a>       <span class="at">ymn=</span><span class="fu">min</span>(lat_2_nas), <span class="at">ymx=</span><span class="fu">max</span>(lat_2_nas), </span>
-<span id="cb36-34"><a href="#cb36-34" aria-hidden="true" tabindex="-1"></a>       <span class="at">crs=</span><span class="fu">CRS</span>(<span class="st">"+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"</span>))</span>
-<span id="cb36-35"><a href="#cb36-35" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>{<span class="fu">sink</span>(<span class="fu">paste0</span>(fname_nas,<span class="st">".txt"</span>))</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(nc_data_nas)</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sink</span>()}</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>long_nas<span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data_nas, <span class="st">"XLONG"</span>)</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>lat_nas<span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data_nas, <span class="st">"XLAT"</span>, <span class="at">verbose =</span> F)</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>temp_nas<span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data_nas, <span class="st">"T2"</span>) </span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>t_nas <span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data_nas, <span class="st">"Times"</span>)</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>raster_temp_nas<span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(temp_nas)[<span class="dv">3</span>])   {</span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>    raster_temp_nas[[i]] <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">t</span>(temp_nas[, , i] <span class="sc">-</span> <span class="fl">273.15</span>), </span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">xmn=</span><span class="fu">min</span>(long_nas), <span class="at">xmx=</span><span class="fu">max</span>(long_nas),</span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">ymn=</span><span class="fu">min</span>(lat_nas), <span class="at">ymx=</span><span class="fu">max</span>(lat_nas), </span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">crs=</span><span class="fu">CRS</span>(<span class="st">"+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"</span>))</span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a><span class="co">#domain2</span></span>
+<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a>fname2_nas <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"D:/Kitaplar/METU-PHD/Thesis/IsmailHocandanAldim_Aksoy_27092023/"</span>,</span>
+<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a><span class="st">"wout/wrfout_d02_2004-08-11_00_00_00"</span>)</span>
+<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a>nc_data2_nas <span class="ot">&lt;-</span> <span class="fu">nc_open</span>(fname2_nas)</span>
+<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-28"><a href="#cb36-28" aria-hidden="true" tabindex="-1"></a>{<span class="fu">sink</span>(<span class="fu">paste0</span>(fname2_nas,<span class="st">".txt"</span>))</span>
+<span id="cb36-29"><a href="#cb36-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(nc_data2_nas)</span>
+<span id="cb36-30"><a href="#cb36-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sink</span>()}</span>
+<span id="cb36-31"><a href="#cb36-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-32"><a href="#cb36-32" aria-hidden="true" tabindex="-1"></a>long_2_nas<span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data2_nas, <span class="st">"XLONG"</span>)</span>
+<span id="cb36-33"><a href="#cb36-33" aria-hidden="true" tabindex="-1"></a>lat_2_nas<span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data2_nas, <span class="st">"XLAT"</span>, <span class="at">verbose =</span> F)</span>
+<span id="cb36-34"><a href="#cb36-34" aria-hidden="true" tabindex="-1"></a>temp_2_nas<span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data2_nas, <span class="st">"T2"</span>) </span>
+<span id="cb36-35"><a href="#cb36-35" aria-hidden="true" tabindex="-1"></a>t2_nas <span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data2_nas, <span class="st">"Times"</span>)</span>
 <span id="cb36-36"><a href="#cb36-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-37"><a href="#cb36-37" aria-hidden="true" tabindex="-1"></a><span class="co"># domain1</span></span>
-<span id="cb36-38"><a href="#cb36-38" aria-hidden="true" tabindex="-1"></a>raster_temp_stack_nas<span class="ot">&lt;-</span> <span class="fu">stack</span>(raster_temp_nas)</span>
-<span id="cb36-39"><a href="#cb36-39" aria-hidden="true" tabindex="-1"></a>raster_temp_value_nas<span class="ot">&lt;-</span> raster<span class="sc">::</span><span class="fu">extract</span>(raster_temp_stack_nas, centroids)</span>
-<span id="cb36-40"><a href="#cb36-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-41"><a href="#cb36-41" aria-hidden="true" tabindex="-1"></a>rt_cpv_nas <span class="ot">&lt;-</span> <span class="fu">cbind</span>(centroids,raster_temp_value_nas)</span>
-<span id="cb36-42"><a href="#cb36-42" aria-hidden="true" tabindex="-1"></a>rt_cpv_df_nas<span class="ot">&lt;-</span> <span class="fu">data.frame</span>(rt_cpv_nas)</span>
-<span id="cb36-43"><a href="#cb36-43" aria-hidden="true" tabindex="-1"></a>rt_cpv_df_nas<span class="ot">&lt;-</span> rt_cpv_df_nas[,<span class="sc">-</span><span class="fu">ncol</span>(rt_cpv_df_nas)]</span>
+<span id="cb36-37"><a href="#cb36-37" aria-hidden="true" tabindex="-1"></a>raster_temp_2_nas<span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb36-38"><a href="#cb36-38" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(temp_2_nas)[<span class="dv">3</span>])   {</span>
+<span id="cb36-39"><a href="#cb36-39" aria-hidden="true" tabindex="-1"></a>    raster_temp_2_nas[[i]] <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">t</span>(temp_2_nas[, , i] <span class="sc">-</span> <span class="fl">273.15</span>), </span>
+<span id="cb36-40"><a href="#cb36-40" aria-hidden="true" tabindex="-1"></a>       <span class="at">xmn=</span><span class="fu">min</span>(long_2_nas), <span class="at">xmx=</span><span class="fu">max</span>(long_2_nas),</span>
+<span id="cb36-41"><a href="#cb36-41" aria-hidden="true" tabindex="-1"></a>       <span class="at">ymn=</span><span class="fu">min</span>(lat_2_nas), <span class="at">ymx=</span><span class="fu">max</span>(lat_2_nas), </span>
+<span id="cb36-42"><a href="#cb36-42" aria-hidden="true" tabindex="-1"></a>       <span class="at">crs=</span><span class="fu">CRS</span>(<span class="st">"+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"</span>))</span>
+<span id="cb36-43"><a href="#cb36-43" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb36-44"><a href="#cb36-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-45"><a href="#cb36-45" aria-hidden="true" tabindex="-1"></a>rt_cpv_df_nas<span class="ot">&lt;-</span> </span>
-<span id="cb36-46"><a href="#cb36-46" aria-hidden="true" tabindex="-1"></a>  rt_cpv_df_nas <span class="sc">|&gt;</span> </span>
-<span id="cb36-47"><a href="#cb36-47" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Station, Longitude, Latitude,  <span class="fu">everything</span>() )</span>
-<span id="cb36-48"><a href="#cb36-48" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(rt_cpv_df_nas) <span class="ot">&lt;-</span> <span class="fu">append</span>(<span class="fu">colnames</span>(rt_cpv_df_nas[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]),<span class="fu">as.character</span>(t_nas))</span>
-<span id="cb36-49"><a href="#cb36-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-50"><a href="#cb36-50" aria-hidden="true" tabindex="-1"></a><span class="co"># domain2</span></span>
-<span id="cb36-51"><a href="#cb36-51" aria-hidden="true" tabindex="-1"></a>raster_temp_stack_2_nas<span class="ot">&lt;-</span> <span class="fu">stack</span>(raster_temp_2_nas)</span>
-<span id="cb36-52"><a href="#cb36-52" aria-hidden="true" tabindex="-1"></a>raster_temp_value_2_nas<span class="ot">&lt;-</span> raster<span class="sc">::</span><span class="fu">extract</span>(raster_temp_stack_2_nas, centroids)</span>
-<span id="cb36-53"><a href="#cb36-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-54"><a href="#cb36-54" aria-hidden="true" tabindex="-1"></a>rt_cpv_2_nas <span class="ot">&lt;-</span> <span class="fu">cbind</span>(centroids,raster_temp_value_2_nas)</span>
-<span id="cb36-55"><a href="#cb36-55" aria-hidden="true" tabindex="-1"></a>rt_cpv_df_2_nas<span class="ot">&lt;-</span> <span class="fu">data.frame</span>(rt_cpv_2_nas) </span>
-<span id="cb36-56"><a href="#cb36-56" aria-hidden="true" tabindex="-1"></a>rt_cpv_df_2_nas<span class="ot">&lt;-</span> rt_cpv_df_2_nas[,<span class="sc">-</span><span class="fu">ncol</span>(rt_cpv_df_2_nas)]</span>
+<span id="cb36-45"><a href="#cb36-45" aria-hidden="true" tabindex="-1"></a><span class="co"># domain1</span></span>
+<span id="cb36-46"><a href="#cb36-46" aria-hidden="true" tabindex="-1"></a>raster_temp_stack_nas<span class="ot">&lt;-</span> <span class="fu">stack</span>(raster_temp_nas)</span>
+<span id="cb36-47"><a href="#cb36-47" aria-hidden="true" tabindex="-1"></a>raster_temp_value_nas<span class="ot">&lt;-</span> raster<span class="sc">::</span><span class="fu">extract</span>(raster_temp_stack_nas, centroids)</span>
+<span id="cb36-48"><a href="#cb36-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-49"><a href="#cb36-49" aria-hidden="true" tabindex="-1"></a>rt_cpv_nas <span class="ot">&lt;-</span> <span class="fu">cbind</span>(centroids,raster_temp_value_nas)</span>
+<span id="cb36-50"><a href="#cb36-50" aria-hidden="true" tabindex="-1"></a>rt_cpv_df_nas<span class="ot">&lt;-</span> <span class="fu">data.frame</span>(rt_cpv_nas)</span>
+<span id="cb36-51"><a href="#cb36-51" aria-hidden="true" tabindex="-1"></a>rt_cpv_df_nas<span class="ot">&lt;-</span> rt_cpv_df_nas[,<span class="sc">-</span><span class="fu">ncol</span>(rt_cpv_df_nas)]</span>
+<span id="cb36-52"><a href="#cb36-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-53"><a href="#cb36-53" aria-hidden="true" tabindex="-1"></a>rt_cpv_df_nas<span class="ot">&lt;-</span> </span>
+<span id="cb36-54"><a href="#cb36-54" aria-hidden="true" tabindex="-1"></a>  rt_cpv_df_nas <span class="sc">|&gt;</span> </span>
+<span id="cb36-55"><a href="#cb36-55" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Station, Longitude, Latitude,  <span class="fu">everything</span>() )</span>
+<span id="cb36-56"><a href="#cb36-56" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(rt_cpv_df_nas) <span class="ot">&lt;-</span> <span class="fu">append</span>(<span class="fu">colnames</span>(rt_cpv_df_nas[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]),<span class="fu">as.character</span>(t_nas))</span>
 <span id="cb36-57"><a href="#cb36-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-58"><a href="#cb36-58" aria-hidden="true" tabindex="-1"></a>rt_cpv_df_2_nas<span class="ot">&lt;-</span> </span>
-<span id="cb36-59"><a href="#cb36-59" aria-hidden="true" tabindex="-1"></a>  rt_cpv_df_2_nas <span class="sc">|&gt;</span> </span>
-<span id="cb36-60"><a href="#cb36-60" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Station, Longitude, Latitude,  <span class="fu">everything</span>() )</span>
-<span id="cb36-61"><a href="#cb36-61" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(rt_cpv_df_2_nas)<span class="ot">&lt;-</span> <span class="fu">append</span>(<span class="fu">colnames</span>(rt_cpv_df_2_nas[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]),<span class="fu">as.character</span>(t2_nas))</span>
-<span id="cb36-62"><a href="#cb36-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-63"><a href="#cb36-63" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rt_cpv_df_2_nas)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb36-58"><a href="#cb36-58" aria-hidden="true" tabindex="-1"></a><span class="co"># domain2</span></span>
+<span id="cb36-59"><a href="#cb36-59" aria-hidden="true" tabindex="-1"></a>raster_temp_stack_2_nas<span class="ot">&lt;-</span> <span class="fu">stack</span>(raster_temp_2_nas)</span>
+<span id="cb36-60"><a href="#cb36-60" aria-hidden="true" tabindex="-1"></a>raster_temp_value_2_nas<span class="ot">&lt;-</span> raster<span class="sc">::</span><span class="fu">extract</span>(raster_temp_stack_2_nas, centroids)</span>
+<span id="cb36-61"><a href="#cb36-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-62"><a href="#cb36-62" aria-hidden="true" tabindex="-1"></a>rt_cpv_2_nas <span class="ot">&lt;-</span> <span class="fu">cbind</span>(centroids,raster_temp_value_2_nas)</span>
+<span id="cb36-63"><a href="#cb36-63" aria-hidden="true" tabindex="-1"></a>rt_cpv_df_2_nas<span class="ot">&lt;-</span> <span class="fu">data.frame</span>(rt_cpv_2_nas) </span>
+<span id="cb36-64"><a href="#cb36-64" aria-hidden="true" tabindex="-1"></a>rt_cpv_df_2_nas<span class="ot">&lt;-</span> rt_cpv_df_2_nas[,<span class="sc">-</span><span class="fu">ncol</span>(rt_cpv_df_2_nas)]</span>
+<span id="cb36-65"><a href="#cb36-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-66"><a href="#cb36-66" aria-hidden="true" tabindex="-1"></a>rt_cpv_df_2_nas<span class="ot">&lt;-</span> </span>
+<span id="cb36-67"><a href="#cb36-67" aria-hidden="true" tabindex="-1"></a>  rt_cpv_df_2_nas <span class="sc">|&gt;</span> </span>
+<span id="cb36-68"><a href="#cb36-68" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Station, Longitude, Latitude,  <span class="fu">everything</span>() )</span>
+<span id="cb36-69"><a href="#cb36-69" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(rt_cpv_df_2_nas)<span class="ot">&lt;-</span> <span class="fu">append</span>(<span class="fu">colnames</span>(rt_cpv_df_2_nas[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]),<span class="fu">as.character</span>(t2_nas))</span>
+<span id="cb36-70"><a href="#cb36-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-71"><a href="#cb36-71" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rt_cpv_df_2_nas)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Station Longitude Latitude 2004-08-11_00:00:00 2004-08-11_01:00:00
 1   17020  32.35690 41.62480            16.26486            12.82797
@@ -1080,6 +1101,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 6   17072  31.14880 40.84370            20.31973            22.20229</code></pre>
 </div>
 </div>
+<section id="derivation-manipulation-in-data-frames" class="level3">
+<h3 class="anchored" data-anchor-id="derivation-manipulation-in-data-frames">Derivation &amp; Manipulation in Data Frames</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># domain1 assimilated prediction: rt_cpv_df</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># domain2 assimilated prediction: rt_cpv_df_2</span></span>
@@ -1087,21 +1110,672 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="co"># domain1 non_assimilated prediction: rt_cpv_df_nas</span></span>
 <span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="co"># domain2 non_assimilated prediction: rt_cpv_df_2_nas</span></span>
 <span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="co"># temp_obs</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="co"># observations: temp_obs</span></span>
 <span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>d01 <span class="ot">&lt;-</span> </span>
-<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>  rt_cpv_df <span class="sc">|&gt;</span> </span>
-<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(Station, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"2004"</span>),</span>
-<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"dates"</span>,</span>
-<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"predict_do1"</span>,</span>
-<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_drop_na =</span> <span class="cn">TRUE</span></span>
-<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span> <span class="fu">select</span>(Station, dates, predict_do1)</span>
-<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>d01<span class="sc">$</span>dates<span class="ot">&lt;-</span> <span class="fu">str_replace</span>(d01<span class="sc">$</span>dates, <span class="st">"_"</span>,<span class="st">" "</span>)</span>
-<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a>d01<span class="sc">$</span>dates<span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(d01<span class="sc">$</span>dates)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>data_list<span class="ot">&lt;-</span> <span class="fu">list</span>(rt_cpv_df, rt_cpv_df_2, rt_cpv_df_nas, rt_cpv_df_2_nas)</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>new_df_list<span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>variable<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"predict_do1"</span>, <span class="st">"predict_do2"</span>,<span class="st">"predict_do1_nas"</span>,<span class="st">"predict_do2_nas"</span>)</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(variable)){</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>  new_df_list[[i]] <span class="ot">&lt;-</span> </span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>        data_list[[i]] <span class="sc">|&gt;</span> </span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">distinct</span>(Station, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>        <span class="fu">pivot_longer</span>(</span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>          <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"2004"</span>),</span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>          <span class="at">names_to =</span> <span class="st">"dates"</span>,</span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>          <span class="at">values_to =</span> variable[i],</span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a>          <span class="at">values_drop_na =</span> <span class="cn">TRUE</span></span>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">|&gt;</span> </span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>        dplyr<span class="sc">::</span> <span class="fu">select</span>(Station, dates, variable[i]) </span>
+<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a>  new_df_list[[i]]<span class="sc">$</span>dates<span class="ot">&lt;-</span> <span class="fu">str_replace</span>(new_df_list[[i]]<span class="sc">$</span>dates, <span class="st">"_"</span>,<span class="st">" "</span>)</span>
+<span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a>  new_df_list[[i]]<span class="sc">$</span>dates<span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(new_df_list[[i]]<span class="sc">$</span>dates)</span>
+<span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-28"><a href="#cb38-28" aria-hidden="true" tabindex="-1"></a>                            }</span>
+<span id="cb38-29"><a href="#cb38-29" aria-hidden="true" tabindex="-1"></a>temp_obs_d01<span class="ot">&lt;-</span> temp_obs</span>
+<span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a>temp_obs_d01<span class="sc">$</span>dates<span class="ot">&lt;-</span> temp_obs_d01<span class="sc">$</span>dates <span class="sc">-</span> <span class="dv">3</span><span class="sc">*</span><span class="dv">60</span><span class="sc">*</span><span class="dv">60</span></span>
+<span id="cb38-31"><a href="#cb38-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-32"><a href="#cb38-32" aria-hidden="true" tabindex="-1"></a>temp_obs_d02<span class="ot">&lt;-</span> temp_obs</span>
+<span id="cb38-33"><a href="#cb38-33" aria-hidden="true" tabindex="-1"></a>temp_obs_d02<span class="sc">$</span>dates<span class="ot">&lt;-</span> temp_obs_d02<span class="sc">$</span>dates <span class="sc">-</span> <span class="dv">60</span><span class="sc">*</span><span class="dv">60</span></span>
+<span id="cb38-34"><a href="#cb38-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-35"><a href="#cb38-35" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(variable)){</span>
+<span id="cb38-36"><a href="#cb38-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(i <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>, </span>
+<span id="cb38-37"><a href="#cb38-37" aria-hidden="true" tabindex="-1"></a>new_df_list[[i]] <span class="ot">&lt;-</span> </span>
+<span id="cb38-38"><a href="#cb38-38" aria-hidden="true" tabindex="-1"></a>      new_df_list[[i]] <span class="sc">|&gt;</span>        </span>
+<span id="cb38-39"><a href="#cb38-39" aria-hidden="true" tabindex="-1"></a>        <span class="fu">inner_join</span>(temp_obs_d02, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"dates"</span>)),</span>
+<span id="cb38-40"><a href="#cb38-40" aria-hidden="true" tabindex="-1"></a>new_df_list[[i]] <span class="ot">&lt;-</span> </span>
+<span id="cb38-41"><a href="#cb38-41" aria-hidden="true" tabindex="-1"></a>      new_df_list[[i]] <span class="sc">|&gt;</span>        </span>
+<span id="cb38-42"><a href="#cb38-42" aria-hidden="true" tabindex="-1"></a>        <span class="fu">inner_join</span>(temp_obs_d01, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"dates"</span>))</span>
+<span id="cb38-43"><a href="#cb38-43" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb38-44"><a href="#cb38-44" aria-hidden="true" tabindex="-1"></a>                            }</span>
+<span id="cb38-45"><a href="#cb38-45" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb38-46"><a href="#cb38-46" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(new_df_list[[<span class="dv">1</span>]]); <span class="fu">head</span>(new_df_list[[<span class="dv">3</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 x 4
+  Station dates               predict_do1 observation
+    &lt;dbl&gt; &lt;dttm&gt;                    &lt;dbl&gt;       &lt;dbl&gt;
+1   17020 2004-08-10 21:00:00        19.1        19.1
+2   17020 2004-08-11 00:00:00        16.4        18.7
+3   17020 2004-08-11 03:00:00        18.6        19.9
+4   17020 2004-08-11 06:00:00        22.3        18.8
+5   17020 2004-08-11 09:00:00        24.5        19.2
+6   17020 2004-08-11 12:00:00        22.4        20.1</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 x 4
+  Station dates               predict_do1_nas observation
+    &lt;dbl&gt; &lt;dttm&gt;                        &lt;dbl&gt;       &lt;dbl&gt;
+1   17020 2004-08-10 21:00:00            19.1        19.1
+2   17020 2004-08-11 00:00:00            16.3        18.7
+3   17020 2004-08-11 03:00:00            18.6        19.9
+4   17020 2004-08-11 06:00:00            22.3        18.8
+5   17020 2004-08-11 09:00:00            24.6        19.2
+6   17020 2004-08-11 12:00:00            23.1        20.1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(new_df_list[[<span class="dv">2</span>]]); <span class="fu">head</span>(new_df_list[[<span class="dv">4</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 x 4
+  Station dates               predict_do2 observation
+    &lt;dbl&gt; &lt;dttm&gt;                    &lt;dbl&gt;       &lt;dbl&gt;
+1   17020 2004-08-10 23:00:00        12.5        19.1
+2   17020 2004-08-11 00:00:00        12.5        18.8
+3   17020 2004-08-11 01:00:00        12.2        18.8
+4   17020 2004-08-11 02:00:00        12.1        18.7
+5   17020 2004-08-11 03:00:00        12.7        18.8
+6   17020 2004-08-11 04:00:00        14.4        19.6</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 x 4
+  Station dates               predict_do2_nas observation
+    &lt;dbl&gt; &lt;dttm&gt;                        &lt;dbl&gt;       &lt;dbl&gt;
+1   17020 2004-08-10 23:00:00            12.9        19.1
+2   17020 2004-08-11 00:00:00            12.4        18.8
+3   17020 2004-08-11 01:00:00            12.4        18.8
+4   17020 2004-08-11 02:00:00            12.1        18.7
+5   17020 2004-08-11 03:00:00            12.7        18.8
+6   17020 2004-08-11 04:00:00            14.5        19.6</code></pre>
+</div>
+</div>
+</section>
+<section id="visualization" class="level3">
+<h3 class="anchored" data-anchor-id="visualization">Visualization</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  new_df_list[[<span class="dv">1</span>]] <span class="sc">|&gt;</span>        </span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">inner_join</span>(new_df_list[[<span class="dv">3</span>]], <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"dates"</span>,<span class="st">"observation"</span>)) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 x 5
+  Station dates               predict_do1 observation predict_do1_nas
+    &lt;dbl&gt; &lt;dttm&gt;                    &lt;dbl&gt;       &lt;dbl&gt;           &lt;dbl&gt;
+1   17020 2004-08-10 21:00:00        19.1        19.1            19.1
+2   17020 2004-08-11 00:00:00        16.4        18.7            16.3
+3   17020 2004-08-11 03:00:00        18.6        19.9            18.6
+4   17020 2004-08-11 06:00:00        22.3        18.8            22.3
+5   17020 2004-08-11 09:00:00        24.5        19.2            24.6
+6   17020 2004-08-11 12:00:00        22.4        20.1            23.1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  new_df_list[[<span class="dv">1</span>]] <span class="sc">|&gt;</span>        </span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">inner_join</span>(new_df_list[[<span class="dv">3</span>]], <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"dates"</span>,<span class="st">"observation"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>),</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">names_to =</span> <span class="st">"Temperature"</span>,</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">values_to =</span> <span class="st">"value"</span>,</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">values_drop_na =</span> <span class="cn">TRUE</span>) )  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 x 4
+  Station dates               Temperature     value
+    &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;           &lt;dbl&gt;
+1   17020 2004-08-10 21:00:00 predict_do1      19.1
+2   17020 2004-08-10 21:00:00 observation      19.1
+3   17020 2004-08-10 21:00:00 predict_do1_nas  19.1
+4   17020 2004-08-11 00:00:00 predict_do1      16.4
+5   17020 2004-08-11 00:00:00 observation      18.7
+6   17020 2004-08-11 00:00:00 predict_do1_nas  16.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>new_df_list[[<span class="dv">1</span>]] <span class="sc">|&gt;</span>        </span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(new_df_list[[<span class="dv">3</span>]], <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"dates"</span>,<span class="st">"observation"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>),</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">names_to =</span> <span class="st">"Temperature"</span>,</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">values_to =</span> <span class="st">"value"</span>,</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">values_drop_na =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Station =</span> <span class="fu">factor</span>(Station, </span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">labels =</span> df_gauges<span class="sc">$</span>Province )) <span class="sc">|&gt;</span></span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Temperature =</span>  <span class="fu">factor</span>(Temperature, </span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">levels=</span> <span class="fu">c</span>(<span class="st">"observation"</span>, <span class="st">"predict_do1_nas"</span>, <span class="st">"predict_do1"</span>)) ) <span class="sc">|&gt;</span>  </span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> dates, <span class="at">y=</span>value)) <span class="sc">+</span>   </span>
+<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">colour =</span> Temperature), <span class="at">size=</span><span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">name=</span> <span class="fu">expression</span>(<span class="st">"Temperature"</span><span class="sc">~</span>(degree<span class="sc">*</span>C)), </span>
+<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">values =</span> <span class="fu">c</span>(<span class="st">'observation'</span> <span class="ot">=</span> <span class="st">"black"</span>,</span>
+<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do1_nas'</span> <span class="ot">=</span> <span class="st">"blue"</span>,</span>
+<span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do1'</span> <span class="ot">=</span> <span class="st">"red"</span>),</span>
+<span id="cb48-18"><a href="#cb48-18" aria-hidden="true" tabindex="-1"></a>          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'observation'</span> <span class="ot">=</span> <span class="st">'Observation'</span>,</span>
+<span id="cb48-19"><a href="#cb48-19" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do1_nas'</span> <span class="ot">=</span> <span class="st">'Non-Assimilated Prediction DO1'</span>,</span>
+<span id="cb48-20"><a href="#cb48-20" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do1'</span> <span class="ot">=</span> <span class="st">'Assimilated Prediction DO1'</span>)) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb48-21"><a href="#cb48-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Station, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span> </span>
+<span id="cb48-22"><a href="#cb48-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">" "</span>,<span class="at">y=</span><span class="fu">expression</span>(<span class="st">"Temperature"</span><span class="sc">~</span>(degree<span class="sc">*</span>C))) <span class="sc">+</span> </span>
+<span id="cb48-23"><a href="#cb48-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">hjust =</span> <span class="dv">1</span>))  <span class="sc">+</span></span>
+<span id="cb48-24"><a href="#cb48-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">88</span>, .<span class="dv">1</span>), </span>
+<span id="cb48-25"><a href="#cb48-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">colour=</span><span class="st">"black"</span>, <span class="at">fill=</span><span class="st">"ghostwhite"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="WRF_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="864"></p>
+</div>
+</div>
+</section>
+<section id="error-estimation" class="level3">
+<h3 class="anchored" data-anchor-id="error-estimation">Error Estimation</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co">#BIAS</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>bias <span class="ot">&lt;-</span> <span class="cf">function</span>(x,y) { <span class="fu">mean</span>( (x<span class="sc">-</span>y) , <span class="at">na.rm =</span> <span class="cn">TRUE</span>) }</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="co">#MSE</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>mse<span class="ot">&lt;-</span> <span class="cf">function</span>(x,y) { <span class="fu">mean</span>( (x<span class="sc">-</span>y)<span class="sc">^</span><span class="dv">2</span> , <span class="at">na.rm =</span> <span class="cn">TRUE</span>) }</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="co">#RMSE</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>rmse<span class="ot">&lt;-</span> <span class="cf">function</span>(x,y) { <span class="fu">sqrt</span>( <span class="fu">mean</span>( (x<span class="sc">-</span>y)<span class="sc">^</span><span class="dv">2</span> , <span class="at">na.rm =</span> <span class="cn">TRUE</span>) ) }</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a><span class="co"># domain1: new_df_list[[1]]; new_df_list[[3]]</span></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a><span class="co"># domain2: new_df_list[[2]]; head(new_df_list[[4]])</span></span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>error_table<span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Statistics =</span> <span class="fu">c</span>(<span class="st">"BIAS"</span>,<span class="st">"MSE"</span>,<span class="st">"RMSE"</span>,<span class="st">"COR.COEF"</span>), </span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Assimilated_DO1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, </span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Assimilated_DO2 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, </span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Non_Assimilated_DO1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,   </span>
+<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Non_Assimilated_DO2 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span>
+<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) {</span>
+<span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a>  error_table[<span class="dv">1</span>,i<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">bias</span>(<span class="fu">as.matrix</span>(new_df_list[[i]][,<span class="dv">4</span>]), </span>
+<span id="cb49-20"><a href="#cb49-20" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">as.matrix</span>(new_df_list[[i]][,<span class="dv">3</span>]))</span>
+<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a>  error_table[<span class="dv">2</span>,i<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">mse</span>(<span class="fu">as.matrix</span>(new_df_list[[i]][,<span class="dv">4</span>]), </span>
+<span id="cb49-22"><a href="#cb49-22" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">as.matrix</span>(new_df_list[[i]][,<span class="dv">3</span>]))</span>
+<span id="cb49-23"><a href="#cb49-23" aria-hidden="true" tabindex="-1"></a>  error_table[<span class="dv">3</span>,i<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">rmse</span>(<span class="fu">as.matrix</span>(new_df_list[[i]][,<span class="dv">4</span>]), </span>
+<span id="cb49-24"><a href="#cb49-24" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">as.matrix</span>(new_df_list[[i]][,<span class="dv">3</span>]))</span>
+<span id="cb49-25"><a href="#cb49-25" aria-hidden="true" tabindex="-1"></a>  error_table[<span class="dv">4</span>,i<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">cor</span>(<span class="fu">as.matrix</span>(new_df_list[[i]][,<span class="dv">4</span>]), </span>
+<span id="cb49-26"><a href="#cb49-26" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">as.matrix</span>(new_df_list[[i]][,<span class="dv">3</span>]), <span class="at">use=</span><span class="st">'pairwise.complete.obs'</span>)</span>
+<span id="cb49-27"><a href="#cb49-27" aria-hidden="true" tabindex="-1"></a>               }</span>
+<span id="cb49-28"><a href="#cb49-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-29"><a href="#cb49-29" aria-hidden="true" tabindex="-1"></a>error_table[,<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>]<span class="ot">&lt;-</span> <span class="fu">round</span>(error_table[,<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>],<span class="dv">4</span>)</span>
+<span id="cb49-30"><a href="#cb49-30" aria-hidden="true" tabindex="-1"></a>error_table <span class="sc">|&gt;</span>  <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="okvctfgiqp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#okvctfgiqp table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#okvctfgiqp thead, #okvctfgiqp tbody, #okvctfgiqp tfoot, #okvctfgiqp tr, #okvctfgiqp td, #okvctfgiqp th {
+  border-style: none;
+}
+
+#okvctfgiqp p {
+  margin: 0;
+  padding: 0;
+}
+
+#okvctfgiqp .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#okvctfgiqp .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#okvctfgiqp .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#okvctfgiqp .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#okvctfgiqp .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#okvctfgiqp .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#okvctfgiqp .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#okvctfgiqp .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#okvctfgiqp .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#okvctfgiqp .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#okvctfgiqp .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#okvctfgiqp .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#okvctfgiqp .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#okvctfgiqp .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#okvctfgiqp .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#okvctfgiqp .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#okvctfgiqp .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#okvctfgiqp .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#okvctfgiqp .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#okvctfgiqp .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#okvctfgiqp .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#okvctfgiqp .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#okvctfgiqp .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#okvctfgiqp .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#okvctfgiqp .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#okvctfgiqp .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#okvctfgiqp .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#okvctfgiqp .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#okvctfgiqp .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#okvctfgiqp .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#okvctfgiqp .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#okvctfgiqp .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#okvctfgiqp .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#okvctfgiqp .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#okvctfgiqp .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#okvctfgiqp .gt_left {
+  text-align: left;
+}
+
+#okvctfgiqp .gt_center {
+  text-align: center;
+}
+
+#okvctfgiqp .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#okvctfgiqp .gt_font_normal {
+  font-weight: normal;
+}
+
+#okvctfgiqp .gt_font_bold {
+  font-weight: bold;
+}
+
+#okvctfgiqp .gt_font_italic {
+  font-style: italic;
+}
+
+#okvctfgiqp .gt_super {
+  font-size: 65%;
+}
+
+#okvctfgiqp .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#okvctfgiqp .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#okvctfgiqp .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#okvctfgiqp .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#okvctfgiqp .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#okvctfgiqp .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#okvctfgiqp .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Statistics">Statistics</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Assimilated_DO1">Assimilated_DO1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Assimilated_DO2">Assimilated_DO2</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Non_Assimilated_DO1">Non_Assimilated_DO1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Non_Assimilated_DO2">Non_Assimilated_DO2</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="Statistics" class="gt_row gt_left">BIAS</td>
+<td headers="Assimilated_DO1" class="gt_row gt_right">1.8939</td>
+<td headers="Assimilated_DO2" class="gt_row gt_right">1.6888</td>
+<td headers="Non_Assimilated_DO1" class="gt_row gt_right">1.8414</td>
+<td headers="Non_Assimilated_DO2" class="gt_row gt_right">1.6795</td></tr>
+    <tr><td headers="Statistics" class="gt_row gt_left">MSE</td>
+<td headers="Assimilated_DO1" class="gt_row gt_right">14.0167</td>
+<td headers="Assimilated_DO2" class="gt_row gt_right">34.5957</td>
+<td headers="Non_Assimilated_DO1" class="gt_row gt_right">13.8853</td>
+<td headers="Non_Assimilated_DO2" class="gt_row gt_right">34.5595</td></tr>
+    <tr><td headers="Statistics" class="gt_row gt_left">RMSE</td>
+<td headers="Assimilated_DO1" class="gt_row gt_right">3.7439</td>
+<td headers="Assimilated_DO2" class="gt_row gt_right">5.8818</td>
+<td headers="Non_Assimilated_DO1" class="gt_row gt_right">3.7263</td>
+<td headers="Non_Assimilated_DO2" class="gt_row gt_right">5.8787</td></tr>
+    <tr><td headers="Statistics" class="gt_row gt_left">COR.COEF</td>
+<td headers="Assimilated_DO1" class="gt_row gt_right">0.7655</td>
+<td headers="Assimilated_DO2" class="gt_row gt_right">0.2839</td>
+<td headers="Non_Assimilated_DO1" class="gt_row gt_right">0.7643</td>
+<td headers="Non_Assimilated_DO2" class="gt_row gt_right">0.2843</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
 </div>
 </section>
 </section>

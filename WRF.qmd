@@ -40,6 +40,10 @@ Firstly, we opened the assimilated WRF output for domain 1. You can see the cont
 fname <- paste0("D:/Kitaplar/METU-PHD/Thesis/IsmailHocandanAldim_Aksoy_27092023/",
 "aswout/wrfout_d01_2004-08-11_00_00_00")
 nc_data <- nc_open(fname)
+
+{sink(paste0(fname,".txt"))
+  print(nc_data)
+  sink()}
 ```
 
 ### Temperature Prediction in WRF
@@ -96,7 +100,7 @@ ymd_hms(t[41]) - ymd_hms(t[1])
 
 @fig-domain1 below shows the coverage of domain 1 where covers Türkiye and its surrounding.
 
-```{r}
+```{r, fig.width=9,fig.height=5}
 #| label: fig-domain1
 #| fig-cap: 
 #|  Türkiye with its neighboring countries and coverage of domain 1 for assimilated-WRF predictions.
@@ -112,12 +116,11 @@ for (i in 1:dim(temp)[3])   {
 temp_df <-as.data.frame(raster_temp[[length(t)]], xy = TRUE) 
 world <- rnaturalearth::ne_countries(scale='medium',returnclass = 'sf')
 
-ggplot(data = world)  + geom_sf(fill = "white") + 
+ggplot(data = world)  + geom_sf(fill = "white") +
   coord_sf(crs = st_crs(4326), xlim = c(10, 55), ylim = c(30,50)) +
-  geom_raster(data = temp_df, aes(x = x, y = y, fill = layer), 
-            alpha=0.7) +
-  scale_fill_viridis_c() +  labs(x="",y="") + 
-  ggtitle("Coverage of Domain 1") 
+  geom_raster(data = temp_df, aes(x = x, y = y, fill = layer), alpha=0.7) +
+  scale_fill_viridis_c() +  labs(x="",y="", fill= expression(degree*C)) + 
+  ggtitle("Coverage of Domain 1") + theme(legend.key.height = unit(1, "cm"))
 ```
 
 ### Temperature Prediction (Domain 2)
@@ -128,6 +131,10 @@ There are **121** time steps for second domain since we can inference by dimensi
 fname2 <- paste0("D:/Kitaplar/METU-PHD/Thesis/IsmailHocandanAldim_Aksoy_27092023/",
 "aswout/wrfout_d02_2004-08-11_00_00_00")
 nc_data2 <- nc_open(fname2)
+
+{sink(paste0(fname2,".txt"))
+  print(nc_data2)
+  sink()}
 
 long_2<- ncvar_get(nc_data2, "XLONG")
 lat_2<- ncvar_get(nc_data2, "XLAT", verbose = F)
@@ -165,7 +172,7 @@ ymd_hms(t2[121]) - ymd_hms(t2[1])
 
 @fig-domain2 below shows the comparison of two domains and coverage of domain 2 where covers some part of northwest of Türkiye.
 
-```{r}
+```{r, fig.width=9,fig.height=5}
 #| warning: false
 #| label: fig-domain2
 #| fig-cap: Comparison of domain 1 and 2. 
@@ -199,20 +206,19 @@ Domain 2 covers several provinces which are located northwest of Türkiye. Thus,
 #| label: tbl-gauges-domain2
 #| tbl-cap: Meteorological stations accross the domain 2.
 
-df_gauges <-  read.delim("D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT_570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/gauges.txt", sep="|")
+df_gauges <-  read.delim("D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/gauges.txt", sep="|")
 
 df_gauges<- df_gauges[,-c(3,4)]
 colnames(df_gauges)<- c("Station","Province","Latitude","Longitude","Altitude") ; 
 
 df_gauges$Province <- tolower(df_gauges$Province) |> str_to_title() 
-df_gauges |> gt()
-
-
+df_gauges<- df_gauges |> arrange(Station) 
+df_gauges |>  gt()
 ```
 
 @fig-gauges is shown for the distribution of meteorological stations along the study area.
 
-```{r}
+```{r, fig.width=9,fig.height=5}
 #| label: fig-gauges
 #| fig-cap: Distribution of Meteorological Stations Over Domain 2.
 extents<- extent(raster_temp_2[[length(t2)]])
@@ -221,7 +227,7 @@ ggplot(data = world)  + geom_sf(fill = "white") +
   coord_sf(crs = st_crs(4326), xlim = c(extents[1], extents[2]), 
                                ylim = c(extents[3],extents[4])) +
   geom_raster(data = temp_df_2, 
-        aes(x = x, y = y, fill = layer), alpha=0.5, show.legend = FALSE) +
+        aes(x = x, y = y, fill = layer), alpha=0.7, show.legend = FALSE) +
   scale_fill_viridis_c() + labs(x="",y="") +
   geom_point(data = df_gauges, aes(x=Longitude, y=Latitude),
              size=3, colour="darkred") + 
@@ -232,7 +238,7 @@ ggplot(data = world)  + geom_sf(fill = "white") +
 ### Get Temperature Observations
 
 ```{r}
-temp_obs<- read_excel("D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT_570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/df_2023122096C0-Saatlik_Sicaklik.xlsx")
+temp_obs<- read_excel("D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/df_2023122096C0-Saatlik_Sicaklik.xlsx")
 head(temp_obs)
 
 temp_obs<-
@@ -248,6 +254,7 @@ temp_obs<-
   tidyr::complete( dates = seq(ymd_hm("2004-08-11 00:00"), ymd_hm("2004-08-16 23:00"), by = "1 hours"))
 nrow(temp_obs)
 
+colnames(temp_obs)<- c("Station","dates","observation")
 head(temp_obs)
 
 ```
@@ -290,6 +297,8 @@ colnames(rt_cpv_df_2)<- append(colnames(rt_cpv_df_2[1:3]),as.character(t2))
 head(rt_cpv_df_2)[,1:5]
 ```
 
+## Operations on Non-Assimilated WRF
+
 We need to apply similar procedures on non-assimilated WRF predictions for extraction as shown above.
 
 ```{r}
@@ -297,6 +306,10 @@ We need to apply similar procedures on non-assimilated WRF predictions for extra
 fname_nas <- paste0("D:/Kitaplar/METU-PHD/Thesis/IsmailHocandanAldim_Aksoy_27092023/",
 "wout/wrfout_d01_2004-08-11_00_00_00")
 nc_data_nas <- nc_open(fname_nas)
+
+{sink(paste0(fname_nas,".txt"))
+  print(nc_data_nas)
+  sink()}
 
 long_nas<- ncvar_get(nc_data_nas, "XLONG")
 lat_nas<- ncvar_get(nc_data_nas, "XLAT", verbose = F)
@@ -315,6 +328,10 @@ for (i in 1:dim(temp_nas)[3])   {
 fname2_nas <- paste0("D:/Kitaplar/METU-PHD/Thesis/IsmailHocandanAldim_Aksoy_27092023/",
 "wout/wrfout_d02_2004-08-11_00_00_00")
 nc_data2_nas <- nc_open(fname2_nas)
+
+{sink(paste0(fname2_nas,".txt"))
+  print(nc_data2_nas)
+  sink()}
 
 long_2_nas<- ncvar_get(nc_data2_nas, "XLONG")
 lat_2_nas<- ncvar_get(nc_data2_nas, "XLAT", verbose = F)
@@ -358,6 +375,8 @@ colnames(rt_cpv_df_2_nas)<- append(colnames(rt_cpv_df_2_nas[1:3]),as.character(t
 head(rt_cpv_df_2_nas)[,1:5]
 ```
 
+### Derivation & Manipulation in Data Frames
+
 ```{r}
 # domain1 assimilated prediction: rt_cpv_df
 # domain2 assimilated prediction: rt_cpv_df_2
@@ -365,22 +384,127 @@ head(rt_cpv_df_2_nas)[,1:5]
 # domain1 non_assimilated prediction: rt_cpv_df_nas
 # domain2 non_assimilated prediction: rt_cpv_df_2_nas
 
-# temp_obs
+# observations: temp_obs
 
-d01 <- 
-  rt_cpv_df |> 
-  distinct(Station, .keep_all = TRUE) |> 
+data_list<- list(rt_cpv_df, rt_cpv_df_2, rt_cpv_df_nas, rt_cpv_df_2_nas)
+new_df_list<- list()
+variable<- c("predict_do1", "predict_do2","predict_do1_nas","predict_do2_nas")
+  
+for(i in 1:length(variable)){
+  new_df_list[[i]] <- 
+        data_list[[i]] |> 
+        distinct(Station, .keep_all = TRUE) |> 
+        pivot_longer(
+          cols = starts_with("2004"),
+          names_to = "dates",
+          values_to = variable[i],
+          values_drop_na = TRUE
+        ) |> 
+        dplyr:: select(Station, dates, variable[i]) 
+      
+  new_df_list[[i]]$dates<- str_replace(new_df_list[[i]]$dates, "_"," ")
+  new_df_list[[i]]$dates<- as.POSIXct(new_df_list[[i]]$dates)
+
+                            }
+temp_obs_d01<- temp_obs
+temp_obs_d01$dates<- temp_obs_d01$dates - 3*60*60
+
+temp_obs_d02<- temp_obs
+temp_obs_d02$dates<- temp_obs_d02$dates - 60*60
+
+for(i in 1:length(variable)){
+  ifelse(i %% 2 == 0, 
+new_df_list[[i]] <- 
+      new_df_list[[i]] |>        
+        inner_join(temp_obs_d02, by = c("Station","dates")),
+new_df_list[[i]] <- 
+      new_df_list[[i]] |>        
+        inner_join(temp_obs_d01, by = c("Station","dates"))
+        )
+                            }
+  
+head(new_df_list[[1]]); head(new_df_list[[3]])
+head(new_df_list[[2]]); head(new_df_list[[4]])
+
+```
+
+### Visualization
+
+```{r, fig.width=9,fig.height=5}
+#| warning: false
+
+head(
+  new_df_list[[1]] |>        
+    inner_join(new_df_list[[3]], by = c("Station","dates","observation")) )
+
+head(
+  new_df_list[[1]] |>        
+    inner_join(new_df_list[[3]], by = c("Station","dates","observation")) |> 
+    pivot_longer(
+            cols = -c(1:2),
+            names_to = "Temperature",
+            values_to = "value",
+            values_drop_na = TRUE) )  
+
+new_df_list[[1]] |>        
+  inner_join(new_df_list[[3]], by = c("Station","dates","observation")) |> 
   pivot_longer(
-    cols = starts_with("2004"),
-    names_to = "dates",
-    values_to = "predict_do1",
-    values_drop_na = TRUE
-  ) |> 
-  dplyr:: select(Station, dates, predict_do1)
+          cols = -c(1:2),
+          names_to = "Temperature",
+          values_to = "value",
+          values_drop_na = TRUE) |> 
+  mutate(Station = factor(Station, 
+         labels = df_gauges$Province )) |>
+  mutate(Temperature =  factor(Temperature, 
+         levels= c("observation", "predict_do1_nas", "predict_do1")) ) |>  
+ggplot(aes(x= dates, y=value)) +   
+  geom_line(aes(colour = Temperature), size=0.7) +
+  scale_colour_manual(name= expression("Temperature"~(degree*C)), 
+          values = c('observation' = "black",
+                     'predict_do1_nas' = "blue",
+                     'predict_do1' = "red"),
+          labels = c('observation' = 'Observation',
+                     'predict_do1_nas' = 'Non-Assimilated Prediction DO1',
+                     'predict_do1' = 'Assimilated Prediction DO1')) + theme_bw() + 
+  facet_wrap(~Station, scales = "free_y") + 
+  labs(x=" ",y=expression("Temperature"~(degree*C))) + 
+  theme(axis.text.x = element_text(angle = 0, hjust = 1))  +
+  theme(legend.position = c(.88, .1), 
+        strip.background = element_rect(colour="black", fill="ghostwhite"))
 
-d01$dates<- str_replace(d01$dates, "_"," ")
-d01$dates<- as.POSIXct(d01$dates)
+```
 
+### Error Estimation
 
+```{r}
+#BIAS
+bias <- function(x,y) { mean( (x-y) , na.rm = TRUE) }
+#MSE
+mse<- function(x,y) { mean( (x-y)^2 , na.rm = TRUE) }
+#RMSE
+rmse<- function(x,y) { sqrt( mean( (x-y)^2 , na.rm = TRUE) ) }
 
+# domain1: new_df_list[[1]]; new_df_list[[3]]
+# domain2: new_df_list[[2]]; head(new_df_list[[4]])
+
+error_table<- data.frame(
+                   Statistics = c("BIAS","MSE","RMSE","COR.COEF"), 
+                   Assimilated_DO1 = 1:4, 
+                   Assimilated_DO2 = 1:4, 
+                   Non_Assimilated_DO1 = 1:4,   
+                   Non_Assimilated_DO2 = 1:4)
+
+for (i in 1:4) {
+  error_table[1,i+1] <- bias(as.matrix(new_df_list[[i]][,4]), 
+                           as.matrix(new_df_list[[i]][,3]))
+  error_table[2,i+1] <- mse(as.matrix(new_df_list[[i]][,4]), 
+                           as.matrix(new_df_list[[i]][,3]))
+  error_table[3,i+1] <- rmse(as.matrix(new_df_list[[i]][,4]), 
+                           as.matrix(new_df_list[[i]][,3]))
+  error_table[4,i+1] <- cor(as.matrix(new_df_list[[i]][,4]), 
+                           as.matrix(new_df_list[[i]][,3]), use='pairwise.complete.obs')
+               }
+
+error_table[,2:5]<- round(error_table[,2:5],4)
+error_table |>  gt()
 ```

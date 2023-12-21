@@ -1,0 +1,936 @@
+File D:/Kitaplar/METU-PHD/Thesis/IsmailHocandanAldim_Aksoy_27092023/wout/wrfout_d02_2004-08-11_00_00_00 (NC_FORMAT_64BIT):
+
+     161 variables (excluding dimension variables):
+        char Times[DateStrLen,Time]   
+        float LU_INDEX[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: LAND USE CATEGORY
+            units: 
+            stagger: 
+            coordinates: XLONG XLAT
+        float ZNU[bottom_top,Time]   
+            FieldType: 104
+            MemoryOrder: Z  
+            description: eta values on half (mass) levels
+            units: 
+            stagger: 
+        float ZNW[bottom_top_stag,Time]   
+            FieldType: 104
+            MemoryOrder: Z  
+            description: eta values on full (w) levels
+            units: 
+            stagger: Z
+        float ZS[soil_layers_stag,Time]   
+            FieldType: 104
+            MemoryOrder: Z  
+            description: DEPTHS OF CENTERS OF SOIL LAYERS
+            units: m
+            stagger: Z
+        float DZS[soil_layers_stag,Time]   
+            FieldType: 104
+            MemoryOrder: Z  
+            description: THICKNESSES OF SOIL LAYERS
+            units: m
+            stagger: Z
+        float U[west_east_stag,south_north,bottom_top,Time]   
+            FieldType: 104
+            MemoryOrder: XYZ
+            description: x-wind component
+            units: m s-1
+            stagger: X
+            coordinates: XLONG_U XLAT_U
+        float Z_FORCE[force_layers,Time]   
+            FieldType: 104
+            MemoryOrder: Z  
+            description: height of forcing input
+            units: m
+            stagger: 
+        float U_G[force_layers,Time]   
+            FieldType: 104
+            MemoryOrder: Z  
+            description: x-direction geostrophic wind
+            units: m s-1
+            stagger: 
+        float U_G_TEND[force_layers,Time]   
+            FieldType: 104
+            MemoryOrder: Z  
+            description: tendency x-direction geostrophic wind
+            units: m s-1
+            stagger: 
+        float V[west_east,south_north_stag,bottom_top,Time]   
+            FieldType: 104
+            MemoryOrder: XYZ
+            description: y-wind component
+            units: m s-1
+            stagger: Y
+            coordinates: XLONG_V XLAT_V
+        float V_G[force_layers,Time]   
+            FieldType: 104
+            MemoryOrder: Z  
+            description: y-direction geostrophic wind
+            units: m s-1
+            stagger: 
+        float V_G_TEND[force_layers,Time]   
+            FieldType: 104
+            MemoryOrder: Z  
+            description: tendency y-direction geostrophic wind
+            units: m s-1
+            s$tidyverse
+ [1] "lubridate"   "forcats"     "stringr"     "dplyr"       "purrr"       "readr"       "tidyr"       "tibble"      "ggplot2"    
+[10] "tidyverse"   "R.utils"     "R.oo"        "R.methodsS3" "ncdf4"       "raster"      "sp"          "stats"       "graphics"   
+[19] "grDevices"   "utils"       "datasets"    "methods"     "base"       
+
+$XML
+ [1] "XML"         "lubridate"   "forcats"     "stringr"     "dplyr"       "purrr"       "readr"       "tidyr"       "tibble"     
+[10] "ggplot2"     "tidyverse"   "R.utils"     "R.oo"        "R.methodsS3" "ncdf4"       "raster"      "sp"          "stats"      
+[19] "graphics"    "grDevices"   "utils"       "datasets"    "methods"     "base"       
+
+$rvest
+ [1] "rvest"       "XML"         "lubridate"   "forcats"     "stringr"     "dplyr"       "purrr"       "readr"       "tidyr"      
+[10] "tibble"      "ggplot2"     "tidyverse"   "R.utils"     "R.oo"        "R.methodsS3" "ncdf4"       "raster"      "sp"         
+[19] "stats"       "graphics"    "grDevices"   "utils"       "datasets"    "methods"     "base"       
+
+$formattable
+ [1] "formattable" "rvest"       "XML"         "lubridate"   "forcats"     "stringr"     "dplyr"       "purrr"       "readr"      
+[10] "tidyr"       "tibble"      "ggplot2"     "tidyverse"   "R.utils"     "R.oo"        "R.methodsS3" "ncdf4"       "raster"     
+[19] "sp"          "stats"       "graphics"    "grDevices"   "utils"       "datasets"    "methods"     "base"       
+
+$lubridate
+ [1] "formattable" "rvest"       "XML"         "lubridate"   "forcats"     "stringr"     "dplyr"       "purrr"       "readr"      
+[10] "tidyr"       "tibble"      "ggplot2"     "tidyverse"   "R.utils"     "R.oo"        "R.methodsS3" "ncdf4"       "raster"     
+[19] "sp"          "stats"       "graphics"    "grDevices"   "utils"       "datasets"    "methods"     "base"       
+
+$readr
+ [1] "formattable" "rvest"       "XML"         "lubridate"   "forcats"     "stringr"     "dplyr"       "purrr"       "readr"      
+[10] "tidyr"       "tibble"      "ggplot2"     "tidyverse"   "R.utils"     "R.oo"        "R.methodsS3" "ncdf4"       "raster"     
+[19] "sp"          "stats"       "graphics"    "grDevices"   "utils"       "datasets"    "methods"     "base"       
+
+$jquerylib
+ [1] "jquerylib"   "formattable" "rvest"       "XML"         "lubridate"   "forcats"     "stringr"     "dplyr"       "purrr"      
+[10] "readr"       "tidyr"       "tibble"      "ggplot2"     "tidyverse"   "R.utils"     "R.oo"        "R.methodsS3" "ncdf4"      
+[19] "raster"      "sp"          "stats"       "graphics"    "grDevices"   "utils"       "datasets"    "methods"     "base"       
+
+$htmltools
+ [1] "htmltools"   "jquerylib"   "formattable" "rvest"       "XML"         "lubridate"   "forcats"     "stringr"     "dplyr"      
+[10] "purrr"       "readr"       "tidyr"       "tibble"      "ggplot2"     "tidyverse"   "R.utils"     "R.oo"        "R.methodsS3"
+[19] "ncdf4"       "raster"      "sp"          "stats"       "graphics"    "grDevices"   "utils"       "datasets"    "methods"    
+[28] "base"       
+
+$webshot
+ [1] "webshot"     "htmltools"   "jquerylib"   "formattable" "rvest"       "XML"         "lubridate"   "forcats"     "stringr"    
+[10] "dplyr"       "purrr"       "readr"       "tidyr"       "tibble"      "ggplot2"     "tidyverse"   "R.utils"     "R.oo"       
+[19] "R.methodsS3" "ncdf4"       "raster"      "sp"          "stats"       "graphics"    "grDevices"   "utils"       "datasets"   
+[28] "methods"     "base"       
+
+$png
+ [1] "png"         "webshot"     "htmltools"   "jquerylib"   "formattable" "rvest"       "XML"         "lubridate"   "forcats"    
+[10] "stringr"     "dplyr"       "purrr"       "readr"       "tidyr"       "tibble"      "ggplot2"     "tidyverse"   "R.utils"    
+[19] "R.oo"        "R.methodsS3" "ncdf4"       "raster"      "sp"          "stats"       "graphics"    "grDevices"   "utils"      
+[28] "datasets"    "methods"     "base"       
+
+$RCurl
+ [1] "RCurl"       "png"         "webshot"     "htmltools"   "jquerylib"   "formattable" "rvest"       "XML"         "lubridate"  
+[10] "forcats"     "stringr"     "dplyr"       "purrr"       "readr"       "tidyr"       "tibble"      "ggplot2"     "tidyverse"  
+[19] "R.utils"     "R.oo"        "R.methodsS3" "ncdf4"       "raster"      "sp"          "stats"       "graphics"    "grDevices"  
+[28] "utils"       "datasets"    "methods"     "base"       
+
+$plyr
+ [1] "plyr"        "RCurl"       "png"         "webshot"     "htmltools"   "jquerylib"   "formattable" "rvest"       "XML"        
+[10] "lubridate"   "forcats"     "stringr"     "dplyr"       "purrr"       "readr"       "tidyr"       "tibble"      "ggplot2"    
+[19] "tidyverse"   "R.utils"     "R.oo"        "R.methodsS3" "ncdf4"       "raster"      "sp"          "stats"       "graphics"   
+[28] "grDevices"   "utils"       "datasets"    "methods"     "base"       
+
+$dplyr
+ [1] "plyr"        "RCurl"       "png"         "webshot"     "htmltools"   "jquerylib"   "formattable" "rvest"       "XML"        
+[10] "lubridate"   "forcats"     "stringr"     "dplyr"       "purrr"       "readr"       "tidyr"       "tibble"      "ggplot2"    
+[19] "tidyverse"   "R.utils"     "R.oo"        "R.methodsS3" "ncdf4"       "raster"      "sp"          "stats"       "graphics"   
+[28] "grDevices"   "utils"       "datasets"    "methods"     "base"       
+
+$tidyr
+ [1] "plyr"        "RCurl"       "png"         "webshot"     "htmltools"   "jquerylib"   "formattable" "rvest"       "XML"        
+[10] "lubridate"   "forcats"     "stringr"     "dplyr"       "purrr"       "readr"       "tidyr"       "tibble"      "ggplot2"    
+[19] "tidyverse"   "R.utils"     "R.oo"        "R.methodsS3" "ncdf4"       "raster"      "sp"          "stats"       "graphics"   
+[28] "grDevices"   "utils"       "datasets"    "methods"     "base"       
+
+[1] 604
+[1] 204
+[1] 384
+      tidyverse     XML           rvest         formattable   lubridate     readr         jquerylib     htmltools    
+ [1,] "plyr"        "plyr"        "plyr"        "plyr"        "plyr"        "plyr"        "plyr"        "plyr"       
+ [2,] "RCurl"       "RCurl"       "RCurl"       "RCurl"       "RCurl"       "RCurl"       "RCurl"       "RCurl"      
+ [3,] "png"         "png"         "png"         "png"         "png"         "png"         "png"         "png"        
+ [4,] "webshot"     "webshot"     "webshot"     "webshot"     "webshot"     "webshot"     "webshot"     "webshot"    
+ [5,] "htmltools"   "htmltools"   "htmltools"   "htmltools"   "htmltools"   "htmltools"   "htmltools"   "htmltools"  
+ [6,] "jquerylib"   "jquerylib"   "jquerylib"   "jquerylib"   "jquerylib"   "jquerylib"   "jquerylib"   "jquerylib"  
+ [7,] "formattable" "formattable" "formattable" "formattable" "formattable" "formattable" "formattable" "formattable"
+ [8,] "rvest"       "rvest"       "rvest"       "rvest"       "rvest"       "rvest"       "rvest"       "rvest"      
+ [9,] "XML"         "XML"         "XML"         "XML"         "XML"         "XML"         "XML"         "XML"        
+[10,] "lubridate"   "lubridate"   "lubridate"   "lubridate"   "lubridate"   "lubridate"   "lubridate"   "lubridate"  
+[11,] "forcats"     "forcats"     "forcats"     "forcats"     "forcats"     "forcats"     "forcats"     "forcats"    
+[12,] "stringr"     "stringr"     "stringr"     "stringr"     "stringr"     "stringr"     "stringr"     "stringr"    
+[13,] "dplyr"       "dplyr"       "dplyr"       "dplyr"       "dplyr"       "dplyr"       "dplyr"       "dplyr"      
+[14,] "purrr"       "purrr"       "purrr"       "purrr"       "purrr"       "purrr"       "purrr"       "purrr"      
+[15,] "readr"       "readr"       "readr"       "readr"       "readr"       "readr"       "readr"       "readr"      
+[16,] "tidyr"       "tidyr"       "tidyr"       "tidyr"       "tidyr"       "tidyr"       "tidyr"       "tidyr"      
+[17,] "tibble"      "tibble"      "tibble"      "tibble"      "tibble"      "tibble"      "tibble"      "tibble"     
+[18,] "ggplot2"     "ggplot2"     "ggplot2"     "ggplot2"     "ggplot2"     "ggplot2"     "ggplot2"     "ggplot2"    
+[19,] "tidyverse"   "tidyverse"   "tidyverse"   "tidyverse"   "tidyverse"   "tidyverse"   "tidyverse"   "tidyverse"  
+[20,] "R.utils"     "R.utils"     "R.utils"     "R.utils"     "R.utils"     "R.utils"     "R.utils"     "R.utils"    
+[21,] "R.oo"        "R.oo"        "R.oo"        "R.oo"        "R.oo"        "R.oo"        "R.oo"        "R.oo"       
+[22,] "R.methodsS3" "R.methodsS3" "R.methodsS3" "R.methodsS3" "R.methodsS3" "R.methodsS3" "R.methodsS3" "R.methodsS3"
+[23,] "ncdf4"       "ncdf4"       "ncdf4"       "ncdf4"       "ncdf4"       "ncdf4"       "ncdf4"       "ncdf4"      
+[24,] "raster"      "raster"      "raster"      "raster"      "raster"      "raster"      "raster"      "raster"     
+[25,] "sp"          "sp"          "sp"          "sp"          "sp"          "sp"          "sp"          "sp"         
+[26,] "stats"       "stats"       "stats"       "stats"       "stats"       "stats"       "stats"       "stats"      
+[27,] "graphics"    "graphics"    "graphics"    "graphics"    "graphics"    "graphics"    "graphics"    "graphics"   
+[28,] "grDevices"   "grDevices"   "grDevices"   "grDevices"   "grDevices"   "grDevices"   "grDevices"   "grDevices"  
+[29,] "utils"       "utils"       "utils"       "utils"       "utils"       "utils"       "utils"       "utils"      
+[30,] "datasets"    "datasets"    "datasets"    "datasets"    "datasets"    "datasets"    "datasets"    "datasets"   
+[31,] "methods"     "methods"     "methods"     "methods"     "methods"     "methods"     "methods"     "methods"    
+[32,] "base"        "base"        "base"        "base"        "base"        "base"        "base"        "base"       
+      webshot       png           RCurl         plyr          dplyr         tidyr        
+ [1,] "plyr"        "plyr"        "plyr"        "plyr"        "plyr"        "plyr"       
+ [2,] "RCurl"       "RCurl"       "RCurl"       "RCurl"       "RCurl"       "RCurl"      
+ [3,] "png"         "png"         "png"         "png"         "png"         "png"        
+ [4,] "webshot"     "webshot"     "webshot"     "webshot"     "webshot"     "webshot"    
+ [5,] "htmltools"   "htmltools"   "htmltools"   "htmltools"   "htmltools"   "htmltools"  
+ [6,] "jquerylib"   "jquerylib"   "jquerylib"   "jquerylib"   "jquerylib"   "jquerylib"  
+ [7,] "formattable" "formattable" "formattable" "formattable" "formattable" "formattable"
+ [8,] "rvest"       "rvest"       "rvest"       "rvest"       "rvest"       "rvest"      
+ [9,] "XML"         "XML"         "XML"         "XML"         "XML"         "XML"        
+[10,] "lubridate"   "lubridate"   "lubridate"   "lubridate"   "lubridate"   "lubridate"  
+[11,] "forcats"     "forcats"     "forcats"     "forcats"     "forcats"     "forcats"    
+[12,] "stringr"     "stringr"     "stringr"     "stringr"     "stringr"     "stringr"    
+[13,] "dplyr"       "dplyr"       "dplyr"       "dplyr"       "dplyr"       "dplyr"      
+[14,] "purrr"       "purrr"       "purrr"       "purrr"       "purrr"       "purrr"      
+[15,] "readr"       "readr"       "readr"       "readr"       "readr"       "readr"      
+[16,] "tidyr"       "tidyr"       "tidyr"       "tidyr"       "tidyr"       "tidyr"      
+[17,] "tibble"      "tibble"      "tibble"      "tibble"      "tibble"      "tibble"     
+[18,] "ggplot2"     "ggplot2"     "ggplot2"     "ggplot2"     "ggplot2"     "ggplot2"    
+[19,] "tidyverse"   "tidyverse"   "tidyverse"   "tidyverse"   "tidyverse"   "tidyverse"  
+[20,] "R.utils"     "R.utils"     "R.utils"     "R.utils"     "R.utils"     "R.utils"    
+[21,] "R.oo"        "R.oo"        "R.oo"        "R.oo"        "R.oo"        "R.oo"       
+[22,] "R.methodsS3" "R.methodsS3" "R.methodsS3" "R.methodsS3" "R.methodsS3" "R.methodsS3"
+[23,] "ncdf4"       "ncdf4"       "ncdf4"       "ncdf4"       "ncdf4"       "ncdf4"      
+[24,] "raster"      "raster"      "raster"      "raster"      "raster"      "raster"     
+[25,] "sp"          "sp"          "sp"          "sp"          "sp"          "sp"         
+[26,] "stats"       "stats"       "stats"       "stats"       "stats"       "stats"      
+[27,] "graphics"    "graphics"    "graphics"    "graphics"    "graphics"    "graphics"   
+[28,] "grDevices"   "grDevices"   "grDevices"   "grDevices"   "grDevices"   "grDevices"  
+[29,] "utils"       "utils"       "utils"       "utils"       "utils"       "utils"      
+[30,] "datasets"    "datasets"    "datasets"    "datasets"    "datasets"    "datasets"   
+[31,] "methods"     "methods"     "methods"     "methods"     "methods"     "methods"    
+[32,] "base"        "base"        "base"        "base"        "base"        "base"       
+p,Time]   
+            FieldType: 104
+            MemoryOrder: XYZ
+            description: Snow mixing ratio
+            units: kg kg-1
+            stagger: 
+            coordinates: XLONG XLAT
+        float QNCCN[west_east,south_north,bottom_top,Time]   
+            FieldType: 104
+            MemoryOrder: XYZ
+            description: CCN Number concentration
+            units:   kg(-1)
+            stagger: 
+            coordinates: XLONG XLAT
+        float QNCLOUD[west_east,south_north,bottom_top,Time]   
+            FieldType: 104
+            MemoryOrder: XYZ
+            description: cloud water Number concentration
+            units:   kg(-1)
+            stagger: 
+            coordinates: XLONG XLAT
+        float QNRAIN[west_east,south_north,bottom_top,Time]   
+            FieldType: 104
+            MemoryOrder: XYZ
+            description: Rain Number concentration
+            units:   kg(-1)
+            stagger: 
+            coordinates: XLONG XLAT
+        float LANDMASK[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: LAND MASK (1 FOR LAND, 0 FOR WATER)
+            units: 
+            stagger: 
+            coordinates: XLONG XLAT
+        float TSLB[west_east,south_north,soil_layers_stag,Time]   
+            FieldType: 104
+            MemoryOrder: XYZ
+            description: SOIL TEMPERATURE
+            units: K
+            stagger: Z
+            coordinates: XLONG XLAT
+        float SMOIS[west_east,south_north,soil_layers_stag,Time]   
+            FieldType: 104
+            MemoryOrder: XYZ
+            description: SOIL MOISTURE
+            units: m3 m-3
+            stagger: Z
+            coordinates: XLONG XLAT
+        float SH2O[west_east,south_north,soil_layers_stag,Time]   
+            FieldType: 104
+            MemoryOrder: XYZ
+            description: SOIL LIQUID WATER
+            units: m3 m-3
+            stagger: Z
+            coordinates: XLONG XLAT
+        float SEAICE[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: SEA ICE FLAG
+            units: 
+            stagger: 
+            coordinates: XLONG XLAT
+        float XICEM[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: SEA ICE FLAG (PREVIOUS STEP)
+            units: 
+            stagger: 
+            coordinates: XLONG XLAT
+        float SFROFF[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: SURFACE RUNOFF
+            units: mm
+            stagger: 
+            coordinates: XLONG XLAT
+        float UDROFF[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: UNDERGROUND RUNOFF
+            units: mm
+            stagger: 
+            coordinates: XLONG XLAT
+        int IVGTYP[west_east,south_north,Time]   
+            FieldType: 106
+            MemoryOrder: XY 
+            description: DOMINANT VEGETATION CATEGORY
+            units: 
+            stagger: 
+            coordinates: XLONG XLAT
+        int ISLTYP[west_east,south_north,Time]   
+            FieldType: 106
+            MemoryOrder: XY 
+            description: DOMINANT SOIL CATEGORY
+            units: 
+            stagger: 
+            coordinates: XLONG XLAT
+        float VEGFRA[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: VEGETATION FRACTION
+            units: 
+            stagger: 
+            coordinates: XLONG XLAT
+        float GRDFLX[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: GROUND HEAT FLUX
+            units: W m-2
+            stagger: 
+            coordinates: XLONG XLAT
+        float ACGRDFLX[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: ACCUMULATED GROUND HEAT FLUX
+            units: J m-2
+            stagger: 
+            coordinates: XLONG XLAT
+        float SNOW[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: SNOW WATER EQUIVALENT
+            units: kg m-2
+            stagger: 
+            coordinates: XLONG XLAT
+        float SNOWH[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: PHYSICAL SNOW DEPTH
+            units: m
+            stagger: 
+            coordinates: XLONG XLAT
+        float RHOSN[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description:  SNOW DENSITY
+            units: kg m-3
+            stagger: 
+            coordinates: XLONG XLAT
+        float CANWAT[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: CANOPY WATER
+            units: kg m-2
+            stagger: 
+            coordinates: XLONG XLAT
+        float SST[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: SEA SURFACE TEMPERATURE
+            units: K
+            stagger: 
+            coordinates: XLONG XLAT
+        float SSTSK[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: SKIN SEA SURFACE TEMPERATURE
+            units: K
+            stagger: 
+            coordinates: XLONG XLAT
+        float LAI[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: Leaf area index
+            units: area/area
+            stagger: 
+            coordinates: XLONG XLAT
+        float Z0[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: Background ROUGHNESS LENGTH
+            units: m
+            stagger: 
+            coordinates: XLONG XLAT
+        float VAR[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: OROGRAPHIC VARIANCE
+            units: 
+            stagger: 
+            coordinates: XLONG XLAT
+        float CON[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: OROGRAPHIC CONVEXITY
+            units: 
+            stagger: 
+            coordinates: XLONG XLAT
+        float OA1[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: OROGRAPHIC DIRECTION ASYMMETRY FUNCTION
+            units: 
+            stagger: 
+            coordinates: XLONG XLAT
+        float OA2[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: OROGRAPHIC DIRECTION ASYMMETRY FUNCTION
+            units: 
+            stagger: 
+            coordinates: XLONG XLAT
+        float OA3[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: OROGRAPHIC DIRECTION ASYMMETRY FUNCTION
+            units: 
+            stagger: 
+            coordinates: XLONG XLAT
+        float OA4[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: OROGRAPHIC DIRECTION ASYMMETRY FUNCTION
+            units: 
+            stagger: 
+            coordinates: XLONG XLAT
+        float OL1[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: OROGRAPHIC DIRECTION ASYMMETRY FUNCTION
+            units: 
+            stagger: 
+            coordinates: XLONG XLAT
+        float OL2[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: OROGRAPHIC DIRECTION ASYMMETRY FUNCTION
+            units: 
+            stagger: 
+            coordinates: XLONG XLAT
+        float OL3[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: OROGRAPHIC DIRECTION ASYMMETRY FUNCTION
+            units: 
+            stagger: 
+            coordinates: XLONG XLAT
+        float OL4[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: OROGRAPHIC DIRECTION ASYMMETRY FUNCTION
+            units: 
+            stagger: 
+            coordinates: XLONG XLAT
+        float MAPFAC_M[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: Map scale factor on mass grid
+            units: 
+            stagger: 
+            coordinates: XLONG XLAT
+        float MAPFAC_U[west_east_stag,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: Map scale factor on u-grid
+            units: 
+            stagger: X
+            coordinates: XLONG_U XLAT_U
+        float MAPFAC_V[west_east,south_north_stag,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: Map scale factor on v-grid
+            units: 
+            stagger: Y
+            coordinates: XLONG_V XLAT_V
+        float MAPFAC_MX[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: Map scale factor on mass grid, x direction
+            units: 
+            stagger: 
+            coordinates: XLONG XLAT
+        float MAPFAC_MY[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: Map scale factor on mass grid, y direction
+            units: 
+            stagger: 
+            coordinates: XLONG XLAT
+        float MAPFAC_UX[west_east_stag,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: Map scale factor on u-grid, x direction
+            units: 
+            stagger: X
+            coordinates: XLONG_U XLAT_U
+        float MAPFAC_UY[west_east_stag,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: Map scale factor on u-grid, y direction
+            units: 
+            stagger: X
+            coordinates: XLONG_U XLAT_U
+        float MAPFAC_VX[west_east,south_north_stag,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: Map scale factor on v-grid, x direction
+            units: 
+            stagger: Y
+            coordinates: XLONG_V XLAT_V
+        float MF_VX_INV[west_east,south_north_stag,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: Inverse map scale factor on v-grid, x direction
+            units: 
+            stagger: Y
+            coordinates: XLONG_V XLAT_V
+        float MAPFAC_VY[west_east,south_north_stag,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: Map scale factor on v-grid, y direction
+            units: 
+            stagger: Y
+            coordinates: XLONG_V XLAT_V
+        float F[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: Coriolis sine latitude term
+            units: s-1
+            stagger: 
+            coordinates: XLONG XLAT
+        float E[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: Coriolis cosine latitude term
+            units: s-1
+            stagger: 
+            coordinates: XLONG XLAT
+        float SINALPHA[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: Local sine of map rotation
+            units: 
+            stagger: 
+            coordinates: XLONG XLAT
+        float COSALPHA[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: Local cosine of map rotation
+            units: 
+            stagger: 
+            coordinates: XLONG XLAT
+        float HGT[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: Terrain Height
+            units: m
+            stagger: 
+            coordinates: XLONG XLAT
+        float HGT_SHAD[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: Height of orographic shadow
+            units: m
+            stagger: 
+            coordinates: XLONG XLAT
+        float TSK[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: SURFACE SKIN TEMPERATURE
+            units: K
+            stagger: 
+            coordinates: XLONG XLAT
+        float P_TOP[Time]   
+            FieldType: 104
+            MemoryOrder: 0  
+            description: PRESSURE TOP OF THE MODEL
+            units: Pa
+            stagger: 
+        float T00[Time]   
+            FieldType: 104
+            MemoryOrder: 0  
+            description: BASE STATE TEMPERATURE
+            units: K
+            stagger: 
+        float P00[Time]   
+            FieldType: 104
+            MemoryOrder: 0  
+            description: BASE STATE PRESURE
+            units: Pa
+            stagger: 
+        float TLP[Time]   
+            FieldType: 104
+            MemoryOrder: 0  
+            description: BASE STATE LAPSE RATE
+            units: 
+            stagger: 
+        float TISO[Time]   
+            FieldType: 104
+            MemoryOrder: 0  
+            description: TEMP AT WHICH THE BASE T TURNS CONST
+            units: K
+            stagger: 
+        float MAX_MSTFX[Time]   
+            FieldType: 104
+            MemoryOrder: 0  
+            description: Max map factor in domain
+            units: 
+            stagger: 
+        float MAX_MSTFY[Time]   
+            FieldType: 104
+            MemoryOrder: 0  
+            description: Max map factor in domain
+            units: 
+            stagger: 
+        float RAINC[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: ACCUMULATED TOTAL CUMULUS PRECIPITATION
+            units: mm
+            stagger: 
+            coordinates: XLONG XLAT
+        float RAINNC[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: ACCUMULATED TOTAL GRID SCALE PRECIPITATION
+            units: mm
+            stagger: 
+            coordinates: XLONG XLAT
+        int I_RAINC[west_east,south_north,Time]   
+            FieldType: 106
+            MemoryOrder: XY 
+            description: BUCKET FOR RAINC
+            units: 
+            stagger: 
+            coordinates: XLONG XLAT
+        int I_RAINNC[west_east,south_north,Time]   
+            FieldType: 106
+            MemoryOrder: XY 
+            description: BUCKET FOR RAINNC
+            units: 
+            stagger: 
+            coordinates: XLONG XLAT
+        float SNOWNC[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: ACCUMULATED TOTAL GRID SCALE SNOW AND ICE
+            units: mm
+            stagger: 
+            coordinates: XLONG XLAT
+        float GRAUPELNC[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: ACCUMULATED TOTAL GRID SCALE GRAUPEL
+            units: mm
+            stagger: 
+            coordinates: XLONG XLAT
+        float EDT_OUT[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: EDT FROM GD SCHEME
+            units: 
+            stagger: 
+            coordinates: XLONG XLAT
+        float SWDOWN[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: DOWNWARD SHORT WAVE FLUX AT GROUND SURFACE
+            units: W m-2
+            stagger: 
+            coordinates: XLONG XLAT
+        float GLW[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: DOWNWARD LONG WAVE FLUX AT GROUND SURFACE
+            units: W m-2
+            stagger: 
+            coordinates: XLONG XLAT
+        float OLR[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: TOA OUTGOING LONG WAVE
+            units: W m-2
+            stagger: 
+            coordinates: XLONG XLAT
+        float XLAT[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: LATITUDE, SOUTH IS NEGATIVE
+            units: degree_north
+            stagger: 
+        float XLONG[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: LONGITUDE, WEST IS NEGATIVE
+            units: degree_east
+            stagger: 
+        float XLAT_U[west_east_stag,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: LATITUDE, SOUTH IS NEGATIVE
+            units: degree_north
+            stagger: X
+            coordinates: XLONG_U XLAT_U
+        float XLONG_U[west_east_stag,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: LONGITUDE, WEST IS NEGATIVE
+            units: degree_east
+            stagger: X
+            coordinates: XLONG_U XLAT_U
+        float XLAT_V[west_east,south_north_stag,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: LATITUDE, SOUTH IS NEGATIVE
+            units: degree_north
+            stagger: Y
+            coordinates: XLONG_V XLAT_V
+        float XLONG_V[west_east,south_north_stag,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: LONGITUDE, WEST IS NEGATIVE
+            units: degree_east
+            stagger: Y
+            coordinates: XLONG_V XLAT_V
+        float ALBEDO[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: ALBEDO
+            units: -
+            stagger: 
+            coordinates: XLONG XLAT
+        float ALBBCK[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: BACKGROUND ALBEDO
+            units: 
+            stagger: 
+            coordinates: XLONG XLAT
+        float EMISS[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: SURFACE EMISSIVITY
+            units: 
+            stagger: 
+            coordinates: XLONG XLAT
+        float NOAHRES[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: RESIDUAL OF THE NOAH SURFACE ENERGY BUDGET
+            units: W m{-2}
+            stagger: 
+            coordinates: XLONG XLAT
+        float TMN[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: SOIL TEMPERATURE AT LOWER BOUNDARY
+            units: K
+            stagger: 
+            coordinates: XLONG XLAT
+        float XLAND[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: LAND MASK (1 FOR LAND, 2 FOR WATER)
+            units: 
+            stagger: 
+            coordinates: XLONG XLAT
+        float UST[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: U* IN SIMILARITY THEORY
+            units: m s-1
+            stagger: 
+            coordinates: XLONG XLAT
+        float PBLH[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: PBL HEIGHT
+            units: m
+            stagger: 
+            coordinates: XLONG XLAT
+        float HFX[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: UPWARD HEAT FLUX AT THE SURFACE
+            units: W m-2
+            stagger: 
+            coordinates: XLONG XLAT
+        float QFX[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: UPWARD MOISTURE FLUX AT THE SURFACE
+            units: kg m-2 s-1
+            stagger: 
+            coordinates: XLONG XLAT
+        float LH[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: LATENT HEAT FLUX AT THE SURFACE
+            units: W m-2
+            stagger: 
+            coordinates: XLONG XLAT
+        float ACHFX[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: ACCUMULATED UPWARD HEAT FLUX AT THE SURFACE
+            units: J m-2
+            stagger: 
+            coordinates: XLONG XLAT
+        float ACLHF[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: ACCUMULATED UPWARD LATENT HEAT FLUX AT THE SURFACE
+            units: J m-2
+            stagger: 
+            coordinates: XLONG XLAT
+        float SNOWC[west_east,south_north,Time]   
+            FieldType: 104
+            MemoryOrder: XY 
+            description: FLAG INDICATING SNOW COVERAGE (1 FOR SNOW COVER)
+            units: 
+            stagger: 
+            coordinates: XLONG XLAT
+        int SAVE_TOPO_FROM_REAL[Time]   
+            FieldType: 106
+            MemoryOrder: 0  
+            description: 1=original topo from real/0=topo modified by WRF
+            units: flag
+            stagger: 
+
+     10 dimensions:
+        Time  Size:121   *** is unlimited *** (no dimvar)
+        DateStrLen  Size:19 (no dimvar)
+        west_east  Size:132 (no dimvar)
+        south_north  Size:63 (no dimvar)
+        bottom_top  Size:27 (no dimvar)
+        bottom_top_stag  Size:28 (no dimvar)
+        soil_layers_stag  Size:4 (no dimvar)
+        west_east_stag  Size:133 (no dimvar)
+        force_layers  Size:8 (no dimvar)
+        south_north_stag  Size:64 (no dimvar)
+
+    78 global attributes:
+        TITLE:  OUTPUT FROM WRF V3.1.1 MODEL
+        START_DATE: 2004-08-11_00:00:00
+        SIMULATION_START_DATE: 2004-08-11_00:00:00
+        WEST-EAST_GRID_DIMENSION: 133
+        SOUTH-NORTH_GRID_DIMENSION: 64
+        BOTTOM-TOP_GRID_DIMENSION: 28
+        DX: 4000
+        DY: 4000
+        GRIDTYPE: C
+        DIFF_OPT: 1
+        KM_OPT: 4
+        DAMP_OPT: 0
+        DAMPCOEF: 0.00999999977648258
+        KHDIF: 0
+        KVDIF: 0
+        MP_PHYSICS: 14
+        RA_LW_PHYSICS: 1
+        RA_SW_PHYSICS: 1
+        SF_SFCLAY_PHYSICS: 1
+        SF_SURFACE_PHYSICS: 2
+        BL_PBL_PHYSICS: 1
+        CU_PHYSICS: 1
+        SURFACE_INPUT_SOURCE: 1
+        SST_UPDATE: 0
+        GRID_FDDA: 0
+        GFDDA_INTERVAL_M: 0
+        GFDDA_END_H: 0
+        GRID_SFDDA: 0
+        SGFDDA_INTERVAL_M: 0
+        SGFDDA_END_H: 0
+        SF_URBAN_PHYSICS: 1
+        FEEDBACK: 1
+        SMOOTH_OPTION: 0
+        SWRAD_SCAT: 1
+        W_DAMPING: 1
+        MOIST_ADV_OPT: 1
+        SCALAR_ADV_OPT: 1
+        TKE_ADV_OPT: 1
+        DIFF_6TH_OPT: 0
+        DIFF_6TH_FACTOR: 0.119999997317791
+        OBS_NUDGE_OPT: 0
+        WEST-EAST_PATCH_START_UNSTAG: 1
+        WEST-EAST_PATCH_END_UNSTAG: 132
+        WEST-EAST_PATCH_START_STAG: 1
+        WEST-EAST_PATCH_END_STAG: 133
+        SOUTH-NORTH_PATCH_START_UNSTAG: 1
+        SOUTH-NORTH_PATCH_END_UNSTAG: 63
+        SOUTH-NORTH_PATCH_START_STAG: 1
+        SOUTH-NORTH_PATCH_END_STAG: 64
+        BOTTOM-TOP_PATCH_START_UNSTAG: 1
+        BOTTOM-TOP_PATCH_END_UNSTAG: 27
+        BOTTOM-TOP_PATCH_START_STAG: 1
+        BOTTOM-TOP_PATCH_END_STAG: 28
+        GRID_ID: 2
+        PARENT_ID: 1
+        I_PARENT_START: 73
+        J_PARENT_START: 52
+        PARENT_GRID_RATIO: 3
+        DT: 39.9999961853027
+        CEN_LAT: 41.1915397644043
+        CEN_LON: 32.9188537597656
+        TRUELAT1: 40.7599983215332
+        TRUELAT2: 40.7599983215332
+        MOAD_CEN_LAT: 40.7600021362305
+        STAND_LON: 33.1339988708496
+        POLE_LAT: 90
+        POLE_LON: 0
+        GMT: 0
+        JULYR: 2004
+        JULDAY: 224
+        MAP_PROJ: 1
+        MMINLU: 
+        NUM_LAND_CAT: 24
+        ISWATER: 16
+        ISLAKE: 0
+        ISICE: 0
+        ISURBAN: 0
+        ISOILWATER: 0
