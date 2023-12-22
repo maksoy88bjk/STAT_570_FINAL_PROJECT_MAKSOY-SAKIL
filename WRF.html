@@ -130,7 +130,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="assimilated-wrf-data" class="level3">
 <h3 class="anchored" data-anchor-id="assimilated-wrf-data">Assimilated WRF Data</h3>
-<p>Firstly, we opened the assimilated WRF output for domain 1. You can see the content of WRF output below, the data cover time and coverage domain information with meteorological predictions such as wind speed <strong>(U10 &amp; V10)</strong>, precipitation <strong>(RAINC &amp; RAINNC)</strong>, etc. We need to use name of the variables to extract specific data variables from the raw data.</p>
+<p>Firstly, we opened the assimilated WRF output for domain 1. You can see the content of WRF output below, the data cover time and coverage domain information with meteorological predictions such as potential temperature <strong>(T)</strong>, temperature at 2 meter <strong>(T2)</strong>, wind speed at ten meter <strong>(U10 &amp; V10)</strong>, precipitation <strong>(RAINC &amp; RAINNC)</strong> and etc. We need to use name of the variables to extract specific data variables from the raw data.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fname <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"D:/Kitaplar/METU-PHD/Thesis/IsmailHocandanAldim_Aksoy_27092023/"</span>,</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">"aswout/wrfout_d01_2004-08-11_00_00_00"</span>)</span>
@@ -374,23 +374,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div id="tbl-gauges-domain2" class="anchored">
 
-<div id="toqcaqbvbh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#toqcaqbvbh table {
+<div id="ejxmjydbhp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ejxmjydbhp table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#toqcaqbvbh thead, #toqcaqbvbh tbody, #toqcaqbvbh tfoot, #toqcaqbvbh tr, #toqcaqbvbh td, #toqcaqbvbh th {
+#ejxmjydbhp thead, #ejxmjydbhp tbody, #ejxmjydbhp tfoot, #ejxmjydbhp tr, #ejxmjydbhp td, #ejxmjydbhp th {
   border-style: none;
 }
 
-#toqcaqbvbh p {
+#ejxmjydbhp p {
   margin: 0;
   padding: 0;
 }
 
-#toqcaqbvbh .gt_table {
+#ejxmjydbhp .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -416,12 +416,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#toqcaqbvbh .gt_caption {
+#ejxmjydbhp .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#toqcaqbvbh .gt_title {
+#ejxmjydbhp .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -433,7 +433,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#toqcaqbvbh .gt_subtitle {
+#ejxmjydbhp .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -445,7 +445,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#toqcaqbvbh .gt_heading {
+#ejxmjydbhp .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -457,13 +457,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#toqcaqbvbh .gt_bottom_border {
+#ejxmjydbhp .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#toqcaqbvbh .gt_col_headings {
+#ejxmjydbhp .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -478,7 +478,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#toqcaqbvbh .gt_col_heading {
+#ejxmjydbhp .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -498,7 +498,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#toqcaqbvbh .gt_column_spanner_outer {
+#ejxmjydbhp .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -510,15 +510,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#toqcaqbvbh .gt_column_spanner_outer:first-child {
+#ejxmjydbhp .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#toqcaqbvbh .gt_column_spanner_outer:last-child {
+#ejxmjydbhp .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#toqcaqbvbh .gt_column_spanner {
+#ejxmjydbhp .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -530,11 +530,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#toqcaqbvbh .gt_spanner_row {
+#ejxmjydbhp .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#toqcaqbvbh .gt_group_heading {
+#ejxmjydbhp .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -560,7 +560,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#toqcaqbvbh .gt_empty_group_heading {
+#ejxmjydbhp .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -575,15 +575,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#toqcaqbvbh .gt_from_md > :first-child {
+#ejxmjydbhp .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#toqcaqbvbh .gt_from_md > :last-child {
+#ejxmjydbhp .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#toqcaqbvbh .gt_row {
+#ejxmjydbhp .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -602,7 +602,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#toqcaqbvbh .gt_stub {
+#ejxmjydbhp .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -615,7 +615,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#toqcaqbvbh .gt_stub_row_group {
+#ejxmjydbhp .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -629,15 +629,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#toqcaqbvbh .gt_row_group_first td {
+#ejxmjydbhp .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#toqcaqbvbh .gt_row_group_first th {
+#ejxmjydbhp .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#toqcaqbvbh .gt_summary_row {
+#ejxmjydbhp .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -647,16 +647,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#toqcaqbvbh .gt_first_summary_row {
+#ejxmjydbhp .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#toqcaqbvbh .gt_first_summary_row.thick {
+#ejxmjydbhp .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#toqcaqbvbh .gt_last_summary_row {
+#ejxmjydbhp .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -666,7 +666,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#toqcaqbvbh .gt_grand_summary_row {
+#ejxmjydbhp .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -676,7 +676,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#toqcaqbvbh .gt_first_grand_summary_row {
+#ejxmjydbhp .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -686,7 +686,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#toqcaqbvbh .gt_last_grand_summary_row_top {
+#ejxmjydbhp .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -696,11 +696,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#toqcaqbvbh .gt_striped {
+#ejxmjydbhp .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#toqcaqbvbh .gt_table_body {
+#ejxmjydbhp .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -709,7 +709,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#toqcaqbvbh .gt_footnotes {
+#ejxmjydbhp .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -723,7 +723,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#toqcaqbvbh .gt_footnote {
+#ejxmjydbhp .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -732,7 +732,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#toqcaqbvbh .gt_sourcenotes {
+#ejxmjydbhp .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -746,7 +746,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#toqcaqbvbh .gt_sourcenote {
+#ejxmjydbhp .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -754,63 +754,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#toqcaqbvbh .gt_left {
+#ejxmjydbhp .gt_left {
   text-align: left;
 }
 
-#toqcaqbvbh .gt_center {
+#ejxmjydbhp .gt_center {
   text-align: center;
 }
 
-#toqcaqbvbh .gt_right {
+#ejxmjydbhp .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#toqcaqbvbh .gt_font_normal {
+#ejxmjydbhp .gt_font_normal {
   font-weight: normal;
 }
 
-#toqcaqbvbh .gt_font_bold {
+#ejxmjydbhp .gt_font_bold {
   font-weight: bold;
 }
 
-#toqcaqbvbh .gt_font_italic {
+#ejxmjydbhp .gt_font_italic {
   font-style: italic;
 }
 
-#toqcaqbvbh .gt_super {
+#ejxmjydbhp .gt_super {
   font-size: 65%;
 }
 
-#toqcaqbvbh .gt_footnote_marks {
+#ejxmjydbhp .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#toqcaqbvbh .gt_asterisk {
+#ejxmjydbhp .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#toqcaqbvbh .gt_indent_1 {
+#ejxmjydbhp .gt_indent_1 {
   text-indent: 5px;
 }
 
-#toqcaqbvbh .gt_indent_2 {
+#ejxmjydbhp .gt_indent_2 {
   text-indent: 10px;
 }
 
-#toqcaqbvbh .gt_indent_3 {
+#ejxmjydbhp .gt_indent_3 {
   text-indent: 15px;
 }
 
-#toqcaqbvbh .gt_indent_4 {
+#ejxmjydbhp .gt_indent_4 {
   text-indent: 20px;
 }
 
-#toqcaqbvbh .gt_indent_5 {
+#ejxmjydbhp .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -861,11 +861,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="Latitude" class="gt_row gt_right">41.37100</td>
 <td headers="Longitude" class="gt_row gt_right">33.77560</td>
 <td headers="Altitude" class="gt_row gt_right">800</td></tr>
-    <tr><td headers="Station" class="gt_row gt_right">17078</td>
-<td headers="Province" class="gt_row gt_left">Karabuk</td>
-<td headers="Latitude" class="gt_row gt_right">41.19610</td>
-<td headers="Longitude" class="gt_row gt_right">32.62130</td>
-<td headers="Altitude" class="gt_row gt_right">400</td></tr>
     <tr><td headers="Station" class="gt_row gt_right">17080</td>
 <td headers="Province" class="gt_row gt_left">Cankiri</td>
 <td headers="Latitude" class="gt_row gt_right">40.60820</td>
@@ -881,6 +876,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td headers="Latitude" class="gt_row gt_right">40.66680</td>
 <td headers="Longitude" class="gt_row gt_right">35.83530</td>
 <td headers="Altitude" class="gt_row gt_right">409</td></tr>
+    <tr><td headers="Station" class="gt_row gt_right">17622</td>
+<td headers="Province" class="gt_row gt_left">Samsun</td>
+<td headers="Latitude" class="gt_row gt_right">41.55150</td>
+<td headers="Longitude" class="gt_row gt_right">35.92470</td>
+<td headers="Altitude" class="gt_row gt_right">103</td></tr>
   </tbody>
   
   
@@ -889,7 +889,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p><a href="#fig-gauges">Figure&nbsp;3</a> is shown for the distribution of meteorological stations along the study area.</p>
+<p><a href="#fig-gauges">Figure&nbsp;3</a> is shown for distribution of meteorological stations across the study area.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>extents<span class="ot">&lt;-</span> <span class="fu">extent</span>(raster_temp_2[[<span class="fu">length</span>(t2)]])</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -897,11 +897,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="dv">4326</span>), <span class="at">xlim =</span> <span class="fu">c</span>(extents[<span class="dv">1</span>], extents[<span class="dv">2</span>]), </span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>                               <span class="at">ylim =</span> <span class="fu">c</span>(extents[<span class="dv">3</span>],extents[<span class="dv">4</span>])) <span class="sc">+</span></span>
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>(<span class="at">data =</span> temp_df_2, </span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> layer), <span class="at">alpha=</span><span class="fl">0.7</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> layer), <span class="at">alpha=</span><span class="fl">0.6</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">""</span>) <span class="sc">+</span></span>
 <span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> df_gauges, <span class="fu">aes</span>(<span class="at">x=</span>Longitude, <span class="at">y=</span>Latitude),</span>
 <span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">size=</span><span class="dv">3</span>, <span class="at">colour=</span><span class="st">"darkred"</span>) <span class="sc">+</span> </span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> df_gauges,  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>Longitude, <span class="at">y=</span>Latitude, <span class="at">label=</span>Province), <span class="at">nudge_y =</span> <span class="sc">-</span><span class="fl">0.1</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> df_gauges,  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>Longitude, <span class="at">y=</span>Latitude, <span class="at">label=</span>Province), <span class="at">nudge_y =</span> <span class="sc">-</span><span class="fl">0.1</span>) <span class="sc">+</span> </span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>( <span class="fu">paste</span>(<span class="st">"Hourly Assimilated WRF Temperature Forecast,"</span>, t2[<span class="dv">121</span>]) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-gauges" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -921,29 +922,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code># A tibble: 6 x 7
   Istasyon_No Istasyon_Adi   YIL    AY   GUN  SAAT SICAKLIK
         &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
-1       17020 BARTIN        2004     8    11     0     19.1
-2       17020 BARTIN        2004     8    11     1     18.8
-3       17020 BARTIN        2004     8    11     2     18.8
-4       17020 BARTIN        2004     8    11     3     18.7
-5       17020 BARTIN        2004     8    11     4     18.8
-6       17020 BARTIN        2004     8    11     5     19.6</code></pre>
+1       17020 BARTIN        2004     8    10     0     18.7
+2       17020 BARTIN        2004     8    10     1     18.3
+3       17020 BARTIN        2004     8    10     2     18  
+4       17020 BARTIN        2004     8    10     3     17.1
+5       17020 BARTIN        2004     8    10     4     17.6
+6       17020 BARTIN        2004     8    10     5     18.3</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>temp_obs<span class="ot">&lt;-</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  temp_obs <span class="sc">|&gt;</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date=</span> <span class="fu">as.Date</span>(<span class="fu">with</span>(temp_obs, <span class="fu">paste</span>(YIL, AY, GUN,<span class="at">sep=</span><span class="st">"-"</span>)), <span class="st">"%Y-%m-%d"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dates=</span> <span class="fu">as.POSIXct</span>(<span class="fu">paste</span>(date, <span class="fu">paste</span>(SAAT, <span class="dv">0</span>, <span class="dv">0</span>, <span class="at">sep =</span> <span class="st">":"</span>)), <span class="at">tz=</span><span class="st">"UTC"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dates=</span> <span class="fu">ymd_hms</span>(<span class="fu">paste</span>(date, <span class="fu">paste</span>(SAAT, <span class="dv">0</span>, <span class="dv">0</span>, <span class="at">sep =</span> <span class="st">":"</span>)), <span class="at">tz=</span><span class="st">"UTC"</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Istasyon_No, dates, SICAKLIK)</span>
 <span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(temp_obs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1458</code></pre>
+<pre><code>[1] 1848</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>temp_obs<span class="ot">&lt;-</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  temp_obs <span class="sc">|&gt;</span> </span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Istasyon_No) <span class="sc">|&gt;</span> </span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">complete</span>( <span class="at">dates =</span> <span class="fu">seq</span>(<span class="fu">ymd_hm</span>(<span class="st">"2004-08-11 00:00"</span>), <span class="fu">ymd_hm</span>(<span class="st">"2004-08-16 23:00"</span>), <span class="at">by =</span> <span class="st">"1 hours"</span>))</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">complete</span>( <span class="at">dates =</span> <span class="fu">seq</span>(<span class="fu">ymd_hm</span>(<span class="st">"2004-08-10 00:00"</span>), <span class="fu">ymd_hm</span>(<span class="st">"2004-08-16 23:00"</span>), <span class="at">by =</span> <span class="st">"1 hours"</span>))</span>
 <span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(temp_obs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1584</code></pre>
+<pre><code>[1] 1848</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(temp_obs)<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"dates"</span>,<span class="st">"observation"</span>)</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(temp_obs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -952,12 +953,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 # Groups:   Station [1]
   Station dates               observation
     &lt;dbl&gt; &lt;dttm&gt;                    &lt;dbl&gt;
-1   17020 2004-08-11 00:00:00        19.1
-2   17020 2004-08-11 01:00:00        18.8
-3   17020 2004-08-11 02:00:00        18.8
-4   17020 2004-08-11 03:00:00        18.7
-5   17020 2004-08-11 04:00:00        18.8
-6   17020 2004-08-11 05:00:00        19.6</code></pre>
+1   17020 2004-08-10 00:00:00        18.7
+2   17020 2004-08-10 01:00:00        18.3
+3   17020 2004-08-10 02:00:00        18  
+4   17020 2004-08-10 03:00:00        17.1
+5   17020 2004-08-10 04:00:00        17.6
+6   17020 2004-08-10 05:00:00        18.3</code></pre>
 </div>
 </div>
 </section>
@@ -1132,68 +1133,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a>  new_df_list[[i]]<span class="sc">$</span>dates<span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(new_df_list[[i]]<span class="sc">$</span>dates)</span>
 <span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-28"><a href="#cb38-28" aria-hidden="true" tabindex="-1"></a>                            }</span>
-<span id="cb38-29"><a href="#cb38-29" aria-hidden="true" tabindex="-1"></a>temp_obs_d01<span class="ot">&lt;-</span> temp_obs</span>
-<span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a>temp_obs_d01<span class="sc">$</span>dates<span class="ot">&lt;-</span> temp_obs_d01<span class="sc">$</span>dates <span class="sc">-</span> <span class="dv">3</span><span class="sc">*</span><span class="dv">60</span><span class="sc">*</span><span class="dv">60</span></span>
+<span id="cb38-29"><a href="#cb38-29" aria-hidden="true" tabindex="-1"></a>temp_obs_d01<span class="ot">&lt;-</span> temp_obs <span class="sc">|&gt;</span> </span>
+<span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dates =</span> dates <span class="sc">-</span> <span class="dv">3</span><span class="sc">*</span><span class="dv">60</span><span class="sc">*</span><span class="dv">60</span> ) </span>
 <span id="cb38-31"><a href="#cb38-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-32"><a href="#cb38-32" aria-hidden="true" tabindex="-1"></a>temp_obs_d02<span class="ot">&lt;-</span> temp_obs</span>
 <span id="cb38-33"><a href="#cb38-33" aria-hidden="true" tabindex="-1"></a>temp_obs_d02<span class="sc">$</span>dates<span class="ot">&lt;-</span> temp_obs_d02<span class="sc">$</span>dates <span class="sc">-</span> <span class="dv">60</span><span class="sc">*</span><span class="dv">60</span></span>
 <span id="cb38-34"><a href="#cb38-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-35"><a href="#cb38-35" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(variable)){</span>
-<span id="cb38-36"><a href="#cb38-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(i <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>, </span>
-<span id="cb38-37"><a href="#cb38-37" aria-hidden="true" tabindex="-1"></a>new_df_list[[i]] <span class="ot">&lt;-</span> </span>
-<span id="cb38-38"><a href="#cb38-38" aria-hidden="true" tabindex="-1"></a>      new_df_list[[i]] <span class="sc">|&gt;</span>        </span>
-<span id="cb38-39"><a href="#cb38-39" aria-hidden="true" tabindex="-1"></a>        <span class="fu">inner_join</span>(temp_obs_d02, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"dates"</span>)),</span>
+<span id="cb38-35"><a href="#cb38-35" aria-hidden="true" tabindex="-1"></a><span class="co"># domain1: new_df_list[[1]]; new_df_list[[3]]</span></span>
+<span id="cb38-36"><a href="#cb38-36" aria-hidden="true" tabindex="-1"></a><span class="co"># domain2: new_df_list[[2]]; head(new_df_list[[4]])</span></span>
+<span id="cb38-37"><a href="#cb38-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-38"><a href="#cb38-38" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(variable)){</span>
+<span id="cb38-39"><a href="#cb38-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(i <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>, </span>
 <span id="cb38-40"><a href="#cb38-40" aria-hidden="true" tabindex="-1"></a>new_df_list[[i]] <span class="ot">&lt;-</span> </span>
 <span id="cb38-41"><a href="#cb38-41" aria-hidden="true" tabindex="-1"></a>      new_df_list[[i]] <span class="sc">|&gt;</span>        </span>
-<span id="cb38-42"><a href="#cb38-42" aria-hidden="true" tabindex="-1"></a>        <span class="fu">inner_join</span>(temp_obs_d01, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"dates"</span>))</span>
-<span id="cb38-43"><a href="#cb38-43" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb38-44"><a href="#cb38-44" aria-hidden="true" tabindex="-1"></a>                            }</span>
-<span id="cb38-45"><a href="#cb38-45" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb38-46"><a href="#cb38-46" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(new_df_list[[<span class="dv">1</span>]]); <span class="fu">head</span>(new_df_list[[<span class="dv">3</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb38-42"><a href="#cb38-42" aria-hidden="true" tabindex="-1"></a>        <span class="fu">merge</span>(temp_obs_d02, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"dates"</span>)),</span>
+<span id="cb38-43"><a href="#cb38-43" aria-hidden="true" tabindex="-1"></a>new_df_list[[i]] <span class="ot">&lt;-</span> </span>
+<span id="cb38-44"><a href="#cb38-44" aria-hidden="true" tabindex="-1"></a>      new_df_list[[i]] <span class="sc">|&gt;</span>     </span>
+<span id="cb38-45"><a href="#cb38-45" aria-hidden="true" tabindex="-1"></a>        <span class="fu">merge</span>(temp_obs_d01, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"dates"</span>))</span>
+<span id="cb38-46"><a href="#cb38-46" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb38-47"><a href="#cb38-47" aria-hidden="true" tabindex="-1"></a>                            }</span>
+<span id="cb38-48"><a href="#cb38-48" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb38-49"><a href="#cb38-49" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(new_df_list[[<span class="dv">1</span>]]); <span class="fu">head</span>(new_df_list[[<span class="dv">3</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 x 4
-  Station dates               predict_do1 observation
-    &lt;dbl&gt; &lt;dttm&gt;                    &lt;dbl&gt;       &lt;dbl&gt;
-1   17020 2004-08-10 21:00:00        19.1        19.1
-2   17020 2004-08-11 00:00:00        16.4        18.7
-3   17020 2004-08-11 03:00:00        18.6        19.9
-4   17020 2004-08-11 06:00:00        22.3        18.8
-5   17020 2004-08-11 09:00:00        24.5        19.2
-6   17020 2004-08-11 12:00:00        22.4        20.1</code></pre>
+<pre><code>  Station               dates predict_do1 observation
+1   17020 2004-08-11 00:00:00    19.14172        19.1
+2   17020 2004-08-11 03:00:00    16.38781        18.7
+3   17020 2004-08-11 06:00:00    18.63476        19.9
+4   17020 2004-08-11 09:00:00    22.33074        18.8
+5   17020 2004-08-11 12:00:00    24.51916        19.2
+6   17020 2004-08-11 15:00:00    22.40240        20.1</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 x 4
-  Station dates               predict_do1_nas observation
-    &lt;dbl&gt; &lt;dttm&gt;                        &lt;dbl&gt;       &lt;dbl&gt;
-1   17020 2004-08-10 21:00:00            19.1        19.1
-2   17020 2004-08-11 00:00:00            16.3        18.7
-3   17020 2004-08-11 03:00:00            18.6        19.9
-4   17020 2004-08-11 06:00:00            22.3        18.8
-5   17020 2004-08-11 09:00:00            24.6        19.2
-6   17020 2004-08-11 12:00:00            23.1        20.1</code></pre>
+<pre><code>  Station               dates predict_do1_nas observation
+1   17020 2004-08-11 00:00:00        19.14172        19.1
+2   17020 2004-08-11 03:00:00        16.34579        18.7
+3   17020 2004-08-11 06:00:00        18.62121        19.9
+4   17020 2004-08-11 09:00:00        22.27563        18.8
+5   17020 2004-08-11 12:00:00        24.56793        19.2
+6   17020 2004-08-11 15:00:00        23.05441        20.1</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(new_df_list[[<span class="dv">2</span>]]); <span class="fu">head</span>(new_df_list[[<span class="dv">4</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 x 4
-  Station dates               predict_do2 observation
-    &lt;dbl&gt; &lt;dttm&gt;                    &lt;dbl&gt;       &lt;dbl&gt;
-1   17020 2004-08-10 23:00:00        12.5        19.1
-2   17020 2004-08-11 00:00:00        12.5        18.8
-3   17020 2004-08-11 01:00:00        12.2        18.8
-4   17020 2004-08-11 02:00:00        12.1        18.7
-5   17020 2004-08-11 03:00:00        12.7        18.8
-6   17020 2004-08-11 04:00:00        14.4        19.6</code></pre>
+<pre><code>  Station               dates predict_do2 observation
+1   17020 2004-08-11 00:00:00    16.26486        20.0
+2   17020 2004-08-11 01:00:00    12.88519        20.0
+3   17020 2004-08-11 02:00:00    12.50424        19.1
+4   17020 2004-08-11 03:00:00    12.47100        18.8
+5   17020 2004-08-11 04:00:00    12.16769        18.8
+6   17020 2004-08-11 05:00:00    12.09380        18.7</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 x 4
-  Station dates               predict_do2_nas observation
-    &lt;dbl&gt; &lt;dttm&gt;                        &lt;dbl&gt;       &lt;dbl&gt;
-1   17020 2004-08-10 23:00:00            12.9        19.1
-2   17020 2004-08-11 00:00:00            12.4        18.8
-3   17020 2004-08-11 01:00:00            12.4        18.8
-4   17020 2004-08-11 02:00:00            12.1        18.7
-5   17020 2004-08-11 03:00:00            12.7        18.8
-6   17020 2004-08-11 04:00:00            14.5        19.6</code></pre>
+<pre><code>  Station               dates predict_do2_nas observation
+1   17020 2004-08-11 00:00:00        16.26486        20.0
+2   17020 2004-08-11 01:00:00        12.82797        20.0
+3   17020 2004-08-11 02:00:00        12.93353        19.1
+4   17020 2004-08-11 03:00:00        12.41866        18.8
+5   17020 2004-08-11 04:00:00        12.43447        18.8
+6   17020 2004-08-11 05:00:00        12.13333        18.7</code></pre>
 </div>
 </div>
 </section>
@@ -1204,15 +1200,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  new_df_list[[<span class="dv">1</span>]] <span class="sc">|&gt;</span>        </span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">inner_join</span>(new_df_list[[<span class="dv">3</span>]], <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"dates"</span>,<span class="st">"observation"</span>)) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 x 5
-  Station dates               predict_do1 observation predict_do1_nas
-    &lt;dbl&gt; &lt;dttm&gt;                    &lt;dbl&gt;       &lt;dbl&gt;           &lt;dbl&gt;
-1   17020 2004-08-10 21:00:00        19.1        19.1            19.1
-2   17020 2004-08-11 00:00:00        16.4        18.7            16.3
-3   17020 2004-08-11 03:00:00        18.6        19.9            18.6
-4   17020 2004-08-11 06:00:00        22.3        18.8            22.3
-5   17020 2004-08-11 09:00:00        24.5        19.2            24.6
-6   17020 2004-08-11 12:00:00        22.4        20.1            23.1</code></pre>
+<pre><code>  Station               dates predict_do1 observation predict_do1_nas
+1   17020 2004-08-11 00:00:00    19.14172        19.1        19.14172
+2   17020 2004-08-11 03:00:00    16.38781        18.7        16.34579
+3   17020 2004-08-11 06:00:00    18.63476        19.9        18.62121
+4   17020 2004-08-11 09:00:00    22.33074        18.8        22.27563
+5   17020 2004-08-11 12:00:00    24.51916        19.2        24.56793
+6   17020 2004-08-11 15:00:00    22.40240        20.1        23.05441</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  new_df_list[[<span class="dv">1</span>]] <span class="sc">|&gt;</span>        </span>
@@ -1225,13 +1219,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 x 4
   Station dates               Temperature     value
-    &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;           &lt;dbl&gt;
-1   17020 2004-08-10 21:00:00 predict_do1      19.1
-2   17020 2004-08-10 21:00:00 observation      19.1
-3   17020 2004-08-10 21:00:00 predict_do1_nas  19.1
-4   17020 2004-08-11 00:00:00 predict_do1      16.4
-5   17020 2004-08-11 00:00:00 observation      18.7
-6   17020 2004-08-11 00:00:00 predict_do1_nas  16.3</code></pre>
+    &lt;int&gt; &lt;dttm&gt;              &lt;chr&gt;           &lt;dbl&gt;
+1   17020 2004-08-11 00:00:00 predict_do1      19.1
+2   17020 2004-08-11 00:00:00 observation      19.1
+3   17020 2004-08-11 00:00:00 predict_do1_nas  19.1
+4   17020 2004-08-11 03:00:00 predict_do1      16.4
+5   17020 2004-08-11 03:00:00 observation      18.7
+6   17020 2004-08-11 03:00:00 predict_do1_nas  16.3</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>new_df_list[[<span class="dv">1</span>]] <span class="sc">|&gt;</span>        </span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(new_df_list[[<span class="dv">3</span>]], <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"dates"</span>,<span class="st">"observation"</span>)) <span class="sc">|&gt;</span> </span>
@@ -1248,8 +1242,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">colour =</span> Temperature), <span class="at">size=</span><span class="fl">0.7</span>) <span class="sc">+</span></span>
 <span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">name=</span> <span class="fu">expression</span>(<span class="st">"Temperature"</span><span class="sc">~</span>(degree<span class="sc">*</span>C)), </span>
 <span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">values =</span> <span class="fu">c</span>(<span class="st">'observation'</span> <span class="ot">=</span> <span class="st">"black"</span>,</span>
-<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do1_nas'</span> <span class="ot">=</span> <span class="st">"blue"</span>,</span>
-<span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do1'</span> <span class="ot">=</span> <span class="st">"red"</span>),</span>
+<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do1_nas'</span> <span class="ot">=</span> <span class="st">"#23bfce"</span>,</span>
+<span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do1'</span> <span class="ot">=</span> <span class="st">"#fc2852"</span>),</span>
 <span id="cb48-18"><a href="#cb48-18" aria-hidden="true" tabindex="-1"></a>          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'observation'</span> <span class="ot">=</span> <span class="st">'Observation'</span>,</span>
 <span id="cb48-19"><a href="#cb48-19" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do1_nas'</span> <span class="ot">=</span> <span class="st">'Non-Assimilated Prediction DO1'</span>,</span>
 <span id="cb48-20"><a href="#cb48-20" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do1'</span> <span class="ot">=</span> <span class="st">'Assimilated Prediction DO1'</span>)) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
@@ -1257,64 +1251,94 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb48-22"><a href="#cb48-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">" "</span>,<span class="at">y=</span><span class="fu">expression</span>(<span class="st">"Temperature"</span><span class="sc">~</span>(degree<span class="sc">*</span>C))) <span class="sc">+</span> </span>
 <span id="cb48-23"><a href="#cb48-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">hjust =</span> <span class="dv">1</span>))  <span class="sc">+</span></span>
 <span id="cb48-24"><a href="#cb48-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">88</span>, .<span class="dv">1</span>), </span>
-<span id="cb48-25"><a href="#cb48-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">colour=</span><span class="st">"black"</span>, <span class="at">fill=</span><span class="st">"ghostwhite"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb48-25"><a href="#cb48-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">colour=</span><span class="st">"black"</span>, <span class="at">fill=</span><span class="st">"cornsilk"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="WRF_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="864"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>new_df_list[[<span class="dv">2</span>]] <span class="sc">|&gt;</span>        </span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(new_df_list[[<span class="dv">4</span>]], <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"dates"</span>,<span class="st">"observation"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>),</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">names_to =</span> <span class="st">"Temperature"</span>,</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">values_to =</span> <span class="st">"value"</span>,</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">values_drop_na =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Station =</span> <span class="fu">factor</span>(Station, </span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">labels =</span> df_gauges<span class="sc">$</span>Province )) <span class="sc">|&gt;</span></span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Temperature =</span>  <span class="fu">factor</span>(Temperature, </span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">levels=</span> <span class="fu">c</span>(<span class="st">"observation"</span>, <span class="st">"predict_do2_nas"</span>, <span class="st">"predict_do2"</span>)) ) <span class="sc">|&gt;</span>  </span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> dates, <span class="at">y=</span>value)) <span class="sc">+</span>   </span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">colour =</span> Temperature), <span class="at">size=</span><span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">name=</span> <span class="fu">expression</span>(<span class="st">"Temperature"</span><span class="sc">~</span>(degree<span class="sc">*</span>C)), </span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">values =</span> <span class="fu">c</span>(<span class="st">'observation'</span> <span class="ot">=</span> <span class="st">"black"</span>,</span>
+<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do2_nas'</span> <span class="ot">=</span> <span class="st">"#fc2852"</span>,</span>
+<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do2'</span> <span class="ot">=</span> <span class="st">"#23bfce"</span>),</span>
+<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a>          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'observation'</span> <span class="ot">=</span> <span class="st">'Observation'</span>,</span>
+<span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do2_nas'</span> <span class="ot">=</span> <span class="st">'Non-Assimilated Prediction DO2'</span>,</span>
+<span id="cb49-20"><a href="#cb49-20" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do2'</span> <span class="ot">=</span> <span class="st">'Assimilated Prediction DO2'</span>)) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Station, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span> </span>
+<span id="cb49-22"><a href="#cb49-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">" "</span>,<span class="at">y=</span><span class="fu">expression</span>(<span class="st">"Temperature"</span><span class="sc">~</span>(degree<span class="sc">*</span>C))) <span class="sc">+</span> </span>
+<span id="cb49-23"><a href="#cb49-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">hjust =</span> <span class="dv">1</span>))  <span class="sc">+</span></span>
+<span id="cb49-24"><a href="#cb49-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">88</span>, .<span class="dv">1</span>), </span>
+<span id="cb49-25"><a href="#cb49-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">colour=</span><span class="st">"black"</span>, <span class="at">fill=</span><span class="st">"cornsilk"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="WRF_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="864"></p>
 </div>
 </div>
 </section>
 <section id="error-estimation" class="level3">
 <h3 class="anchored" data-anchor-id="error-estimation">Error Estimation</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co">#BIAS</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>bias <span class="ot">&lt;-</span> <span class="cf">function</span>(x,y) { <span class="fu">mean</span>( (x<span class="sc">-</span>y) , <span class="at">na.rm =</span> <span class="cn">TRUE</span>) }</span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="co">#MSE</span></span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>mse<span class="ot">&lt;-</span> <span class="cf">function</span>(x,y) { <span class="fu">mean</span>( (x<span class="sc">-</span>y)<span class="sc">^</span><span class="dv">2</span> , <span class="at">na.rm =</span> <span class="cn">TRUE</span>) }</span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="co">#RMSE</span></span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>rmse<span class="ot">&lt;-</span> <span class="cf">function</span>(x,y) { <span class="fu">sqrt</span>( <span class="fu">mean</span>( (x<span class="sc">-</span>y)<span class="sc">^</span><span class="dv">2</span> , <span class="at">na.rm =</span> <span class="cn">TRUE</span>) ) }</span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a><span class="co"># domain1: new_df_list[[1]]; new_df_list[[3]]</span></span>
-<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a><span class="co"># domain2: new_df_list[[2]]; head(new_df_list[[4]])</span></span>
-<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>error_table<span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Statistics =</span> <span class="fu">c</span>(<span class="st">"BIAS"</span>,<span class="st">"MSE"</span>,<span class="st">"RMSE"</span>,<span class="st">"COR.COEF"</span>), </span>
-<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Assimilated_DO1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, </span>
-<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Assimilated_DO2 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, </span>
-<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Non_Assimilated_DO1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,   </span>
-<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Non_Assimilated_DO2 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span>
-<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) {</span>
-<span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a>  error_table[<span class="dv">1</span>,i<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">bias</span>(<span class="fu">as.matrix</span>(new_df_list[[i]][,<span class="dv">4</span>]), </span>
-<span id="cb49-20"><a href="#cb49-20" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">as.matrix</span>(new_df_list[[i]][,<span class="dv">3</span>]))</span>
-<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a>  error_table[<span class="dv">2</span>,i<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">mse</span>(<span class="fu">as.matrix</span>(new_df_list[[i]][,<span class="dv">4</span>]), </span>
-<span id="cb49-22"><a href="#cb49-22" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">as.matrix</span>(new_df_list[[i]][,<span class="dv">3</span>]))</span>
-<span id="cb49-23"><a href="#cb49-23" aria-hidden="true" tabindex="-1"></a>  error_table[<span class="dv">3</span>,i<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">rmse</span>(<span class="fu">as.matrix</span>(new_df_list[[i]][,<span class="dv">4</span>]), </span>
-<span id="cb49-24"><a href="#cb49-24" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">as.matrix</span>(new_df_list[[i]][,<span class="dv">3</span>]))</span>
-<span id="cb49-25"><a href="#cb49-25" aria-hidden="true" tabindex="-1"></a>  error_table[<span class="dv">4</span>,i<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">cor</span>(<span class="fu">as.matrix</span>(new_df_list[[i]][,<span class="dv">4</span>]), </span>
-<span id="cb49-26"><a href="#cb49-26" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">as.matrix</span>(new_df_list[[i]][,<span class="dv">3</span>]), <span class="at">use=</span><span class="st">'pairwise.complete.obs'</span>)</span>
-<span id="cb49-27"><a href="#cb49-27" aria-hidden="true" tabindex="-1"></a>               }</span>
-<span id="cb49-28"><a href="#cb49-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-29"><a href="#cb49-29" aria-hidden="true" tabindex="-1"></a>error_table[,<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>]<span class="ot">&lt;-</span> <span class="fu">round</span>(error_table[,<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>],<span class="dv">4</span>)</span>
-<span id="cb49-30"><a href="#cb49-30" aria-hidden="true" tabindex="-1"></a>error_table <span class="sc">|&gt;</span>  <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co">#BIAS</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>bias <span class="ot">&lt;-</span> <span class="cf">function</span>(x,y) { <span class="fu">mean</span>( (x<span class="sc">-</span>y) , <span class="at">na.rm =</span> <span class="cn">TRUE</span>) }</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="co">#MSE</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>mse<span class="ot">&lt;-</span> <span class="cf">function</span>(x,y) { <span class="fu">mean</span>( (x<span class="sc">-</span>y)<span class="sc">^</span><span class="dv">2</span> , <span class="at">na.rm =</span> <span class="cn">TRUE</span>) }</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="co">#RMSE</span></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>rmse<span class="ot">&lt;-</span> <span class="cf">function</span>(x,y) { <span class="fu">sqrt</span>( <span class="fu">mean</span>( (x<span class="sc">-</span>y)<span class="sc">^</span><span class="dv">2</span> , <span class="at">na.rm =</span> <span class="cn">TRUE</span>) ) }</span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a><span class="co"># domain1: new_df_list[[1]]; new_df_list[[3]]</span></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a><span class="co"># domain2: new_df_list[[2]]; head(new_df_list[[4]])</span></span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>error_table<span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Statistics =</span> <span class="fu">c</span>(<span class="st">"BIAS"</span>,<span class="st">"MSE"</span>,<span class="st">"RMSE"</span>,<span class="st">"COR.COEF"</span>), </span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Assimilated_DO1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, </span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Assimilated_DO2 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, </span>
+<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Non_Assimilated_DO1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,   </span>
+<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Non_Assimilated_DO2 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span>
+<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-18"><a href="#cb50-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) {</span>
+<span id="cb50-19"><a href="#cb50-19" aria-hidden="true" tabindex="-1"></a>  error_table[<span class="dv">1</span>,i<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">bias</span>(<span class="fu">as.matrix</span>(new_df_list[[i]][,<span class="dv">4</span>]), </span>
+<span id="cb50-20"><a href="#cb50-20" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">as.matrix</span>(new_df_list[[i]][,<span class="dv">3</span>]))</span>
+<span id="cb50-21"><a href="#cb50-21" aria-hidden="true" tabindex="-1"></a>  error_table[<span class="dv">2</span>,i<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">mse</span>(<span class="fu">as.matrix</span>(new_df_list[[i]][,<span class="dv">4</span>]), </span>
+<span id="cb50-22"><a href="#cb50-22" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">as.matrix</span>(new_df_list[[i]][,<span class="dv">3</span>]))</span>
+<span id="cb50-23"><a href="#cb50-23" aria-hidden="true" tabindex="-1"></a>  error_table[<span class="dv">3</span>,i<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">rmse</span>(<span class="fu">as.matrix</span>(new_df_list[[i]][,<span class="dv">4</span>]), </span>
+<span id="cb50-24"><a href="#cb50-24" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">as.matrix</span>(new_df_list[[i]][,<span class="dv">3</span>]))</span>
+<span id="cb50-25"><a href="#cb50-25" aria-hidden="true" tabindex="-1"></a>  error_table[<span class="dv">4</span>,i<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">cor</span>(<span class="fu">as.matrix</span>(new_df_list[[i]][,<span class="dv">4</span>]), </span>
+<span id="cb50-26"><a href="#cb50-26" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">as.matrix</span>(new_df_list[[i]][,<span class="dv">3</span>]), <span class="at">use=</span><span class="st">'pairwise.complete.obs'</span>)</span>
+<span id="cb50-27"><a href="#cb50-27" aria-hidden="true" tabindex="-1"></a>               }</span>
+<span id="cb50-28"><a href="#cb50-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-29"><a href="#cb50-29" aria-hidden="true" tabindex="-1"></a>error_table[,<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>]<span class="ot">&lt;-</span> <span class="fu">round</span>(error_table[,<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>],<span class="dv">4</span>)</span>
+<span id="cb50-30"><a href="#cb50-30" aria-hidden="true" tabindex="-1"></a>error_table <span class="sc">|&gt;</span>  <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div id="okvctfgiqp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#okvctfgiqp table {
+<div id="bfqfqwhale" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bfqfqwhale table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#okvctfgiqp thead, #okvctfgiqp tbody, #okvctfgiqp tfoot, #okvctfgiqp tr, #okvctfgiqp td, #okvctfgiqp th {
+#bfqfqwhale thead, #bfqfqwhale tbody, #bfqfqwhale tfoot, #bfqfqwhale tr, #bfqfqwhale td, #bfqfqwhale th {
   border-style: none;
 }
 
-#okvctfgiqp p {
+#bfqfqwhale p {
   margin: 0;
   padding: 0;
 }
 
-#okvctfgiqp .gt_table {
+#bfqfqwhale .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1340,12 +1364,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#okvctfgiqp .gt_caption {
+#bfqfqwhale .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#okvctfgiqp .gt_title {
+#bfqfqwhale .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1357,7 +1381,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#okvctfgiqp .gt_subtitle {
+#bfqfqwhale .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1369,7 +1393,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#okvctfgiqp .gt_heading {
+#bfqfqwhale .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1381,13 +1405,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#okvctfgiqp .gt_bottom_border {
+#bfqfqwhale .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#okvctfgiqp .gt_col_headings {
+#bfqfqwhale .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1402,7 +1426,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#okvctfgiqp .gt_col_heading {
+#bfqfqwhale .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1422,7 +1446,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#okvctfgiqp .gt_column_spanner_outer {
+#bfqfqwhale .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1434,15 +1458,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#okvctfgiqp .gt_column_spanner_outer:first-child {
+#bfqfqwhale .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#okvctfgiqp .gt_column_spanner_outer:last-child {
+#bfqfqwhale .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#okvctfgiqp .gt_column_spanner {
+#bfqfqwhale .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1454,11 +1478,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#okvctfgiqp .gt_spanner_row {
+#bfqfqwhale .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#okvctfgiqp .gt_group_heading {
+#bfqfqwhale .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1484,7 +1508,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#okvctfgiqp .gt_empty_group_heading {
+#bfqfqwhale .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1499,15 +1523,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#okvctfgiqp .gt_from_md > :first-child {
+#bfqfqwhale .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#okvctfgiqp .gt_from_md > :last-child {
+#bfqfqwhale .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#okvctfgiqp .gt_row {
+#bfqfqwhale .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1526,7 +1550,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#okvctfgiqp .gt_stub {
+#bfqfqwhale .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1539,7 +1563,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#okvctfgiqp .gt_stub_row_group {
+#bfqfqwhale .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1553,15 +1577,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#okvctfgiqp .gt_row_group_first td {
+#bfqfqwhale .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#okvctfgiqp .gt_row_group_first th {
+#bfqfqwhale .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#okvctfgiqp .gt_summary_row {
+#bfqfqwhale .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1571,16 +1595,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#okvctfgiqp .gt_first_summary_row {
+#bfqfqwhale .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#okvctfgiqp .gt_first_summary_row.thick {
+#bfqfqwhale .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#okvctfgiqp .gt_last_summary_row {
+#bfqfqwhale .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1590,7 +1614,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#okvctfgiqp .gt_grand_summary_row {
+#bfqfqwhale .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1600,7 +1624,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#okvctfgiqp .gt_first_grand_summary_row {
+#bfqfqwhale .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1610,7 +1634,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#okvctfgiqp .gt_last_grand_summary_row_top {
+#bfqfqwhale .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1620,11 +1644,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#okvctfgiqp .gt_striped {
+#bfqfqwhale .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#okvctfgiqp .gt_table_body {
+#bfqfqwhale .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1633,7 +1657,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#okvctfgiqp .gt_footnotes {
+#bfqfqwhale .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1647,7 +1671,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#okvctfgiqp .gt_footnote {
+#bfqfqwhale .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1656,7 +1680,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#okvctfgiqp .gt_sourcenotes {
+#bfqfqwhale .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1670,7 +1694,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#okvctfgiqp .gt_sourcenote {
+#bfqfqwhale .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1678,63 +1702,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#okvctfgiqp .gt_left {
+#bfqfqwhale .gt_left {
   text-align: left;
 }
 
-#okvctfgiqp .gt_center {
+#bfqfqwhale .gt_center {
   text-align: center;
 }
 
-#okvctfgiqp .gt_right {
+#bfqfqwhale .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#okvctfgiqp .gt_font_normal {
+#bfqfqwhale .gt_font_normal {
   font-weight: normal;
 }
 
-#okvctfgiqp .gt_font_bold {
+#bfqfqwhale .gt_font_bold {
   font-weight: bold;
 }
 
-#okvctfgiqp .gt_font_italic {
+#bfqfqwhale .gt_font_italic {
   font-style: italic;
 }
 
-#okvctfgiqp .gt_super {
+#bfqfqwhale .gt_super {
   font-size: 65%;
 }
 
-#okvctfgiqp .gt_footnote_marks {
+#bfqfqwhale .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#okvctfgiqp .gt_asterisk {
+#bfqfqwhale .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#okvctfgiqp .gt_indent_1 {
+#bfqfqwhale .gt_indent_1 {
   text-indent: 5px;
 }
 
-#okvctfgiqp .gt_indent_2 {
+#bfqfqwhale .gt_indent_2 {
   text-indent: 10px;
 }
 
-#okvctfgiqp .gt_indent_3 {
+#bfqfqwhale .gt_indent_3 {
   text-indent: 15px;
 }
 
-#okvctfgiqp .gt_indent_4 {
+#bfqfqwhale .gt_indent_4 {
   text-indent: 20px;
 }
 
-#okvctfgiqp .gt_indent_5 {
+#bfqfqwhale .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1751,25 +1775,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="Statistics" class="gt_row gt_left">BIAS</td>
-<td headers="Assimilated_DO1" class="gt_row gt_right">1.8939</td>
-<td headers="Assimilated_DO2" class="gt_row gt_right">1.6888</td>
-<td headers="Non_Assimilated_DO1" class="gt_row gt_right">1.8414</td>
-<td headers="Non_Assimilated_DO2" class="gt_row gt_right">1.6795</td></tr>
+<td headers="Assimilated_DO1" class="gt_row gt_right">2.1705</td>
+<td headers="Assimilated_DO2" class="gt_row gt_right">2.0102</td>
+<td headers="Non_Assimilated_DO1" class="gt_row gt_right">2.1191</td>
+<td headers="Non_Assimilated_DO2" class="gt_row gt_right">1.9927</td></tr>
     <tr><td headers="Statistics" class="gt_row gt_left">MSE</td>
-<td headers="Assimilated_DO1" class="gt_row gt_right">14.0167</td>
-<td headers="Assimilated_DO2" class="gt_row gt_right">34.5957</td>
-<td headers="Non_Assimilated_DO1" class="gt_row gt_right">13.8853</td>
-<td headers="Non_Assimilated_DO2" class="gt_row gt_right">34.5595</td></tr>
+<td headers="Assimilated_DO1" class="gt_row gt_right">15.5098</td>
+<td headers="Assimilated_DO2" class="gt_row gt_right">34.2631</td>
+<td headers="Non_Assimilated_DO1" class="gt_row gt_right">15.3419</td>
+<td headers="Non_Assimilated_DO2" class="gt_row gt_right">34.1360</td></tr>
     <tr><td headers="Statistics" class="gt_row gt_left">RMSE</td>
-<td headers="Assimilated_DO1" class="gt_row gt_right">3.7439</td>
-<td headers="Assimilated_DO2" class="gt_row gt_right">5.8818</td>
-<td headers="Non_Assimilated_DO1" class="gt_row gt_right">3.7263</td>
-<td headers="Non_Assimilated_DO2" class="gt_row gt_right">5.8787</td></tr>
+<td headers="Assimilated_DO1" class="gt_row gt_right">3.9383</td>
+<td headers="Assimilated_DO2" class="gt_row gt_right">5.8535</td>
+<td headers="Non_Assimilated_DO1" class="gt_row gt_right">3.9169</td>
+<td headers="Non_Assimilated_DO2" class="gt_row gt_right">5.8426</td></tr>
     <tr><td headers="Statistics" class="gt_row gt_left">COR.COEF</td>
-<td headers="Assimilated_DO1" class="gt_row gt_right">0.7655</td>
-<td headers="Assimilated_DO2" class="gt_row gt_right">0.2839</td>
-<td headers="Non_Assimilated_DO1" class="gt_row gt_right">0.7643</td>
-<td headers="Non_Assimilated_DO2" class="gt_row gt_right">0.2843</td></tr>
+<td headers="Assimilated_DO1" class="gt_row gt_right">0.7477</td>
+<td headers="Assimilated_DO2" class="gt_row gt_right">0.2937</td>
+<td headers="Non_Assimilated_DO1" class="gt_row gt_right">0.7466</td>
+<td headers="Non_Assimilated_DO2" class="gt_row gt_right">0.2953</td></tr>
   </tbody>
   
   

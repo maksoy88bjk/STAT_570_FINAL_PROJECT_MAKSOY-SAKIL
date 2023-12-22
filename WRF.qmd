@@ -34,7 +34,7 @@ library(gt)
 
 ### Assimilated WRF Data
 
-Firstly, we opened the assimilated WRF output for domain 1. You can see the content of WRF output below, the data cover time and coverage domain information with meteorological predictions such as wind speed **(U10 & V10)**, precipitation **(RAINC & RAINNC)**, etc. We need to use name of the variables to extract specific data variables from the raw data.
+Firstly, we opened the assimilated WRF output for domain 1. You can see the content of WRF output below, the data cover time and coverage domain information with meteorological predictions such as potential temperature **(T)**, temperature at 2 meter **(T2)**, wind speed at ten meter **(U10 & V10)**, precipitation **(RAINC & RAINNC)** and etc. We need to use name of the variables to extract specific data variables from the raw data.
 
 ```{r}
 fname <- paste0("D:/Kitaplar/METU-PHD/Thesis/IsmailHocandanAldim_Aksoy_27092023/",
@@ -216,7 +216,7 @@ df_gauges<- df_gauges |> arrange(Station)
 df_gauges |>  gt()
 ```
 
-@fig-gauges is shown for the distribution of meteorological stations along the study area.
+@fig-gauges is shown for distribution of meteorological stations across the study area.
 
 ```{r, fig.width=9,fig.height=5}
 #| label: fig-gauges
@@ -227,12 +227,12 @@ ggplot(data = world)  + geom_sf(fill = "white") +
   coord_sf(crs = st_crs(4326), xlim = c(extents[1], extents[2]), 
                                ylim = c(extents[3],extents[4])) +
   geom_raster(data = temp_df_2, 
-        aes(x = x, y = y, fill = layer), alpha=0.7, show.legend = FALSE) +
+        aes(x = x, y = y, fill = layer), alpha=0.6, show.legend = FALSE) +
   scale_fill_viridis_c() + labs(x="",y="") +
   geom_point(data = df_gauges, aes(x=Longitude, y=Latitude),
              size=3, colour="darkred") + 
-  geom_text(data = df_gauges,  mapping = aes(x=Longitude, y=Latitude, label=Province), nudge_y = -0.1) 
-
+  geom_text(data = df_gauges,  mapping = aes(x=Longitude, y=Latitude, label=Province), nudge_y = -0.1) + 
+  ggtitle( paste("Hourly Assimilated WRF Temperature Forecast,", t2[121]) )
 ```
 
 ### Get Temperature Observations
@@ -244,14 +244,14 @@ head(temp_obs)
 temp_obs<-
   temp_obs |>
   mutate(date= as.Date(with(temp_obs, paste(YIL, AY, GUN,sep="-")), "%Y-%m-%d")) |>
-  mutate(dates= as.POSIXct(paste(date, paste(SAAT, 0, 0, sep = ":")), tz="UTC")) |>
+  mutate(dates= ymd_hms(paste(date, paste(SAAT, 0, 0, sep = ":")), tz="UTC")) |>
   dplyr::select(Istasyon_No, dates, SICAKLIK)
 nrow(temp_obs)
 
 temp_obs<-
   temp_obs |> 
   group_by(Istasyon_No) |> 
-  tidyr::complete( dates = seq(ymd_hm("2004-08-11 00:00"), ymd_hm("2004-08-16 23:00"), by = "1 hours"))
+  tidyr::complete( dates = seq(ymd_hm("2004-08-10 00:00"), ymd_hm("2004-08-16 23:00"), by = "1 hours"))
 nrow(temp_obs)
 
 colnames(temp_obs)<- c("Station","dates","observation")
@@ -406,20 +406,23 @@ for(i in 1:length(variable)){
   new_df_list[[i]]$dates<- as.POSIXct(new_df_list[[i]]$dates)
 
                             }
-temp_obs_d01<- temp_obs
-temp_obs_d01$dates<- temp_obs_d01$dates - 3*60*60
+temp_obs_d01<- temp_obs |> 
+  mutate(dates = dates - 3*60*60 ) 
 
 temp_obs_d02<- temp_obs
 temp_obs_d02$dates<- temp_obs_d02$dates - 60*60
+
+# domain1: new_df_list[[1]]; new_df_list[[3]]
+# domain2: new_df_list[[2]]; head(new_df_list[[4]])
 
 for(i in 1:length(variable)){
   ifelse(i %% 2 == 0, 
 new_df_list[[i]] <- 
       new_df_list[[i]] |>        
-        inner_join(temp_obs_d02, by = c("Station","dates")),
+        merge(temp_obs_d02, by = c("Station","dates")),
 new_df_list[[i]] <- 
-      new_df_list[[i]] |>        
-        inner_join(temp_obs_d01, by = c("Station","dates"))
+      new_df_list[[i]] |>     
+        merge(temp_obs_d01, by = c("Station","dates"))
         )
                             }
   
@@ -461,8 +464,8 @@ ggplot(aes(x= dates, y=value)) +
   geom_line(aes(colour = Temperature), size=0.7) +
   scale_colour_manual(name= expression("Temperature"~(degree*C)), 
           values = c('observation' = "black",
-                     'predict_do1_nas' = "blue",
-                     'predict_do1' = "red"),
+                     'predict_do1_nas' = "#23bfce",
+                     'predict_do1' = "#fc2852"),
           labels = c('observation' = 'Observation',
                      'predict_do1_nas' = 'Non-Assimilated Prediction DO1',
                      'predict_do1' = 'Assimilated Prediction DO1')) + theme_bw() + 
@@ -470,7 +473,38 @@ ggplot(aes(x= dates, y=value)) +
   labs(x=" ",y=expression("Temperature"~(degree*C))) + 
   theme(axis.text.x = element_text(angle = 0, hjust = 1))  +
   theme(legend.position = c(.88, .1), 
-        strip.background = element_rect(colour="black", fill="ghostwhite"))
+        strip.background = element_rect(colour="black", fill="cornsilk"))
+
+```
+
+```{r, fig.width=9,fig.height=5}
+#| warning: false
+
+new_df_list[[2]] |>        
+  inner_join(new_df_list[[4]], by = c("Station","dates","observation")) |> 
+  pivot_longer(
+          cols = -c(1:2),
+          names_to = "Temperature",
+          values_to = "value",
+          values_drop_na = TRUE) |> 
+  mutate(Station = factor(Station, 
+         labels = df_gauges$Province )) |>
+  mutate(Temperature =  factor(Temperature, 
+         levels= c("observation", "predict_do2_nas", "predict_do2")) ) |>  
+ggplot(aes(x= dates, y=value)) +   
+  geom_line(aes(colour = Temperature), size=0.7) +
+  scale_colour_manual(name= expression("Temperature"~(degree*C)), 
+          values = c('observation' = "black",
+                     'predict_do2_nas' = "#fc2852",
+                     'predict_do2' = "#23bfce"),
+          labels = c('observation' = 'Observation',
+                     'predict_do2_nas' = 'Non-Assimilated Prediction DO2',
+                     'predict_do2' = 'Assimilated Prediction DO2')) + theme_bw() + 
+  facet_wrap(~Station, scales = "free_y") + 
+  labs(x=" ",y=expression("Temperature"~(degree*C))) + 
+  theme(axis.text.x = element_text(angle = 0, hjust = 1))  +
+  theme(legend.position = c(.88, .1), 
+        strip.background = element_rect(colour="black", fill="cornsilk"))
 
 ```
 
@@ -507,4 +541,5 @@ for (i in 1:4) {
 
 error_table[,2:5]<- round(error_table[,2:5],4)
 error_table |>  gt()
+
 ```
