@@ -193,7 +193,7 @@ ggplot(data = world)  + geom_sf(fill = "white") +
   geom_raster(data = temp_df, 
             aes(x = x, y = y, fill = layer), alpha=0.4, show.legend = FALSE) + 
   geom_raster(data = temp_df_2, 
-            aes(x = x, y = y, fill = layer), alpha=0.7, show.legend = FALSE) + 
+            aes(x = x, y = y, fill = layer), alpha=0.8, show.legend = FALSE) + 
   scale_fill_viridis_c() + labs(x="",y="") + 
   ggtitle("Coverage of Domain 2") 
 ```
@@ -271,7 +271,9 @@ raster_temp_value<- raster::extract(raster_temp_stack, centroids)
 
 rt_cpv <- cbind(centroids,raster_temp_value)
 rt_cpv_df<- data.frame(rt_cpv)
+colnames(rt_cpv_df)
 rt_cpv_df<- rt_cpv_df[,-ncol(rt_cpv_df)]
+head(rt_cpv_df)[,1:5]
 
 rt_cpv_df<- 
   rt_cpv_df |> 
@@ -398,32 +400,21 @@ for(i in 1:length(variable)){
           cols = starts_with("2004"),
           names_to = "dates",
           values_to = variable[i],
-          values_drop_na = TRUE
+          values_drop_na = FALSE
         ) |> 
-        dplyr:: select(Station, dates, variable[i]) 
+        dplyr:: select(Station, dates, variable[i]) # to remove lat long column
       
   new_df_list[[i]]$dates<- str_replace(new_df_list[[i]]$dates, "_"," ")
-  new_df_list[[i]]$dates<- as.POSIXct(new_df_list[[i]]$dates)
+  new_df_list[[i]]$dates<- ymd_hms(new_df_list[[i]]$dates)
 
                             }
-temp_obs_d01<- temp_obs |> 
-  mutate(dates = dates - 3*60*60 ) 
-
-temp_obs_d02<- temp_obs
-temp_obs_d02$dates<- temp_obs_d02$dates - 60*60
-
 # domain1: new_df_list[[1]]; new_df_list[[3]]
 # domain2: new_df_list[[2]]; head(new_df_list[[4]])
 
 for(i in 1:length(variable)){
-  ifelse(i %% 2 == 0, 
 new_df_list[[i]] <- 
       new_df_list[[i]] |>        
-        merge(temp_obs_d02, by = c("Station","dates")),
-new_df_list[[i]] <- 
-      new_df_list[[i]] |>     
-        merge(temp_obs_d01, by = c("Station","dates"))
-        )
+        left_join(temp_obs, by = c("Station","dates"))
                             }
   
 head(new_df_list[[1]]); head(new_df_list[[3]])
@@ -438,24 +429,24 @@ head(new_df_list[[2]]); head(new_df_list[[4]])
 
 head(
   new_df_list[[1]] |>        
-    inner_join(new_df_list[[3]], by = c("Station","dates","observation")) )
+    left_join(new_df_list[[3]], by = c("Station","dates","observation")) )
 
 head(
   new_df_list[[1]] |>        
-    inner_join(new_df_list[[3]], by = c("Station","dates","observation")) |> 
+    left_join(new_df_list[[3]], by = c("Station","dates","observation")) |> 
     pivot_longer(
             cols = -c(1:2),
             names_to = "Temperature",
             values_to = "value",
-            values_drop_na = TRUE) )  
+            values_drop_na = FALSE) )  
 
 new_df_list[[1]] |>        
-  inner_join(new_df_list[[3]], by = c("Station","dates","observation")) |> 
+  left_join(new_df_list[[3]], by = c("Station","dates","observation")) |> 
   pivot_longer(
           cols = -c(1:2),
           names_to = "Temperature",
           values_to = "value",
-          values_drop_na = TRUE) |> 
+          values_drop_na = FALSE) |> 
   mutate(Station = factor(Station, 
          labels = df_gauges$Province )) |>
   mutate(Temperature =  factor(Temperature, 
@@ -481,12 +472,12 @@ ggplot(aes(x= dates, y=value)) +
 #| warning: false
 
 new_df_list[[2]] |>        
-  inner_join(new_df_list[[4]], by = c("Station","dates","observation")) |> 
+  left_join(new_df_list[[4]], by = c("Station","dates","observation")) |> 
   pivot_longer(
           cols = -c(1:2),
           names_to = "Temperature",
           values_to = "value",
-          values_drop_na = TRUE) |> 
+          values_drop_na = FALSE) |> 
   mutate(Station = factor(Station, 
          labels = df_gauges$Province )) |>
   mutate(Temperature =  factor(Temperature, 
@@ -512,21 +503,25 @@ ggplot(aes(x= dates, y=value)) +
 
 ```{r}
 #BIAS
-bias <- function(x,y) { mean( (x-y) , na.rm = TRUE) }
+bias <- function(x,y) {mean((x-y), na.rm = TRUE)}
 #MSE
-mse<- function(x,y) { mean( (x-y)^2 , na.rm = TRUE) }
+mse<- function(x,y) {mean((x-y)^2, na.rm = TRUE)}
 #RMSE
-rmse<- function(x,y) { sqrt( mean( (x-y)^2 , na.rm = TRUE) ) }
+rmse<- function(x,y) {sqrt( mean( (x-y)^2, na.rm = TRUE) )}
+#NRMSE
+nrmse<- function(x,y){sqrt( mean((x-y)^2, na.rm = TRUE) ) / (max(x)-min(y))}
+
 
 # domain1: new_df_list[[1]]; new_df_list[[3]]
 # domain2: new_df_list[[2]]; head(new_df_list[[4]])
 
 error_table<- data.frame(
-                   Statistics = c("BIAS","MSE","RMSE","COR.COEF"), 
-                   Assimilated_DO1 = 1:4, 
-                   Assimilated_DO2 = 1:4, 
-                   Non_Assimilated_DO1 = 1:4,   
-                   Non_Assimilated_DO2 = 1:4)
+                   Statistics = c("BIAS","MSE","RMSE","NRMSE","COR.COEF"), 
+                   Assim_DO1 = 1:5, 
+                   Assim_DO2 = 1:5, 
+                   Non_Assim_DO1 = 1:5,   
+                   Non_Assim_DO2 = 1:5)
+
 
 for (i in 1:4) {
   error_table[1,i+1] <- bias(as.matrix(new_df_list[[i]][,4]), 
@@ -535,11 +530,73 @@ for (i in 1:4) {
                            as.matrix(new_df_list[[i]][,3]))
   error_table[3,i+1] <- rmse(as.matrix(new_df_list[[i]][,4]), 
                            as.matrix(new_df_list[[i]][,3]))
-  error_table[4,i+1] <- cor(as.matrix(new_df_list[[i]][,4]), 
+  error_table[4,i+1] <- nrmse(as.matrix(new_df_list[[i]][,4]), 
+                           as.matrix(new_df_list[[i]][,3]))
+  error_table[5,i+1] <- cor(as.matrix(new_df_list[[i]][,4]), 
                            as.matrix(new_df_list[[i]][,3]), use='pairwise.complete.obs')
                }
 
 error_table[,2:5]<- round(error_table[,2:5],4)
 error_table |>  gt()
 
+```
+
+```{r}
+error_table<- data.frame(
+                   Statistics = c("BIAS","MSE","RMSE","NRMSE","COR.COEF"), 
+                   Assim_DO1 = 1:5, 
+                   Assim_DO2 = 1:5, 
+                   Non_Assim_DO1 = 1:5,   
+                   Non_Assim_DO2 = 1:5)
+
+for (i in 1:4) {
+  kastamonu<- 
+      new_df_list[[i]] |> 
+        mutate(Station = factor(Station, labels = df_gauges$Province )) |> 
+        filter(Station == "Kastamonu" )
+    
+  error_table[1,i+1] <- bias(as.matrix(kastamonu[,4]), 
+                           as.matrix(kastamonu[,3]))
+  error_table[2,i+1] <- mse(as.matrix(kastamonu[,4]), 
+                           as.matrix(kastamonu[,3]))
+  error_table[3,i+1] <- rmse(as.matrix(kastamonu[,4]), 
+                           as.matrix(kastamonu[,3]))
+  error_table[4,i+1] <- nrmse(as.matrix(kastamonu[,4]), 
+                           as.matrix(kastamonu[,3]))
+  error_table[5,i+1] <- cor(as.matrix(kastamonu[,4]), 
+                           as.matrix(kastamonu[,3]), use='pairwise.complete.obs')
+               }
+
+error_table[,2:5]<- round(error_table[,2:5],4)
+error_table |>  gt()
+```
+
+```{r}
+error_table<- data.frame(
+                   Statistics = c("BIAS","MSE","RMSE","NRMSE","COR.COEF"), 
+                   Assim_DO1 = 1:5, 
+                   Assim_DO2 = 1:5, 
+                   Non_Assim_DO1 = 1:5,   
+                   Non_Assim_DO2 = 1:5)
+
+for (i in 1:4) {
+  duzce<- 
+      new_df_list[[i]] |> 
+        mutate(Station = factor(Station, labels = df_gauges$Province )) |> 
+        filter(Station == "Duzce" )
+    
+  error_table[1,i+1] <- bias(as.matrix(duzce[,4]), 
+                           as.matrix(duzce[,3]))
+  error_table[2,i+1] <- mse(as.matrix(duzce[,4]), 
+                           as.matrix(duzce[,3]))
+  error_table[3,i+1] <- rmse(as.matrix(duzce[,4]), 
+                           as.matrix(duzce[,3]))
+  error_table[4,i+1] <- nrmse(as.matrix(duzce[,4]), 
+                           as.matrix(duzce[,3]))
+  error_table[5,i+1] <- cor(as.matrix(duzce[,4]), 
+                           as.matrix(duzce[,3]), use='pairwise.complete.obs')
+               }
+
+error_table[,2:5]<- round(error_table[,2:5],4)
+error_table |>  gt()
 ```
