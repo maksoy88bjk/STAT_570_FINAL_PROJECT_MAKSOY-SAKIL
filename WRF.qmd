@@ -1,21 +1,37 @@
 ---
-title: "Evaluation of Assimilated and Non-Assimilated WRF Temperature Predictions for Northwestern Türkiye: A case study for the period between 11 and 16 August, 2004"
+title: "Evaluation of Data-Assimilation of WRF Temperature Predictions Over Northwestern Türkiye: A case study for the period between 11 and 16 August, 2004"
 author: "Mehmet AKSOY & Sercan AKIL"
 format: html
 editor: visual
+toc: true
+abstract: The Weather Research and Forecasting (WRF) model is a next-generation open source mesoscale numerical weather prediction system. As it is open source, it has a very flexible structure that allows it to be used by met-offices, universities and atmospheric research centers. WRF model is used in Turkish State Meteorological Service 
 ---
 
-## Introduction
+# Introduction
 
-### WRF Numerical Weather Prediction Model
+### Numerical Weather Prediction (NWP) Models
+
+Numerical Weather Prediction **(NWP)** models are used to predict weather conditions by simulating the atmosphere, oceans, land surface and their interactions. NWP models are based on mathematical equations representing the physical behavior of the atmosphere. These equations are translated into computer code and use governing equations, numerical methods, parameterizations of other physical processes and combined with initial and boundary conditions before running over a geographic area (we call that geographic area as domain). These physical processes need to be approximated in models because of huge simulation computer time which is called as parameterization.
+
+According to ECMWF report, *these processes affect too a small area to be predicted in full detail by NWP models. The major reason lies in the limited computing power that still does not allow us to calculate the all processes for any place on Earth*. **(https://doi.org/10.1038/s41598-022-11936-9)**
 
 ### Data Assimilation
 
-## Implementation in R
+NWP models start with an initial value and it is the challenge because initial-value effects next predictions with an increasing error. Thus, updating initial-value prediction is a method to improve prediction accuracy which is called as data assimilation. Infrared radiance from the geostationary satellites and on-site radiosonde observation data assimilation are powerful tools to improve the weather forecast have been widely applied with this purpose in the past a few decades.
+
+There are a number of data assimilation techniques used in weather forecasting. One of the most prominent are the three- and four dimensional variational data assimilation methods (3D-var and 4D-var). 3D-var incorporates meteorological data only within a time window around the initialization moment and in this method the analysis increment (an increment is introduced due to the actual observations) does not evolve in time, e.g. it has effect only at the beginning of the simulation. On the other hand 4D-var method uses tangent linear and adjoint models which model the propagation of analysis increment and more computing time is needed. **Huang, X. Y., & Vedel, H. (2003). An introduction to data assimilation. In SAF Training Workshop: 2nd GRAS SAF User Workshop, EUMETSAT, Darmstadt, Germany (pp. 25-37).**
+
+### Weather Research and Forecasting (WRF) Model
+
+The Weather Research and Forecasting **(WRF)** model is a next-generation open source mesoscale numerical weather prediction system. As it is open source, it has a very flexible structure that allows it to be used by met-offices, universities and atmospheric research centers.
+
+The Weather Research and Forecasting (WRF) model is a next-generation open source mesoscale numerical weather prediction system. As it is open source, it has a very flexible structure that allows it to be used by met-offices, universities and atmospheric research centers. The effort to develop WRF began in the latter 1990's and was a collaborative partnership of the National Center for Atmospheric Research (NCAR), the National Oceanic and Atmospheric Administration (NOAA), the U.S. Air Force, the Naval Research Laboratory, the University of Oklahoma, and the Federal Aviation Administration (WRF web page). WRF model is used in *Turkish State Meteorological Service* for operational and research forecast purposes since last two decades.
+
+# Operations on Assimilated WRF Data
 
 There are two files for two different domains as assimilated and non-assimilated predictions of WRF model. Thus, there are four netcdf files totally. We are going to define prediction variables, forecast period and coverage of domains for each file.
 
-### Uploading Necessary Packages
+## Uploading Necessary Packages
 
 We will need several packages for some implementations in R, for instance; opening of the netcdf files of WRF data, handling of WRF outputs, visualization and etc.
 
@@ -32,7 +48,7 @@ library(sf)
 library(gt)
 ```
 
-### Assimilated WRF Data
+## Temperature Forecast of WRF in Domain 1
 
 Firstly, we opened the assimilated WRF output for domain 1. You can see the content of WRF output below, the data cover time and coverage domain information with meteorological predictions such as potential temperature **(T)**, temperature at 2 meter **(T2)**, wind speed at ten meter **(U10 & V10)**, precipitation **(RAINC & RAINNC)** and etc. We need to use name of the variables to extract specific data variables from the raw data.
 
@@ -45,8 +61,6 @@ nc_data <- nc_open(fname)
   print(nc_data)
   sink()}
 ```
-
-### Temperature Prediction in WRF
 
 In the WRF data, air temperature at 2 meter, the height of observation at gauges, is available. If 2 meter temperature is not available in netcdf file, the calculation of [Air Temperature Prediction](http://gradsusr.org/pipermail/gradsusr/2011-December/031698.html) from WRF data is described at the given link based on [WRF manual](https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_v4/contents.html). In such a case, *perturbation potential temperature*, *base pressure* and *perturbation pressure* variables has to be extracted to get air temperature prediction.
 
@@ -123,7 +137,7 @@ ggplot(data = world)  + geom_sf(fill = "white") +
   ggtitle("Coverage of Domain 1") + theme(legend.key.height = unit(1, "cm"))
 ```
 
-### Temperature Prediction (Domain 2)
+## Temperature Forecast of WRF in Domain 2
 
 There are **121** time steps for second domain since we can inference by dimension of **T2** data.
 
@@ -198,6 +212,8 @@ ggplot(data = world)  + geom_sf(fill = "white") +
   ggtitle("Coverage of Domain 2") 
 ```
 
+## Derrivation of Temperature Prediction and Observation
+
 ### Identification of Meteorological Stations
 
 Domain 2 covers several provinces which are located northwest of Türkiye. Thus, we need to determine meteorological stations for comparing observation versus assimilated and non-assimilated WRF predictions. Only one station was selected for each province to evaluate the performance of both assimilated and non-assimilated WRF predictions. @tbl-gauges-domain2 shows the main gauges across the domain 2.
@@ -236,7 +252,7 @@ ggplot(data = world)  + geom_sf(fill = "white") +
   ggtitle( paste("Hourly Assimilated WRF Temperature Forecast,", t2[121]) )
 ```
 
-### Get Temperature Observations
+### Obtain Temperature Observations
 
 ```{r}
 temp_obs<- read_excel("D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/df_2023122096C0-Saatlik_Sicaklik.xlsx")
@@ -296,7 +312,7 @@ colnames(rt_cpv_df_2)<- append(colnames(rt_cpv_df_2[1:3]),as.character(t2))
 head(rt_cpv_df_2)[,1:5]
 ```
 
-## Operations on Non-Assimilated WRF
+# Operations on Non-Assimilated WRF Data
 
 We need to apply similar procedures on non-assimilated WRF predictions for extraction as shown above.
 
@@ -374,7 +390,7 @@ colnames(rt_cpv_df_2_nas)<- append(colnames(rt_cpv_df_2_nas[1:3]),as.character(t
 head(rt_cpv_df_2_nas)[,1:5]
 ```
 
-### Derivation & Manipulation in Data Frames
+# Derivation of Data Frames
 
 ```{r}
 # domain1 assimilated prediction: rt_cpv_df
@@ -418,16 +434,12 @@ head(new_df_list[[1]]); head(new_df_list[[3]])
 head(new_df_list[[2]]); head(new_df_list[[4]])
 
 ```
+# Results
 
-### Visualization
+## Visualization
 
-@fig-do1 is shown for comparison of assimilated and non-assimilated predictions with observations for each gauge *(province)* by three hour intervals, in domain 1. In this plot, each box represent different provinces *(gauges)*, **black** line shows observations, **red** and **blue** lines are for **assimilated** and **non-assimilated** predictions, respectively.
-
-```{r, fig.width=9,fig.height=5}
+```{r}
 #| warning: false
-#| label: fig-do1
-#| fig-cap: Comparison of predictions with observations for each province in Domain 1.
-
 head(
   new_df_list[[1]] |>        
     left_join(new_df_list[[3]], by = c("Station","dates","observation")) )
@@ -440,6 +452,14 @@ head(
             names_to = "Temperature",
             values_to = "value",
             values_drop_na = FALSE) )  
+```
+
+@fig-do1 is shown for comparison of assimilated and non-assimilated predictions with observations for each gauge *(province)* by three hour intervals, in domain 1. In this plot, each box represent different provinces *(gauges)*, **black** line shows observations, **red** and **blue** lines are for **assimilated** and **non-assimilated** predictions, respectively.
+
+```{r, fig.width=9,fig.height=5}
+#| warning: false
+#| label: fig-do1
+#| fig-cap: Comparison of predictions with observations for each province in Domain 1.
 
 new_df_list[[1]] |>        
   left_join(new_df_list[[3]], by = c("Station","dates","observation")) |> 
@@ -486,7 +506,7 @@ new_df_list[[1]] |>
 ggplot(aes(x= observation, y=Prediction, color=Pred.Type)) +   
   theme_bw() +
   geom_point(size=2, alpha=0.5) +   
-  geom_smooth(method=lm, color ="black", se=FALSE) +
+  geom_smooth(color ="black", se=FALSE) +
    scale_colour_manual(name= expression("Temperature Prediction"~(degree*C)), 
           values = c('predict_do1_nas' = "blue",
                      'predict_do1' = "#fc2852"),
@@ -496,7 +516,7 @@ ggplot(aes(x= observation, y=Prediction, color=Pred.Type)) +
 
 ```
 
-@fig-do2 is shown for comparison of hourly assimilated and non-assimilated predictions with observations for each gauge *(province)* in domain 2. In this plot, each box represent different provinces *(gauges)*, black line shows observations, **blue** and **red lines** are for **assimilated** and **non-assimilated** predictions, respectively.
+@fig-do2 is shown for comparison of hourly assimilated and non-assimilated predictions with observations for each gauge *(province)* in domain 2. In this plot, each box represent different provinces *(gauges)*, **black** line shows observations, **blue** and **red lines** are for **assimilated** and **non-assimilated** predictions, respectively.
 
 ```{r, fig.width=9,fig.height=5}
 #| warning: false
@@ -531,7 +551,7 @@ ggplot(aes(x= dates, y=value)) +
 
 ```
 
-@fig-sc2 is shown for scatterplot of 3-hour assimilated and non-assimilated predictions with observations for domain 1. **Red** and **blue** points represent **assimilated** and **non-assimilated** predictions, respectively.
+@fig-sc2 is shown for scatterplot of 3-hour assimilated and non-assimilated predictions with observations for domain 1. **Red** and **blue** points represent **assimilated** and **non-assimilated** predictions, respectively while **black** line shows observations.
 
 ```{r, fig.width=7,fig.height=5}
 #| warning: false
@@ -548,7 +568,7 @@ new_df_list[[2]] |>
 ggplot(aes(x= observation, y=Prediction, color=Pred.Type)) +   
   theme_bw() +
   geom_point(size=2, alpha=0.5) +   
-  geom_smooth(method=lm, color ="black", se=FALSE) +
+  geom_smooth(color ="black", se=FALSE) +
    scale_colour_manual(name= expression("Temperature Prediction"~(degree*C)), 
           values = c('predict_do2_nas' = "#fc2852",
                      'predict_do2' = "blue"),
@@ -557,7 +577,7 @@ ggplot(aes(x= observation, y=Prediction, color=Pred.Type)) +
   labs(x="Observation",y="Prediction") + theme(legend.position = "top")
 ```
 
-### Error Estimation
+## Error Estimation
 
 @tbl-stats shows the error statistics for both two domains with respect to complete assimilated and non-assimilated predictions.
 
@@ -675,4 +695,4 @@ error_table[,2:5]<- round(error_table[,2:5],4)
 error_table |>  gt()
 ```
 
-### Conclusion
+# Conclusion
