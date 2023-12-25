@@ -434,6 +434,7 @@ head(new_df_list[[1]]); head(new_df_list[[3]])
 head(new_df_list[[2]]); head(new_df_list[[4]])
 
 ```
+
 # Results
 
 ## Visualization
@@ -489,7 +490,7 @@ ggplot(aes(x= dates, y=value)) +
 
 ```
 
-@fig-sc1 is shown for scatterplot of 3-hour assimilated and non-assimilated predictions with observations for domain 1. **Red** and **blue** points represent **assimilated** and **non-assimilated** predictions, respectively.
+@fig-sc1 is shown for scatterplot of 3-hour assimilated and non-assimilated predictions with observations for domain 1. **Red** and **blue** dots represent **assimilated** and **non-assimilated** predictions, respectively, while **black** line shows **fit** of observations versus predictions.
 
 ```{r, fig.width=7,fig.height=5}
 #| warning: false
@@ -551,7 +552,7 @@ ggplot(aes(x= dates, y=value)) +
 
 ```
 
-@fig-sc2 is shown for scatterplot of 3-hour assimilated and non-assimilated predictions with observations for domain 1. **Red** and **blue** points represent **assimilated** and **non-assimilated** predictions, respectively while **black** line shows observations.
+@fig-sc2 is shown for scatterplot of 3-hour assimilated and non-assimilated predictions with observations for domain 1. **Red** and **blue** dots represent **assimilated** and **non-assimilated** predictions, respectively, while **black** line shows **fit** of observations versus predictions.
 
 ```{r, fig.width=7,fig.height=5}
 #| warning: false
