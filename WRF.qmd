@@ -191,9 +191,9 @@ world <- rnaturalearth::ne_countries(scale='medium',returnclass = 'sf')
 ggplot(data = world)  + geom_sf(fill = "white") + 
   coord_sf(crs = st_crs(4326), xlim = c(19, 47.5), ylim = c(33.5,47)) +
   geom_raster(data = temp_df, 
-            aes(x = x, y = y, fill = layer), alpha=0.4, show.legend = FALSE) + 
+            aes(x, y, fill= layer), alpha=0.3, show.legend = FALSE) + 
   geom_raster(data = temp_df_2, 
-            aes(x = x, y = y, fill = layer), alpha=0.8, show.legend = FALSE) + 
+            aes(x, y, fill= layer), alpha=0.7, show.legend = FALSE) + 
   scale_fill_viridis_c() + labs(x="",y="") + 
   ggtitle("Coverage of Domain 2") 
 ```
@@ -206,10 +206,10 @@ Domain 2 covers several provinces which are located northwest of Türkiye. Thus,
 #| label: tbl-gauges-domain2
 #| tbl-cap: Meteorological stations accross the domain 2.
 
-df_gauges <-  read.delim("D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/gauges.txt", sep="|")
+df_gauges <- read.delim("D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/gauges.txt", sep="|")
 
 df_gauges<- df_gauges[,-c(3,4)]
-colnames(df_gauges)<- c("Station","Province","Latitude","Longitude","Altitude") ; 
+colnames(df_gauges)<- c("Station","Province","Latitude","Longitude","Altitude") 
 
 df_gauges$Province <- tolower(df_gauges$Province) |> str_to_title() 
 df_gauges<- df_gauges |> arrange(Station) 
@@ -231,7 +231,8 @@ ggplot(data = world)  + geom_sf(fill = "white") +
   scale_fill_viridis_c() + labs(x="",y="") +
   geom_point(data = df_gauges, aes(x=Longitude, y=Latitude),
              size=3, colour="darkred") + 
-  geom_text(data = df_gauges,  mapping = aes(x=Longitude, y=Latitude, label=Province), nudge_y = -0.1) + 
+  geom_text(data= df_gauges, mapping = aes(x=Longitude, y=Latitude, 
+                                           label=Province), nudge_y = -0.1) + 
   ggtitle( paste("Hourly Assimilated WRF Temperature Forecast,", t2[121]) )
 ```
 
@@ -245,14 +246,10 @@ temp_obs<-
   temp_obs |>
   mutate(date= as.Date(with(temp_obs, paste(YIL, AY, GUN,sep="-")), "%Y-%m-%d")) |>
   mutate(dates= ymd_hms(paste(date, paste(SAAT, 0, 0, sep = ":")), tz="UTC")) |>
-  dplyr::select(Istasyon_No, dates, SICAKLIK)
-nrow(temp_obs)
-
-temp_obs<-
-  temp_obs |> 
+  dplyr::select(Istasyon_No, dates, SICAKLIK) |> 
   group_by(Istasyon_No) |> 
-  tidyr::complete( dates = seq(ymd_hm("2004-08-10 00:00"), ymd_hm("2004-08-16 23:00"), by = "1 hours"))
-nrow(temp_obs)
+  tidyr::complete( dates = seq(ymd_hm("2004-08-10 00:00"), 
+                               ymd_hm("2004-08-16 23:00"), by = "1 hours"))
 
 colnames(temp_obs)<- c("Station","dates","observation")
 head(temp_obs)
@@ -424,8 +421,12 @@ head(new_df_list[[2]]); head(new_df_list[[4]])
 
 ### Visualization
 
+@fig-do1 is shown for comparison of assimilated and non-assimilated predictions with observations for each gauge *(province)* by three hour intervals, in domain 1. In this plot, each box represent different provinces *(gauges)*, **black** line shows observations, **red** and **blue** lines are for **assimilated** and **non-assimilated** predictions, respectively.
+
 ```{r, fig.width=9,fig.height=5}
 #| warning: false
+#| label: fig-do1
+#| fig-cap: Comparison of predictions with observations for each province in Domain 1.
 
 head(
   new_df_list[[1]] |>        
@@ -468,8 +469,39 @@ ggplot(aes(x= dates, y=value)) +
 
 ```
 
+@fig-sc1 is shown for scatterplot of 3-hour assimilated and non-assimilated predictions with observations for domain 1. **Red** and **blue** points represent **assimilated** and **non-assimilated** predictions, respectively.
+
+```{r, fig.width=7,fig.height=5}
+#| warning: false
+#| label: fig-sc1
+#| fig-cap: Scatterplot of predictions with observations for Domain 1.
+
+new_df_list[[1]] |>        
+  left_join(new_df_list[[3]], by = c("Station","dates","observation")) |> 
+  pivot_longer(
+          cols = -c(1,2,4),
+          names_to = "Pred.Type",
+          values_to = "Prediction",
+          values_drop_na = FALSE) |>
+ggplot(aes(x= observation, y=Prediction, color=Pred.Type)) +   
+  theme_bw() +
+  geom_point(size=2, alpha=0.5) +   
+  geom_smooth(method=lm, color ="black", se=FALSE) +
+   scale_colour_manual(name= expression("Temperature Prediction"~(degree*C)), 
+          values = c('predict_do1_nas' = "blue",
+                     'predict_do1' = "#fc2852"),
+          labels = c('predict_do1_nas' = 'Non-Assimilated Prediction DO1',
+                     'predict_do1' = 'Assimilated Prediction DO1')) +
+  labs(x="Observation",y="Prediction") + theme(legend.position = "top")
+
+```
+
+@fig-do2 is shown for comparison of hourly assimilated and non-assimilated predictions with observations for each gauge *(province)* in domain 2. In this plot, each box represent different provinces *(gauges)*, black line shows observations, **blue** and **red lines** are for **assimilated** and **non-assimilated** predictions, respectively.
+
 ```{r, fig.width=9,fig.height=5}
 #| warning: false
+#| label: fig-do2
+#| fig-cap: Comparison of predictions with observations for each province in Domain 2.
 
 new_df_list[[2]] |>        
   left_join(new_df_list[[4]], by = c("Station","dates","observation")) |> 
@@ -499,9 +531,40 @@ ggplot(aes(x= dates, y=value)) +
 
 ```
 
+@fig-sc2 is shown for scatterplot of 3-hour assimilated and non-assimilated predictions with observations for domain 1. **Red** and **blue** points represent **assimilated** and **non-assimilated** predictions, respectively.
+
+```{r, fig.width=7,fig.height=5}
+#| warning: false
+#| label: fig-sc2
+#| fig-cap: Scatterplot of predictions with observations for Domain 2.
+
+new_df_list[[2]] |>        
+  left_join(new_df_list[[4]], by = c("Station","dates","observation")) |> 
+  pivot_longer(
+          cols = -c(1,2,4),
+          names_to = "Pred.Type",
+          values_to = "Prediction",
+          values_drop_na = FALSE) |>
+ggplot(aes(x= observation, y=Prediction, color=Pred.Type)) +   
+  theme_bw() +
+  geom_point(size=2, alpha=0.5) +   
+  geom_smooth(method=lm, color ="black", se=FALSE) +
+   scale_colour_manual(name= expression("Temperature Prediction"~(degree*C)), 
+          values = c('predict_do2_nas' = "#fc2852",
+                     'predict_do2' = "blue"),
+          labels = c('predict_do2_nas' = 'Non-Assimilated Prediction DO2',
+                     'predict_do2' = 'Assimilated Prediction DO2')) +
+  labs(x="Observation",y="Prediction") + theme(legend.position = "top")
+```
+
 ### Error Estimation
 
+@tbl-stats shows the error statistics for both two domains with respect to complete assimilated and non-assimilated predictions.
+
 ```{r}
+#| label: tbl-stats
+#| tbl-cap: Error statistics of entire predictions for each two domains.
+
 #BIAS
 bias <- function(x,y) {mean((x-y), na.rm = TRUE)}
 #MSE
@@ -541,7 +604,12 @@ error_table |>  gt()
 
 ```
 
+@tbl-kastamonu shows the error statistics with respect to assimilated and non-assimilated predictions for Kastomonu province in both two domains.
+
 ```{r}
+#| label: tbl-kastamonu
+#| tbl-cap: Error statistics of predictions for Kastomonu province in each domain.
+
 error_table<- data.frame(
                    Statistics = c("BIAS","MSE","RMSE","NRMSE","COR.COEF"), 
                    Assim_DO1 = 1:5, 
@@ -571,7 +639,13 @@ error_table[,2:5]<- round(error_table[,2:5],4)
 error_table |>  gt()
 ```
 
+@tbl-duzce shows the error statistics with respect to assimilated and non-assimilated predictions for Duzce province in both two domains.
+
 ```{r}
+#| echo: false
+#| label: tbl-duzce
+#| tbl-cap: Error statistics of predictions for Duzce province in each domain.
+
 error_table<- data.frame(
                    Statistics = c("BIAS","MSE","RMSE","NRMSE","COR.COEF"), 
                    Assim_DO1 = 1:5, 
@@ -600,3 +674,5 @@ for (i in 1:4) {
 error_table[,2:5]<- round(error_table[,2:5],4)
 error_table |>  gt()
 ```
+
+### Conclusion
