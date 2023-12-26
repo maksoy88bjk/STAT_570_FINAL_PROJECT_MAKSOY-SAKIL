@@ -246,7 +246,7 @@ ggplot(data = world)  + geom_sf(fill = "white") +
                                ylim = c(extents[3],extents[4])) +
   geom_raster(data = temp_df_2, 
         aes(x, y, fill = layer), alpha=0.6) +
-  scale_fill_viridis_c(limits = c(10, 30)) + 
+  scale_fill_viridis_c(limits = c(10, 25)) + 
   labs(x="",y="", fill= expression(degree*C)) +
   geom_point(data = df_gauges, aes(x=Longitude, y=Latitude),
              size=3, colour="darkred") + 
