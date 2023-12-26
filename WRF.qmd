@@ -46,6 +46,7 @@ library(ncdf4)
 library(R.utils)
 library(sf)
 library(gt)
+library(ggpubr)
 ```
 
 ## Temperature Forecast of WRF in Domain 1
@@ -491,18 +492,19 @@ ggplot(aes(x= dates, y=value)) +
 
 ```
 
-@fig-sc1 is shown for scatterplot of 3-hour assimilated and non-assimilated predictions with observations for domain 1. **Red** and **blue** dots represent **assimilated** and **non-assimilated** predictions, respectively, while **black** line shows **fit** of observations versus predictions.
+@fig-sc1 is shown for scatterplot and heatmap of 3-hour assimilated and non-assimilated predictions versus observations in domain 1. **Red** and **blue** colors represent **assimilated** and **non-assimilated** predictions, respectively, while **black** line shows **fit** of observations versus predictions.
 
 ::: {layout-ncol=2 .column-page}
 
-```{r, fig.width=7,fig.height=5}
+```{r, fig.width=9,fig.height=5}
 #| warning: false
 #| label: fig-sc1
-#| fig-cap: Scatterplot of predictions with observations for Domain 1.
+#| fig-cap: Scatterplot and heatmap of observations versus predictions in Domain 1.
 
+plot1<- 
 new_df_list[[1]] |>        
   left_join(new_df_list[[3]], by = c("Station","dates","observation")) |> 
-  pivot_longer(
+    pivot_longer(
           cols = -c(1,2,4),
           names_to = "Pred.Type",
           values_to = "Prediction",
@@ -511,13 +513,31 @@ ggplot(aes(x= observation, y=Prediction, color=Pred.Type)) +
   theme_bw() +
   geom_point(size=2, alpha=0.5) +   
   geom_smooth(color ="black", se=FALSE) +
-   scale_colour_manual(name= expression("Temperature Prediction"~(degree*C)), 
+    scale_colour_manual(name= " ", 
           values = c('predict_do1_nas' = "blue",
                      'predict_do1' = "#fc2852"),
           labels = c('predict_do1_nas' = 'Non-Assimilated Prediction DO1',
                      'predict_do1' = 'Assimilated Prediction DO1')) +
   labs(x="Observation",y="Prediction") + theme(legend.position = "top")
 
+plot2<- 
+new_df_list[[1]] |>
+  left_join(new_df_list[[3]], by = c("Station","dates","observation")) |>
+    pivot_longer(
+      cols = -c(1,2,4),
+      names_to = "Pred.Type",
+      values_to = "Prediction",
+      values_drop_na = FALSE) |>
+ggplot(aes(x= observation, y=Prediction, fill=Pred.Type)) + 
+  geom_hex(alpha=0.5) + theme_bw() +
+    scale_fill_manual(name= " ",
+      values = c('predict_do1_nas' = "blue",
+                  'predict_do1' = "red"),
+      labels = c('predict_do1_nas' = 'Non-Assimilated Prediction DO1',
+                  'predict_do1' = 'Assimilated Prediction DO1')) +
+  labs(x="Observation",y="Prediction") + theme(legend.position = "top")
+
+ggarrange(plot1,plot2,ncol=2 ,nrow = 1)
 ```
 
 @fig-do2 is shown for comparison of hourly assimilated and non-assimilated predictions with observations for each gauge *(province)* in domain 2. In this plot, each box represent different provinces *(gauges)*, **black** line shows observations, **blue** and **red lines** are for **assimilated** and **non-assimilated** predictions, respectively.
@@ -555,30 +575,50 @@ ggplot(aes(x= dates, y=value)) +
 
 ```
 
-@fig-sc2 is shown for scatterplot of 3-hour assimilated and non-assimilated predictions with observations for domain 1. **Red** and **blue** dots represent **assimilated** and **non-assimilated** predictions, respectively, while **black** line shows **fit** of observations versus predictions.
+@fig-sc2 is shown for scatterplot and heatmap of 1-hour assimilated and non-assimilated predictions versus observations in domain 2. **Blue** and **red** colors represent **assimilated** and **non-assimilated** predictions, respectively, while **black** line shows **fit** of observations versus predictions.
 
-```{r, fig.width=7,fig.height=5}
+```{r, fig.width=9,fig.height=5}
 #| warning: false
 #| label: fig-sc2
-#| fig-cap: Scatterplot of predictions with observations for Domain 2.
+#| fig-cap: Scatterplot and heatmap of observations versus predictions in Domain 2.
 
+plot3<- 
 new_df_list[[2]] |>        
   left_join(new_df_list[[4]], by = c("Station","dates","observation")) |> 
-  pivot_longer(
-          cols = -c(1,2,4),
-          names_to = "Pred.Type",
-          values_to = "Prediction",
-          values_drop_na = FALSE) |>
+    pivot_longer(
+      cols = -c(1,2,4),
+      names_to = "Pred.Type",
+      values_to = "Prediction",
+      values_drop_na = FALSE) |>
 ggplot(aes(x= observation, y=Prediction, color=Pred.Type)) +   
   theme_bw() +
   geom_point(size=2, alpha=0.5) +   
   geom_smooth(color ="black", se=FALSE) +
-   scale_colour_manual(name= expression("Temperature Prediction"~(degree*C)), 
-          values = c('predict_do2_nas' = "#fc2852",
-                     'predict_do2' = "blue"),
-          labels = c('predict_do2_nas' = 'Non-Assimilated Prediction DO2',
-                     'predict_do2' = 'Assimilated Prediction DO2')) +
+  scale_colour_manual(name= " ", 
+    values = c('predict_do2_nas' = "#fc2852",
+               'predict_do2' = "blue"),
+    labels = c('predict_do2_nas' = 'Non-Assimilated Prediction DO2',
+               'predict_do2' = 'Assimilated Prediction DO2')) +
   labs(x="Observation",y="Prediction") + theme(legend.position = "top")
+
+plot4<- 
+new_df_list[[2]] |>
+  left_join(new_df_list[[4]], by = c("Station","dates","observation")) |>
+    pivot_longer(
+       cols = -c(1,2,4),
+       names_to = "Pred.Type",
+       values_to = "Prediction",
+       values_drop_na = FALSE) |>
+ggplot(aes(x= observation, y=Prediction, fill=Pred.Type)) + 
+  geom_hex(alpha=0.5) +     theme_bw() +
+    scale_fill_manual(name= " ",
+           values = c('predict_do2_nas' = "#fc2852",
+                      'predict_do2' = "blue"),
+           labels = c('predict_do2_nas' = 'Non-Assimilated Prediction DO2',
+                      'predict_do2' = 'Assimilated Prediction DO2')) +
+  labs(x="Observation",y="Prediction") + theme(legend.position = "top")
+
+ggarrange(plot3,plot4,ncol=2 ,nrow = 1)
 ```
 
 ## Error Estimation
