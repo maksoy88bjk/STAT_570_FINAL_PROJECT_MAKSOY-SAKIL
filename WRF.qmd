@@ -1,10 +1,10 @@
 ---
-title: "Evaluation of Data-Assimilation of WRF Temperature Predictions Over Northwestern Türkiye: A case study for the period between 11 and 16 August, 2004"
+title: "Evaluation of 3D-var Data-Assimilation of WRF Temperature Prediction Over Northwestern Türkiye: A case study for the period between 11 and 16 August, 2004"
 author: "Mehmet AKSOY & Sercan AKIL"
 format: html
 editor: visual
 toc: true
-abstract: The Weather Research and Forecasting (WRF) model is a next-generation open source mesoscale numerical weather prediction system. As it is open source, it has a very flexible structure that allows it to be used by met-offices, universities and atmospheric research centers. WRF model is used in Turkish State Meteorological Service 
+abstract: In this project, we have been evaluated temperature prediction of assimilated and non assimilated WRF outputs over Northwestern Türkiye for the period of 11-16 August, 2004. Observation of eleven temperature gauges and corresponding WRF predictions in the study area have been compared. Moreover, predictions were extracted from assimilated and non assimilated raw WRF data of different domains with varied spatiotemporal resolutions by using gauges coordinates. For this purpose, visualization and calculation of errror operations were performed in R programming and Quarto publishing system.
 ---
 
 # Introduction
@@ -23,7 +23,7 @@ There are a number of data assimilation techniques used in weather forecasting. 
 
 ### Weather Research and Forecasting (WRF) Model
 
-The Weather Research and Forecasting **(WRF)** model is a next-generation open source mesoscale numerical weather prediction system. As it is open source, it has a very flexible structure that allows it to be used by met-offices, universities and atmospheric research centers.
+The Weather Research and Forecasting [(WRF)](https://www.mmm.ucar.edu/models/wrf) model is a next-generation open source mesoscale numerical weather prediction system. As it is open source, it has a very flexible structure that allows it to be used by met-offices, universities and atmospheric research centers.
 
 The Weather Research and Forecasting (WRF) model is a next-generation open source mesoscale numerical weather prediction system. As it is open source, it has a very flexible structure that allows it to be used by met-offices, universities and atmospheric research centers. The effort to develop WRF began in the latter 1990's and was a collaborative partnership of the National Center for Atmospheric Research (NCAR), the National Oceanic and Atmospheric Administration (NOAA), the U.S. Air Force, the Naval Research Laboratory, the University of Oklahoma, and the Federal Aviation Administration (WRF web page). WRF model is used in *Turkish State Meteorological Service* for operational and research forecast purposes since last two decades.
 
@@ -50,7 +50,7 @@ library(gt)
 
 ## Temperature Forecast of WRF in Domain 1
 
-Firstly, we opened the assimilated WRF output for domain 1. You can see the content of WRF output below, the data cover time and coverage domain information with meteorological predictions such as potential temperature **(T)**, temperature at 2 meter **(T2)**, wind speed at ten meter **(U10 & V10)**, precipitation **(RAINC & RAINNC)** and etc. We need to use name of the variables to extract specific data variables from the raw data.
+Firstly, we opened the assimilated WRF output for domain 1. You can see the content of WRF output at the attachments ([wrfout_d01_2004-08-11_00_00_00.txt](https://github.com/maksoy88bjk/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/blob/main/aswout/wrfout_d01_2004-08-11_00_00_00.txt "wrfout_d01_2004-08-11_00_00_00.txt")), the data cover time and coverage domain information with meteorological predictions such as potential temperature **(T)**, temperature at 2 meter **(T2)**, wind speed at ten meter **(U10 & V10)**, precipitation **(RAINC & RAINNC)** and etc. We need to use name of the variables to extract specific data variables from the raw data.
 
 ```{r}
 fname <- paste0("D:/Kitaplar/METU-PHD/Thesis/IsmailHocandanAldim_Aksoy_27092023/",
@@ -62,7 +62,7 @@ nc_data <- nc_open(fname)
   sink()}
 ```
 
-In the WRF data, air temperature at 2 meter, the height of observation at gauges, is available. If 2 meter temperature is not available in netcdf file, the calculation of [Air Temperature Prediction](http://gradsusr.org/pipermail/gradsusr/2011-December/031698.html) from WRF data is described at the given link based on [WRF manual](https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_v4/contents.html). In such a case, *perturbation potential temperature*, *base pressure* and *perturbation pressure* variables has to be extracted to get air temperature prediction.
+In the WRF data, air temperature at 2 meter *(the height of observation at gauges)* is available. If 2 meter temperature is not available in netcdf file, the calculation of [Air Temperature Prediction](http://gradsusr.org/pipermail/gradsusr/2011-December/031698.html) from WRF data is described at the given link based on [WRF manual](https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_v4/contents.html). In such a case, *perturbation potential temperature*, *base pressure* and *perturbation pressure* variables has to be extracted to get air temperature prediction.
 
 ```         
 float T2[west_east,south_north,Time]   
@@ -491,6 +491,8 @@ ggplot(aes(x= dates, y=value)) +
 ```
 
 @fig-sc1 is shown for scatterplot of 3-hour assimilated and non-assimilated predictions with observations for domain 1. **Red** and **blue** dots represent **assimilated** and **non-assimilated** predictions, respectively, while **black** line shows **fit** of observations versus predictions.
+
+::: {layout-ncol=2 .column-page}
 
 ```{r, fig.width=7,fig.height=5}
 #| warning: false
