@@ -134,7 +134,8 @@ world <- rnaturalearth::ne_countries(scale='medium',returnclass = 'sf')
 ggplot(data = world)  + geom_sf(fill = "white") +
   coord_sf(crs = st_crs(4326), xlim = c(10, 55), ylim = c(30,50)) +
   geom_raster(data = temp_df, aes(x, y, fill = layer), alpha=0.6) +
-  scale_fill_viridis_c() +  labs(x="",y="", fill= expression(degree*C)) + 
+  scale_fill_viridis_c(limits = c(0, 35)) +
+  labs(x="",y="", fill= expression(degree*C)) + 
   ggtitle("Coverage of Domain 1") + theme(legend.key.height = unit(1, "cm"))
 ```
 
@@ -245,7 +246,8 @@ ggplot(data = world)  + geom_sf(fill = "white") +
                                ylim = c(extents[3],extents[4])) +
   geom_raster(data = temp_df_2, 
         aes(x, y, fill = layer), alpha=0.6) +
-  scale_fill_viridis_c() + labs(x="",y="", fill= expression(degree*C)) +
+  scale_fill_viridis_c(limits = c(10, 30)) + 
+  labs(x="",y="", fill= expression(degree*C)) +
   geom_point(data = df_gauges, aes(x=Longitude, y=Latitude),
              size=3, colour="darkred") + 
   geom_text(data= df_gauges, mapping = aes(x=Longitude, y=Latitude, 
