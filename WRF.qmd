@@ -132,7 +132,7 @@ world <- rnaturalearth::ne_countries(scale='medium',returnclass = 'sf')
 
 ggplot(data = world)  + geom_sf(fill = "white") +
   coord_sf(crs = st_crs(4326), xlim = c(10, 55), ylim = c(30,50)) +
-  geom_raster(data = temp_df, aes(x = x, y = y, fill = layer), alpha=0.7) +
+  geom_raster(data = temp_df, aes(x, y, fill = layer), alpha=0.6) +
   scale_fill_viridis_c() +  labs(x="",y="", fill= expression(degree*C)) + 
   ggtitle("Coverage of Domain 1") + theme(legend.key.height = unit(1, "cm"))
 ```
@@ -243,13 +243,14 @@ ggplot(data = world)  + geom_sf(fill = "white") +
   coord_sf(crs = st_crs(4326), xlim = c(extents[1], extents[2]), 
                                ylim = c(extents[3],extents[4])) +
   geom_raster(data = temp_df_2, 
-        aes(x = x, y = y, fill = layer), alpha=0.6, show.legend = FALSE) +
-  scale_fill_viridis_c() + labs(x="",y="") +
+        aes(x, y, fill = layer), alpha=0.6) +
+  scale_fill_viridis_c() + labs(x="",y="", fill= expression(degree*C)) +
   geom_point(data = df_gauges, aes(x=Longitude, y=Latitude),
              size=3, colour="darkred") + 
   geom_text(data= df_gauges, mapping = aes(x=Longitude, y=Latitude, 
                                            label=Province), nudge_y = -0.1) + 
-  ggtitle( paste("Hourly Assimilated WRF Temperature Forecast,", t2[121]) )
+  ggtitle(paste("Hourly Assimilated WRF Temperature Forecast,", t2[121])) +
+  theme(legend.key.width=unit(3,"cm"), legend.position="bottom")
 ```
 
 ### Obtain Temperature Observations
