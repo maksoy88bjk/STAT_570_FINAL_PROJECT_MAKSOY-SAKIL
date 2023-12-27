@@ -4,6 +4,7 @@ author: "Mehmet AKSOY & Sercan AKIL"
 format: html
 editor: visual
 toc: true
+bibliography: references.bib
 ---
 
 ::: {style="text-align: justify; font-size:16px"}
@@ -19,19 +20,19 @@ In this project, we have been evaluated temperature prediction of assimilated an
 
 Numerical Weather Prediction **(NWP)** models are used to predict weather conditions by simulating the atmosphere, oceans, land surface and their interactions. NWP models are based on mathematical equations representing the physical behavior of the atmosphere. These equations are translated into computer code and use governing equations, numerical methods, parameterizations of other physical processes and combined with initial and boundary conditions before running over a geographic area (we call that geographic area as domain). These physical processes need to be approximated in models because of huge simulation computer time which is called as parameterization.
 
-According to ECMWF report, *these processes affect too a small area to be predicted in full detail by NWP models. The major reason lies in the limited computing power that still does not allow us to calculate the all processes for any place on Earth*. **(https://doi.org/10.1038/s41598-022-11936-9)**
+According to ECMWF report, *these processes affect too a small area to be predicted in full detail by NWP models. The major reason lies in the limited computing power that still does not allow us to calculate the all processes for any place on Earth* [@frnda2022].
 
 ### Data Assimilation
 
-NWP models start with an initial value and it is the challenge because initial-value effects next predictions with an increasing error. Thus, updating initial-value prediction is a method to improve prediction accuracy which is called as data assimilation. Infrared radiance from the geostationary satellites and on-site radiosonde observation data assimilation are powerful tools to improve the weather forecast have been widely applied with this purpose in the past a few decades.
+NWP models start with an initial value and it is the challenge because initial-value effects next predictions with an increasing error. Thus, updating initial-value prediction is a method to improve prediction accuracy which is called as data assimilation. Infrared radiance from the geostationary satellites and on-site radiosonde observation data assimilation are powerful tools to improve the weather forecast have been widely applied with this purpose in the past a few decades [@geer2018].
 
-There are a number of data assimilation techniques used in weather forecasting. One of the most prominent are the three- and four dimensional variational data assimilation methods (3D-var and 4D-var). 3D-var incorporates meteorological data only within a time window around the initialization moment and in this method the analysis increment (an increment is introduced due to the actual observations) does not evolve in time, e.g. it has effect only at the beginning of the simulation. On the other hand 4D-var method uses tangent linear and adjoint models which model the propagation of analysis increment and more computing time is needed. **Huang, X. Y., & Vedel, H. (2003). An introduction to data assimilation. In SAF Training Workshop: 2nd GRAS SAF User Workshop, EUMETSAT, Darmstadt, Germany (pp. 25-37).**
+There are a number of data assimilation techniques used in weather forecasting. One of the most prominent are the three- and four dimensional variational data assimilation methods (3D-var and 4D-var). 3D-var incorporates meteorological data only within a time window around the initialization moment and in this method the analysis increment (an increment is introduced due to the actual observations) does not evolve in time, e.g. it has effect only at the beginning of the simulation. On the other hand 4D-var method uses tangent linear and adjoint models which model the propagation of analysis increment and more computing time is needed [@vladimirov2020].
 
 ### Weather Research and Forecasting (WRF) model
 
-The Weather Research and Forecasting [(WRF)](https://www.mmm.ucar.edu/models/wrf) model is a next-generation open source mesoscale numerical weather prediction system. As it is open source, it has a very flexible structure that allows it to be used by met-offices, universities and atmospheric research centers.
+The Weather Research and Forecasting (WRF) model is a next-generation open source mesoscale numerical weather prediction system. As it is open source, it has a very flexible structure that allows it to be used by met-offices, universities and atmospheric research centers [@powers2017]. The effort to develop WRF began in the latter 1990's and was a collaborative partnership of the National Center for Atmospheric Research (NCAR), the National Oceanic and Atmospheric Administration (NOAA), the U.S. Air Force, the Naval Research Laboratory, the University of Oklahoma, and the Federal Aviation Administration ([WRF web page](https://www.mmm.ucar.edu/models/wrf)).
 
-The Weather Research and Forecasting (WRF) model is a next-generation open source mesoscale numerical weather prediction system. As it is open source, it has a very flexible structure that allows it to be used by met-offices, universities and atmospheric research centers. The effort to develop WRF began in the latter 1990's and was a collaborative partnership of the National Center for Atmospheric Research (NCAR), the National Oceanic and Atmospheric Administration (NOAA), the U.S. Air Force, the Naval Research Laboratory, the University of Oklahoma, and the Federal Aviation Administration (WRF web page). WRF model is used in *Turkish State Meteorological Service* for operational and research forecast purposes since last two decades.
+The WRF model is used for operational weather forecasting and research purposes at *Turkish State Meteorological Service* since last two decades, as it is at many meteorological services around the world. It is the fact that data assimilation of observations into WRF model method is very popular not only in Türkiye but also in all over world since it has a great potential to improve model forecast skill by reducing errors of initial conditions [@yucel2014; @yucel2015; @bao2015; @cheng2017].
 :::
 
 ::: {style="text-align: justify"}
@@ -41,7 +42,7 @@ There are two files for two different domains as assimilated and non-assimilated
 
 ## Uploading Necessary Packages
 
-We will need several packages for some implementations in R, for instance; opening of the netcdf files of WRF data, handling of WRF outputs, visualization and etc.
+We will need several packages for some implementations in R, for instance; opening of the netcdf files of WRF data, handling of WRF outputs, visualization and similar operations [@readxl; @tidyverse; @ggplot2-2; @ggpubr-2; @raster; @rnaturalearth; @ncdf4; @R.utils; @sf; @gt].
 
 ```{r}
 #| warning: false
@@ -240,7 +241,7 @@ The code uses the dplyr and gt packages for data manipulation and table creation
 #| label: tbl-gauges-domain2
 #| tbl-cap: Meteorological stations accross the domain 2.
 
-df_gauges <- read.delim("D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/gauges.txt", sep="|")
+df_gauges <- read.delim("D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT_570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/gauges.txt", sep="|")
 
 df_gauges<- df_gauges[,-c(3,4)]
 colnames(df_gauges)<- c("Station","Province","Latitude","Longitude","Altitude") 
@@ -277,7 +278,7 @@ ggplot(data = world)  + geom_sf(fill = "white") +
 The code reads temperature observations from an Excel. In the raw dataset, some dates can be missing;however, these are not defined as null. Therefore, leaping values can be detected then it assigned as a null.
 
 ```{r}
-temp_obs<- read_excel("D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/df_2023122096C0-Saatlik_Sicaklik.xlsx")
+temp_obs<- read_excel("D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT_570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/df_2023122096C0-Saatlik_Sicaklik.xlsx")
 head(temp_obs)
 
 temp_obs<-
@@ -644,6 +645,7 @@ ggplot(aes(x= observation, y=Prediction, fill=Pred.Type)) +
 
 ggarrange(plot3,plot4,ncol=2 ,nrow = 1)
 ```
+
 @fig-do1-2 is shown for comparison of three-hour assimilated and non-assimilated predictions with observations for each gauge *(province)* in both two domains. In this plot, each box represent different provinces *(gauges)*, **black** line shows observations, **pink** and **red** lines are for **assimilated** and **non-assimilated** predictions in Domain 1, respectively. Additionally, **blue** and **lighter blue** lines represent **assimilated** and **non-assimilated** predictions in Domain 2, respectively.
 
 ```{r, fig.width=9,fig.height=5}
@@ -810,5 +812,5 @@ error_table |>  gt()
 ::: {style="text-align: justify"}
 # Conclusion
 
-In summary, the integration of the WRF model with data assimilation techniques has proven to be a valuable tool for advancing our understanding of regional weather patterns. The outcomes of this study have practical applications in operational forecasting, research endeavors, and emergency response, contributing to the broader field of atmospheric science.These steps collectively demonstrate a comprehensive workflow for importing, processing, and analyzing meteorological data, including visualization and error analysis.
+In summary, the integration of the WRF model with data assimilation techniques has proven to be a valuable tool for advancing our understanding of regional weather patterns. The outcomes of this study have practical applications in operational forecasting, research endeavors, and emergency response, contributing to the broader field of atmospheric science. These steps collectively demonstrate a comprehensive workflow for importing, processing, and analyzing meteorological data, including visualization and error analysis.
 :::

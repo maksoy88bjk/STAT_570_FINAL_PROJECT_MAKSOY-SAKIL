@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.3.433">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -55,7 +55,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="WRF_files/libs/clipboard/clipboard.min.js"></script>
@@ -153,17 +172,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="numerical-weather-prediction-nwp-models" class="level3">
 <h3 class="anchored" data-anchor-id="numerical-weather-prediction-nwp-models">Numerical Weather Prediction (NWP) Models</h3>
 <p>Numerical Weather Prediction <strong>(NWP)</strong> models are used to predict weather conditions by simulating the atmosphere, oceans, land surface and their interactions. NWP models are based on mathematical equations representing the physical behavior of the atmosphere. These equations are translated into computer code and use governing equations, numerical methods, parameterizations of other physical processes and combined with initial and boundary conditions before running over a geographic area (we call that geographic area as domain). These physical processes need to be approximated in models because of huge simulation computer time which is called as parameterization.</p>
-<p>According to ECMWF report, <em>these processes affect too a small area to be predicted in full detail by NWP models. The major reason lies in the limited computing power that still does not allow us to calculate the all processes for any place on Earth</em>. <strong>(https://doi.org/10.1038/s41598-022-11936-9)</strong></p>
+<p>According to ECMWF report, <em>these processes affect too a small area to be predicted in full detail by NWP models. The major reason lies in the limited computing power that still does not allow us to calculate the all processes for any place on Earth</em> <span class="citation" data-cites="frnda2022">(<a href="#ref-frnda2022" role="doc-biblioref">Frnda et al. 2022</a>)</span>.</p>
 </section>
 <section id="data-assimilation" class="level3">
 <h3 class="anchored" data-anchor-id="data-assimilation">Data Assimilation</h3>
-<p>NWP models start with an initial value and it is the challenge because initial-value effects next predictions with an increasing error. Thus, updating initial-value prediction is a method to improve prediction accuracy which is called as data assimilation. Infrared radiance from the geostationary satellites and on-site radiosonde observation data assimilation are powerful tools to improve the weather forecast have been widely applied with this purpose in the past a few decades.</p>
-<p>There are a number of data assimilation techniques used in weather forecasting. One of the most prominent are the three- and four dimensional variational data assimilation methods (3D-var and 4D-var). 3D-var incorporates meteorological data only within a time window around the initialization moment and in this method the analysis increment (an increment is introduced due to the actual observations) does not evolve in time, e.g.&nbsp;it has effect only at the beginning of the simulation. On the other hand 4D-var method uses tangent linear and adjoint models which model the propagation of analysis increment and more computing time is needed. <strong>Huang, X. Y., &amp; Vedel, H. (2003). An introduction to data assimilation. In&nbsp;SAF Training Workshop: 2nd GRAS SAF User Workshop, EUMETSAT, Darmstadt, Germany&nbsp;(pp.&nbsp;25-37).</strong></p>
+<p>NWP models start with an initial value and it is the challenge because initial-value effects next predictions with an increasing error. Thus, updating initial-value prediction is a method to improve prediction accuracy which is called as data assimilation. Infrared radiance from the geostationary satellites and on-site radiosonde observation data assimilation are powerful tools to improve the weather forecast have been widely applied with this purpose in the past a few decades <span class="citation" data-cites="geer2018">(<a href="#ref-geer2018" role="doc-biblioref">Geer et al. 2018</a>)</span>.</p>
+<p>There are a number of data assimilation techniques used in weather forecasting. One of the most prominent are the three- and four dimensional variational data assimilation methods (3D-var and 4D-var). 3D-var incorporates meteorological data only within a time window around the initialization moment and in this method the analysis increment (an increment is introduced due to the actual observations) does not evolve in time, e.g.&nbsp;it has effect only at the beginning of the simulation. On the other hand 4D-var method uses tangent linear and adjoint models which model the propagation of analysis increment and more computing time is needed <span class="citation" data-cites="vladimirov2020">(<a href="#ref-vladimirov2020" role="doc-biblioref">Vladimirov, Dimitrova, and Danchovski 2020</a>)</span>.</p>
 </section>
 <section id="weather-research-and-forecasting-wrf-model" class="level3">
 <h3 class="anchored" data-anchor-id="weather-research-and-forecasting-wrf-model">Weather Research and Forecasting (WRF) model</h3>
-<p>The Weather Research and Forecasting <a href="https://www.mmm.ucar.edu/models/wrf">(WRF)</a> model is a next-generation open source mesoscale numerical weather prediction system. As it is open source, it has a very flexible structure that allows it to be used by met-offices, universities and atmospheric research centers.</p>
-<p>The Weather Research and Forecasting (WRF) model is a next-generation open source mesoscale numerical weather prediction system. As it is open source, it has a very flexible structure that allows it to be used by met-offices, universities and atmospheric research centers. The effort to develop WRF began in the latter 1990’s and was a collaborative partnership of the National Center for Atmospheric Research (NCAR), the National Oceanic and Atmospheric Administration (NOAA), the U.S. Air Force, the Naval Research Laboratory, the University of Oklahoma, and the Federal Aviation Administration (WRF web page). WRF model is used in <em>Turkish State Meteorological Service</em> for operational and research forecast purposes since last two decades.</p>
+<p>The Weather Research and Forecasting (WRF) model is a next-generation open source mesoscale numerical weather prediction system. As it is open source, it has a very flexible structure that allows it to be used by met-offices, universities and atmospheric research centers <span class="citation" data-cites="powers2017">(<a href="#ref-powers2017" role="doc-biblioref">Powers et al. 2017</a>)</span>. The effort to develop WRF began in the latter 1990’s and was a collaborative partnership of the National Center for Atmospheric Research (NCAR), the National Oceanic and Atmospheric Administration (NOAA), the U.S. Air Force, the Naval Research Laboratory, the University of Oklahoma, and the Federal Aviation Administration (<a href="https://www.mmm.ucar.edu/models/wrf">WRF web page</a>).</p>
+<p>The WRF model is used for operational weather forecasting and research purposes at <em>Turkish State Meteorological Service</em> since last two decades, as it is at many meteorological services around the world. It is the fact that data assimilation of observations into WRF model method is very popular not only in Türkiye but also in all over world since it has a great potential to improve model forecast skill by reducing errors of initial conditions <span class="citation" data-cites="yucel2014 yucel2015 bao2015 cheng2017">(<a href="#ref-yucel2014" role="doc-biblioref">Yucel and Onen 2014</a>; <a href="#ref-yucel2015" role="doc-biblioref">Yucel et al. 2015</a>; <a href="#ref-bao2015" role="doc-biblioref">Bao et al. 2015</a>; <a href="#ref-cheng2017" role="doc-biblioref">Cheng et al. 2017</a>)</span>.</p>
 </section>
 </section>
 <section id="operations-on-assimilated-wrf-data" class="level1" style="text-align: justify">
@@ -171,7 +190,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>There are two files for two different domains as assimilated and non-assimilated predictions of WRF model. Thus, there are four netcdf files totally. We are going to define prediction variables, forecast period and coverage of domains for each file.</p>
 <section id="uploading-necessary-packages" class="level2">
 <h2 class="anchored" data-anchor-id="uploading-necessary-packages">Uploading Necessary Packages</h2>
-<p>We will need several packages for some implementations in R, for instance; opening of the netcdf files of WRF data, handling of WRF outputs, visualization and etc.</p>
+<p>We will need several packages for some implementations in R, for instance; opening of the netcdf files of WRF data, handling of WRF outputs, visualization and similar operations <span class="citation" data-cites="readxl tidyverse ggplot2-2 ggpubr-2 raster rnaturalearth ncdf4 R.utils sf gt">(<a href="#ref-readxl" role="doc-biblioref">Wickham and Bryan 2023</a>; <a href="#ref-tidyverse" role="doc-biblioref">Wickham et al. 2019</a>; <a href="#ref-ggplot2-2" role="doc-biblioref">Wickham 2016</a>; <a href="#ref-ggpubr-2" role="doc-biblioref">Kassambara 2023</a>; <a href="#ref-raster" role="doc-biblioref">Hijmans 2023</a>; <a href="#ref-rnaturalearth" role="doc-biblioref">Massicotte and South 2023</a>; <a href="#ref-ncdf4" role="doc-biblioref">Pierce 2023</a>; <a href="#ref-R.utils" role="doc-biblioref">Bengtsson 2023</a>; <a href="#ref-sf" role="doc-biblioref">Pebesma and Bivand 2023</a>; <a href="#ref-gt" role="doc-biblioref">Iannone et al. 2023</a>)</span>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -424,7 +443,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Domain 2 covers several provinces which are located northwest of Türkiye. Thus, we need to determine meteorological stations for comparing observation versus assimilated and non-assimilated WRF predictions. The code in the chunk reads data from a delimited text file containing information about meteorological stations. Each specific station was selected for each province to evaluate the performance of both assimilated and non-assimilated WRF predictions. <a href="#tbl-gauges-domain2">Table&nbsp;1</a> shows the main gauges across the domain 2.</p>
 <p>The code uses the dplyr and gt packages for data manipulation and table creation. it asisst to perform data wrangling and cleaning on the meteorological station data, containing renaming columns, converting province names, and arranging the data. The tolower function is used to convert the province names to lowercase. The str_to_title() function from the stringr package is applied to convert the province names’ first letter to title case.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df_gauges <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">"D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/gauges.txt"</span>, <span class="at">sep=</span><span class="st">"|"</span>)</span>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df_gauges <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">"D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT_570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/gauges.txt"</span>, <span class="at">sep=</span><span class="st">"|"</span>)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>df_gauges<span class="ot">&lt;-</span> df_gauges[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>)]</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df_gauges)<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"Province"</span>,<span class="st">"Latitude"</span>,<span class="st">"Longitude"</span>,<span class="st">"Altitude"</span>) </span>
@@ -435,23 +454,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div id="tbl-gauges-domain2" class="anchored">
 
-<div id="vvoxijsdlk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#vvoxijsdlk table {
+<div id="ubouverbak" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ubouverbak table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#vvoxijsdlk thead, #vvoxijsdlk tbody, #vvoxijsdlk tfoot, #vvoxijsdlk tr, #vvoxijsdlk td, #vvoxijsdlk th {
+#ubouverbak thead, #ubouverbak tbody, #ubouverbak tfoot, #ubouverbak tr, #ubouverbak td, #ubouverbak th {
   border-style: none;
 }
 
-#vvoxijsdlk p {
+#ubouverbak p {
   margin: 0;
   padding: 0;
 }
 
-#vvoxijsdlk .gt_table {
+#ubouverbak .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -477,12 +496,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#vvoxijsdlk .gt_caption {
+#ubouverbak .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#vvoxijsdlk .gt_title {
+#ubouverbak .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -494,7 +513,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#vvoxijsdlk .gt_subtitle {
+#ubouverbak .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -506,7 +525,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#vvoxijsdlk .gt_heading {
+#ubouverbak .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -518,13 +537,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#vvoxijsdlk .gt_bottom_border {
+#ubouverbak .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vvoxijsdlk .gt_col_headings {
+#ubouverbak .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -539,7 +558,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#vvoxijsdlk .gt_col_heading {
+#ubouverbak .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -559,7 +578,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#vvoxijsdlk .gt_column_spanner_outer {
+#ubouverbak .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -571,15 +590,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#vvoxijsdlk .gt_column_spanner_outer:first-child {
+#ubouverbak .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vvoxijsdlk .gt_column_spanner_outer:last-child {
+#ubouverbak .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vvoxijsdlk .gt_column_spanner {
+#ubouverbak .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -591,11 +610,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#vvoxijsdlk .gt_spanner_row {
+#ubouverbak .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#vvoxijsdlk .gt_group_heading {
+#ubouverbak .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -621,7 +640,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#vvoxijsdlk .gt_empty_group_heading {
+#ubouverbak .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -636,15 +655,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#vvoxijsdlk .gt_from_md > :first-child {
+#ubouverbak .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vvoxijsdlk .gt_from_md > :last-child {
+#ubouverbak .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vvoxijsdlk .gt_row {
+#ubouverbak .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -663,7 +682,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#vvoxijsdlk .gt_stub {
+#ubouverbak .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -676,7 +695,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#vvoxijsdlk .gt_stub_row_group {
+#ubouverbak .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -690,15 +709,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#vvoxijsdlk .gt_row_group_first td {
+#ubouverbak .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#vvoxijsdlk .gt_row_group_first th {
+#ubouverbak .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#vvoxijsdlk .gt_summary_row {
+#ubouverbak .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -708,16 +727,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#vvoxijsdlk .gt_first_summary_row {
+#ubouverbak .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#vvoxijsdlk .gt_first_summary_row.thick {
+#ubouverbak .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#vvoxijsdlk .gt_last_summary_row {
+#ubouverbak .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -727,7 +746,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#vvoxijsdlk .gt_grand_summary_row {
+#ubouverbak .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -737,7 +756,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#vvoxijsdlk .gt_first_grand_summary_row {
+#ubouverbak .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -747,7 +766,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#vvoxijsdlk .gt_last_grand_summary_row_top {
+#ubouverbak .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -757,11 +776,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#vvoxijsdlk .gt_striped {
+#ubouverbak .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vvoxijsdlk .gt_table_body {
+#ubouverbak .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -770,7 +789,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#vvoxijsdlk .gt_footnotes {
+#ubouverbak .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -784,7 +803,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#vvoxijsdlk .gt_footnote {
+#ubouverbak .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -793,7 +812,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#vvoxijsdlk .gt_sourcenotes {
+#ubouverbak .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -807,7 +826,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#vvoxijsdlk .gt_sourcenote {
+#ubouverbak .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -815,63 +834,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#vvoxijsdlk .gt_left {
+#ubouverbak .gt_left {
   text-align: left;
 }
 
-#vvoxijsdlk .gt_center {
+#ubouverbak .gt_center {
   text-align: center;
 }
 
-#vvoxijsdlk .gt_right {
+#ubouverbak .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vvoxijsdlk .gt_font_normal {
+#ubouverbak .gt_font_normal {
   font-weight: normal;
 }
 
-#vvoxijsdlk .gt_font_bold {
+#ubouverbak .gt_font_bold {
   font-weight: bold;
 }
 
-#vvoxijsdlk .gt_font_italic {
+#ubouverbak .gt_font_italic {
   font-style: italic;
 }
 
-#vvoxijsdlk .gt_super {
+#ubouverbak .gt_super {
   font-size: 65%;
 }
 
-#vvoxijsdlk .gt_footnote_marks {
+#ubouverbak .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#vvoxijsdlk .gt_asterisk {
+#ubouverbak .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#vvoxijsdlk .gt_indent_1 {
+#ubouverbak .gt_indent_1 {
   text-indent: 5px;
 }
 
-#vvoxijsdlk .gt_indent_2 {
+#ubouverbak .gt_indent_2 {
   text-indent: 10px;
 }
 
-#vvoxijsdlk .gt_indent_3 {
+#ubouverbak .gt_indent_3 {
   text-indent: 15px;
 }
 
-#vvoxijsdlk .gt_indent_4 {
+#ubouverbak .gt_indent_4 {
   text-indent: 20px;
 }
 
-#vvoxijsdlk .gt_indent_5 {
+#ubouverbak .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -981,10 +1000,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="obtain-temperature-observations">Obtain Temperature Observations</h3>
 <p>The code reads temperature observations from an Excel. In the raw dataset, some dates can be missing;however, these are not defined as null. Therefore, leaping values can be detected then it assigned as a null.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>temp_obs<span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/df_2023122096C0-Saatlik_Sicaklik.xlsx"</span>)</span>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>temp_obs<span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT_570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/df_2023122096C0-Saatlik_Sicaklik.xlsx"</span>)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(temp_obs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 x 7
+<pre><code># A tibble: 6 × 7
   Istasyon_No Istasyon_Adi   YIL    AY   GUN  SAAT SICAKLIK
         &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
 1       17020 BARTIN        2004     8    10     0     18.7
@@ -1006,7 +1025,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(temp_obs)<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"dates"</span>,<span class="st">"observation"</span>)</span>
 <span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(temp_obs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 x 3
+<pre><code># A tibble: 6 × 3
 # Groups:   Station [1]
   Station dates               observation
     &lt;dbl&gt; &lt;dttm&gt;                    &lt;dbl&gt;
@@ -1226,7 +1245,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb38-37"><a href="#cb38-37" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb38-38"><a href="#cb38-38" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(new_df_list[[<span class="dv">1</span>]]); <span class="fu">head</span>(new_df_list[[<span class="dv">3</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 x 4
+<pre><code># A tibble: 6 × 4
   Station dates               predict_do1 observation
     &lt;dbl&gt; &lt;dttm&gt;                    &lt;dbl&gt;       &lt;dbl&gt;
 1   17020 2004-08-11 00:00:00        19.1        19.1
@@ -1237,7 +1256,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 6   17020 2004-08-11 15:00:00        22.4        20.1</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 x 4
+<pre><code># A tibble: 6 × 4
   Station dates               predict_do1_nas observation
     &lt;dbl&gt; &lt;dttm&gt;                        &lt;dbl&gt;       &lt;dbl&gt;
 1   17020 2004-08-11 00:00:00            19.1        19.1
@@ -1249,7 +1268,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(new_df_list[[<span class="dv">2</span>]]); <span class="fu">head</span>(new_df_list[[<span class="dv">4</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 x 4
+<pre><code># A tibble: 6 × 4
   Station dates               predict_do2 observation
     &lt;dbl&gt; &lt;dttm&gt;                    &lt;dbl&gt;       &lt;dbl&gt;
 1   17020 2004-08-11 00:00:00        16.3        19.1
@@ -1260,7 +1279,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 6   17020 2004-08-11 05:00:00        12.1        19.6</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 x 4
+<pre><code># A tibble: 6 × 4
   Station dates               predict_do2_nas observation
     &lt;dbl&gt; &lt;dttm&gt;                        &lt;dbl&gt;       &lt;dbl&gt;
 1   17020 2004-08-11 00:00:00            16.3        19.1
@@ -1279,7 +1298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  new_df_list[[<span class="dv">1</span>]] <span class="sc">|&gt;</span>        </span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(new_df_list[[<span class="dv">3</span>]], <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"dates"</span>,<span class="st">"observation"</span>)) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 x 5
+<pre><code># A tibble: 6 × 5
   Station dates               predict_do1 observation predict_do1_nas
     &lt;dbl&gt; &lt;dttm&gt;                    &lt;dbl&gt;       &lt;dbl&gt;           &lt;dbl&gt;
 1   17020 2004-08-11 00:00:00        19.1        19.1            19.1
@@ -1298,7 +1317,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">values_to =</span> <span class="st">"value"</span>,</span>
 <span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">values_drop_na =</span> <span class="cn">FALSE</span>) )  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 x 4
+<pre><code># A tibble: 6 × 4
   Station dates               Temperature     value
     &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;           &lt;dbl&gt;
 1   17020 2004-08-11 00:00:00 predict_do1      19.1
@@ -1566,23 +1585,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div id="tbl-stats" class="anchored">
 
-<div id="baamxdqjrt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#baamxdqjrt table {
+<div id="ckcfdpcfra" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ckcfdpcfra table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#baamxdqjrt thead, #baamxdqjrt tbody, #baamxdqjrt tfoot, #baamxdqjrt tr, #baamxdqjrt td, #baamxdqjrt th {
+#ckcfdpcfra thead, #ckcfdpcfra tbody, #ckcfdpcfra tfoot, #ckcfdpcfra tr, #ckcfdpcfra td, #ckcfdpcfra th {
   border-style: none;
 }
 
-#baamxdqjrt p {
+#ckcfdpcfra p {
   margin: 0;
   padding: 0;
 }
 
-#baamxdqjrt .gt_table {
+#ckcfdpcfra .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1608,12 +1627,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#baamxdqjrt .gt_caption {
+#ckcfdpcfra .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#baamxdqjrt .gt_title {
+#ckcfdpcfra .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1625,7 +1644,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#baamxdqjrt .gt_subtitle {
+#ckcfdpcfra .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1637,7 +1656,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#baamxdqjrt .gt_heading {
+#ckcfdpcfra .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1649,13 +1668,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#baamxdqjrt .gt_bottom_border {
+#ckcfdpcfra .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#baamxdqjrt .gt_col_headings {
+#ckcfdpcfra .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1670,7 +1689,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#baamxdqjrt .gt_col_heading {
+#ckcfdpcfra .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1690,7 +1709,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#baamxdqjrt .gt_column_spanner_outer {
+#ckcfdpcfra .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1702,15 +1721,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#baamxdqjrt .gt_column_spanner_outer:first-child {
+#ckcfdpcfra .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#baamxdqjrt .gt_column_spanner_outer:last-child {
+#ckcfdpcfra .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#baamxdqjrt .gt_column_spanner {
+#ckcfdpcfra .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1722,11 +1741,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#baamxdqjrt .gt_spanner_row {
+#ckcfdpcfra .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#baamxdqjrt .gt_group_heading {
+#ckcfdpcfra .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1752,7 +1771,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#baamxdqjrt .gt_empty_group_heading {
+#ckcfdpcfra .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1767,15 +1786,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#baamxdqjrt .gt_from_md > :first-child {
+#ckcfdpcfra .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#baamxdqjrt .gt_from_md > :last-child {
+#ckcfdpcfra .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#baamxdqjrt .gt_row {
+#ckcfdpcfra .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1794,7 +1813,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#baamxdqjrt .gt_stub {
+#ckcfdpcfra .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1807,7 +1826,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#baamxdqjrt .gt_stub_row_group {
+#ckcfdpcfra .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1821,15 +1840,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#baamxdqjrt .gt_row_group_first td {
+#ckcfdpcfra .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#baamxdqjrt .gt_row_group_first th {
+#ckcfdpcfra .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#baamxdqjrt .gt_summary_row {
+#ckcfdpcfra .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1839,16 +1858,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#baamxdqjrt .gt_first_summary_row {
+#ckcfdpcfra .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#baamxdqjrt .gt_first_summary_row.thick {
+#ckcfdpcfra .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#baamxdqjrt .gt_last_summary_row {
+#ckcfdpcfra .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1858,7 +1877,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#baamxdqjrt .gt_grand_summary_row {
+#ckcfdpcfra .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1868,7 +1887,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#baamxdqjrt .gt_first_grand_summary_row {
+#ckcfdpcfra .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1878,7 +1897,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#baamxdqjrt .gt_last_grand_summary_row_top {
+#ckcfdpcfra .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1888,11 +1907,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#baamxdqjrt .gt_striped {
+#ckcfdpcfra .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#baamxdqjrt .gt_table_body {
+#ckcfdpcfra .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1901,7 +1920,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#baamxdqjrt .gt_footnotes {
+#ckcfdpcfra .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1915,7 +1934,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#baamxdqjrt .gt_footnote {
+#ckcfdpcfra .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1924,7 +1943,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#baamxdqjrt .gt_sourcenotes {
+#ckcfdpcfra .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1938,7 +1957,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#baamxdqjrt .gt_sourcenote {
+#ckcfdpcfra .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1946,63 +1965,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#baamxdqjrt .gt_left {
+#ckcfdpcfra .gt_left {
   text-align: left;
 }
 
-#baamxdqjrt .gt_center {
+#ckcfdpcfra .gt_center {
   text-align: center;
 }
 
-#baamxdqjrt .gt_right {
+#ckcfdpcfra .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#baamxdqjrt .gt_font_normal {
+#ckcfdpcfra .gt_font_normal {
   font-weight: normal;
 }
 
-#baamxdqjrt .gt_font_bold {
+#ckcfdpcfra .gt_font_bold {
   font-weight: bold;
 }
 
-#baamxdqjrt .gt_font_italic {
+#ckcfdpcfra .gt_font_italic {
   font-style: italic;
 }
 
-#baamxdqjrt .gt_super {
+#ckcfdpcfra .gt_super {
   font-size: 65%;
 }
 
-#baamxdqjrt .gt_footnote_marks {
+#ckcfdpcfra .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#baamxdqjrt .gt_asterisk {
+#ckcfdpcfra .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#baamxdqjrt .gt_indent_1 {
+#ckcfdpcfra .gt_indent_1 {
   text-indent: 5px;
 }
 
-#baamxdqjrt .gt_indent_2 {
+#ckcfdpcfra .gt_indent_2 {
   text-indent: 10px;
 }
 
-#baamxdqjrt .gt_indent_3 {
+#ckcfdpcfra .gt_indent_3 {
   text-indent: 15px;
 }
 
-#baamxdqjrt .gt_indent_4 {
+#ckcfdpcfra .gt_indent_4 {
   text-indent: 20px;
 }
 
-#baamxdqjrt .gt_indent_5 {
+#ckcfdpcfra .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2083,23 +2102,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div id="tbl-kastamonu" class="anchored">
 
-<div id="ogaxvekoad" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ogaxvekoad table {
+<div id="nhokkpomsd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#nhokkpomsd table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ogaxvekoad thead, #ogaxvekoad tbody, #ogaxvekoad tfoot, #ogaxvekoad tr, #ogaxvekoad td, #ogaxvekoad th {
+#nhokkpomsd thead, #nhokkpomsd tbody, #nhokkpomsd tfoot, #nhokkpomsd tr, #nhokkpomsd td, #nhokkpomsd th {
   border-style: none;
 }
 
-#ogaxvekoad p {
+#nhokkpomsd p {
   margin: 0;
   padding: 0;
 }
 
-#ogaxvekoad .gt_table {
+#nhokkpomsd .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2125,12 +2144,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#ogaxvekoad .gt_caption {
+#nhokkpomsd .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ogaxvekoad .gt_title {
+#nhokkpomsd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2142,7 +2161,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#ogaxvekoad .gt_subtitle {
+#nhokkpomsd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2154,7 +2173,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#ogaxvekoad .gt_heading {
+#nhokkpomsd .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2166,13 +2185,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#ogaxvekoad .gt_bottom_border {
+#nhokkpomsd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ogaxvekoad .gt_col_headings {
+#nhokkpomsd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2187,7 +2206,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#ogaxvekoad .gt_col_heading {
+#nhokkpomsd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2207,7 +2226,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#ogaxvekoad .gt_column_spanner_outer {
+#nhokkpomsd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2219,15 +2238,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#ogaxvekoad .gt_column_spanner_outer:first-child {
+#nhokkpomsd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ogaxvekoad .gt_column_spanner_outer:last-child {
+#nhokkpomsd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ogaxvekoad .gt_column_spanner {
+#nhokkpomsd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2239,11 +2258,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#ogaxvekoad .gt_spanner_row {
+#nhokkpomsd .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ogaxvekoad .gt_group_heading {
+#nhokkpomsd .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2269,7 +2288,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#ogaxvekoad .gt_empty_group_heading {
+#nhokkpomsd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2284,15 +2303,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#ogaxvekoad .gt_from_md > :first-child {
+#nhokkpomsd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ogaxvekoad .gt_from_md > :last-child {
+#nhokkpomsd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ogaxvekoad .gt_row {
+#nhokkpomsd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2311,7 +2330,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#ogaxvekoad .gt_stub {
+#nhokkpomsd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2324,7 +2343,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#ogaxvekoad .gt_stub_row_group {
+#nhokkpomsd .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2338,15 +2357,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#ogaxvekoad .gt_row_group_first td {
+#nhokkpomsd .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ogaxvekoad .gt_row_group_first th {
+#nhokkpomsd .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ogaxvekoad .gt_summary_row {
+#nhokkpomsd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2356,16 +2375,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#ogaxvekoad .gt_first_summary_row {
+#nhokkpomsd .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ogaxvekoad .gt_first_summary_row.thick {
+#nhokkpomsd .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ogaxvekoad .gt_last_summary_row {
+#nhokkpomsd .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2375,7 +2394,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#ogaxvekoad .gt_grand_summary_row {
+#nhokkpomsd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2385,7 +2404,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#ogaxvekoad .gt_first_grand_summary_row {
+#nhokkpomsd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2395,7 +2414,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#ogaxvekoad .gt_last_grand_summary_row_top {
+#nhokkpomsd .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2405,11 +2424,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#ogaxvekoad .gt_striped {
+#nhokkpomsd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ogaxvekoad .gt_table_body {
+#nhokkpomsd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2418,7 +2437,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#ogaxvekoad .gt_footnotes {
+#nhokkpomsd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2432,7 +2451,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#ogaxvekoad .gt_footnote {
+#nhokkpomsd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2441,7 +2460,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#ogaxvekoad .gt_sourcenotes {
+#nhokkpomsd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2455,7 +2474,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#ogaxvekoad .gt_sourcenote {
+#nhokkpomsd .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2463,63 +2482,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#ogaxvekoad .gt_left {
+#nhokkpomsd .gt_left {
   text-align: left;
 }
 
-#ogaxvekoad .gt_center {
+#nhokkpomsd .gt_center {
   text-align: center;
 }
 
-#ogaxvekoad .gt_right {
+#nhokkpomsd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ogaxvekoad .gt_font_normal {
+#nhokkpomsd .gt_font_normal {
   font-weight: normal;
 }
 
-#ogaxvekoad .gt_font_bold {
+#nhokkpomsd .gt_font_bold {
   font-weight: bold;
 }
 
-#ogaxvekoad .gt_font_italic {
+#nhokkpomsd .gt_font_italic {
   font-style: italic;
 }
 
-#ogaxvekoad .gt_super {
+#nhokkpomsd .gt_super {
   font-size: 65%;
 }
 
-#ogaxvekoad .gt_footnote_marks {
+#nhokkpomsd .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ogaxvekoad .gt_asterisk {
+#nhokkpomsd .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ogaxvekoad .gt_indent_1 {
+#nhokkpomsd .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ogaxvekoad .gt_indent_2 {
+#nhokkpomsd .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ogaxvekoad .gt_indent_3 {
+#nhokkpomsd .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ogaxvekoad .gt_indent_4 {
+#nhokkpomsd .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ogaxvekoad .gt_indent_5 {
+#nhokkpomsd .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2574,23 +2593,23 @@ domain.</p> </caption>
 <div class="cell-output-display">
 <div id="tbl-duzce" class="anchored">
 
-<div id="ywbniqawjs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ywbniqawjs table {
+<div id="rznbwtsgxt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rznbwtsgxt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ywbniqawjs thead, #ywbniqawjs tbody, #ywbniqawjs tfoot, #ywbniqawjs tr, #ywbniqawjs td, #ywbniqawjs th {
+#rznbwtsgxt thead, #rznbwtsgxt tbody, #rznbwtsgxt tfoot, #rznbwtsgxt tr, #rznbwtsgxt td, #rznbwtsgxt th {
   border-style: none;
 }
 
-#ywbniqawjs p {
+#rznbwtsgxt p {
   margin: 0;
   padding: 0;
 }
 
-#ywbniqawjs .gt_table {
+#rznbwtsgxt .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2616,12 +2635,12 @@ domain.</p> </caption>
   border-left-color: #D3D3D3;
 }
 
-#ywbniqawjs .gt_caption {
+#rznbwtsgxt .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ywbniqawjs .gt_title {
+#rznbwtsgxt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2633,7 +2652,7 @@ domain.</p> </caption>
   border-bottom-width: 0;
 }
 
-#ywbniqawjs .gt_subtitle {
+#rznbwtsgxt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2645,7 +2664,7 @@ domain.</p> </caption>
   border-top-width: 0;
 }
 
-#ywbniqawjs .gt_heading {
+#rznbwtsgxt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2657,13 +2676,13 @@ domain.</p> </caption>
   border-right-color: #D3D3D3;
 }
 
-#ywbniqawjs .gt_bottom_border {
+#rznbwtsgxt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ywbniqawjs .gt_col_headings {
+#rznbwtsgxt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2678,7 +2697,7 @@ domain.</p> </caption>
   border-right-color: #D3D3D3;
 }
 
-#ywbniqawjs .gt_col_heading {
+#rznbwtsgxt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2698,7 +2717,7 @@ domain.</p> </caption>
   overflow-x: hidden;
 }
 
-#ywbniqawjs .gt_column_spanner_outer {
+#rznbwtsgxt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2710,15 +2729,15 @@ domain.</p> </caption>
   padding-right: 4px;
 }
 
-#ywbniqawjs .gt_column_spanner_outer:first-child {
+#rznbwtsgxt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ywbniqawjs .gt_column_spanner_outer:last-child {
+#rznbwtsgxt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ywbniqawjs .gt_column_spanner {
+#rznbwtsgxt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2730,11 +2749,11 @@ domain.</p> </caption>
   width: 100%;
 }
 
-#ywbniqawjs .gt_spanner_row {
+#rznbwtsgxt .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ywbniqawjs .gt_group_heading {
+#rznbwtsgxt .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2760,7 +2779,7 @@ domain.</p> </caption>
   text-align: left;
 }
 
-#ywbniqawjs .gt_empty_group_heading {
+#rznbwtsgxt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2775,15 +2794,15 @@ domain.</p> </caption>
   vertical-align: middle;
 }
 
-#ywbniqawjs .gt_from_md > :first-child {
+#rznbwtsgxt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ywbniqawjs .gt_from_md > :last-child {
+#rznbwtsgxt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ywbniqawjs .gt_row {
+#rznbwtsgxt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2802,7 +2821,7 @@ domain.</p> </caption>
   overflow-x: hidden;
 }
 
-#ywbniqawjs .gt_stub {
+#rznbwtsgxt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2815,7 +2834,7 @@ domain.</p> </caption>
   padding-right: 5px;
 }
 
-#ywbniqawjs .gt_stub_row_group {
+#rznbwtsgxt .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2829,15 +2848,15 @@ domain.</p> </caption>
   vertical-align: top;
 }
 
-#ywbniqawjs .gt_row_group_first td {
+#rznbwtsgxt .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ywbniqawjs .gt_row_group_first th {
+#rznbwtsgxt .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ywbniqawjs .gt_summary_row {
+#rznbwtsgxt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2847,16 +2866,16 @@ domain.</p> </caption>
   padding-right: 5px;
 }
 
-#ywbniqawjs .gt_first_summary_row {
+#rznbwtsgxt .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ywbniqawjs .gt_first_summary_row.thick {
+#rznbwtsgxt .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ywbniqawjs .gt_last_summary_row {
+#rznbwtsgxt .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2866,7 +2885,7 @@ domain.</p> </caption>
   border-bottom-color: #D3D3D3;
 }
 
-#ywbniqawjs .gt_grand_summary_row {
+#rznbwtsgxt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2876,7 +2895,7 @@ domain.</p> </caption>
   padding-right: 5px;
 }
 
-#ywbniqawjs .gt_first_grand_summary_row {
+#rznbwtsgxt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2886,7 +2905,7 @@ domain.</p> </caption>
   border-top-color: #D3D3D3;
 }
 
-#ywbniqawjs .gt_last_grand_summary_row_top {
+#rznbwtsgxt .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2896,11 +2915,11 @@ domain.</p> </caption>
   border-bottom-color: #D3D3D3;
 }
 
-#ywbniqawjs .gt_striped {
+#rznbwtsgxt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ywbniqawjs .gt_table_body {
+#rznbwtsgxt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2909,7 +2928,7 @@ domain.</p> </caption>
   border-bottom-color: #D3D3D3;
 }
 
-#ywbniqawjs .gt_footnotes {
+#rznbwtsgxt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2923,7 +2942,7 @@ domain.</p> </caption>
   border-right-color: #D3D3D3;
 }
 
-#ywbniqawjs .gt_footnote {
+#rznbwtsgxt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2932,7 +2951,7 @@ domain.</p> </caption>
   padding-right: 5px;
 }
 
-#ywbniqawjs .gt_sourcenotes {
+#rznbwtsgxt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2946,7 +2965,7 @@ domain.</p> </caption>
   border-right-color: #D3D3D3;
 }
 
-#ywbniqawjs .gt_sourcenote {
+#rznbwtsgxt .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2954,63 +2973,63 @@ domain.</p> </caption>
   padding-right: 5px;
 }
 
-#ywbniqawjs .gt_left {
+#rznbwtsgxt .gt_left {
   text-align: left;
 }
 
-#ywbniqawjs .gt_center {
+#rznbwtsgxt .gt_center {
   text-align: center;
 }
 
-#ywbniqawjs .gt_right {
+#rznbwtsgxt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ywbniqawjs .gt_font_normal {
+#rznbwtsgxt .gt_font_normal {
   font-weight: normal;
 }
 
-#ywbniqawjs .gt_font_bold {
+#rznbwtsgxt .gt_font_bold {
   font-weight: bold;
 }
 
-#ywbniqawjs .gt_font_italic {
+#rznbwtsgxt .gt_font_italic {
   font-style: italic;
 }
 
-#ywbniqawjs .gt_super {
+#rznbwtsgxt .gt_super {
   font-size: 65%;
 }
 
-#ywbniqawjs .gt_footnote_marks {
+#rznbwtsgxt .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ywbniqawjs .gt_asterisk {
+#rznbwtsgxt .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ywbniqawjs .gt_indent_1 {
+#rznbwtsgxt .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ywbniqawjs .gt_indent_2 {
+#rznbwtsgxt .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ywbniqawjs .gt_indent_3 {
+#rznbwtsgxt .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ywbniqawjs .gt_indent_4 {
+#rznbwtsgxt .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ywbniqawjs .gt_indent_5 {
+#rznbwtsgxt .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -3064,10 +3083,66 @@ domain.</p> </caption>
 </section>
 <section id="conclusion" class="level1" style="text-align: justify">
 <h1>Conclusion</h1>
-<p>In summary, the integration of the WRF model with data assimilation techniques has proven to be a valuable tool for advancing our understanding of regional weather patterns. The outcomes of this study have practical applications in operational forecasting, research endeavors, and emergency response, contributing to the broader field of atmospheric science.These steps collectively demonstrate a comprehensive workflow for importing, processing, and analyzing meteorological data, including visualization and error analysis.</p>
+<p>In summary, the integration of the WRF model with data assimilation techniques has proven to be a valuable tool for advancing our understanding of regional weather patterns. The outcomes of this study have practical applications in operational forecasting, research endeavors, and emergency response, contributing to the broader field of atmospheric science. These steps collectively demonstrate a comprehensive workflow for importing, processing, and analyzing meteorological data, including visualization and error analysis.</p>
 </section>
 
-</main>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-bao2015" class="csl-entry" role="listitem">
+Bao, Y., J. Xu, A. M. Powell Jr., M. Shao, J. Min, and Y. Pan. 2015. <span>“Impacts of AMSU-A, MHS and IASI Data Assimilation on Temperature and Humidity Forecasts with GSI<span></span>WRF over the Western United States.”</span> <em>Atmospheric Measurement Techniques</em> 8 (10): 4231–42. <a href="https://doi.org/10.5194/amt-8-4231-2015">https://doi.org/10.5194/amt-8-4231-2015</a>.
+</div>
+<div id="ref-R.utils" class="csl-entry" role="listitem">
+Bengtsson, Henrik. 2023. <span>“R.utils: Various Programming Utilities.”</span> <a href="https://CRAN.R-project.org/package=R.utils">https://CRAN.R-project.org/package=R.utils</a>.
+</div>
+<div id="ref-cheng2017" class="csl-entry" role="listitem">
+Cheng, William Y. Y., Yubao Liu, Alfred J. Bourgeois, Yonghui Wu, and Sue Ellen Haupt. 2017. <span>“Short-Term Wind Forecast of a Data Assimilation/Weather Forecasting System with Wind Turbine Anemometer Measurement Assimilation.”</span> <em>Renewable Energy</em> 107 (July): 340–51. <a href="https://doi.org/10.1016/j.renene.2017.02.014">https://doi.org/10.1016/j.renene.2017.02.014</a>.
+</div>
+<div id="ref-frnda2022" class="csl-entry" role="listitem">
+Frnda, Jaroslav, Marek Durica, Jan Rozhon, Maria Vojtekova, Jan Nedoma, and Radek Martinek. 2022. <span>“ECMWF Short-Term Prediction Accuracy Improvement by Deep Learning.”</span> <em>Scientific Reports</em> 12 (1). <a href="https://doi.org/10.1038/s41598-022-11936-9">https://doi.org/10.1038/s41598-022-11936-9</a>.
+</div>
+<div id="ref-geer2018" class="csl-entry" role="listitem">
+Geer, Alan J., Katrin Lonitz, Peter Weston, Masahiro Kazumori, Kozo Okamoto, Yanqiu Zhu, Emily Huichun Liu, et al. 2018. <span>“All<span>-</span>Sky Satellite Data Assimilation at Operational Weather Forecasting Centres.”</span> <em>Quarterly Journal of the Royal Meteorological Society</em> 144 (713): 1191–1217. <a href="https://doi.org/10.1002/qj.3202">https://doi.org/10.1002/qj.3202</a>.
+</div>
+<div id="ref-raster" class="csl-entry" role="listitem">
+Hijmans, Robert J. 2023. <span>“Raster: Geographic Data Analysis and Modeling.”</span> <a href="https://CRAN.R-project.org/package=raster">https://CRAN.R-project.org/package=raster</a>.
+</div>
+<div id="ref-gt" class="csl-entry" role="listitem">
+Iannone, Richard, Joe Cheng, Barret Schloerke, Ellis Hughes, Alexandra Lauer, and JooYoung Seo. 2023. <span>“Gt: Easily Create Presentation-Ready Display Tables.”</span> <a href="https://CRAN.R-project.org/package=gt">https://CRAN.R-project.org/package=gt</a>.
+</div>
+<div id="ref-ggpubr-2" class="csl-entry" role="listitem">
+Kassambara, Alboukadel. 2023. <span>“Ggpubr: ’Ggplot2’ Based Publication Ready Plots.”</span> <a href="https://CRAN.R-project.org/package=ggpubr">https://CRAN.R-project.org/package=ggpubr</a>.
+</div>
+<div id="ref-rnaturalearth" class="csl-entry" role="listitem">
+Massicotte, Philippe, and Andy South. 2023. <span>“Rnaturalearth: World Map Data from Natural Earth.”</span> <a href="https://CRAN.R-project.org/package=rnaturalearth">https://CRAN.R-project.org/package=rnaturalearth</a>.
+</div>
+<div id="ref-sf" class="csl-entry" role="listitem">
+Pebesma, Edzer, and Roger Bivand. 2023. <span>“<span></span>Spatial Data Science: With Applications in r<span></span>.”</span> <a href="https://doi.org/10.1201/9780429459016">https://doi.org/10.1201/9780429459016</a>.
+</div>
+<div id="ref-ncdf4" class="csl-entry" role="listitem">
+Pierce, David. 2023. <span>“Ncdf4: Interface to Unidata netCDF (Version 4 or Earlier) Format Data Files.”</span> <a href="https://CRAN.R-project.org/package=ncdf4">https://CRAN.R-project.org/package=ncdf4</a>.
+</div>
+<div id="ref-powers2017" class="csl-entry" role="listitem">
+Powers, Jordan G., Joseph B. Klemp, William C. Skamarock, Christopher A. Davis, Jimy Dudhia, David O. Gill, Janice L. Coen, et al. 2017. <span>“The Weather Research and Forecasting Model: Overview, System Efforts, and Future Directions.”</span> <em>Bulletin of the American Meteorological Society</em> 98 (8): 1717–37. <a href="https://doi.org/10.1175/bams-d-15-00308.1">https://doi.org/10.1175/bams-d-15-00308.1</a>.
+</div>
+<div id="ref-vladimirov2020" class="csl-entry" role="listitem">
+Vladimirov, Evgeni, Reneta Dimitrova, and Ventsislav Danchovski. 2020. <span>“Correction to: Impact of Data Assimilation on Short-Term Precipitation Forecasts Using WRF-ARW Model.”</span> In, C1–1. Springer International Publishing. <a href="https://doi.org/10.1007/978-3-030-41032-2_73">https://doi.org/10.1007/978-3-030-41032-2_73</a>.
+</div>
+<div id="ref-ggplot2-2" class="csl-entry" role="listitem">
+Wickham, Hadley. 2016. <span>“Ggplot2: Elegant Graphics for Data Analysis.”</span> <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.
+</div>
+<div id="ref-tidyverse" class="csl-entry" role="listitem">
+Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. <span>“Welcome to the <span></span>Tidyverse<span></span>”</span> 4: 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.
+</div>
+<div id="ref-readxl" class="csl-entry" role="listitem">
+Wickham, Hadley, and Jennifer Bryan. 2023. <span>“Readxl: Read Excel Files.”</span> <a href="https://CRAN.R-project.org/package=readxl">https://CRAN.R-project.org/package=readxl</a>.
+</div>
+<div id="ref-yucel2014" class="csl-entry" role="listitem">
+Yucel, I., and A. Onen. 2014. <span>“Evaluating a Mesoscale Atmosphere Model and a Satellite-Based Algorithm in Estimating Extreme Rainfall Events in Northwestern Turkey.”</span> <em>Natural Hazards and Earth System Sciences</em> 14 (3): 611–24. <a href="https://doi.org/10.5194/nhess-14-611-2014">https://doi.org/10.5194/nhess-14-611-2014</a>.
+</div>
+<div id="ref-yucel2015" class="csl-entry" role="listitem">
+Yucel, I., A. Onen, K. K. Yilmaz, and D. J. Gochis. 2015. <span>“Calibration and Evaluation of a Flood Forecasting System: Utility of Numerical Weather Prediction Model, Data Assimilation and Satellite-Based Rainfall.”</span> <em>Journal of Hydrology</em> 523 (April): 49–66. <a href="https://doi.org/10.1016/j.jhydrol.2015.01.042">https://doi.org/10.1016/j.jhydrol.2015.01.042</a>.
+</div>
+</div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
