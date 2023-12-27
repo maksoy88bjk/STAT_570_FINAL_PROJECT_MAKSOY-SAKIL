@@ -4,9 +4,15 @@ author: "Mehmet AKSOY & Sercan AKIL"
 format: html
 editor: visual
 toc: true
-abstract: In this project, we have been evaluated temperature prediction of assimilated and non assimilated WRF outputs over Northwestern Türkiye for the period of 11-16 August, 2004. Observation of eleven temperature gauges and corresponding WRF predictions in the study area have been compared. Moreover, predictions were extracted from assimilated and non assimilated raw WRF data of different domains with varied spatiotemporal resolutions by using gauges coordinates. For this purpose, visualization and calculation of errror operations were performed in R programming and Quarto publishing system.
 ---
 
+::: {style="text-align: justify; font-size:16px"}
+###### ABSTRACT
+
+In this project, we have been evaluated temperature prediction of assimilated and non assimilated WRF outputs over Northwestern Türkiye for the period of 11-16 August, 2004. Observation of eleven temperature gauges and corresponding WRF predictions in the study area have been compared. Moreover, predictions were extracted from assimilated and non assimilated raw WRF data of different domains with varied spatio-temporal resolutions by using gauges coordinates. For this purpose, visualization of results and calculation of error proceedings were performed in R programming and Quarto publishing system.
+:::
+
+::: {style="text-align: justify"}
 # Introduction
 
 ### Numerical Weather Prediction (NWP) Models
@@ -26,6 +32,9 @@ There are a number of data assimilation techniques used in weather forecasting. 
 The Weather Research and Forecasting [(WRF)](https://www.mmm.ucar.edu/models/wrf) model is a next-generation open source mesoscale numerical weather prediction system. As it is open source, it has a very flexible structure that allows it to be used by met-offices, universities and atmospheric research centers.
 
 The Weather Research and Forecasting (WRF) model is a next-generation open source mesoscale numerical weather prediction system. As it is open source, it has a very flexible structure that allows it to be used by met-offices, universities and atmospheric research centers. The effort to develop WRF began in the latter 1990's and was a collaborative partnership of the National Center for Atmospheric Research (NCAR), the National Oceanic and Atmospheric Administration (NOAA), the U.S. Air Force, the Naval Research Laboratory, the University of Oklahoma, and the Federal Aviation Administration (WRF web page). WRF model is used in *Turkish State Meteorological Service* for operational and research forecast purposes since last two decades.
+:::
+
+::: {style="text-align: justify"}
 
 # Operations on Assimilated WRF Data
 
@@ -34,6 +43,7 @@ There are two files for two different domains as assimilated and non-assimilated
 ## Uploading Necessary Packages
 
 We will need several packages for some implementations in R, for instance; opening of the netcdf files of WRF data, handling of WRF outputs, visualization and etc.
+
 
 ```{r}
 #| warning: false
@@ -54,6 +64,7 @@ library(ggpubr)
 Firstly, we opened the assimilated WRF output for domain 1. Using sink function the content of WRF output at the attachments ([wrfout_d01_2004-08-11_00_00_00.txt](https://github.com/maksoy88bjk/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/blob/main/aswout/wrfout_d01_2004-08-11_00_00_00.txt "wrfout_d01_2004-08-11_00_00_00.txt")) can be created. The data cover time and coverage domain information with meteorological predictions such as potential temperature **(T)**, temperature at 2 meter **(T2)**, wind speed at ten meter **(U10 & V10)**, precipitation **(RAINC & RAINNC)** and etc. We need to use name of the variables to extract specific data variables from the raw data.
 
 The code in the below reads a NetCDF file (**fname**) using the **nc_open** function from the **ncdf4** package. NetCDF is a file format commonly used for storing multidimensional scientific data.
+
 
 ```{r}
 fname <- paste0("D:/Kitaplar/METU-PHD/Thesis/IsmailHocandanAldim_Aksoy_27092023/",
@@ -121,6 +132,7 @@ ymd_hms(t[41]) - ymd_hms(t[1])
 
 The code in the below creates a list of raster objects for each time step from the extracted temperature from raw WRF data set. Kelvin unit has been converted into Celcius by implementing -273.15. Raster objects are used for working with gridded spatial data. Additionally, **ggplot2** package is used to create a map visualization. It overlays the temperature data onto a map of countries, setting up appropriate coordinate systems and color scales.
 
+
 ```{r, fig.width=9,fig.height=5}
 #| label: fig-domain1
 #| fig-cap: 
@@ -148,6 +160,7 @@ ggplot(data = world)  + geom_sf(fill = "white") +
 ## Temperature Forecast of WRF in Domain 2
 
 There are **121** time steps for second domain since we can inference by dimension of **T2** data.
+
 
 ```{r}
 fname2 <- paste0("D:/Kitaplar/METU-PHD/Thesis/IsmailHocandanAldim_Aksoy_27092023/",
@@ -190,7 +203,7 @@ t2 <- ncvar_get(nc_data2, "Times"); t2
 ymd_hms(t2[121]) - ymd_hms(t2[1])
 ```
 
-### Study Area (Domain2)
+### Study Area (Domain 2)
 
 @fig-domain2 below shows the comparison of two domains and coverage of domain 2 where covers some part of northwest of Türkiye.
 
@@ -224,8 +237,10 @@ ggplot(data = world)  + geom_sf(fill = "white") +
 
 ### Identification of Meteorological Stations
 
-Domain 2 covers several provinces which are located northwest of Türkiye. Thus, we need to determine meteorological stations for comparing observation versus assimilated and non-assimilated WRF predictions. The code in the chunk reads data from a delimited text file containing information about meteorological stations. Each specific station was selected for each province to evaluate the performance of both assimilated and non-assimilated WRF predictions. @tbl-gauges-domain2 shows the main gauges across the domain 2. The code uses the dplyr and gt packages for data manipulation and table creation. it asisst to perform data wrangling and cleaning on the meteorological station data, containing renaming columns, converting province names, and arranging the data.\
-The tolower function is used to convert the province names to lowercase. The str_to_title() function from the stringr package is applied to convert the province names to title case.
+Domain 2 covers several provinces which are located northwest of Türkiye. Thus, we need to determine meteorological stations for comparing observation versus assimilated and non-assimilated WRF predictions. The code in the chunk reads data from a delimited text file containing information about meteorological stations. Each specific station was selected for each province to evaluate the performance of both assimilated and non-assimilated WRF predictions. @tbl-gauges-domain2 shows the main gauges across the domain 2. 
+
+The code uses the dplyr and gt packages for data manipulation and table creation. it asisst to perform data wrangling and cleaning on the meteorological station data, containing renaming columns, converting province names, and arranging the data. The tolower function is used to convert the province names to lowercase. The str_to_title() function from the stringr package is applied to convert the province names' first letter to title case.
+
 
 ```{r}
 #| label: tbl-gauges-domain2
@@ -266,6 +281,7 @@ ggplot(data = world)  + geom_sf(fill = "white") +
 ### Obtain Temperature Observations
 
 The code reads temperature observations from an Excel. In the raw dataset, some dates can be missing;however, these are not defined as null. Therefore, leaping values can be detected then it assigned as a null.
+
 
 ```{r}
 temp_obs<- read_excel("D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/df_2023122096C0-Saatlik_Sicaklik.xlsx")
@@ -326,10 +342,13 @@ rt_cpv_df_2<-
 colnames(rt_cpv_df_2)<- append(colnames(rt_cpv_df_2[1:3]),as.character(t2))
 head(rt_cpv_df_2)[,1:5]
 ```
+:::
 
+::: {style="text-align: justify"}
 # Operations on Non-Assimilated WRF Data
 
 We need to apply similar procedures on non-assimilated WRF predictions for extraction as shown above.
+:::
 
 ```{r}
 #domain1
@@ -405,7 +424,10 @@ colnames(rt_cpv_df_2_nas)<- append(colnames(rt_cpv_df_2_nas[1:3]),as.character(t
 head(rt_cpv_df_2_nas)[,1:5]
 ```
 
-# Derivation of data Frames
+::: {style="text-align: justify"}
+# Results
+
+## Derivation of Data Frames
 
 ```{r}
 # domain1 assimilated prediction: rt_cpv_df
@@ -449,8 +471,6 @@ head(new_df_list[[1]]); head(new_df_list[[3]])
 head(new_df_list[[2]]); head(new_df_list[[4]])
 
 ```
-
-# Results
 
 ## Visualization
 
@@ -507,7 +527,6 @@ ggplot(aes(x= dates, y=value)) +
 
 @fig-sc1 is shown for scatterplot and heatmap of 3-hour assimilated and non-assimilated predictions versus observations in domain 1. **Red** and **blue** colors represent **assimilated** and **non-assimilated** predictions, respectively, while **black** line shows **fit** of observations versus predictions.
 
-::: {layout-ncol=2 .column-page}
 
 ```{r, fig.width=9,fig.height=5}
 #| warning: false
@@ -553,6 +572,7 @@ ggplot(aes(x= observation, y=Prediction, fill=Pred.Type)) +
 ggarrange(plot1,plot2,ncol=2 ,nrow = 1)
 ```
 
+
 @fig-do2 is shown for comparison of hourly assimilated and non-assimilated predictions with observations for each gauge *(province)* in domain 2. In this plot, each box represent different provinces *(gauges)*, **black** line shows observations, **blue** and **red lines** are for **assimilated** and **non-assimilated** predictions, respectively.
 
 ```{r, fig.width=9,fig.height=5}
@@ -589,6 +609,7 @@ ggplot(aes(x= dates, y=value)) +
 ```
 
 @fig-sc2 is shown for scatterplot and heatmap of 1-hour assimilated and non-assimilated predictions versus observations in domain 2. **Blue** and **red** colors represent **assimilated** and **non-assimilated** predictions, respectively, while **black** line shows **fit** of observations versus predictions.
+
 
 ```{r, fig.width=9,fig.height=5}
 #| warning: false
@@ -638,6 +659,7 @@ ggarrange(plot3,plot4,ncol=2 ,nrow = 1)
 
 This part calculates various error metrics, including bias, mean squared error (MSE), root mean squared error (RMSE), normalized RMSE (NRMSE), and correlation coefficients for the predictions. @tbl-stats shows the error statistics for both two domains with respect to complete assimilated and non-assimilated predictions.
 
+
 ```{r}
 #| label: tbl-stats
 #| tbl-cap: Error statistics of entire predictions for each two domains.
@@ -682,6 +704,7 @@ error_table |>  gt()
 ```
 
 @tbl-kastamonu shows the error statistics with respect to assimilated and non-assimilated predictions for Kastomonu province in both two domains.
+
 
 ```{r}
 #| label: tbl-kastamonu
@@ -751,7 +774,10 @@ for (i in 1:4) {
 error_table[,2:5]<- round(error_table[,2:5],4)
 error_table |>  gt()
 ```
+:::
 
+::: {style="text-align: justify"}
 # Conclusion
 
 In summary, the integration of the WRF model with data assimilation techniques has proven to be a valuable tool for advancing our understanding of regional weather patterns. The outcomes of this study have practical applications in operational forecasting, research endeavors, and emergency response, contributing to the broader field of atmospheric science.These steps collectively demonstrate a comprehensive workflow for importing, processing, and analyzing meteorological data, including visualization and error analysis.
+:::

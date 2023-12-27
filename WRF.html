@@ -84,7 +84,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#numerical-weather-prediction-nwp-models" id="toc-numerical-weather-prediction-nwp-models" class="nav-link" data-scroll-target="#numerical-weather-prediction-nwp-models">Numerical Weather Prediction (NWP) Models</a></li>
   <li><a href="#data-assimilation" id="toc-data-assimilation" class="nav-link" data-scroll-target="#data-assimilation">Data Assimilation</a></li>
-  <li><a href="#weather-research-and-forecasting-wrf-model" id="toc-weather-research-and-forecasting-wrf-model" class="nav-link" data-scroll-target="#weather-research-and-forecasting-wrf-model">Weather Research and Forecasting (WRF) Model</a></li>
+  <li><a href="#weather-research-and-forecasting-wrf-model" id="toc-weather-research-and-forecasting-wrf-model" class="nav-link" data-scroll-target="#weather-research-and-forecasting-wrf-model">Weather Research and Forecasting (WRF) model</a></li>
   </ul></li>
   <li><a href="#operations-on-assimilated-wrf-data" id="toc-operations-on-assimilated-wrf-data" class="nav-link" data-scroll-target="#operations-on-assimilated-wrf-data">Operations on Assimilated WRF Data</a>
   <ul class="collapse">
@@ -101,7 +101,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#forecast-period-time-interval-domain-2" id="toc-forecast-period-time-interval-domain-2" class="nav-link" data-scroll-target="#forecast-period-time-interval-domain-2">Forecast Period &amp; Time Interval (Domain 2)</a></li>
   <li><a href="#study-area-domain-2" id="toc-study-area-domain-2" class="nav-link" data-scroll-target="#study-area-domain-2">Study Area (Domain 2)</a></li>
   </ul></li>
-  <li><a href="#derrivation-of-temperature-prediction-and-observation" id="toc-derrivation-of-temperature-prediction-and-observation" class="nav-link" data-scroll-target="#derrivation-of-temperature-prediction-and-observation">Derrivation of Temperature Prediction and Observation</a>
+  <li><a href="#derivation-of-temperature-prediction-and-observation" id="toc-derivation-of-temperature-prediction-and-observation" class="nav-link" data-scroll-target="#derivation-of-temperature-prediction-and-observation">Derivation of Temperature Prediction and Observation</a>
   <ul class="collapse">
   <li><a href="#identification-of-meteorological-stations" id="toc-identification-of-meteorological-stations" class="nav-link" data-scroll-target="#identification-of-meteorological-stations">Identification of Meteorological Stations</a></li>
   <li><a href="#obtain-temperature-observations" id="toc-obtain-temperature-observations" class="nav-link" data-scroll-target="#obtain-temperature-observations">Obtain Temperature Observations</a></li>
@@ -109,11 +109,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   </ul></li>
   <li><a href="#operations-on-non-assimilated-wrf-data" id="toc-operations-on-non-assimilated-wrf-data" class="nav-link" data-scroll-target="#operations-on-non-assimilated-wrf-data">Operations on Non-Assimilated WRF Data</a></li>
-  <li><a href="#derivation-of-data-frames" id="toc-derivation-of-data-frames" class="nav-link" data-scroll-target="#derivation-of-data-frames">Derivation of Data Frames</a></li>
   <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
   <ul class="collapse">
+  <li><a href="#derivation-of-data-frames" id="toc-derivation-of-data-frames" class="nav-link" data-scroll-target="#derivation-of-data-frames">Derivation of Data Frames</a></li>
   <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization">Visualization</a></li>
-  <li><a href="#error-estimation" id="toc-error-estimation" class="nav-link" data-scroll-target="#error-estimation">Error Estimation</a></li>
+  <li><a href="#error-analysis" id="toc-error-analysis" class="nav-link" data-scroll-target="#error-analysis">Error Analysis</a></li>
   </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul>
@@ -141,16 +141,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     
   </div>
   
-<div>
-  <div class="abstract">
-    <div class="abstract-title">Abstract</div>
-    In this project, we have been evaluated temperature prediction of assimilated and non assimilated WRF outputs over Northwestern Türkiye for the period of 11-16 August, 2004. Observation of eleven temperature gauges and corresponding WRF predictions in the study area have been compared. Moreover, predictions were extracted from assimilated and non assimilated raw WRF data of different domains with varied spatiotemporal resolutions by using gauges coordinates. For this purpose, visualization and calculation of errror operations were performed in R programming and Quarto publishing system.
-  </div>
-</div>
 
 </header>
 
-<section id="introduction" class="level1">
+<section id="abstract" class="level6" style="text-align: justify; font-size:16px">
+<h6 class="anchored" data-anchor-id="abstract">ABSTRACT</h6>
+<p>In this project, we have been evaluated temperature prediction of assimilated and non assimilated WRF outputs over Northwestern Türkiye for the period of 11-16 August, 2004. Observation of eleven temperature gauges and corresponding WRF predictions in the study area have been compared. Moreover, predictions were extracted from assimilated and non assimilated raw WRF data of different domains with varied spatio-temporal resolutions by using gauges coordinates. For this purpose, visualization of results and calculation of error proceedings were performed in R programming and Quarto publishing system.</p>
+</section>
+<section id="introduction" class="level1" style="text-align: justify">
 <h1>Introduction</h1>
 <section id="numerical-weather-prediction-nwp-models" class="level3">
 <h3 class="anchored" data-anchor-id="numerical-weather-prediction-nwp-models">Numerical Weather Prediction (NWP) Models</h3>
@@ -163,12 +161,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>There are a number of data assimilation techniques used in weather forecasting. One of the most prominent are the three- and four dimensional variational data assimilation methods (3D-var and 4D-var). 3D-var incorporates meteorological data only within a time window around the initialization moment and in this method the analysis increment (an increment is introduced due to the actual observations) does not evolve in time, e.g.&nbsp;it has effect only at the beginning of the simulation. On the other hand 4D-var method uses tangent linear and adjoint models which model the propagation of analysis increment and more computing time is needed. <strong>Huang, X. Y., &amp; Vedel, H. (2003). An introduction to data assimilation. In&nbsp;SAF Training Workshop: 2nd GRAS SAF User Workshop, EUMETSAT, Darmstadt, Germany&nbsp;(pp.&nbsp;25-37).</strong></p>
 </section>
 <section id="weather-research-and-forecasting-wrf-model" class="level3">
-<h3 class="anchored" data-anchor-id="weather-research-and-forecasting-wrf-model">Weather Research and Forecasting (WRF) Model</h3>
+<h3 class="anchored" data-anchor-id="weather-research-and-forecasting-wrf-model">Weather Research and Forecasting (WRF) model</h3>
 <p>The Weather Research and Forecasting <a href="https://www.mmm.ucar.edu/models/wrf">(WRF)</a> model is a next-generation open source mesoscale numerical weather prediction system. As it is open source, it has a very flexible structure that allows it to be used by met-offices, universities and atmospheric research centers.</p>
 <p>The Weather Research and Forecasting (WRF) model is a next-generation open source mesoscale numerical weather prediction system. As it is open source, it has a very flexible structure that allows it to be used by met-offices, universities and atmospheric research centers. The effort to develop WRF began in the latter 1990’s and was a collaborative partnership of the National Center for Atmospheric Research (NCAR), the National Oceanic and Atmospheric Administration (NOAA), the U.S. Air Force, the Naval Research Laboratory, the University of Oklahoma, and the Federal Aviation Administration (WRF web page). WRF model is used in <em>Turkish State Meteorological Service</em> for operational and research forecast purposes since last two decades.</p>
 </section>
 </section>
-<section id="operations-on-assimilated-wrf-data" class="level1">
+<section id="operations-on-assimilated-wrf-data" class="level1" style="text-align: justify">
 <h1>Operations on Assimilated WRF Data</h1>
 <p>There are two files for two different domains as assimilated and non-assimilated predictions of WRF model. Thus, there are four netcdf files totally. We are going to define prediction variables, forecast period and coverage of domains for each file.</p>
 <section id="uploading-necessary-packages" class="level2">
@@ -189,7 +187,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="temperature-forecast-of-wrf-in-domain-1" class="level2">
 <h2 class="anchored" data-anchor-id="temperature-forecast-of-wrf-in-domain-1">Temperature Forecast of WRF in Domain 1</h2>
-<p>Firstly, we opened the assimilated WRF output for domain 1. You can see the content of WRF output at the attachments (<a href="https://github.com/maksoy88bjk/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/blob/main/aswout/wrfout_d01_2004-08-11_00_00_00.txt" title="wrfout_d01_2004-08-11_00_00_00.txt">wrfout_d01_2004-08-11_00_00_00.txt</a>), the data cover time and coverage domain information with meteorological predictions such as potential temperature <strong>(T)</strong>, temperature at 2 meter <strong>(T2)</strong>, wind speed at ten meter <strong>(U10 &amp; V10)</strong>, precipitation <strong>(RAINC &amp; RAINNC)</strong> and etc. We need to use name of the variables to extract specific data variables from the raw data.</p>
+<p>Firstly, we opened the assimilated WRF output for domain 1. Using sink function the content of WRF output at the attachments (<a href="https://github.com/maksoy88bjk/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/blob/main/aswout/wrfout_d01_2004-08-11_00_00_00.txt" title="wrfout_d01_2004-08-11_00_00_00.txt">wrfout_d01_2004-08-11_00_00_00.txt</a>) can be created. The data cover time and coverage domain information with meteorological predictions such as potential temperature <strong>(T)</strong>, temperature at 2 meter <strong>(T2)</strong>, wind speed at ten meter <strong>(U10 &amp; V10)</strong>, precipitation <strong>(RAINC &amp; RAINNC)</strong> and etc. We need to use name of the variables to extract specific data variables from the raw data.</p>
+<p>The code in the below reads a NetCDF file (<strong>fname</strong>) using the <strong>nc_open</strong> function from the <strong>ncdf4</strong> package. NetCDF is a file format commonly used for storing multidimensional scientific data.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fname <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"D:/Kitaplar/METU-PHD/Thesis/IsmailHocandanAldim_Aksoy_27092023/"</span>,</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">"aswout/wrfout_d01_2004-08-11_00_00_00"</span>)</span>
@@ -220,6 +219,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     DX: 12000
     DY: 12000</code></pre>
 <p>There are <strong>41</strong> time steps which means we can get predictions along the domain <strong>(191x115)</strong> for whole period. Additionally, the data includes information for <strong>27</strong> layers from bottom to top of the atmosphere.</p>
+<p>Here, the code extracts specific variables (longitude, latitude, temperature, and time) from the NetCDF file using the <strong>ncvar_get</strong> function.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>long<span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data, <span class="st">"XLONG"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>lat<span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data, <span class="st">"XLAT"</span>, <span class="at">verbose =</span> F)</span>
@@ -265,6 +265,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="study-area-domain-1" class="level3">
 <h3 class="anchored" data-anchor-id="study-area-domain-1">Study Area (Domain 1)</h3>
 <p><a href="#fig-domain1">Figure&nbsp;1</a> below shows the coverage of domain 1 where covers Türkiye and its surrounding.</p>
+<p>The code in the below creates a list of raster objects for each time step from the extracted temperature from raw WRF data set. Kelvin unit has been converted into Celcius by implementing -273.15. Raster objects are used for working with gridded spatial data. Additionally, <strong>ggplot2</strong> package is used to create a map visualization. It overlays the temperature data onto a map of countries, setting up appropriate coordinate systems and color scales.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>raster_temp<span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(temp)[<span class="dv">3</span>])   {</span>
@@ -416,11 +417,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="derrivation-of-temperature-prediction-and-observation" class="level2">
-<h2 class="anchored" data-anchor-id="derrivation-of-temperature-prediction-and-observation">Derrivation of Temperature Prediction and Observation</h2>
+<section id="derivation-of-temperature-prediction-and-observation" class="level2">
+<h2 class="anchored" data-anchor-id="derivation-of-temperature-prediction-and-observation">Derivation of Temperature Prediction and Observation</h2>
 <section id="identification-of-meteorological-stations" class="level3">
 <h3 class="anchored" data-anchor-id="identification-of-meteorological-stations">Identification of Meteorological Stations</h3>
-<p>Domain 2 covers several provinces which are located northwest of Türkiye. Thus, we need to determine meteorological stations for comparing observation versus assimilated and non-assimilated WRF predictions. Only one station was selected for each province to evaluate the performance of both assimilated and non-assimilated WRF predictions. <a href="#tbl-gauges-domain2">Table&nbsp;1</a> shows the main gauges across the domain 2.</p>
+<p>Domain 2 covers several provinces which are located northwest of Türkiye. Thus, we need to determine meteorological stations for comparing observation versus assimilated and non-assimilated WRF predictions. The code in the chunk reads data from a delimited text file containing information about meteorological stations. Each specific station was selected for each province to evaluate the performance of both assimilated and non-assimilated WRF predictions. <a href="#tbl-gauges-domain2">Table&nbsp;1</a> shows the main gauges across the domain 2.</p>
+<p>The code uses the dplyr and gt packages for data manipulation and table creation. it asisst to perform data wrangling and cleaning on the meteorological station data, containing renaming columns, converting province names, and arranging the data. The tolower function is used to convert the province names to lowercase. The str_to_title() function from the stringr package is applied to convert the province names’ first letter to title case.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df_gauges <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">"D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/gauges.txt"</span>, <span class="at">sep=</span><span class="st">"|"</span>)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -433,23 +435,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div id="tbl-gauges-domain2" class="anchored">
 
-<div id="gxhjfvweif" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#gxhjfvweif table {
+<div id="abhhhvrldb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#abhhhvrldb table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#gxhjfvweif thead, #gxhjfvweif tbody, #gxhjfvweif tfoot, #gxhjfvweif tr, #gxhjfvweif td, #gxhjfvweif th {
+#abhhhvrldb thead, #abhhhvrldb tbody, #abhhhvrldb tfoot, #abhhhvrldb tr, #abhhhvrldb td, #abhhhvrldb th {
   border-style: none;
 }
 
-#gxhjfvweif p {
+#abhhhvrldb p {
   margin: 0;
   padding: 0;
 }
 
-#gxhjfvweif .gt_table {
+#abhhhvrldb .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -475,12 +477,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#gxhjfvweif .gt_caption {
+#abhhhvrldb .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#gxhjfvweif .gt_title {
+#abhhhvrldb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -492,7 +494,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#gxhjfvweif .gt_subtitle {
+#abhhhvrldb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -504,7 +506,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#gxhjfvweif .gt_heading {
+#abhhhvrldb .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -516,13 +518,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#gxhjfvweif .gt_bottom_border {
+#abhhhvrldb .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#gxhjfvweif .gt_col_headings {
+#abhhhvrldb .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -537,7 +539,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#gxhjfvweif .gt_col_heading {
+#abhhhvrldb .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -557,7 +559,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#gxhjfvweif .gt_column_spanner_outer {
+#abhhhvrldb .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -569,15 +571,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#gxhjfvweif .gt_column_spanner_outer:first-child {
+#abhhhvrldb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#gxhjfvweif .gt_column_spanner_outer:last-child {
+#abhhhvrldb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#gxhjfvweif .gt_column_spanner {
+#abhhhvrldb .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -589,11 +591,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#gxhjfvweif .gt_spanner_row {
+#abhhhvrldb .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#gxhjfvweif .gt_group_heading {
+#abhhhvrldb .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -619,7 +621,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#gxhjfvweif .gt_empty_group_heading {
+#abhhhvrldb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -634,15 +636,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#gxhjfvweif .gt_from_md > :first-child {
+#abhhhvrldb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#gxhjfvweif .gt_from_md > :last-child {
+#abhhhvrldb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#gxhjfvweif .gt_row {
+#abhhhvrldb .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -661,7 +663,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#gxhjfvweif .gt_stub {
+#abhhhvrldb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -674,7 +676,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#gxhjfvweif .gt_stub_row_group {
+#abhhhvrldb .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -688,15 +690,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#gxhjfvweif .gt_row_group_first td {
+#abhhhvrldb .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#gxhjfvweif .gt_row_group_first th {
+#abhhhvrldb .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#gxhjfvweif .gt_summary_row {
+#abhhhvrldb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -706,16 +708,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#gxhjfvweif .gt_first_summary_row {
+#abhhhvrldb .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#gxhjfvweif .gt_first_summary_row.thick {
+#abhhhvrldb .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#gxhjfvweif .gt_last_summary_row {
+#abhhhvrldb .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -725,7 +727,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#gxhjfvweif .gt_grand_summary_row {
+#abhhhvrldb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -735,7 +737,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#gxhjfvweif .gt_first_grand_summary_row {
+#abhhhvrldb .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -745,7 +747,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#gxhjfvweif .gt_last_grand_summary_row_top {
+#abhhhvrldb .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -755,11 +757,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#gxhjfvweif .gt_striped {
+#abhhhvrldb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#gxhjfvweif .gt_table_body {
+#abhhhvrldb .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -768,7 +770,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#gxhjfvweif .gt_footnotes {
+#abhhhvrldb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -782,7 +784,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#gxhjfvweif .gt_footnote {
+#abhhhvrldb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -791,7 +793,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#gxhjfvweif .gt_sourcenotes {
+#abhhhvrldb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -805,7 +807,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#gxhjfvweif .gt_sourcenote {
+#abhhhvrldb .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -813,63 +815,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#gxhjfvweif .gt_left {
+#abhhhvrldb .gt_left {
   text-align: left;
 }
 
-#gxhjfvweif .gt_center {
+#abhhhvrldb .gt_center {
   text-align: center;
 }
 
-#gxhjfvweif .gt_right {
+#abhhhvrldb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#gxhjfvweif .gt_font_normal {
+#abhhhvrldb .gt_font_normal {
   font-weight: normal;
 }
 
-#gxhjfvweif .gt_font_bold {
+#abhhhvrldb .gt_font_bold {
   font-weight: bold;
 }
 
-#gxhjfvweif .gt_font_italic {
+#abhhhvrldb .gt_font_italic {
   font-style: italic;
 }
 
-#gxhjfvweif .gt_super {
+#abhhhvrldb .gt_super {
   font-size: 65%;
 }
 
-#gxhjfvweif .gt_footnote_marks {
+#abhhhvrldb .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#gxhjfvweif .gt_asterisk {
+#abhhhvrldb .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#gxhjfvweif .gt_indent_1 {
+#abhhhvrldb .gt_indent_1 {
   text-indent: 5px;
 }
 
-#gxhjfvweif .gt_indent_2 {
+#abhhhvrldb .gt_indent_2 {
   text-indent: 10px;
 }
 
-#gxhjfvweif .gt_indent_3 {
+#abhhhvrldb .gt_indent_3 {
   text-indent: 15px;
 }
 
-#gxhjfvweif .gt_indent_4 {
+#abhhhvrldb .gt_indent_4 {
   text-indent: 20px;
 }
 
-#gxhjfvweif .gt_indent_5 {
+#abhhhvrldb .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -977,6 +979,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="obtain-temperature-observations" class="level3">
 <h3 class="anchored" data-anchor-id="obtain-temperature-observations">Obtain Temperature Observations</h3>
+<p>The code reads temperature observations from an Excel. In the raw dataset, some dates can be missing;however, these are not defined as null. Therefore, leaping values can be detected then it assigned as a null.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>temp_obs<span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/df_2023122096C0-Saatlik_Sicaklik.xlsx"</span>)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(temp_obs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1018,6 +1021,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="extraction-of-temperature-predictions-from-wrf" class="level3">
 <h3 class="anchored" data-anchor-id="extraction-of-temperature-predictions-from-wrf">Extraction of Temperature Predictions from WRF</h3>
+<p>This code stacks raster layers and extracts temperature values for meteorological station locations.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>centroids <span class="ot">&lt;-</span> df_gauges[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>)]</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coordinates</span>(centroids)<span class="ot">=</span> <span class="er">~</span> Longitude <span class="sc">+</span> Latitude</span>
@@ -1092,9 +1096,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 </section>
-<section id="operations-on-non-assimilated-wrf-data" class="level1">
+<section id="operations-on-non-assimilated-wrf-data" class="level1" style="text-align: justify">
 <h1>Operations on Non-Assimilated WRF Data</h1>
 <p>We need to apply similar procedures on non-assimilated WRF predictions for extraction as shown above.</p>
+</section>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#domain1</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>fname_nas <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"D:/Kitaplar/METU-PHD/Thesis/IsmailHocandanAldim_Aksoy_27092023/"</span>,</span>
@@ -1177,9 +1182,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 6   17072  31.14880 40.84370            20.31973            22.20229</code></pre>
 </div>
 </div>
-</section>
-<section id="derivation-of-data-frames" class="level1">
-<h1>Derivation of Data Frames</h1>
+<section id="results" class="level1" style="text-align: justify">
+<h1>Results</h1>
+<section id="derivation-of-data-frames" class="level2">
+<h2 class="anchored" data-anchor-id="derivation-of-data-frames">Derivation of Data Frames</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># domain1 assimilated prediction: rt_cpv_df</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># domain2 assimilated prediction: rt_cpv_df_2</span></span>
@@ -1266,8 +1272,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="results" class="level1">
-<h1>Results</h1>
 <section id="visualization" class="level2">
 <h2 class="anchored" data-anchor-id="visualization">Visualization</h2>
 <div class="cell">
@@ -1342,7 +1346,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p><a href="#fig-sc1">Figure&nbsp;5</a> is shown for scatterplot and heatmap of 3-hour assimilated and non-assimilated predictions versus observations in domain 1. <strong>Red</strong> and <strong>blue</strong> colors represent <strong>assimilated</strong> and <strong>non-assimilated</strong> predictions, respectively, while <strong>black</strong> line shows <strong>fit</strong> of observations versus predictions.</p>
-<p>::: {layout-ncol=2 .column-page}</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>plot1<span class="ot">&lt;-</span> </span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>new_df_list[[<span class="dv">1</span>]] <span class="sc">|&gt;</span>        </span>
@@ -1475,9 +1478,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="error-estimation" class="level2">
-<h2 class="anchored" data-anchor-id="error-estimation">Error Estimation</h2>
-<p><a href="#tbl-stats">Table&nbsp;2</a> shows the error statistics for both two domains with respect to complete assimilated and non-assimilated predictions.</p>
+<section id="error-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="error-analysis">Error Analysis</h2>
+<p>This part calculates various error metrics, including bias, mean squared error (MSE), root mean squared error (RMSE), normalized RMSE (NRMSE), and correlation coefficients for the predictions. <a href="#tbl-stats">Table&nbsp;2</a> shows the error statistics for both two domains with respect to complete assimilated and non-assimilated predictions.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co">#BIAS</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>bias <span class="ot">&lt;-</span> <span class="cf">function</span>(x,y) {<span class="fu">mean</span>((x<span class="sc">-</span>y), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)}</span>
@@ -1518,23 +1521,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div id="tbl-stats" class="anchored">
 
-<div id="sgifglbmhv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#sgifglbmhv table {
+<div id="tixbdlnyyp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#tixbdlnyyp table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#sgifglbmhv thead, #sgifglbmhv tbody, #sgifglbmhv tfoot, #sgifglbmhv tr, #sgifglbmhv td, #sgifglbmhv th {
+#tixbdlnyyp thead, #tixbdlnyyp tbody, #tixbdlnyyp tfoot, #tixbdlnyyp tr, #tixbdlnyyp td, #tixbdlnyyp th {
   border-style: none;
 }
 
-#sgifglbmhv p {
+#tixbdlnyyp p {
   margin: 0;
   padding: 0;
 }
 
-#sgifglbmhv .gt_table {
+#tixbdlnyyp .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1560,12 +1563,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#sgifglbmhv .gt_caption {
+#tixbdlnyyp .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#sgifglbmhv .gt_title {
+#tixbdlnyyp .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1577,7 +1580,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#sgifglbmhv .gt_subtitle {
+#tixbdlnyyp .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1589,7 +1592,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#sgifglbmhv .gt_heading {
+#tixbdlnyyp .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1601,13 +1604,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#sgifglbmhv .gt_bottom_border {
+#tixbdlnyyp .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#sgifglbmhv .gt_col_headings {
+#tixbdlnyyp .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1622,7 +1625,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#sgifglbmhv .gt_col_heading {
+#tixbdlnyyp .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1642,7 +1645,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#sgifglbmhv .gt_column_spanner_outer {
+#tixbdlnyyp .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1654,15 +1657,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#sgifglbmhv .gt_column_spanner_outer:first-child {
+#tixbdlnyyp .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#sgifglbmhv .gt_column_spanner_outer:last-child {
+#tixbdlnyyp .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#sgifglbmhv .gt_column_spanner {
+#tixbdlnyyp .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1674,11 +1677,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#sgifglbmhv .gt_spanner_row {
+#tixbdlnyyp .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#sgifglbmhv .gt_group_heading {
+#tixbdlnyyp .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1704,7 +1707,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#sgifglbmhv .gt_empty_group_heading {
+#tixbdlnyyp .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1719,15 +1722,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#sgifglbmhv .gt_from_md > :first-child {
+#tixbdlnyyp .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#sgifglbmhv .gt_from_md > :last-child {
+#tixbdlnyyp .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#sgifglbmhv .gt_row {
+#tixbdlnyyp .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1746,7 +1749,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#sgifglbmhv .gt_stub {
+#tixbdlnyyp .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1759,7 +1762,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#sgifglbmhv .gt_stub_row_group {
+#tixbdlnyyp .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1773,15 +1776,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#sgifglbmhv .gt_row_group_first td {
+#tixbdlnyyp .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#sgifglbmhv .gt_row_group_first th {
+#tixbdlnyyp .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#sgifglbmhv .gt_summary_row {
+#tixbdlnyyp .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1791,16 +1794,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#sgifglbmhv .gt_first_summary_row {
+#tixbdlnyyp .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#sgifglbmhv .gt_first_summary_row.thick {
+#tixbdlnyyp .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#sgifglbmhv .gt_last_summary_row {
+#tixbdlnyyp .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1810,7 +1813,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#sgifglbmhv .gt_grand_summary_row {
+#tixbdlnyyp .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1820,7 +1823,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#sgifglbmhv .gt_first_grand_summary_row {
+#tixbdlnyyp .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1830,7 +1833,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#sgifglbmhv .gt_last_grand_summary_row_top {
+#tixbdlnyyp .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1840,11 +1843,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#sgifglbmhv .gt_striped {
+#tixbdlnyyp .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#sgifglbmhv .gt_table_body {
+#tixbdlnyyp .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1853,7 +1856,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#sgifglbmhv .gt_footnotes {
+#tixbdlnyyp .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1867,7 +1870,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#sgifglbmhv .gt_footnote {
+#tixbdlnyyp .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1876,7 +1879,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#sgifglbmhv .gt_sourcenotes {
+#tixbdlnyyp .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1890,7 +1893,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#sgifglbmhv .gt_sourcenote {
+#tixbdlnyyp .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1898,63 +1901,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#sgifglbmhv .gt_left {
+#tixbdlnyyp .gt_left {
   text-align: left;
 }
 
-#sgifglbmhv .gt_center {
+#tixbdlnyyp .gt_center {
   text-align: center;
 }
 
-#sgifglbmhv .gt_right {
+#tixbdlnyyp .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#sgifglbmhv .gt_font_normal {
+#tixbdlnyyp .gt_font_normal {
   font-weight: normal;
 }
 
-#sgifglbmhv .gt_font_bold {
+#tixbdlnyyp .gt_font_bold {
   font-weight: bold;
 }
 
-#sgifglbmhv .gt_font_italic {
+#tixbdlnyyp .gt_font_italic {
   font-style: italic;
 }
 
-#sgifglbmhv .gt_super {
+#tixbdlnyyp .gt_super {
   font-size: 65%;
 }
 
-#sgifglbmhv .gt_footnote_marks {
+#tixbdlnyyp .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#sgifglbmhv .gt_asterisk {
+#tixbdlnyyp .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#sgifglbmhv .gt_indent_1 {
+#tixbdlnyyp .gt_indent_1 {
   text-indent: 5px;
 }
 
-#sgifglbmhv .gt_indent_2 {
+#tixbdlnyyp .gt_indent_2 {
   text-indent: 10px;
 }
 
-#sgifglbmhv .gt_indent_3 {
+#tixbdlnyyp .gt_indent_3 {
   text-indent: 15px;
 }
 
-#sgifglbmhv .gt_indent_4 {
+#tixbdlnyyp .gt_indent_4 {
   text-indent: 20px;
 }
 
-#sgifglbmhv .gt_indent_5 {
+#tixbdlnyyp .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2035,23 +2038,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div id="tbl-kastamonu" class="anchored">
 
-<div id="riheaedmov" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#riheaedmov table {
+<div id="tllgbuuqng" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#tllgbuuqng table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#riheaedmov thead, #riheaedmov tbody, #riheaedmov tfoot, #riheaedmov tr, #riheaedmov td, #riheaedmov th {
+#tllgbuuqng thead, #tllgbuuqng tbody, #tllgbuuqng tfoot, #tllgbuuqng tr, #tllgbuuqng td, #tllgbuuqng th {
   border-style: none;
 }
 
-#riheaedmov p {
+#tllgbuuqng p {
   margin: 0;
   padding: 0;
 }
 
-#riheaedmov .gt_table {
+#tllgbuuqng .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2077,12 +2080,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#riheaedmov .gt_caption {
+#tllgbuuqng .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#riheaedmov .gt_title {
+#tllgbuuqng .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2094,7 +2097,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#riheaedmov .gt_subtitle {
+#tllgbuuqng .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2106,7 +2109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#riheaedmov .gt_heading {
+#tllgbuuqng .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2118,13 +2121,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#riheaedmov .gt_bottom_border {
+#tllgbuuqng .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#riheaedmov .gt_col_headings {
+#tllgbuuqng .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2139,7 +2142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#riheaedmov .gt_col_heading {
+#tllgbuuqng .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2159,7 +2162,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#riheaedmov .gt_column_spanner_outer {
+#tllgbuuqng .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2171,15 +2174,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#riheaedmov .gt_column_spanner_outer:first-child {
+#tllgbuuqng .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#riheaedmov .gt_column_spanner_outer:last-child {
+#tllgbuuqng .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#riheaedmov .gt_column_spanner {
+#tllgbuuqng .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2191,11 +2194,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#riheaedmov .gt_spanner_row {
+#tllgbuuqng .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#riheaedmov .gt_group_heading {
+#tllgbuuqng .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2221,7 +2224,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#riheaedmov .gt_empty_group_heading {
+#tllgbuuqng .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2236,15 +2239,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#riheaedmov .gt_from_md > :first-child {
+#tllgbuuqng .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#riheaedmov .gt_from_md > :last-child {
+#tllgbuuqng .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#riheaedmov .gt_row {
+#tllgbuuqng .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2263,7 +2266,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#riheaedmov .gt_stub {
+#tllgbuuqng .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2276,7 +2279,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#riheaedmov .gt_stub_row_group {
+#tllgbuuqng .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2290,15 +2293,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#riheaedmov .gt_row_group_first td {
+#tllgbuuqng .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#riheaedmov .gt_row_group_first th {
+#tllgbuuqng .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#riheaedmov .gt_summary_row {
+#tllgbuuqng .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2308,16 +2311,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#riheaedmov .gt_first_summary_row {
+#tllgbuuqng .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#riheaedmov .gt_first_summary_row.thick {
+#tllgbuuqng .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#riheaedmov .gt_last_summary_row {
+#tllgbuuqng .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2327,7 +2330,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#riheaedmov .gt_grand_summary_row {
+#tllgbuuqng .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2337,7 +2340,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#riheaedmov .gt_first_grand_summary_row {
+#tllgbuuqng .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2347,7 +2350,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#riheaedmov .gt_last_grand_summary_row_top {
+#tllgbuuqng .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2357,11 +2360,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#riheaedmov .gt_striped {
+#tllgbuuqng .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#riheaedmov .gt_table_body {
+#tllgbuuqng .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2370,7 +2373,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#riheaedmov .gt_footnotes {
+#tllgbuuqng .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2384,7 +2387,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#riheaedmov .gt_footnote {
+#tllgbuuqng .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2393,7 +2396,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#riheaedmov .gt_sourcenotes {
+#tllgbuuqng .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2407,7 +2410,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#riheaedmov .gt_sourcenote {
+#tllgbuuqng .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2415,63 +2418,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#riheaedmov .gt_left {
+#tllgbuuqng .gt_left {
   text-align: left;
 }
 
-#riheaedmov .gt_center {
+#tllgbuuqng .gt_center {
   text-align: center;
 }
 
-#riheaedmov .gt_right {
+#tllgbuuqng .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#riheaedmov .gt_font_normal {
+#tllgbuuqng .gt_font_normal {
   font-weight: normal;
 }
 
-#riheaedmov .gt_font_bold {
+#tllgbuuqng .gt_font_bold {
   font-weight: bold;
 }
 
-#riheaedmov .gt_font_italic {
+#tllgbuuqng .gt_font_italic {
   font-style: italic;
 }
 
-#riheaedmov .gt_super {
+#tllgbuuqng .gt_super {
   font-size: 65%;
 }
 
-#riheaedmov .gt_footnote_marks {
+#tllgbuuqng .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#riheaedmov .gt_asterisk {
+#tllgbuuqng .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#riheaedmov .gt_indent_1 {
+#tllgbuuqng .gt_indent_1 {
   text-indent: 5px;
 }
 
-#riheaedmov .gt_indent_2 {
+#tllgbuuqng .gt_indent_2 {
   text-indent: 10px;
 }
 
-#riheaedmov .gt_indent_3 {
+#tllgbuuqng .gt_indent_3 {
   text-indent: 15px;
 }
 
-#riheaedmov .gt_indent_4 {
+#tllgbuuqng .gt_indent_4 {
   text-indent: 20px;
 }
 
-#riheaedmov .gt_indent_5 {
+#tllgbuuqng .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2526,23 +2529,23 @@ domain.</p> </caption>
 <div class="cell-output-display">
 <div id="tbl-duzce" class="anchored">
 
-<div id="twhmpqyyyd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#twhmpqyyyd table {
+<div id="zjfasekfhm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zjfasekfhm table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#twhmpqyyyd thead, #twhmpqyyyd tbody, #twhmpqyyyd tfoot, #twhmpqyyyd tr, #twhmpqyyyd td, #twhmpqyyyd th {
+#zjfasekfhm thead, #zjfasekfhm tbody, #zjfasekfhm tfoot, #zjfasekfhm tr, #zjfasekfhm td, #zjfasekfhm th {
   border-style: none;
 }
 
-#twhmpqyyyd p {
+#zjfasekfhm p {
   margin: 0;
   padding: 0;
 }
 
-#twhmpqyyyd .gt_table {
+#zjfasekfhm .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2568,12 +2571,12 @@ domain.</p> </caption>
   border-left-color: #D3D3D3;
 }
 
-#twhmpqyyyd .gt_caption {
+#zjfasekfhm .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#twhmpqyyyd .gt_title {
+#zjfasekfhm .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2585,7 +2588,7 @@ domain.</p> </caption>
   border-bottom-width: 0;
 }
 
-#twhmpqyyyd .gt_subtitle {
+#zjfasekfhm .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2597,7 +2600,7 @@ domain.</p> </caption>
   border-top-width: 0;
 }
 
-#twhmpqyyyd .gt_heading {
+#zjfasekfhm .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2609,13 +2612,13 @@ domain.</p> </caption>
   border-right-color: #D3D3D3;
 }
 
-#twhmpqyyyd .gt_bottom_border {
+#zjfasekfhm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#twhmpqyyyd .gt_col_headings {
+#zjfasekfhm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2630,7 +2633,7 @@ domain.</p> </caption>
   border-right-color: #D3D3D3;
 }
 
-#twhmpqyyyd .gt_col_heading {
+#zjfasekfhm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2650,7 +2653,7 @@ domain.</p> </caption>
   overflow-x: hidden;
 }
 
-#twhmpqyyyd .gt_column_spanner_outer {
+#zjfasekfhm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2662,15 +2665,15 @@ domain.</p> </caption>
   padding-right: 4px;
 }
 
-#twhmpqyyyd .gt_column_spanner_outer:first-child {
+#zjfasekfhm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#twhmpqyyyd .gt_column_spanner_outer:last-child {
+#zjfasekfhm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#twhmpqyyyd .gt_column_spanner {
+#zjfasekfhm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2682,11 +2685,11 @@ domain.</p> </caption>
   width: 100%;
 }
 
-#twhmpqyyyd .gt_spanner_row {
+#zjfasekfhm .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#twhmpqyyyd .gt_group_heading {
+#zjfasekfhm .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2712,7 +2715,7 @@ domain.</p> </caption>
   text-align: left;
 }
 
-#twhmpqyyyd .gt_empty_group_heading {
+#zjfasekfhm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2727,15 +2730,15 @@ domain.</p> </caption>
   vertical-align: middle;
 }
 
-#twhmpqyyyd .gt_from_md > :first-child {
+#zjfasekfhm .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#twhmpqyyyd .gt_from_md > :last-child {
+#zjfasekfhm .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#twhmpqyyyd .gt_row {
+#zjfasekfhm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2754,7 +2757,7 @@ domain.</p> </caption>
   overflow-x: hidden;
 }
 
-#twhmpqyyyd .gt_stub {
+#zjfasekfhm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2767,7 +2770,7 @@ domain.</p> </caption>
   padding-right: 5px;
 }
 
-#twhmpqyyyd .gt_stub_row_group {
+#zjfasekfhm .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2781,15 +2784,15 @@ domain.</p> </caption>
   vertical-align: top;
 }
 
-#twhmpqyyyd .gt_row_group_first td {
+#zjfasekfhm .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#twhmpqyyyd .gt_row_group_first th {
+#zjfasekfhm .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#twhmpqyyyd .gt_summary_row {
+#zjfasekfhm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2799,16 +2802,16 @@ domain.</p> </caption>
   padding-right: 5px;
 }
 
-#twhmpqyyyd .gt_first_summary_row {
+#zjfasekfhm .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#twhmpqyyyd .gt_first_summary_row.thick {
+#zjfasekfhm .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#twhmpqyyyd .gt_last_summary_row {
+#zjfasekfhm .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2818,7 +2821,7 @@ domain.</p> </caption>
   border-bottom-color: #D3D3D3;
 }
 
-#twhmpqyyyd .gt_grand_summary_row {
+#zjfasekfhm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2828,7 +2831,7 @@ domain.</p> </caption>
   padding-right: 5px;
 }
 
-#twhmpqyyyd .gt_first_grand_summary_row {
+#zjfasekfhm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2838,7 +2841,7 @@ domain.</p> </caption>
   border-top-color: #D3D3D3;
 }
 
-#twhmpqyyyd .gt_last_grand_summary_row_top {
+#zjfasekfhm .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2848,11 +2851,11 @@ domain.</p> </caption>
   border-bottom-color: #D3D3D3;
 }
 
-#twhmpqyyyd .gt_striped {
+#zjfasekfhm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#twhmpqyyyd .gt_table_body {
+#zjfasekfhm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2861,7 +2864,7 @@ domain.</p> </caption>
   border-bottom-color: #D3D3D3;
 }
 
-#twhmpqyyyd .gt_footnotes {
+#zjfasekfhm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2875,7 +2878,7 @@ domain.</p> </caption>
   border-right-color: #D3D3D3;
 }
 
-#twhmpqyyyd .gt_footnote {
+#zjfasekfhm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2884,7 +2887,7 @@ domain.</p> </caption>
   padding-right: 5px;
 }
 
-#twhmpqyyyd .gt_sourcenotes {
+#zjfasekfhm .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2898,7 +2901,7 @@ domain.</p> </caption>
   border-right-color: #D3D3D3;
 }
 
-#twhmpqyyyd .gt_sourcenote {
+#zjfasekfhm .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2906,63 +2909,63 @@ domain.</p> </caption>
   padding-right: 5px;
 }
 
-#twhmpqyyyd .gt_left {
+#zjfasekfhm .gt_left {
   text-align: left;
 }
 
-#twhmpqyyyd .gt_center {
+#zjfasekfhm .gt_center {
   text-align: center;
 }
 
-#twhmpqyyyd .gt_right {
+#zjfasekfhm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#twhmpqyyyd .gt_font_normal {
+#zjfasekfhm .gt_font_normal {
   font-weight: normal;
 }
 
-#twhmpqyyyd .gt_font_bold {
+#zjfasekfhm .gt_font_bold {
   font-weight: bold;
 }
 
-#twhmpqyyyd .gt_font_italic {
+#zjfasekfhm .gt_font_italic {
   font-style: italic;
 }
 
-#twhmpqyyyd .gt_super {
+#zjfasekfhm .gt_super {
   font-size: 65%;
 }
 
-#twhmpqyyyd .gt_footnote_marks {
+#zjfasekfhm .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#twhmpqyyyd .gt_asterisk {
+#zjfasekfhm .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#twhmpqyyyd .gt_indent_1 {
+#zjfasekfhm .gt_indent_1 {
   text-indent: 5px;
 }
 
-#twhmpqyyyd .gt_indent_2 {
+#zjfasekfhm .gt_indent_2 {
   text-indent: 10px;
 }
 
-#twhmpqyyyd .gt_indent_3 {
+#zjfasekfhm .gt_indent_3 {
   text-indent: 15px;
 }
 
-#twhmpqyyyd .gt_indent_4 {
+#zjfasekfhm .gt_indent_4 {
   text-indent: 20px;
 }
 
-#twhmpqyyyd .gt_indent_5 {
+#zjfasekfhm .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -3014,8 +3017,9 @@ domain.</p> </caption>
 </div>
 </section>
 </section>
-<section id="conclusion" class="level1">
+<section id="conclusion" class="level1" style="text-align: justify">
 <h1>Conclusion</h1>
+<p>In summary, the integration of the WRF model with data assimilation techniques has proven to be a valuable tool for advancing our understanding of regional weather patterns. The outcomes of this study have practical applications in operational forecasting, research endeavors, and emergency response, contributing to the broader field of atmospheric science.These steps collectively demonstrate a comprehensive workflow for importing, processing, and analyzing meteorological data, including visualization and error analysis.</p>
 </section>
 
 </main>
