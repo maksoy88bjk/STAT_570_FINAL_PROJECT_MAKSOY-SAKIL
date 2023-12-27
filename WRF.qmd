@@ -184,7 +184,7 @@ t2 <- ncvar_get(nc_data2, "Times"); t2
 ymd_hms(t2[121]) - ymd_hms(t2[1])
 ```
 
-### Study Area (Domain2)
+### Study Area (Domain 2)
 
 @fig-domain2 below shows the comparison of two domains and coverage of domain 2 where covers some part of northwest of Türkiye.
 
