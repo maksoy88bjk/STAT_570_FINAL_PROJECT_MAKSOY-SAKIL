@@ -26,7 +26,7 @@ According to ECMWF report, *these processes affect too a small area to be predic
 
 NWP models start with an initial value and it is the challenge because initial-value effects next predictions with an increasing error. Thus, updating initial-value prediction is a method to improve prediction accuracy which is called as data assimilation. Infrared radiance from the geostationary satellites and on-site radiosonde observation data assimilation are powerful tools to improve the weather forecast have been widely applied with this purpose in the past a few decades [@geer2018].
 
-There are a number of data assimilation techniques used in weather forecasting. One of the most prominent are the three- and four dimensional variational data assimilation methods (3D-var and 4D-var). 3D-var incorporates meteorological data only within a time window around the initialization moment and in this method the analysis increment (an increment is introduced due to the actual observations) does not evolve in time, e.g. it has effect only at the beginning of the simulation. On the other hand 4D-var method uses tangent linear and adjoint models which model the propagation of analysis increment and more computing time is needed [@vladimirov2020].
+There are a number of data assimilation techniques used in weather forecasting. One of the most prominent are the three and four dimensional variational data assimilation methods (3D-var and 4D-var). 3D-var incorporates meteorological data only within a time window around the initialization moment and in this method the analysis increment (an increment is introduced due to the actual observations) does not evolve in time, e.g. it has effect only at the beginning of the simulation. On the other hand 4D-var method uses tangent linear and adjoint models which model the propagation of analysis increment and more computing time is needed [@vladimirov2020].
 
 ### Weather Research and Forecasting (WRF) model
 
@@ -241,7 +241,8 @@ The code uses the dplyr and gt packages for data manipulation and table creation
 #| label: tbl-gauges-domain2
 #| tbl-cap: Meteorological stations accross the domain 2.
 
-df_gauges <- read.delim("D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT_570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/gauges.txt", sep="|")
+df_gauges <- read.delim(paste0("D:/Kitaplar/METU-PHD/COURSES/3-TERM/",
+"STAT570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/gauges.txt"), sep="|")
 
 df_gauges<- df_gauges[,-c(3,4)]
 colnames(df_gauges)<- c("Station","Province","Latitude","Longitude","Altitude") 
@@ -278,7 +279,9 @@ ggplot(data = world)  + geom_sf(fill = "white") +
 The code reads temperature observations from an Excel. In the raw dataset, some dates can be missing;however, these are not defined as null. Therefore, leaping values can be detected then it assigned as a null.
 
 ```{r}
-temp_obs<- read_excel("D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT_570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/df_2023122096C0-Saatlik_Sicaklik.xlsx")
+temp_obs<- read_excel(paste0("D:/Kitaplar/METU-PHD/COURSES/3-TERM/",
+"STAT570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/",
+"df_2023122096C0-Saatlik_Sicaklik.xlsx"))
 head(temp_obs)
 
 temp_obs<-
@@ -498,8 +501,7 @@ new_df_list[[1]] |>
           names_to = "Temperature",
           values_to = "value",
           values_drop_na = FALSE) |> 
-  mutate(Station = factor(Station, 
-         labels = df_gauges$Province )) |>
+  mutate(Station = factor(Station, labels = df_gauges$Province )) |>
   mutate(Temperature =  factor(Temperature, 
          levels= c("observation", "predict_do1_nas", "predict_do1")) ) |>  
 ggplot(aes(x= dates, y=value)) +   
@@ -510,8 +512,8 @@ ggplot(aes(x= dates, y=value)) +
                      'predict_do1' = "#fc2852"),
           labels = c('observation' = 'Observation',
                      'predict_do1_nas' = 'Non-Assimilated Prediction DO1',
-                     'predict_do1' = 'Assimilated Prediction DO1')) + theme_bw() + 
-  facet_wrap(~Station, scales = "free_y") + 
+                     'predict_do1' = 'Assimilated Prediction DO1')) + 
+  theme_bw() + facet_wrap(~Station, scales = "free_y") + 
   labs(x=" ",y=expression("Temperature"~(degree*C))) + 
   theme(axis.text.x = element_text(angle = 0, hjust = 1))  +
   theme(legend.position = c(.88, .1), 
@@ -527,18 +529,18 @@ ggplot(aes(x= dates, y=value)) +
 #| fig-cap: Scatterplot and heatmap of observations versus predictions in domain 1.
 
 plot1<- 
-new_df_list[[1]] |>        
-  left_join(new_df_list[[3]], by = c("Station","dates","observation")) |> 
-    pivot_longer(
-          cols = -c(1,2,4),
-          names_to = "Pred.Type",
-          values_to = "Prediction",
-          values_drop_na = FALSE) |>
+  new_df_list[[1]] |>        
+    left_join(new_df_list[[3]], by = c("Station","dates","observation")) |> 
+      pivot_longer(
+        cols = -c(1,2,4),
+        names_to = "Pred.Type",
+        values_to = "Prediction",
+        values_drop_na = FALSE) |>
 ggplot(aes(x= observation, y=Prediction, color=Pred.Type)) +   
   theme_bw() +
   geom_point(size=2, alpha=0.5) +   
   geom_smooth(color ="black", se=FALSE) +
-    scale_colour_manual(name= " ", 
+  scale_colour_manual(name= " ", 
           values = c('predict_do1_nas' = "blue",
                      'predict_do1' = "#fc2852"),
           labels = c('predict_do1_nas' = 'Non-Assimilated Prediction DO1',
@@ -546,16 +548,16 @@ ggplot(aes(x= observation, y=Prediction, color=Pred.Type)) +
   labs(x="Observation",y="Prediction") + theme(legend.position = "top")
 
 plot2<- 
-new_df_list[[1]] |>
-  left_join(new_df_list[[3]], by = c("Station","dates","observation")) |>
-    pivot_longer(
-      cols = -c(1,2,4),
-      names_to = "Pred.Type",
-      values_to = "Prediction",
-      values_drop_na = FALSE) |>
+  new_df_list[[1]] |>
+    left_join(new_df_list[[3]], by = c("Station","dates","observation")) |>
+      pivot_longer(
+        cols = -c(1,2,4),
+        names_to = "Pred.Type",
+        values_to = "Prediction",
+        values_drop_na = FALSE) |>
 ggplot(aes(x= observation, y=Prediction, fill=Pred.Type)) + 
   geom_hex(alpha=0.5) + theme_bw() +
-    scale_fill_manual(name= " ",
+  scale_fill_manual(name= " ",
       values = c('predict_do1_nas' = "blue",
                   'predict_do1' = "red"),
       labels = c('predict_do1_nas' = 'Non-Assimilated Prediction DO1',
@@ -574,13 +576,12 @@ ggarrange(plot1,plot2,ncol=2 ,nrow = 1)
 
 new_df_list[[2]] |>        
   left_join(new_df_list[[4]], by = c("Station","dates","observation")) |> 
-  pivot_longer(
-          cols = -c(1:2),
-          names_to = "Temperature",
-          values_to = "value",
-          values_drop_na = FALSE) |> 
-  mutate(Station = factor(Station, 
-         labels = df_gauges$Province )) |>
+    pivot_longer(
+      cols = -c(1:2),
+      names_to = "Temperature",
+      values_to = "value",
+      values_drop_na = FALSE) |> 
+  mutate(Station = factor(Station, labels = df_gauges$Province )) |>
   mutate(Temperature =  factor(Temperature, 
          levels= c("observation", "predict_do2_nas", "predict_do2")) ) |>  
 ggplot(aes(x= dates, y=value)) +   
@@ -591,8 +592,8 @@ ggplot(aes(x= dates, y=value)) +
                      'predict_do2' = "#23bfce"),
           labels = c('observation' = 'Observation',
                      'predict_do2_nas' = 'Non-Assimilated Prediction DO2',
-                     'predict_do2' = 'Assimilated Prediction DO2')) + theme_bw() + 
-  facet_wrap(~Station, scales = "free_y") + 
+                     'predict_do2' = 'Assimilated Prediction DO2')) + 
+  theme_bw() + facet_wrap(~Station, scales = "free_y") + 
   labs(x=" ",y=expression("Temperature"~(degree*C))) + 
   theme(axis.text.x = element_text(angle = 0, hjust = 1))  +
   theme(legend.position = c(.88, .1), 
@@ -636,7 +637,7 @@ new_df_list[[2]] |>
        values_drop_na = FALSE) |>
 ggplot(aes(x= observation, y=Prediction, fill=Pred.Type)) + 
   geom_hex(alpha=0.5) +     theme_bw() +
-    scale_fill_manual(name= " ",
+  scale_fill_manual(name= " ",
            values = c('predict_do2_nas' = "#fc2852",
                       'predict_do2' = "blue"),
            labels = c('predict_do2_nas' = 'Non-Assimilated Prediction DO2',
@@ -654,20 +655,18 @@ ggarrange(plot3,plot4,ncol=2 ,nrow = 1)
 #| fig-cap: Comparison of predictions with observations for each province in both two domains.
 
 new_df_list[[1]] |>        
-     left_join(new_df_list[[3]], by = c("Station","dates","observation")) |> 
- left_join(new_df_list[[2]], by = c("Station","dates","observation")) |> 
- left_join(new_df_list[[4]], by = c("Station","dates","observation")) |> 
-  pivot_longer(
+  left_join(new_df_list[[3]], by = c("Station","dates","observation")) |> 
+  left_join(new_df_list[[2]], by = c("Station","dates","observation")) |> 
+  left_join(new_df_list[[4]], by = c("Station","dates","observation")) |> 
+    pivot_longer(
       cols = -c(1,2),
       names_to = "Temperature",
       values_to = "value",
       values_drop_na = FALSE) |> 
- mutate(Station = factor(Station, 
-         labels = df_gauges$Province )) |>
+  mutate(Station = factor(Station, labels = df_gauges$Province )) |>
   mutate(Temperature =  factor(Temperature, 
          levels= c("observation", "predict_do1", "predict_do1_nas",
                    "predict_do2_nas", "predict_do2")) ) |> 
-  
 ggplot(aes(x= dates, y=value)) +   
   geom_line(aes(colour = Temperature), size=0.7) +
   scale_colour_manual(name= expression("Temperature"~(degree*C)), 
