@@ -8,7 +8,7 @@
 
 <meta name="author" content="Mehmet AKSOY &amp; Sercan AKIL">
 
-<title>Evaluation of 3D-var Data-Assimilation of WRF Temperature Prediction Over Northwestern Türkiye: A case study for the period between 11 and 16 August, 2004</title>
+<title>Evaluation of 3D-var Data Assimilation of WRF Temperature Prediction Over Northwestern Türkiye: A Case Study for the Period of 11 and 16 August, 2004</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -99,42 +99,42 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">1. Introduction</a>
   <ul class="collapse">
-  <li><a href="#numerical-weather-prediction-nwp-models" id="toc-numerical-weather-prediction-nwp-models" class="nav-link" data-scroll-target="#numerical-weather-prediction-nwp-models">Numerical Weather Prediction (NWP) Models</a></li>
-  <li><a href="#data-assimilation" id="toc-data-assimilation" class="nav-link" data-scroll-target="#data-assimilation">Data Assimilation</a></li>
-  <li><a href="#weather-research-and-forecasting-wrf-model" id="toc-weather-research-and-forecasting-wrf-model" class="nav-link" data-scroll-target="#weather-research-and-forecasting-wrf-model">Weather Research and Forecasting (WRF) model</a></li>
+  <li><a href="#numerical-weather-prediction-nwp-models" id="toc-numerical-weather-prediction-nwp-models" class="nav-link" data-scroll-target="#numerical-weather-prediction-nwp-models">1.1. Numerical Weather Prediction (NWP) Models</a></li>
+  <li><a href="#data-assimilation" id="toc-data-assimilation" class="nav-link" data-scroll-target="#data-assimilation">1.2. Data Assimilation</a></li>
+  <li><a href="#weather-research-and-forecasting-wrf-model" id="toc-weather-research-and-forecasting-wrf-model" class="nav-link" data-scroll-target="#weather-research-and-forecasting-wrf-model">1.3. Weather Research and Forecasting (WRF) model</a></li>
   </ul></li>
-  <li><a href="#operations-on-assimilated-wrf-data" id="toc-operations-on-assimilated-wrf-data" class="nav-link" data-scroll-target="#operations-on-assimilated-wrf-data">Operations on Assimilated WRF Data</a>
+  <li><a href="#operations-on-assimilated-wrf-data" id="toc-operations-on-assimilated-wrf-data" class="nav-link" data-scroll-target="#operations-on-assimilated-wrf-data">2. Operations on Assimilated WRF Data</a>
   <ul class="collapse">
-  <li><a href="#uploading-necessary-packages" id="toc-uploading-necessary-packages" class="nav-link" data-scroll-target="#uploading-necessary-packages">Uploading Necessary Packages</a></li>
-  <li><a href="#temperature-forecast-of-wrf-in-domain-1" id="toc-temperature-forecast-of-wrf-in-domain-1" class="nav-link" data-scroll-target="#temperature-forecast-of-wrf-in-domain-1">Temperature Forecast of WRF in Domain 1</a>
+  <li><a href="#uploading-necessary-packages" id="toc-uploading-necessary-packages" class="nav-link" data-scroll-target="#uploading-necessary-packages">2.1. Uploading Necessary Packages</a></li>
+  <li><a href="#temperature-forecast-of-wrf-in-domain-1" id="toc-temperature-forecast-of-wrf-in-domain-1" class="nav-link" data-scroll-target="#temperature-forecast-of-wrf-in-domain-1">2.2. Temperature Forecast of WRF in Domain 1</a>
   <ul class="collapse">
-  <li><a href="#spatial-resolution-domain-1" id="toc-spatial-resolution-domain-1" class="nav-link" data-scroll-target="#spatial-resolution-domain-1">Spatial Resolution (Domain 1)</a></li>
-  <li><a href="#forecast-period-time-interval-domain-1" id="toc-forecast-period-time-interval-domain-1" class="nav-link" data-scroll-target="#forecast-period-time-interval-domain-1">Forecast Period &amp; Time Interval (Domain 1)</a></li>
-  <li><a href="#study-area-domain-1" id="toc-study-area-domain-1" class="nav-link" data-scroll-target="#study-area-domain-1">Study Area (Domain 1)</a></li>
+  <li><a href="#spatial-resolution-domain-1" id="toc-spatial-resolution-domain-1" class="nav-link" data-scroll-target="#spatial-resolution-domain-1">2.2.1. Spatial Resolution (Domain 1)</a></li>
+  <li><a href="#forecast-period-time-interval-domain-1" id="toc-forecast-period-time-interval-domain-1" class="nav-link" data-scroll-target="#forecast-period-time-interval-domain-1">2.2.2. Forecast Period &amp; Time Interval (Domain 1)</a></li>
+  <li><a href="#study-area-domain-1" id="toc-study-area-domain-1" class="nav-link" data-scroll-target="#study-area-domain-1">2.2.3. Study Area (Domain 1)</a></li>
   </ul></li>
-  <li><a href="#temperature-forecast-of-wrf-in-domain-2" id="toc-temperature-forecast-of-wrf-in-domain-2" class="nav-link" data-scroll-target="#temperature-forecast-of-wrf-in-domain-2">Temperature Forecast of WRF in Domain 2</a>
+  <li><a href="#temperature-forecast-of-wrf-in-domain-2" id="toc-temperature-forecast-of-wrf-in-domain-2" class="nav-link" data-scroll-target="#temperature-forecast-of-wrf-in-domain-2">2.3. Temperature Forecast of WRF in Domain 2</a>
   <ul class="collapse">
-  <li><a href="#spatial-resolution-domain-2" id="toc-spatial-resolution-domain-2" class="nav-link" data-scroll-target="#spatial-resolution-domain-2">Spatial Resolution (Domain 2)</a></li>
-  <li><a href="#forecast-period-time-interval-domain-2" id="toc-forecast-period-time-interval-domain-2" class="nav-link" data-scroll-target="#forecast-period-time-interval-domain-2">Forecast Period &amp; Time Interval (Domain 2)</a></li>
-  <li><a href="#study-area-domain-2" id="toc-study-area-domain-2" class="nav-link" data-scroll-target="#study-area-domain-2">Study Area (Domain 2)</a></li>
+  <li><a href="#spatial-resolution-domain-2" id="toc-spatial-resolution-domain-2" class="nav-link" data-scroll-target="#spatial-resolution-domain-2">2.3.1. Spatial Resolution (Domain 2)</a></li>
+  <li><a href="#forecast-period-time-interval-domain-2" id="toc-forecast-period-time-interval-domain-2" class="nav-link" data-scroll-target="#forecast-period-time-interval-domain-2">2.3.2. Forecast Period &amp; Time Interval (Domain 2)</a></li>
+  <li><a href="#study-area-domain-2" id="toc-study-area-domain-2" class="nav-link" data-scroll-target="#study-area-domain-2">2.3.3. Study Area (Domain 2)</a></li>
   </ul></li>
-  <li><a href="#derivation-of-temperature-prediction-and-observation" id="toc-derivation-of-temperature-prediction-and-observation" class="nav-link" data-scroll-target="#derivation-of-temperature-prediction-and-observation">Derivation of Temperature Prediction and Observation</a>
+  <li><a href="#derivation-of-temperature-prediction-observation" id="toc-derivation-of-temperature-prediction-observation" class="nav-link" data-scroll-target="#derivation-of-temperature-prediction-observation">2.4. Derivation of Temperature Prediction &amp; Observation</a>
   <ul class="collapse">
-  <li><a href="#identification-of-meteorological-stations" id="toc-identification-of-meteorological-stations" class="nav-link" data-scroll-target="#identification-of-meteorological-stations">Identification of Meteorological Stations</a></li>
-  <li><a href="#obtain-temperature-observations" id="toc-obtain-temperature-observations" class="nav-link" data-scroll-target="#obtain-temperature-observations">Obtain Temperature Observations</a></li>
-  <li><a href="#extraction-of-temperature-predictions-from-wrf" id="toc-extraction-of-temperature-predictions-from-wrf" class="nav-link" data-scroll-target="#extraction-of-temperature-predictions-from-wrf">Extraction of Temperature Predictions from WRF</a></li>
+  <li><a href="#identification-of-meteorological-stations" id="toc-identification-of-meteorological-stations" class="nav-link" data-scroll-target="#identification-of-meteorological-stations">2.4.1. Identification of Meteorological Stations</a></li>
+  <li><a href="#obtain-temperature-observations" id="toc-obtain-temperature-observations" class="nav-link" data-scroll-target="#obtain-temperature-observations">2.4.2. Obtain Temperature Observations</a></li>
+  <li><a href="#extraction-of-temperature-predictions-from-wrf" id="toc-extraction-of-temperature-predictions-from-wrf" class="nav-link" data-scroll-target="#extraction-of-temperature-predictions-from-wrf">2.4.3. Extraction of Temperature Predictions from WRF</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#operations-on-non-assimilated-wrf-data" id="toc-operations-on-non-assimilated-wrf-data" class="nav-link" data-scroll-target="#operations-on-non-assimilated-wrf-data">Operations on Non-Assimilated WRF Data</a></li>
-  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
+  <li><a href="#operations-on-non-assimilated-wrf-data" id="toc-operations-on-non-assimilated-wrf-data" class="nav-link" data-scroll-target="#operations-on-non-assimilated-wrf-data">3. Operations on Non-Assimilated WRF Data</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">4. Results</a>
   <ul class="collapse">
-  <li><a href="#derivation-of-data-frames" id="toc-derivation-of-data-frames" class="nav-link" data-scroll-target="#derivation-of-data-frames">Derivation of Data Frames</a></li>
-  <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization">Visualization</a></li>
-  <li><a href="#error-analysis" id="toc-error-analysis" class="nav-link" data-scroll-target="#error-analysis">Error Analysis</a></li>
+  <li><a href="#derivation-of-data-frames" id="toc-derivation-of-data-frames" class="nav-link" data-scroll-target="#derivation-of-data-frames">4.1. Derivation of Data Frames</a></li>
+  <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization">4.2. Visualization</a></li>
+  <li><a href="#error-analysis" id="toc-error-analysis" class="nav-link" data-scroll-target="#error-analysis">4.3. Error Analysis</a></li>
   </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">5. Conclusion</a></li>
   </ul>
 </nav>
 </div>
@@ -142,7 +142,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Evaluation of 3D-var Data-Assimilation of WRF Temperature Prediction Over Northwestern Türkiye: A case study for the period between 11 and 16 August, 2004</h1>
+<h1 class="title">Evaluation of 3D-var Data Assimilation of WRF Temperature Prediction Over Northwestern Türkiye: A Case Study for the Period of 11 and 16 August, 2004</h1>
 </div>
 
 
@@ -163,33 +163,33 @@ div.csl-indent {
 
 </header>
 
-<section id="abstract" class="level6" style="text-align: justify; font-size:16px">
+<section id="abstract" class="level6" style="text-align: justify; font-size:14px">
 <h6 class="anchored" data-anchor-id="abstract">ABSTRACT</h6>
 <p>In this project, we have been evaluated temperature prediction of assimilated and non assimilated WRF outputs over Northwestern Türkiye for the period of 11-16 August, 2004. Observation of eleven temperature gauges and corresponding WRF predictions in the study area have been compared. Moreover, predictions were extracted from assimilated and non assimilated raw WRF data of different domains with varied spatio-temporal resolutions by using gauges coordinates. For this purpose, visualization of results and calculation of error proceedings were performed in R programming and Quarto publishing system.</p>
 </section>
 <section id="introduction" class="level1" style="text-align: justify">
-<h1>Introduction</h1>
-<section id="numerical-weather-prediction-nwp-models" class="level3">
-<h3 class="anchored" data-anchor-id="numerical-weather-prediction-nwp-models">Numerical Weather Prediction (NWP) Models</h3>
-<p>Numerical Weather Prediction <strong>(NWP)</strong> models are used to predict weather conditions by simulating the atmosphere, oceans, land surface and their interactions. NWP models are based on mathematical equations representing the physical behavior of the atmosphere. These equations are translated into computer code and use governing equations, numerical methods, parameterizations of other physical processes and combined with initial and boundary conditions before running over a geographic area (we call that geographic area as domain). These physical processes need to be approximated in models because of huge simulation computer time which is called as parameterization.</p>
+<h1>1. Introduction</h1>
+<section id="numerical-weather-prediction-nwp-models" class="level2">
+<h2 class="anchored" data-anchor-id="numerical-weather-prediction-nwp-models">1.1. Numerical Weather Prediction (NWP) Models</h2>
+<p>Numerical Weather Prediction (NWP) models are used to predict weather conditions by simulating the atmosphere, oceans, land surface and their interactions. NWP models are based on mathematical equations representing the physical behavior of the atmosphere. These equations are translated into computer code and use governing equations, numerical methods, parameterizations of other physical processes and combined with initial and boundary conditions before running over a geographic area (we call that geographic area as domain). These physical processes need to be approximated in models because of huge simulation computer time which is called as parameterization.</p>
 <p>According to ECMWF report, <em>these processes affect too a small area to be predicted in full detail by NWP models. The major reason lies in the limited computing power that still does not allow us to calculate the all processes for any place on Earth</em> <span class="citation" data-cites="frnda2022">(<a href="#ref-frnda2022" role="doc-biblioref">Frnda et al. 2022</a>)</span>.</p>
 </section>
-<section id="data-assimilation" class="level3">
-<h3 class="anchored" data-anchor-id="data-assimilation">Data Assimilation</h3>
+<section id="data-assimilation" class="level2">
+<h2 class="anchored" data-anchor-id="data-assimilation">1.2. Data Assimilation</h2>
 <p>NWP models start with an initial value and it is the challenge because initial-value effects next predictions with an increasing error. Thus, updating initial-value prediction is a method to improve prediction accuracy which is called as data assimilation. Infrared radiance from the geostationary satellites and on-site radiosonde observation data assimilation are powerful tools to improve the weather forecast have been widely applied with this purpose in the past a few decades <span class="citation" data-cites="geer2018">(<a href="#ref-geer2018" role="doc-biblioref">Geer et al. 2018</a>)</span>.</p>
-<p>There are a number of data assimilation techniques used in weather forecasting. One of the most prominent are the three- and four dimensional variational data assimilation methods (3D-var and 4D-var). 3D-var incorporates meteorological data only within a time window around the initialization moment and in this method the analysis increment (an increment is introduced due to the actual observations) does not evolve in time, e.g.&nbsp;it has effect only at the beginning of the simulation. On the other hand 4D-var method uses tangent linear and adjoint models which model the propagation of analysis increment and more computing time is needed <span class="citation" data-cites="vladimirov2020">(<a href="#ref-vladimirov2020" role="doc-biblioref">Vladimirov, Dimitrova, and Danchovski 2020</a>)</span>.</p>
+<p>There are a number of data assimilation techniques used in weather forecasting. One of the most prominent are the three and four dimensional variational data assimilation methods (3D-var and 4D-var). 3D-var incorporates meteorological data only within a time window around the initialization moment and in this method the analysis increment (an increment is introduced due to the actual observations) does not evolve in time, e.g.&nbsp;it has effect only at the beginning of the simulation. On the other hand 4D-var method uses tangent linear and adjoint models which model the propagation of analysis increment and more computing time is needed <span class="citation" data-cites="vladimirov2020">(<a href="#ref-vladimirov2020" role="doc-biblioref">Vladimirov, Dimitrova, and Danchovski 2020</a>)</span>.</p>
 </section>
-<section id="weather-research-and-forecasting-wrf-model" class="level3">
-<h3 class="anchored" data-anchor-id="weather-research-and-forecasting-wrf-model">Weather Research and Forecasting (WRF) model</h3>
+<section id="weather-research-and-forecasting-wrf-model" class="level2">
+<h2 class="anchored" data-anchor-id="weather-research-and-forecasting-wrf-model">1.3. Weather Research and Forecasting (WRF) model</h2>
 <p>The Weather Research and Forecasting (WRF) model is a next-generation open source mesoscale numerical weather prediction system. As it is open source, it has a very flexible structure that allows it to be used by met-offices, universities and atmospheric research centers <span class="citation" data-cites="powers2017">(<a href="#ref-powers2017" role="doc-biblioref">Powers et al. 2017</a>)</span>. The effort to develop WRF began in the latter 1990’s and was a collaborative partnership of the National Center for Atmospheric Research (NCAR), the National Oceanic and Atmospheric Administration (NOAA), the U.S. Air Force, the Naval Research Laboratory, the University of Oklahoma, and the Federal Aviation Administration (<a href="https://www.mmm.ucar.edu/models/wrf">WRF web page</a>).</p>
 <p>The WRF model is used for operational weather forecasting and research purposes at <em>Turkish State Meteorological Service</em> since last two decades, as it is at many meteorological services around the world. It is the fact that data assimilation of observations into WRF model method is very popular not only in Türkiye but also in all over world since it has a great potential to improve model forecast skill by reducing errors of initial conditions <span class="citation" data-cites="yucel2014 yucel2015 bao2015 cheng2017">(<a href="#ref-yucel2014" role="doc-biblioref">Yucel and Onen 2014</a>; <a href="#ref-yucel2015" role="doc-biblioref">Yucel et al. 2015</a>; <a href="#ref-bao2015" role="doc-biblioref">Bao et al. 2015</a>; <a href="#ref-cheng2017" role="doc-biblioref">Cheng et al. 2017</a>)</span>.</p>
 </section>
 </section>
 <section id="operations-on-assimilated-wrf-data" class="level1" style="text-align: justify">
-<h1>Operations on Assimilated WRF Data</h1>
+<h1>2. Operations on Assimilated WRF Data</h1>
 <p>There are two files for two different domains as assimilated and non-assimilated predictions of WRF model. Thus, there are four netcdf files totally. We are going to define prediction variables, forecast period and coverage of domains for each file.</p>
 <section id="uploading-necessary-packages" class="level2">
-<h2 class="anchored" data-anchor-id="uploading-necessary-packages">Uploading Necessary Packages</h2>
+<h2 class="anchored" data-anchor-id="uploading-necessary-packages">2.1. Uploading Necessary Packages</h2>
 <p>We will need several packages for some implementations in R, for instance; opening of the netcdf files of WRF data, handling of WRF outputs, visualization and similar operations <span class="citation" data-cites="readxl tidyverse ggplot2-2 ggpubr-2 raster rnaturalearth ncdf4 R.utils sf gt">(<a href="#ref-readxl" role="doc-biblioref">Wickham and Bryan 2023</a>; <a href="#ref-tidyverse" role="doc-biblioref">Wickham et al. 2019</a>; <a href="#ref-ggplot2-2" role="doc-biblioref">Wickham 2016</a>; <a href="#ref-ggpubr-2" role="doc-biblioref">Kassambara 2023</a>; <a href="#ref-raster" role="doc-biblioref">Hijmans 2023</a>; <a href="#ref-rnaturalearth" role="doc-biblioref">Massicotte and South 2023</a>; <a href="#ref-ncdf4" role="doc-biblioref">Pierce 2023</a>; <a href="#ref-R.utils" role="doc-biblioref">Bengtsson 2023</a>; <a href="#ref-sf" role="doc-biblioref">Pebesma and Bivand 2023</a>; <a href="#ref-gt" role="doc-biblioref">Iannone et al. 2023</a>)</span>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
@@ -205,9 +205,9 @@ div.csl-indent {
 </div>
 </section>
 <section id="temperature-forecast-of-wrf-in-domain-1" class="level2">
-<h2 class="anchored" data-anchor-id="temperature-forecast-of-wrf-in-domain-1">Temperature Forecast of WRF in Domain 1</h2>
+<h2 class="anchored" data-anchor-id="temperature-forecast-of-wrf-in-domain-1">2.2. Temperature Forecast of WRF in Domain 1</h2>
+<p>The code in the below reads a NetCDF file (fname) using the <em>nc_open function</em> from the ncdf4 package. NetCDF is a file format commonly used for storing multidimensional scientific data including NWP model output.</p>
 <p>Firstly, we opened the assimilated WRF output for domain 1. Using sink function the content of WRF output at the attachments (<a href="https://github.com/maksoy88bjk/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/blob/main/aswout/wrfout_d01_2004-08-11_00_00_00.txt" title="wrfout_d01_2004-08-11_00_00_00.txt">wrfout_d01_2004-08-11_00_00_00.txt</a>) can be created. The data cover time and coverage domain information with meteorological predictions such as potential temperature <strong>(T)</strong>, temperature at 2 meter <strong>(T2)</strong>, wind speed at ten meter <strong>(U10 &amp; V10)</strong>, precipitation <strong>(RAINC &amp; RAINNC)</strong> and etc. We need to use name of the variables to extract specific data variables from the raw data.</p>
-<p>The code in the below reads a NetCDF file (<strong>fname</strong>) using the <strong>nc_open</strong> function from the <strong>ncdf4</strong> package. NetCDF is a file format commonly used for storing multidimensional scientific data.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fname <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"D:/Kitaplar/METU-PHD/Thesis/IsmailHocandanAldim_Aksoy_27092023/"</span>,</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">"aswout/wrfout_d01_2004-08-11_00_00_00"</span>)</span>
@@ -226,7 +226,7 @@ div.csl-indent {
     stagger: 
     coordinates: XLONG XLAT</code></pre>
 <section id="spatial-resolution-domain-1" class="level3">
-<h3 class="anchored" data-anchor-id="spatial-resolution-domain-1">Spatial Resolution (Domain 1)</h3>
+<h3 class="anchored" data-anchor-id="spatial-resolution-domain-1">2.2.1. Spatial Resolution (Domain 1)</h3>
 <p>Spatial resolution of domain 1 is 12 km as you can see below <em>(DX: 12000, DY:12000)</em>.</p>
 <pre><code>78 global attributes:
     TITLE:  OUTPUT FROM WRF V3.1.1 MODEL
@@ -237,8 +237,8 @@ div.csl-indent {
     BOTTOM-TOP_GRID_DIMENSION: 28
     DX: 12000
     DY: 12000</code></pre>
-<p>There are <strong>41</strong> time steps which means we can get predictions along the domain <strong>(191x115)</strong> for whole period. Additionally, the data includes information for <strong>27</strong> layers from bottom to top of the atmosphere.</p>
-<p>Here, the code extracts specific variables (longitude, latitude, temperature, and time) from the NetCDF file using the <strong>ncvar_get</strong> function.</p>
+<p>Here, the code extracts specific variables (longitude, latitude, temperature, and time) from the NetCDF file using the <em>ncvar_get function</em>.</p>
+<p>There are <strong>41</strong> time steps which means we can get predictions along the domain <strong>(191x115)</strong> for whole period. Additionally, the data includes information for <strong>27</strong> layers from bottom to top of the atmosphere. Fortunately, we do not have to deal with upper layers’ data since we just need to extract temperature predictions at 2 meters.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>long<span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data, <span class="st">"XLONG"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>lat<span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data, <span class="st">"XLAT"</span>, <span class="at">verbose =</span> F)</span>
@@ -255,7 +255,7 @@ div.csl-indent {
 </div>
 </section>
 <section id="forecast-period-time-interval-domain-1" class="level3">
-<h3 class="anchored" data-anchor-id="forecast-period-time-interval-domain-1">Forecast Period &amp; Time Interval (Domain 1)</h3>
+<h3 class="anchored" data-anchor-id="forecast-period-time-interval-domain-1">2.2.2. Forecast Period &amp; Time Interval (Domain 1)</h3>
 <p>We can also obtained the forecast horizon by getting time steps from the data. After getting time steps, we see that forecast period is between 11 and 16 (00:00 UTC) August, 2004. In this case, the time interval for the forecast period up to +120 hours <em>(or five days)</em> is three hour.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data, <span class="st">"Times"</span>); t</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -282,9 +282,9 @@ div.csl-indent {
 </div>
 </section>
 <section id="study-area-domain-1" class="level3">
-<h3 class="anchored" data-anchor-id="study-area-domain-1">Study Area (Domain 1)</h3>
+<h3 class="anchored" data-anchor-id="study-area-domain-1">2.2.3. Study Area (Domain 1)</h3>
 <p><a href="#fig-domain1">Figure&nbsp;1</a> below shows the coverage of domain 1 where covers Türkiye and its surrounding.</p>
-<p>The code in the below creates a list of raster objects for each time step from the extracted temperature from raw WRF data set. Kelvin unit has been converted into Celcius by implementing -273.15. Raster objects are used for working with gridded spatial data. Additionally, <strong>ggplot2</strong> package is used to create a map visualization. It overlays the temperature data onto a map of countries, setting up appropriate coordinate systems and color scales.</p>
+<p>The code in the below creates a list of raster objects for each time step from the extracted temperature from raw WRF data set. Kelvin unit has been converted into Celcius by implementing -273.15. Raster objects are used for working with gridded spatial data. Additionally, <em>ggplot2</em> package is used to create a map visualization. It overlays the temperature data onto a map of countries, setting up appropriate coordinate systems and color scales.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>raster_temp<span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(temp)[<span class="dv">3</span>])   {</span>
@@ -315,7 +315,7 @@ div.csl-indent {
 </section>
 </section>
 <section id="temperature-forecast-of-wrf-in-domain-2" class="level2">
-<h2 class="anchored" data-anchor-id="temperature-forecast-of-wrf-in-domain-2">Temperature Forecast of WRF in Domain 2</h2>
+<h2 class="anchored" data-anchor-id="temperature-forecast-of-wrf-in-domain-2">2.3. Temperature Forecast of WRF in Domain 2</h2>
 <p>There are <strong>121</strong> time steps for second domain since we can inference by dimension of <strong>T2</strong> data.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fname2 <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"D:/Kitaplar/METU-PHD/Thesis/IsmailHocandanAldim_Aksoy_27092023/"</span>,</span>
@@ -336,7 +336,7 @@ div.csl-indent {
 </div>
 </div>
 <section id="spatial-resolution-domain-2" class="level3">
-<h3 class="anchored" data-anchor-id="spatial-resolution-domain-2">Spatial Resolution (Domain 2)</h3>
+<h3 class="anchored" data-anchor-id="spatial-resolution-domain-2">2.3.1. Spatial Resolution (Domain 2)</h3>
 <p>Spatial resolution of domain 2 is 4 km which is a finer resolution than previous one <em>(DX: 4000, DY: 4000)</em>.</p>
 <pre><code>78 global attributes:
     TITLE:  OUTPUT FROM WRF V3.1.1 MODEL
@@ -349,7 +349,7 @@ div.csl-indent {
     DY: 4000</code></pre>
 </section>
 <section id="forecast-period-time-interval-domain-2" class="level3">
-<h3 class="anchored" data-anchor-id="forecast-period-time-interval-domain-2">Forecast Period &amp; Time Interval (Domain 2)</h3>
+<h3 class="anchored" data-anchor-id="forecast-period-time-interval-domain-2">2.3.2. Forecast Period &amp; Time Interval (Domain 2)</h3>
 <p>Forecast period for domain 2 is same with previous one. However, the time interval is one hour and it has a finer temporal resolution.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> <span class="fu">ncvar_get</span>(nc_data2, <span class="st">"Times"</span>); t2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -403,15 +403,16 @@ div.csl-indent {
 </div>
 </section>
 <section id="study-area-domain-2" class="level3">
-<h3 class="anchored" data-anchor-id="study-area-domain-2">Study Area (Domain 2)</h3>
+<h3 class="anchored" data-anchor-id="study-area-domain-2">2.3.3. Study Area (Domain 2)</h3>
 <p><a href="#fig-domain2">Figure&nbsp;2</a> below shows the comparison of two domains and coverage of domain 2 where covers some part of northwest of Türkiye.</p>
+<p>It is clearly seen that the intersection of domain 1 and 2 is the entire domain 2. Thus, our study area become only the entire domain 2.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>raster_temp_2<span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(temp_2)[<span class="dv">3</span>])   {</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    raster_temp_2[[i]] <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">t</span>(temp_2[, , i] <span class="sc">-</span> <span class="fl">273.15</span>), </span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">xmn=</span><span class="fu">min</span>(long_2), <span class="at">xmx=</span><span class="fu">max</span>(long_2),</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">ymn=</span><span class="fu">min</span>(lat_2), <span class="at">ymx=</span><span class="fu">max</span>(lat_2), </span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">crs=</span><span class="fu">CRS</span>(<span class="st">"+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"</span>))</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  raster_temp_2[[i]] <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">t</span>(temp_2[, , i] <span class="sc">-</span> <span class="fl">273.15</span>), </span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xmn=</span><span class="fu">min</span>(long_2), <span class="at">xmx=</span><span class="fu">max</span>(long_2),</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">ymn=</span><span class="fu">min</span>(lat_2), <span class="at">ymx=</span><span class="fu">max</span>(lat_2), </span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">crs=</span><span class="fu">CRS</span>(<span class="st">"+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"</span>))</span>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>                              }</span>
 <span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>temp_df_2 <span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(raster_temp_2[[<span class="fu">length</span>(t2)]], <span class="at">xy =</span> <span class="cn">TRUE</span>) </span>
@@ -436,41 +437,42 @@ div.csl-indent {
 </div>
 </section>
 </section>
-<section id="derivation-of-temperature-prediction-and-observation" class="level2">
-<h2 class="anchored" data-anchor-id="derivation-of-temperature-prediction-and-observation">Derivation of Temperature Prediction and Observation</h2>
+<section id="derivation-of-temperature-prediction-observation" class="level2">
+<h2 class="anchored" data-anchor-id="derivation-of-temperature-prediction-observation">2.4. Derivation of Temperature Prediction &amp; Observation</h2>
 <section id="identification-of-meteorological-stations" class="level3">
-<h3 class="anchored" data-anchor-id="identification-of-meteorological-stations">Identification of Meteorological Stations</h3>
+<h3 class="anchored" data-anchor-id="identification-of-meteorological-stations">2.4.1. Identification of Meteorological Stations</h3>
 <p>Domain 2 covers several provinces which are located northwest of Türkiye. Thus, we need to determine meteorological stations for comparing observation versus assimilated and non-assimilated WRF predictions. The code in the chunk reads data from a delimited text file containing information about meteorological stations. Each specific station was selected for each province to evaluate the performance of both assimilated and non-assimilated WRF predictions. <a href="#tbl-gauges-domain2">Table&nbsp;1</a> shows the main gauges across the domain 2.</p>
-<p>The code uses the dplyr and gt packages for data manipulation and table creation. it asisst to perform data wrangling and cleaning on the meteorological station data, containing renaming columns, converting province names, and arranging the data. The tolower function is used to convert the province names to lowercase. The str_to_title() function from the stringr package is applied to convert the province names’ first letter to title case.</p>
+<p>The code uses the <em>dplyr and gt</em> packages for data manipulation and table creation. it assist to perform data wrangling and cleaning on the meteorological station data, containing renaming columns, converting province names, and arranging the data. The <em>tolower function</em> is used to convert the province names to lowercase. The <em>str_to_title() function</em> from the <em>stringr</em> package is applied to convert the province names’ first letter to title case.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df_gauges <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">"D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT_570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/gauges.txt"</span>, <span class="at">sep=</span><span class="st">"|"</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>df_gauges<span class="ot">&lt;-</span> df_gauges[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>)]</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df_gauges)<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"Province"</span>,<span class="st">"Latitude"</span>,<span class="st">"Longitude"</span>,<span class="st">"Altitude"</span>) </span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>df_gauges<span class="sc">$</span>Province <span class="ot">&lt;-</span> <span class="fu">tolower</span>(df_gauges<span class="sc">$</span>Province) <span class="sc">|&gt;</span> <span class="fu">str_to_title</span>() </span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>df_gauges<span class="ot">&lt;-</span> df_gauges <span class="sc">|&gt;</span> <span class="fu">arrange</span>(Station) </span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>df_gauges <span class="sc">|&gt;</span>  <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df_gauges <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="fu">paste0</span>(<span class="st">"D:/Kitaplar/METU-PHD/COURSES/3-TERM/"</span>,</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="st">"STAT_570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/gauges.txt"</span>), <span class="at">sep=</span><span class="st">"|"</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>df_gauges<span class="ot">&lt;-</span> df_gauges[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>)]</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df_gauges)<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"Province"</span>,<span class="st">"Latitude"</span>,<span class="st">"Longitude"</span>,<span class="st">"Altitude"</span>) </span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>df_gauges<span class="sc">$</span>Province <span class="ot">&lt;-</span> <span class="fu">tolower</span>(df_gauges<span class="sc">$</span>Province) <span class="sc">|&gt;</span> <span class="fu">str_to_title</span>() </span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>df_gauges<span class="ot">&lt;-</span> df_gauges <span class="sc">|&gt;</span> <span class="fu">arrange</span>(Station) </span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>df_gauges <span class="sc">|&gt;</span>  <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="tbl-gauges-domain2" class="anchored">
 
-<div id="ubouverbak" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ubouverbak table {
+<div id="ojwleajzjf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ojwleajzjf table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ubouverbak thead, #ubouverbak tbody, #ubouverbak tfoot, #ubouverbak tr, #ubouverbak td, #ubouverbak th {
+#ojwleajzjf thead, #ojwleajzjf tbody, #ojwleajzjf tfoot, #ojwleajzjf tr, #ojwleajzjf td, #ojwleajzjf th {
   border-style: none;
 }
 
-#ubouverbak p {
+#ojwleajzjf p {
   margin: 0;
   padding: 0;
 }
 
-#ubouverbak .gt_table {
+#ojwleajzjf .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -496,12 +498,12 @@ div.csl-indent {
   border-left-color: #D3D3D3;
 }
 
-#ubouverbak .gt_caption {
+#ojwleajzjf .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ubouverbak .gt_title {
+#ojwleajzjf .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -513,7 +515,7 @@ div.csl-indent {
   border-bottom-width: 0;
 }
 
-#ubouverbak .gt_subtitle {
+#ojwleajzjf .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -525,7 +527,7 @@ div.csl-indent {
   border-top-width: 0;
 }
 
-#ubouverbak .gt_heading {
+#ojwleajzjf .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -537,13 +539,13 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#ubouverbak .gt_bottom_border {
+#ojwleajzjf .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ubouverbak .gt_col_headings {
+#ojwleajzjf .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -558,7 +560,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#ubouverbak .gt_col_heading {
+#ojwleajzjf .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -578,7 +580,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#ubouverbak .gt_column_spanner_outer {
+#ojwleajzjf .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -590,15 +592,15 @@ div.csl-indent {
   padding-right: 4px;
 }
 
-#ubouverbak .gt_column_spanner_outer:first-child {
+#ojwleajzjf .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ubouverbak .gt_column_spanner_outer:last-child {
+#ojwleajzjf .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ubouverbak .gt_column_spanner {
+#ojwleajzjf .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -610,11 +612,11 @@ div.csl-indent {
   width: 100%;
 }
 
-#ubouverbak .gt_spanner_row {
+#ojwleajzjf .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ubouverbak .gt_group_heading {
+#ojwleajzjf .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -640,7 +642,7 @@ div.csl-indent {
   text-align: left;
 }
 
-#ubouverbak .gt_empty_group_heading {
+#ojwleajzjf .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -655,15 +657,15 @@ div.csl-indent {
   vertical-align: middle;
 }
 
-#ubouverbak .gt_from_md > :first-child {
+#ojwleajzjf .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ubouverbak .gt_from_md > :last-child {
+#ojwleajzjf .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ubouverbak .gt_row {
+#ojwleajzjf .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -682,7 +684,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#ubouverbak .gt_stub {
+#ojwleajzjf .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -695,7 +697,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#ubouverbak .gt_stub_row_group {
+#ojwleajzjf .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -709,15 +711,15 @@ div.csl-indent {
   vertical-align: top;
 }
 
-#ubouverbak .gt_row_group_first td {
+#ojwleajzjf .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ubouverbak .gt_row_group_first th {
+#ojwleajzjf .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ubouverbak .gt_summary_row {
+#ojwleajzjf .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -727,16 +729,16 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#ubouverbak .gt_first_summary_row {
+#ojwleajzjf .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ubouverbak .gt_first_summary_row.thick {
+#ojwleajzjf .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ubouverbak .gt_last_summary_row {
+#ojwleajzjf .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -746,7 +748,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#ubouverbak .gt_grand_summary_row {
+#ojwleajzjf .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -756,7 +758,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#ubouverbak .gt_first_grand_summary_row {
+#ojwleajzjf .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -766,7 +768,7 @@ div.csl-indent {
   border-top-color: #D3D3D3;
 }
 
-#ubouverbak .gt_last_grand_summary_row_top {
+#ojwleajzjf .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -776,11 +778,11 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#ubouverbak .gt_striped {
+#ojwleajzjf .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ubouverbak .gt_table_body {
+#ojwleajzjf .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -789,7 +791,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#ubouverbak .gt_footnotes {
+#ojwleajzjf .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -803,7 +805,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#ubouverbak .gt_footnote {
+#ojwleajzjf .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -812,7 +814,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#ubouverbak .gt_sourcenotes {
+#ojwleajzjf .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -826,7 +828,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#ubouverbak .gt_sourcenote {
+#ojwleajzjf .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -834,63 +836,63 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#ubouverbak .gt_left {
+#ojwleajzjf .gt_left {
   text-align: left;
 }
 
-#ubouverbak .gt_center {
+#ojwleajzjf .gt_center {
   text-align: center;
 }
 
-#ubouverbak .gt_right {
+#ojwleajzjf .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ubouverbak .gt_font_normal {
+#ojwleajzjf .gt_font_normal {
   font-weight: normal;
 }
 
-#ubouverbak .gt_font_bold {
+#ojwleajzjf .gt_font_bold {
   font-weight: bold;
 }
 
-#ubouverbak .gt_font_italic {
+#ojwleajzjf .gt_font_italic {
   font-style: italic;
 }
 
-#ubouverbak .gt_super {
+#ojwleajzjf .gt_super {
   font-size: 65%;
 }
 
-#ubouverbak .gt_footnote_marks {
+#ojwleajzjf .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ubouverbak .gt_asterisk {
+#ojwleajzjf .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ubouverbak .gt_indent_1 {
+#ojwleajzjf .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ubouverbak .gt_indent_2 {
+#ojwleajzjf .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ubouverbak .gt_indent_3 {
+#ojwleajzjf .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ubouverbak .gt_indent_4 {
+#ojwleajzjf .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ubouverbak .gt_indent_5 {
+#ojwleajzjf .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -997,11 +999,13 @@ div.csl-indent {
 </div>
 </section>
 <section id="obtain-temperature-observations" class="level3">
-<h3 class="anchored" data-anchor-id="obtain-temperature-observations">Obtain Temperature Observations</h3>
-<p>The code reads temperature observations from an Excel. In the raw dataset, some dates can be missing;however, these are not defined as null. Therefore, leaping values can be detected then it assigned as a null.</p>
+<h3 class="anchored" data-anchor-id="obtain-temperature-observations">2.4.2. Obtain Temperature Observations</h3>
+<p>The code reads temperature observations from an excel file. In the raw data, there is no date column but it has multiple columns which are defined for year, month, day and hour information. Therefore, we need to convert them into the single date column by merging them. Then, these columns can be removed by non-selecting. In the raw data set, some dates can be missing;however, these are not defined as null. Therefore, leaping values can be detected then it assigned as a null by using <em>complete function</em>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>temp_obs<span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"D:/Kitaplar/METU-PHD/COURSES/3-TERM/STAT_570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/df_2023122096C0-Saatlik_Sicaklik.xlsx"</span>)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(temp_obs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>temp_obs<span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="fu">paste0</span>(<span class="st">"D:/Kitaplar/METU-PHD/COURSES/3-TERM/"</span>,</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="st">"STAT_570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/"</span>,</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="st">"df_2023122096C0-Saatlik_Sicaklik.xlsx"</span>))</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(temp_obs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 7
   Istasyon_No Istasyon_Adi   YIL    AY   GUN  SAAT SICAKLIK
@@ -1015,7 +1019,7 @@ div.csl-indent {
 </div>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>temp_obs<span class="ot">&lt;-</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  temp_obs <span class="sc">|&gt;</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date=</span> <span class="fu">as.Date</span>(<span class="fu">with</span>(temp_obs, <span class="fu">paste</span>(YIL, AY, GUN,<span class="at">sep=</span><span class="st">"-"</span>)), <span class="st">"%Y-%m-%d"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date=</span> <span class="fu">as.Date</span>(<span class="fu">with</span>(temp_obs, <span class="fu">paste</span>(YIL,AY,GUN,<span class="at">sep=</span><span class="st">"-"</span>)),<span class="st">"%Y-%m-%d"</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dates=</span> <span class="fu">ymd_hms</span>(<span class="fu">paste</span>(date, <span class="fu">paste</span>(SAAT, <span class="dv">0</span>, <span class="dv">0</span>, <span class="at">sep =</span> <span class="st">":"</span>)), <span class="at">tz=</span><span class="st">"UTC"</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Istasyon_No, dates, SICAKLIK) <span class="sc">|&gt;</span> </span>
 <span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Istasyon_No) <span class="sc">|&gt;</span> </span>
@@ -1039,8 +1043,8 @@ div.csl-indent {
 </div>
 </section>
 <section id="extraction-of-temperature-predictions-from-wrf" class="level3">
-<h3 class="anchored" data-anchor-id="extraction-of-temperature-predictions-from-wrf">Extraction of Temperature Predictions from WRF</h3>
-<p>This code stacks raster layers and extracts temperature values for meteorological station locations.</p>
+<h3 class="anchored" data-anchor-id="extraction-of-temperature-predictions-from-wrf">2.4.3. Extraction of Temperature Predictions from WRF</h3>
+<p>This code stacks raster layers (since time is not constant) and extracts temperature values for meteorological station locations. Gauge locations and prediction values with time need to be combined and data frame columns need to be renamed after extraction procedure. The table below contains three-hour temperature predictions for each province/gauge in domain 1.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>centroids <span class="ot">&lt;-</span> df_gauges[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>)]</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coordinates</span>(centroids)<span class="ot">=</span> <span class="er">~</span> Longitude <span class="sc">+</span> Latitude</span>
@@ -1088,6 +1092,7 @@ div.csl-indent {
 6   17072  31.14880 40.84370            17.22476            14.45699</code></pre>
 </div>
 </div>
+<p>Same procedures applied in previous chunk has to be followed for assimilated data but for domain 2.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># domain2</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>raster_temp_stack_2<span class="ot">&lt;-</span> <span class="fu">stack</span>(raster_temp_2)</span>
@@ -1116,7 +1121,7 @@ div.csl-indent {
 </section>
 </section>
 <section id="operations-on-non-assimilated-wrf-data" class="level1" style="text-align: justify">
-<h1>Operations on Non-Assimilated WRF Data</h1>
+<h1>3. Operations on Non-Assimilated WRF Data</h1>
 <p>We need to apply similar procedures on non-assimilated WRF predictions for extraction as shown above.</p>
 </section>
 <div class="cell">
@@ -1202,9 +1207,9 @@ div.csl-indent {
 </div>
 </div>
 <section id="results" class="level1" style="text-align: justify">
-<h1>Results</h1>
+<h1>4. Results</h1>
 <section id="derivation-of-data-frames" class="level2">
-<h2 class="anchored" data-anchor-id="derivation-of-data-frames">Derivation of Data Frames</h2>
+<h2 class="anchored" data-anchor-id="derivation-of-data-frames">4.1. Derivation of Data Frames</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># domain1 assimilated prediction: rt_cpv_df</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># domain2 assimilated prediction: rt_cpv_df_2</span></span>
@@ -1292,7 +1297,7 @@ div.csl-indent {
 </div>
 </section>
 <section id="visualization" class="level2">
-<h2 class="anchored" data-anchor-id="visualization">Visualization</h2>
+<h2 class="anchored" data-anchor-id="visualization">4.2. Visualization</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  new_df_list[[<span class="dv">1</span>]] <span class="sc">|&gt;</span>        </span>
@@ -1337,24 +1342,23 @@ div.csl-indent {
 <span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">names_to =</span> <span class="st">"Temperature"</span>,</span>
 <span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">values_to =</span> <span class="st">"value"</span>,</span>
 <span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">values_drop_na =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Station =</span> <span class="fu">factor</span>(Station, </span>
-<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">labels =</span> df_gauges<span class="sc">$</span>Province )) <span class="sc">|&gt;</span></span>
-<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Temperature =</span>  <span class="fu">factor</span>(Temperature, </span>
-<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">levels=</span> <span class="fu">c</span>(<span class="st">"observation"</span>, <span class="st">"predict_do1_nas"</span>, <span class="st">"predict_do1"</span>)) ) <span class="sc">|&gt;</span>  </span>
-<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> dates, <span class="at">y=</span>value)) <span class="sc">+</span>   </span>
-<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">colour =</span> Temperature), <span class="at">size=</span><span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">name=</span> <span class="fu">expression</span>(<span class="st">"Temperature"</span><span class="sc">~</span>(degree<span class="sc">*</span>C)), </span>
-<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">values =</span> <span class="fu">c</span>(<span class="st">'observation'</span> <span class="ot">=</span> <span class="st">"black"</span>,</span>
-<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do1_nas'</span> <span class="ot">=</span> <span class="st">"#23bfce"</span>,</span>
-<span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do1'</span> <span class="ot">=</span> <span class="st">"#fc2852"</span>),</span>
-<span id="cb48-18"><a href="#cb48-18" aria-hidden="true" tabindex="-1"></a>          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'observation'</span> <span class="ot">=</span> <span class="st">'Observation'</span>,</span>
-<span id="cb48-19"><a href="#cb48-19" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do1_nas'</span> <span class="ot">=</span> <span class="st">'Non-Assimilated Prediction DO1'</span>,</span>
-<span id="cb48-20"><a href="#cb48-20" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do1'</span> <span class="ot">=</span> <span class="st">'Assimilated Prediction DO1'</span>)) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb48-21"><a href="#cb48-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Station, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span> </span>
-<span id="cb48-22"><a href="#cb48-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">" "</span>,<span class="at">y=</span><span class="fu">expression</span>(<span class="st">"Temperature"</span><span class="sc">~</span>(degree<span class="sc">*</span>C))) <span class="sc">+</span> </span>
-<span id="cb48-23"><a href="#cb48-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">hjust =</span> <span class="dv">1</span>))  <span class="sc">+</span></span>
-<span id="cb48-24"><a href="#cb48-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">88</span>, .<span class="dv">1</span>), </span>
-<span id="cb48-25"><a href="#cb48-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">colour=</span><span class="st">"black"</span>, <span class="at">fill=</span><span class="st">"cornsilk"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Station =</span> <span class="fu">factor</span>(Station, <span class="at">labels =</span> df_gauges<span class="sc">$</span>Province )) <span class="sc">|&gt;</span></span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Temperature =</span>  <span class="fu">factor</span>(Temperature, </span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">levels=</span> <span class="fu">c</span>(<span class="st">"observation"</span>, <span class="st">"predict_do1_nas"</span>, <span class="st">"predict_do1"</span>)) ) <span class="sc">|&gt;</span>  </span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> dates, <span class="at">y=</span>value)) <span class="sc">+</span>   </span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">colour =</span> Temperature), <span class="at">size=</span><span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">name=</span> <span class="fu">expression</span>(<span class="st">"Temperature"</span><span class="sc">~</span>(degree<span class="sc">*</span>C)), </span>
+<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>          <span class="at">values =</span> <span class="fu">c</span>(<span class="st">'observation'</span> <span class="ot">=</span> <span class="st">"black"</span>,</span>
+<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do1_nas'</span> <span class="ot">=</span> <span class="st">"#23bfce"</span>,</span>
+<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do1'</span> <span class="ot">=</span> <span class="st">"#fc2852"</span>),</span>
+<span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a>          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'observation'</span> <span class="ot">=</span> <span class="st">'Observation'</span>,</span>
+<span id="cb48-18"><a href="#cb48-18" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do1_nas'</span> <span class="ot">=</span> <span class="st">'Non-Assimilated Prediction DO1'</span>,</span>
+<span id="cb48-19"><a href="#cb48-19" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do1'</span> <span class="ot">=</span> <span class="st">'Assimilated Prediction DO1'</span>)) <span class="sc">+</span> </span>
+<span id="cb48-20"><a href="#cb48-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Station, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span> </span>
+<span id="cb48-21"><a href="#cb48-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">" "</span>,<span class="at">y=</span><span class="fu">expression</span>(<span class="st">"Temperature"</span><span class="sc">~</span>(degree<span class="sc">*</span>C))) <span class="sc">+</span> </span>
+<span id="cb48-22"><a href="#cb48-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">hjust =</span> <span class="dv">1</span>))  <span class="sc">+</span></span>
+<span id="cb48-23"><a href="#cb48-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">88</span>, .<span class="dv">1</span>), </span>
+<span id="cb48-24"><a href="#cb48-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">colour=</span><span class="st">"black"</span>, <span class="at">fill=</span><span class="st">"cornsilk"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-do1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -1367,18 +1371,18 @@ div.csl-indent {
 <p><a href="#fig-sc1">Figure&nbsp;5</a> is shown for scatterplot and heatmap of 3-hour assimilated and non-assimilated predictions versus observations in domain 1. <strong>Red</strong> and <strong>blue</strong> colors represent <strong>assimilated</strong> and <strong>non-assimilated</strong> predictions, respectively, while <strong>black</strong> line shows <strong>fit</strong> of observations versus predictions.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>plot1<span class="ot">&lt;-</span> </span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>new_df_list[[<span class="dv">1</span>]] <span class="sc">|&gt;</span>        </span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(new_df_list[[<span class="dv">3</span>]], <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"dates"</span>,<span class="st">"observation"</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(</span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>),</span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">names_to =</span> <span class="st">"Pred.Type"</span>,</span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">values_to =</span> <span class="st">"Prediction"</span>,</span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">values_drop_na =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  new_df_list[[<span class="dv">1</span>]] <span class="sc">|&gt;</span>        </span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(new_df_list[[<span class="dv">3</span>]], <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"dates"</span>,<span class="st">"observation"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pivot_longer</span>(</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>),</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">names_to =</span> <span class="st">"Pred.Type"</span>,</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">values_to =</span> <span class="st">"Prediction"</span>,</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">values_drop_na =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
 <span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> observation, <span class="at">y=</span>Prediction, <span class="at">color=</span>Pred.Type)) <span class="sc">+</span>   </span>
 <span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span>   </span>
 <span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">color =</span><span class="st">"black"</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_colour_manual</span>(<span class="at">name=</span> <span class="st">" "</span>, </span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">name=</span> <span class="st">" "</span>, </span>
 <span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a>          <span class="at">values =</span> <span class="fu">c</span>(<span class="st">'predict_do1_nas'</span> <span class="ot">=</span> <span class="st">"blue"</span>,</span>
 <span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do1'</span> <span class="ot">=</span> <span class="st">"#fc2852"</span>),</span>
 <span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'predict_do1_nas'</span> <span class="ot">=</span> <span class="st">'Non-Assimilated Prediction DO1'</span>,</span>
@@ -1386,16 +1390,16 @@ div.csl-indent {
 <span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Observation"</span>,<span class="at">y=</span><span class="st">"Prediction"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span>
 <span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb49-20"><a href="#cb49-20" aria-hidden="true" tabindex="-1"></a>plot2<span class="ot">&lt;-</span> </span>
-<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a>new_df_list[[<span class="dv">1</span>]] <span class="sc">|&gt;</span></span>
-<span id="cb49-22"><a href="#cb49-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(new_df_list[[<span class="dv">3</span>]], <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"dates"</span>,<span class="st">"observation"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb49-23"><a href="#cb49-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(</span>
-<span id="cb49-24"><a href="#cb49-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>),</span>
-<span id="cb49-25"><a href="#cb49-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">names_to =</span> <span class="st">"Pred.Type"</span>,</span>
-<span id="cb49-26"><a href="#cb49-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">values_to =</span> <span class="st">"Prediction"</span>,</span>
-<span id="cb49-27"><a href="#cb49-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">values_drop_na =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a>  new_df_list[[<span class="dv">1</span>]] <span class="sc">|&gt;</span></span>
+<span id="cb49-22"><a href="#cb49-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(new_df_list[[<span class="dv">3</span>]], <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"dates"</span>,<span class="st">"observation"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb49-23"><a href="#cb49-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pivot_longer</span>(</span>
+<span id="cb49-24"><a href="#cb49-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>),</span>
+<span id="cb49-25"><a href="#cb49-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">names_to =</span> <span class="st">"Pred.Type"</span>,</span>
+<span id="cb49-26"><a href="#cb49-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">values_to =</span> <span class="st">"Prediction"</span>,</span>
+<span id="cb49-27"><a href="#cb49-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">values_drop_na =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
 <span id="cb49-28"><a href="#cb49-28" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> observation, <span class="at">y=</span>Prediction, <span class="at">fill=</span>Pred.Type)) <span class="sc">+</span> </span>
 <span id="cb49-29"><a href="#cb49-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hex</span>(<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb49-30"><a href="#cb49-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">name=</span> <span class="st">" "</span>,</span>
+<span id="cb49-30"><a href="#cb49-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name=</span> <span class="st">" "</span>,</span>
 <span id="cb49-31"><a href="#cb49-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">values =</span> <span class="fu">c</span>(<span class="st">'predict_do1_nas'</span> <span class="ot">=</span> <span class="st">"blue"</span>,</span>
 <span id="cb49-32"><a href="#cb49-32" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'predict_do1'</span> <span class="ot">=</span> <span class="st">"red"</span>),</span>
 <span id="cb49-33"><a href="#cb49-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'predict_do1_nas'</span> <span class="ot">=</span> <span class="st">'Non-Assimilated Prediction DO1'</span>,</span>
@@ -1416,29 +1420,28 @@ div.csl-indent {
 <div class="cell">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>new_df_list[[<span class="dv">2</span>]] <span class="sc">|&gt;</span>        </span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(new_df_list[[<span class="dv">4</span>]], <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"dates"</span>,<span class="st">"observation"</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>),</span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">names_to =</span> <span class="st">"Temperature"</span>,</span>
-<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">values_to =</span> <span class="st">"value"</span>,</span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">values_drop_na =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Station =</span> <span class="fu">factor</span>(Station, </span>
-<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">labels =</span> df_gauges<span class="sc">$</span>Province )) <span class="sc">|&gt;</span></span>
-<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Temperature =</span>  <span class="fu">factor</span>(Temperature, </span>
-<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">levels=</span> <span class="fu">c</span>(<span class="st">"observation"</span>, <span class="st">"predict_do2_nas"</span>, <span class="st">"predict_do2"</span>)) ) <span class="sc">|&gt;</span>  </span>
-<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> dates, <span class="at">y=</span>value)) <span class="sc">+</span>   </span>
-<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">colour =</span> Temperature), <span class="at">size=</span><span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">name=</span> <span class="fu">expression</span>(<span class="st">"Temperature"</span><span class="sc">~</span>(degree<span class="sc">*</span>C)), </span>
-<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">values =</span> <span class="fu">c</span>(<span class="st">'observation'</span> <span class="ot">=</span> <span class="st">"black"</span>,</span>
-<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do2_nas'</span> <span class="ot">=</span> <span class="st">"#fc2852"</span>,</span>
-<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do2'</span> <span class="ot">=</span> <span class="st">"#23bfce"</span>),</span>
-<span id="cb50-18"><a href="#cb50-18" aria-hidden="true" tabindex="-1"></a>          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'observation'</span> <span class="ot">=</span> <span class="st">'Observation'</span>,</span>
-<span id="cb50-19"><a href="#cb50-19" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do2_nas'</span> <span class="ot">=</span> <span class="st">'Non-Assimilated Prediction DO2'</span>,</span>
-<span id="cb50-20"><a href="#cb50-20" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do2'</span> <span class="ot">=</span> <span class="st">'Assimilated Prediction DO2'</span>)) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb50-21"><a href="#cb50-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Station, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span> </span>
-<span id="cb50-22"><a href="#cb50-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">" "</span>,<span class="at">y=</span><span class="fu">expression</span>(<span class="st">"Temperature"</span><span class="sc">~</span>(degree<span class="sc">*</span>C))) <span class="sc">+</span> </span>
-<span id="cb50-23"><a href="#cb50-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">hjust =</span> <span class="dv">1</span>))  <span class="sc">+</span></span>
-<span id="cb50-24"><a href="#cb50-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">88</span>, .<span class="dv">1</span>), </span>
-<span id="cb50-25"><a href="#cb50-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">colour=</span><span class="st">"black"</span>, <span class="at">fill=</span><span class="st">"cornsilk"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>),</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">names_to =</span> <span class="st">"Temperature"</span>,</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">values_to =</span> <span class="st">"value"</span>,</span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">values_drop_na =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Station =</span> <span class="fu">factor</span>(Station, <span class="at">labels =</span> df_gauges<span class="sc">$</span>Province )) <span class="sc">|&gt;</span></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Temperature =</span>  <span class="fu">factor</span>(Temperature, </span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">levels=</span> <span class="fu">c</span>(<span class="st">"observation"</span>, <span class="st">"predict_do2_nas"</span>, <span class="st">"predict_do2"</span>)) ) <span class="sc">|&gt;</span>  </span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> dates, <span class="at">y=</span>value)) <span class="sc">+</span>   </span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">colour =</span> Temperature), <span class="at">size=</span><span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">name=</span> <span class="fu">expression</span>(<span class="st">"Temperature"</span><span class="sc">~</span>(degree<span class="sc">*</span>C)), </span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>          <span class="at">values =</span> <span class="fu">c</span>(<span class="st">'observation'</span> <span class="ot">=</span> <span class="st">"black"</span>,</span>
+<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do2_nas'</span> <span class="ot">=</span> <span class="st">"#fc2852"</span>,</span>
+<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do2'</span> <span class="ot">=</span> <span class="st">"#23bfce"</span>),</span>
+<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a>          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'observation'</span> <span class="ot">=</span> <span class="st">'Observation'</span>,</span>
+<span id="cb50-18"><a href="#cb50-18" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do2_nas'</span> <span class="ot">=</span> <span class="st">'Non-Assimilated Prediction DO2'</span>,</span>
+<span id="cb50-19"><a href="#cb50-19" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do2'</span> <span class="ot">=</span> <span class="st">'Assimilated Prediction DO2'</span>)) <span class="sc">+</span> </span>
+<span id="cb50-20"><a href="#cb50-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Station, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span> </span>
+<span id="cb50-21"><a href="#cb50-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">" "</span>,<span class="at">y=</span><span class="fu">expression</span>(<span class="st">"Temperature"</span><span class="sc">~</span>(degree<span class="sc">*</span>C))) <span class="sc">+</span> </span>
+<span id="cb50-22"><a href="#cb50-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">hjust =</span> <span class="dv">1</span>))  <span class="sc">+</span></span>
+<span id="cb50-23"><a href="#cb50-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">88</span>, .<span class="dv">1</span>), </span>
+<span id="cb50-24"><a href="#cb50-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">colour=</span><span class="st">"black"</span>, <span class="at">fill=</span><span class="st">"cornsilk"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-do2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -1479,7 +1482,7 @@ div.csl-indent {
 <span id="cb51-27"><a href="#cb51-27" aria-hidden="true" tabindex="-1"></a>       <span class="at">values_drop_na =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
 <span id="cb51-28"><a href="#cb51-28" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> observation, <span class="at">y=</span>Prediction, <span class="at">fill=</span>Pred.Type)) <span class="sc">+</span> </span>
 <span id="cb51-29"><a href="#cb51-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hex</span>(<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span>     <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb51-30"><a href="#cb51-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">name=</span> <span class="st">" "</span>,</span>
+<span id="cb51-30"><a href="#cb51-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name=</span> <span class="st">" "</span>,</span>
 <span id="cb51-31"><a href="#cb51-31" aria-hidden="true" tabindex="-1"></a>           <span class="at">values =</span> <span class="fu">c</span>(<span class="st">'predict_do2_nas'</span> <span class="ot">=</span> <span class="st">"#fc2852"</span>,</span>
 <span id="cb51-32"><a href="#cb51-32" aria-hidden="true" tabindex="-1"></a>                      <span class="st">'predict_do2'</span> <span class="ot">=</span> <span class="st">"blue"</span>),</span>
 <span id="cb51-33"><a href="#cb51-33" aria-hidden="true" tabindex="-1"></a>           <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'predict_do2_nas'</span> <span class="ot">=</span> <span class="st">'Non-Assimilated Prediction DO2'</span>,</span>
@@ -1499,39 +1502,37 @@ div.csl-indent {
 <p><a href="#fig-do1-2">Figure&nbsp;8</a> is shown for comparison of three-hour assimilated and non-assimilated predictions with observations for each gauge <em>(province)</em> in both two domains. In this plot, each box represent different provinces <em>(gauges)</em>, <strong>black</strong> line shows observations, <strong>pink</strong> and <strong>red</strong> lines are for <strong>assimilated</strong> and <strong>non-assimilated</strong> predictions in Domain 1, respectively. Additionally, <strong>blue</strong> and <strong>lighter blue</strong> lines represent <strong>assimilated</strong> and <strong>non-assimilated</strong> predictions in Domain 2, respectively.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>new_df_list[[<span class="dv">1</span>]] <span class="sc">|&gt;</span>        </span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">left_join</span>(new_df_list[[<span class="dv">3</span>]], <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"dates"</span>,<span class="st">"observation"</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">left_join</span>(new_df_list[[<span class="dv">2</span>]], <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"dates"</span>,<span class="st">"observation"</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a> <span class="fu">left_join</span>(new_df_list[[<span class="dv">4</span>]], <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"dates"</span>,<span class="st">"observation"</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(new_df_list[[<span class="dv">3</span>]], <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"dates"</span>,<span class="st">"observation"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(new_df_list[[<span class="dv">2</span>]], <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"dates"</span>,<span class="st">"observation"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(new_df_list[[<span class="dv">4</span>]], <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Station"</span>,<span class="st">"dates"</span>,<span class="st">"observation"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(</span>
 <span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),</span>
 <span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">names_to =</span> <span class="st">"Temperature"</span>,</span>
 <span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">values_to =</span> <span class="st">"value"</span>,</span>
 <span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">values_drop_na =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a> <span class="fu">mutate</span>(<span class="at">Station =</span> <span class="fu">factor</span>(Station, </span>
-<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">labels =</span> df_gauges<span class="sc">$</span>Province )) <span class="sc">|&gt;</span></span>
-<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Temperature =</span>  <span class="fu">factor</span>(Temperature, </span>
-<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">levels=</span> <span class="fu">c</span>(<span class="st">"observation"</span>, <span class="st">"predict_do1"</span>, <span class="st">"predict_do1_nas"</span>,</span>
-<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"predict_do2_nas"</span>, <span class="st">"predict_do2"</span>)) ) <span class="sc">|&gt;</span> </span>
-<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb52-16"><a href="#cb52-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> dates, <span class="at">y=</span>value)) <span class="sc">+</span>   </span>
-<span id="cb52-17"><a href="#cb52-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">colour =</span> Temperature), <span class="at">size=</span><span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb52-18"><a href="#cb52-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">name=</span> <span class="fu">expression</span>(<span class="st">"Temperature"</span><span class="sc">~</span>(degree<span class="sc">*</span>C)), </span>
-<span id="cb52-19"><a href="#cb52-19" aria-hidden="true" tabindex="-1"></a>          <span class="at">values =</span> <span class="fu">c</span>(<span class="st">'observation'</span> <span class="ot">=</span> <span class="st">"black"</span>,</span>
-<span id="cb52-20"><a href="#cb52-20" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do1_nas'</span> <span class="ot">=</span> <span class="st">"#fc2852"</span>,</span>
-<span id="cb52-21"><a href="#cb52-21" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do1'</span> <span class="ot">=</span> <span class="st">"#fc95aa"</span>,</span>
-<span id="cb52-22"><a href="#cb52-22" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do2_nas'</span> <span class="ot">=</span> <span class="st">"#23bfce"</span>,</span>
-<span id="cb52-23"><a href="#cb52-23" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do2'</span> <span class="ot">=</span> <span class="st">"#157882"</span>),</span>
-<span id="cb52-24"><a href="#cb52-24" aria-hidden="true" tabindex="-1"></a>          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'observation'</span> <span class="ot">=</span> <span class="st">'Observation'</span>,</span>
-<span id="cb52-25"><a href="#cb52-25" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do1_nas'</span> <span class="ot">=</span> <span class="st">'Non-Assimilated Prediction DO1'</span>,</span>
-<span id="cb52-26"><a href="#cb52-26" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do1'</span> <span class="ot">=</span> <span class="st">'Assimilated Prediction DO1'</span>,</span>
-<span id="cb52-27"><a href="#cb52-27" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do2_nas'</span> <span class="ot">=</span> <span class="st">'Non-Assimilated Prediction DO2'</span>,</span>
-<span id="cb52-28"><a href="#cb52-28" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do2'</span> <span class="ot">=</span> <span class="st">'Assimilated Prediction DO2'</span>)) <span class="sc">+</span></span>
-<span id="cb52-29"><a href="#cb52-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb52-30"><a href="#cb52-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Station, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span> </span>
-<span id="cb52-31"><a href="#cb52-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">" "</span>,<span class="at">y=</span><span class="fu">expression</span>(<span class="st">"Temperature"</span><span class="sc">~</span>(degree<span class="sc">*</span>C))) <span class="sc">+</span> </span>
-<span id="cb52-32"><a href="#cb52-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">hjust =</span> <span class="dv">1</span>))  <span class="sc">+</span></span>
-<span id="cb52-33"><a href="#cb52-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">88</span>, .<span class="dv">1</span>), </span>
-<span id="cb52-34"><a href="#cb52-34" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">colour=</span><span class="st">"black"</span>, <span class="at">fill=</span><span class="st">"cornsilk"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Station =</span> <span class="fu">factor</span>(Station, <span class="at">labels =</span> df_gauges<span class="sc">$</span>Province )) <span class="sc">|&gt;</span></span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Temperature =</span>  <span class="fu">factor</span>(Temperature, </span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">levels=</span> <span class="fu">c</span>(<span class="st">"observation"</span>, <span class="st">"predict_do1"</span>, <span class="st">"predict_do1_nas"</span>,</span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"predict_do2_nas"</span>, <span class="st">"predict_do2"</span>)) ) <span class="sc">|&gt;</span> </span>
+<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> dates, <span class="at">y=</span>value)) <span class="sc">+</span>   </span>
+<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">colour =</span> Temperature), <span class="at">size=</span><span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb52-16"><a href="#cb52-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">name=</span> <span class="fu">expression</span>(<span class="st">"Temperature"</span><span class="sc">~</span>(degree<span class="sc">*</span>C)), </span>
+<span id="cb52-17"><a href="#cb52-17" aria-hidden="true" tabindex="-1"></a>          <span class="at">values =</span> <span class="fu">c</span>(<span class="st">'observation'</span> <span class="ot">=</span> <span class="st">"black"</span>,</span>
+<span id="cb52-18"><a href="#cb52-18" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do1_nas'</span> <span class="ot">=</span> <span class="st">"#fc2852"</span>,</span>
+<span id="cb52-19"><a href="#cb52-19" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do1'</span> <span class="ot">=</span> <span class="st">"#fc95aa"</span>,</span>
+<span id="cb52-20"><a href="#cb52-20" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do2_nas'</span> <span class="ot">=</span> <span class="st">"#23bfce"</span>,</span>
+<span id="cb52-21"><a href="#cb52-21" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do2'</span> <span class="ot">=</span> <span class="st">"#157882"</span>),</span>
+<span id="cb52-22"><a href="#cb52-22" aria-hidden="true" tabindex="-1"></a>          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'observation'</span> <span class="ot">=</span> <span class="st">'Observation'</span>,</span>
+<span id="cb52-23"><a href="#cb52-23" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do1_nas'</span> <span class="ot">=</span> <span class="st">'Non-Assimilated Prediction DO1'</span>,</span>
+<span id="cb52-24"><a href="#cb52-24" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do1'</span> <span class="ot">=</span> <span class="st">'Assimilated Prediction DO1'</span>,</span>
+<span id="cb52-25"><a href="#cb52-25" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do2_nas'</span> <span class="ot">=</span> <span class="st">'Non-Assimilated Prediction DO2'</span>,</span>
+<span id="cb52-26"><a href="#cb52-26" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'predict_do2'</span> <span class="ot">=</span> <span class="st">'Assimilated Prediction DO2'</span>)) <span class="sc">+</span></span>
+<span id="cb52-27"><a href="#cb52-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb52-28"><a href="#cb52-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Station, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span> </span>
+<span id="cb52-29"><a href="#cb52-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">" "</span>,<span class="at">y=</span><span class="fu">expression</span>(<span class="st">"Temperature"</span><span class="sc">~</span>(degree<span class="sc">*</span>C))) <span class="sc">+</span> </span>
+<span id="cb52-30"><a href="#cb52-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">hjust =</span> <span class="dv">1</span>))  <span class="sc">+</span></span>
+<span id="cb52-31"><a href="#cb52-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">88</span>, .<span class="dv">1</span>), </span>
+<span id="cb52-32"><a href="#cb52-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">colour=</span><span class="st">"black"</span>, <span class="at">fill=</span><span class="st">"cornsilk"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-do1-2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -1543,7 +1544,7 @@ div.csl-indent {
 </div>
 </section>
 <section id="error-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="error-analysis">Error Analysis</h2>
+<h2 class="anchored" data-anchor-id="error-analysis">4.3. Error Analysis</h2>
 <p>This part calculates various error metrics, including bias, mean squared error (MSE), root mean squared error (RMSE), normalized RMSE (NRMSE), and correlation coefficients for the predictions. <a href="#tbl-stats">Table&nbsp;2</a> shows the error statistics for both two domains with respect to complete assimilated and non-assimilated predictions.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co">#BIAS</span></span>
@@ -1585,23 +1586,23 @@ div.csl-indent {
 <div class="cell-output-display">
 <div id="tbl-stats" class="anchored">
 
-<div id="ckcfdpcfra" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ckcfdpcfra table {
+<div id="hkmdxgqbtu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hkmdxgqbtu table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ckcfdpcfra thead, #ckcfdpcfra tbody, #ckcfdpcfra tfoot, #ckcfdpcfra tr, #ckcfdpcfra td, #ckcfdpcfra th {
+#hkmdxgqbtu thead, #hkmdxgqbtu tbody, #hkmdxgqbtu tfoot, #hkmdxgqbtu tr, #hkmdxgqbtu td, #hkmdxgqbtu th {
   border-style: none;
 }
 
-#ckcfdpcfra p {
+#hkmdxgqbtu p {
   margin: 0;
   padding: 0;
 }
 
-#ckcfdpcfra .gt_table {
+#hkmdxgqbtu .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1627,12 +1628,12 @@ div.csl-indent {
   border-left-color: #D3D3D3;
 }
 
-#ckcfdpcfra .gt_caption {
+#hkmdxgqbtu .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ckcfdpcfra .gt_title {
+#hkmdxgqbtu .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1644,7 +1645,7 @@ div.csl-indent {
   border-bottom-width: 0;
 }
 
-#ckcfdpcfra .gt_subtitle {
+#hkmdxgqbtu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1656,7 +1657,7 @@ div.csl-indent {
   border-top-width: 0;
 }
 
-#ckcfdpcfra .gt_heading {
+#hkmdxgqbtu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1668,13 +1669,13 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#ckcfdpcfra .gt_bottom_border {
+#hkmdxgqbtu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ckcfdpcfra .gt_col_headings {
+#hkmdxgqbtu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1689,7 +1690,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#ckcfdpcfra .gt_col_heading {
+#hkmdxgqbtu .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1709,7 +1710,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#ckcfdpcfra .gt_column_spanner_outer {
+#hkmdxgqbtu .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1721,15 +1722,15 @@ div.csl-indent {
   padding-right: 4px;
 }
 
-#ckcfdpcfra .gt_column_spanner_outer:first-child {
+#hkmdxgqbtu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ckcfdpcfra .gt_column_spanner_outer:last-child {
+#hkmdxgqbtu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ckcfdpcfra .gt_column_spanner {
+#hkmdxgqbtu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1741,11 +1742,11 @@ div.csl-indent {
   width: 100%;
 }
 
-#ckcfdpcfra .gt_spanner_row {
+#hkmdxgqbtu .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ckcfdpcfra .gt_group_heading {
+#hkmdxgqbtu .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1771,7 +1772,7 @@ div.csl-indent {
   text-align: left;
 }
 
-#ckcfdpcfra .gt_empty_group_heading {
+#hkmdxgqbtu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1786,15 +1787,15 @@ div.csl-indent {
   vertical-align: middle;
 }
 
-#ckcfdpcfra .gt_from_md > :first-child {
+#hkmdxgqbtu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ckcfdpcfra .gt_from_md > :last-child {
+#hkmdxgqbtu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ckcfdpcfra .gt_row {
+#hkmdxgqbtu .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1813,7 +1814,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#ckcfdpcfra .gt_stub {
+#hkmdxgqbtu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1826,7 +1827,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#ckcfdpcfra .gt_stub_row_group {
+#hkmdxgqbtu .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1840,15 +1841,15 @@ div.csl-indent {
   vertical-align: top;
 }
 
-#ckcfdpcfra .gt_row_group_first td {
+#hkmdxgqbtu .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ckcfdpcfra .gt_row_group_first th {
+#hkmdxgqbtu .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ckcfdpcfra .gt_summary_row {
+#hkmdxgqbtu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1858,16 +1859,16 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#ckcfdpcfra .gt_first_summary_row {
+#hkmdxgqbtu .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ckcfdpcfra .gt_first_summary_row.thick {
+#hkmdxgqbtu .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ckcfdpcfra .gt_last_summary_row {
+#hkmdxgqbtu .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1877,7 +1878,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#ckcfdpcfra .gt_grand_summary_row {
+#hkmdxgqbtu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1887,7 +1888,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#ckcfdpcfra .gt_first_grand_summary_row {
+#hkmdxgqbtu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1897,7 +1898,7 @@ div.csl-indent {
   border-top-color: #D3D3D3;
 }
 
-#ckcfdpcfra .gt_last_grand_summary_row_top {
+#hkmdxgqbtu .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1907,11 +1908,11 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#ckcfdpcfra .gt_striped {
+#hkmdxgqbtu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ckcfdpcfra .gt_table_body {
+#hkmdxgqbtu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1920,7 +1921,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#ckcfdpcfra .gt_footnotes {
+#hkmdxgqbtu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1934,7 +1935,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#ckcfdpcfra .gt_footnote {
+#hkmdxgqbtu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1943,7 +1944,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#ckcfdpcfra .gt_sourcenotes {
+#hkmdxgqbtu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1957,7 +1958,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#ckcfdpcfra .gt_sourcenote {
+#hkmdxgqbtu .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1965,63 +1966,63 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#ckcfdpcfra .gt_left {
+#hkmdxgqbtu .gt_left {
   text-align: left;
 }
 
-#ckcfdpcfra .gt_center {
+#hkmdxgqbtu .gt_center {
   text-align: center;
 }
 
-#ckcfdpcfra .gt_right {
+#hkmdxgqbtu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ckcfdpcfra .gt_font_normal {
+#hkmdxgqbtu .gt_font_normal {
   font-weight: normal;
 }
 
-#ckcfdpcfra .gt_font_bold {
+#hkmdxgqbtu .gt_font_bold {
   font-weight: bold;
 }
 
-#ckcfdpcfra .gt_font_italic {
+#hkmdxgqbtu .gt_font_italic {
   font-style: italic;
 }
 
-#ckcfdpcfra .gt_super {
+#hkmdxgqbtu .gt_super {
   font-size: 65%;
 }
 
-#ckcfdpcfra .gt_footnote_marks {
+#hkmdxgqbtu .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ckcfdpcfra .gt_asterisk {
+#hkmdxgqbtu .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ckcfdpcfra .gt_indent_1 {
+#hkmdxgqbtu .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ckcfdpcfra .gt_indent_2 {
+#hkmdxgqbtu .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ckcfdpcfra .gt_indent_3 {
+#hkmdxgqbtu .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ckcfdpcfra .gt_indent_4 {
+#hkmdxgqbtu .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ckcfdpcfra .gt_indent_5 {
+#hkmdxgqbtu .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2102,23 +2103,23 @@ div.csl-indent {
 <div class="cell-output-display">
 <div id="tbl-kastamonu" class="anchored">
 
-<div id="nhokkpomsd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#nhokkpomsd table {
+<div id="ztxkbjcztt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ztxkbjcztt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#nhokkpomsd thead, #nhokkpomsd tbody, #nhokkpomsd tfoot, #nhokkpomsd tr, #nhokkpomsd td, #nhokkpomsd th {
+#ztxkbjcztt thead, #ztxkbjcztt tbody, #ztxkbjcztt tfoot, #ztxkbjcztt tr, #ztxkbjcztt td, #ztxkbjcztt th {
   border-style: none;
 }
 
-#nhokkpomsd p {
+#ztxkbjcztt p {
   margin: 0;
   padding: 0;
 }
 
-#nhokkpomsd .gt_table {
+#ztxkbjcztt .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2144,12 +2145,12 @@ div.csl-indent {
   border-left-color: #D3D3D3;
 }
 
-#nhokkpomsd .gt_caption {
+#ztxkbjcztt .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#nhokkpomsd .gt_title {
+#ztxkbjcztt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2161,7 +2162,7 @@ div.csl-indent {
   border-bottom-width: 0;
 }
 
-#nhokkpomsd .gt_subtitle {
+#ztxkbjcztt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2173,7 +2174,7 @@ div.csl-indent {
   border-top-width: 0;
 }
 
-#nhokkpomsd .gt_heading {
+#ztxkbjcztt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2185,13 +2186,13 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#nhokkpomsd .gt_bottom_border {
+#ztxkbjcztt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#nhokkpomsd .gt_col_headings {
+#ztxkbjcztt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2206,7 +2207,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#nhokkpomsd .gt_col_heading {
+#ztxkbjcztt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2226,7 +2227,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#nhokkpomsd .gt_column_spanner_outer {
+#ztxkbjcztt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2238,15 +2239,15 @@ div.csl-indent {
   padding-right: 4px;
 }
 
-#nhokkpomsd .gt_column_spanner_outer:first-child {
+#ztxkbjcztt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#nhokkpomsd .gt_column_spanner_outer:last-child {
+#ztxkbjcztt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#nhokkpomsd .gt_column_spanner {
+#ztxkbjcztt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2258,11 +2259,11 @@ div.csl-indent {
   width: 100%;
 }
 
-#nhokkpomsd .gt_spanner_row {
+#ztxkbjcztt .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#nhokkpomsd .gt_group_heading {
+#ztxkbjcztt .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2288,7 +2289,7 @@ div.csl-indent {
   text-align: left;
 }
 
-#nhokkpomsd .gt_empty_group_heading {
+#ztxkbjcztt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2303,15 +2304,15 @@ div.csl-indent {
   vertical-align: middle;
 }
 
-#nhokkpomsd .gt_from_md > :first-child {
+#ztxkbjcztt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#nhokkpomsd .gt_from_md > :last-child {
+#ztxkbjcztt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#nhokkpomsd .gt_row {
+#ztxkbjcztt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2330,7 +2331,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#nhokkpomsd .gt_stub {
+#ztxkbjcztt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2343,7 +2344,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#nhokkpomsd .gt_stub_row_group {
+#ztxkbjcztt .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2357,15 +2358,15 @@ div.csl-indent {
   vertical-align: top;
 }
 
-#nhokkpomsd .gt_row_group_first td {
+#ztxkbjcztt .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#nhokkpomsd .gt_row_group_first th {
+#ztxkbjcztt .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#nhokkpomsd .gt_summary_row {
+#ztxkbjcztt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2375,16 +2376,16 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#nhokkpomsd .gt_first_summary_row {
+#ztxkbjcztt .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#nhokkpomsd .gt_first_summary_row.thick {
+#ztxkbjcztt .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#nhokkpomsd .gt_last_summary_row {
+#ztxkbjcztt .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2394,7 +2395,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#nhokkpomsd .gt_grand_summary_row {
+#ztxkbjcztt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2404,7 +2405,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#nhokkpomsd .gt_first_grand_summary_row {
+#ztxkbjcztt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2414,7 +2415,7 @@ div.csl-indent {
   border-top-color: #D3D3D3;
 }
 
-#nhokkpomsd .gt_last_grand_summary_row_top {
+#ztxkbjcztt .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2424,11 +2425,11 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#nhokkpomsd .gt_striped {
+#ztxkbjcztt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#nhokkpomsd .gt_table_body {
+#ztxkbjcztt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2437,7 +2438,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#nhokkpomsd .gt_footnotes {
+#ztxkbjcztt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2451,7 +2452,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#nhokkpomsd .gt_footnote {
+#ztxkbjcztt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2460,7 +2461,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#nhokkpomsd .gt_sourcenotes {
+#ztxkbjcztt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2474,7 +2475,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#nhokkpomsd .gt_sourcenote {
+#ztxkbjcztt .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2482,63 +2483,63 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#nhokkpomsd .gt_left {
+#ztxkbjcztt .gt_left {
   text-align: left;
 }
 
-#nhokkpomsd .gt_center {
+#ztxkbjcztt .gt_center {
   text-align: center;
 }
 
-#nhokkpomsd .gt_right {
+#ztxkbjcztt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#nhokkpomsd .gt_font_normal {
+#ztxkbjcztt .gt_font_normal {
   font-weight: normal;
 }
 
-#nhokkpomsd .gt_font_bold {
+#ztxkbjcztt .gt_font_bold {
   font-weight: bold;
 }
 
-#nhokkpomsd .gt_font_italic {
+#ztxkbjcztt .gt_font_italic {
   font-style: italic;
 }
 
-#nhokkpomsd .gt_super {
+#ztxkbjcztt .gt_super {
   font-size: 65%;
 }
 
-#nhokkpomsd .gt_footnote_marks {
+#ztxkbjcztt .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#nhokkpomsd .gt_asterisk {
+#ztxkbjcztt .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#nhokkpomsd .gt_indent_1 {
+#ztxkbjcztt .gt_indent_1 {
   text-indent: 5px;
 }
 
-#nhokkpomsd .gt_indent_2 {
+#ztxkbjcztt .gt_indent_2 {
   text-indent: 10px;
 }
 
-#nhokkpomsd .gt_indent_3 {
+#ztxkbjcztt .gt_indent_3 {
   text-indent: 15px;
 }
 
-#nhokkpomsd .gt_indent_4 {
+#ztxkbjcztt .gt_indent_4 {
   text-indent: 20px;
 }
 
-#nhokkpomsd .gt_indent_5 {
+#ztxkbjcztt .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2593,23 +2594,23 @@ domain.</p> </caption>
 <div class="cell-output-display">
 <div id="tbl-duzce" class="anchored">
 
-<div id="rznbwtsgxt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#rznbwtsgxt table {
+<div id="kyiobqoksp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#kyiobqoksp table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#rznbwtsgxt thead, #rznbwtsgxt tbody, #rznbwtsgxt tfoot, #rznbwtsgxt tr, #rznbwtsgxt td, #rznbwtsgxt th {
+#kyiobqoksp thead, #kyiobqoksp tbody, #kyiobqoksp tfoot, #kyiobqoksp tr, #kyiobqoksp td, #kyiobqoksp th {
   border-style: none;
 }
 
-#rznbwtsgxt p {
+#kyiobqoksp p {
   margin: 0;
   padding: 0;
 }
 
-#rznbwtsgxt .gt_table {
+#kyiobqoksp .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2635,12 +2636,12 @@ domain.</p> </caption>
   border-left-color: #D3D3D3;
 }
 
-#rznbwtsgxt .gt_caption {
+#kyiobqoksp .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#rznbwtsgxt .gt_title {
+#kyiobqoksp .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2652,7 +2653,7 @@ domain.</p> </caption>
   border-bottom-width: 0;
 }
 
-#rznbwtsgxt .gt_subtitle {
+#kyiobqoksp .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2664,7 +2665,7 @@ domain.</p> </caption>
   border-top-width: 0;
 }
 
-#rznbwtsgxt .gt_heading {
+#kyiobqoksp .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2676,13 +2677,13 @@ domain.</p> </caption>
   border-right-color: #D3D3D3;
 }
 
-#rznbwtsgxt .gt_bottom_border {
+#kyiobqoksp .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#rznbwtsgxt .gt_col_headings {
+#kyiobqoksp .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2697,7 +2698,7 @@ domain.</p> </caption>
   border-right-color: #D3D3D3;
 }
 
-#rznbwtsgxt .gt_col_heading {
+#kyiobqoksp .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2717,7 +2718,7 @@ domain.</p> </caption>
   overflow-x: hidden;
 }
 
-#rznbwtsgxt .gt_column_spanner_outer {
+#kyiobqoksp .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2729,15 +2730,15 @@ domain.</p> </caption>
   padding-right: 4px;
 }
 
-#rznbwtsgxt .gt_column_spanner_outer:first-child {
+#kyiobqoksp .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#rznbwtsgxt .gt_column_spanner_outer:last-child {
+#kyiobqoksp .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#rznbwtsgxt .gt_column_spanner {
+#kyiobqoksp .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2749,11 +2750,11 @@ domain.</p> </caption>
   width: 100%;
 }
 
-#rznbwtsgxt .gt_spanner_row {
+#kyiobqoksp .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#rznbwtsgxt .gt_group_heading {
+#kyiobqoksp .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2779,7 +2780,7 @@ domain.</p> </caption>
   text-align: left;
 }
 
-#rznbwtsgxt .gt_empty_group_heading {
+#kyiobqoksp .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2794,15 +2795,15 @@ domain.</p> </caption>
   vertical-align: middle;
 }
 
-#rznbwtsgxt .gt_from_md > :first-child {
+#kyiobqoksp .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#rznbwtsgxt .gt_from_md > :last-child {
+#kyiobqoksp .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#rznbwtsgxt .gt_row {
+#kyiobqoksp .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2821,7 +2822,7 @@ domain.</p> </caption>
   overflow-x: hidden;
 }
 
-#rznbwtsgxt .gt_stub {
+#kyiobqoksp .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2834,7 +2835,7 @@ domain.</p> </caption>
   padding-right: 5px;
 }
 
-#rznbwtsgxt .gt_stub_row_group {
+#kyiobqoksp .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2848,15 +2849,15 @@ domain.</p> </caption>
   vertical-align: top;
 }
 
-#rznbwtsgxt .gt_row_group_first td {
+#kyiobqoksp .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#rznbwtsgxt .gt_row_group_first th {
+#kyiobqoksp .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#rznbwtsgxt .gt_summary_row {
+#kyiobqoksp .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2866,16 +2867,16 @@ domain.</p> </caption>
   padding-right: 5px;
 }
 
-#rznbwtsgxt .gt_first_summary_row {
+#kyiobqoksp .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#rznbwtsgxt .gt_first_summary_row.thick {
+#kyiobqoksp .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#rznbwtsgxt .gt_last_summary_row {
+#kyiobqoksp .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2885,7 +2886,7 @@ domain.</p> </caption>
   border-bottom-color: #D3D3D3;
 }
 
-#rznbwtsgxt .gt_grand_summary_row {
+#kyiobqoksp .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2895,7 +2896,7 @@ domain.</p> </caption>
   padding-right: 5px;
 }
 
-#rznbwtsgxt .gt_first_grand_summary_row {
+#kyiobqoksp .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2905,7 +2906,7 @@ domain.</p> </caption>
   border-top-color: #D3D3D3;
 }
 
-#rznbwtsgxt .gt_last_grand_summary_row_top {
+#kyiobqoksp .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2915,11 +2916,11 @@ domain.</p> </caption>
   border-bottom-color: #D3D3D3;
 }
 
-#rznbwtsgxt .gt_striped {
+#kyiobqoksp .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#rznbwtsgxt .gt_table_body {
+#kyiobqoksp .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2928,7 +2929,7 @@ domain.</p> </caption>
   border-bottom-color: #D3D3D3;
 }
 
-#rznbwtsgxt .gt_footnotes {
+#kyiobqoksp .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2942,7 +2943,7 @@ domain.</p> </caption>
   border-right-color: #D3D3D3;
 }
 
-#rznbwtsgxt .gt_footnote {
+#kyiobqoksp .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2951,7 +2952,7 @@ domain.</p> </caption>
   padding-right: 5px;
 }
 
-#rznbwtsgxt .gt_sourcenotes {
+#kyiobqoksp .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2965,7 +2966,7 @@ domain.</p> </caption>
   border-right-color: #D3D3D3;
 }
 
-#rznbwtsgxt .gt_sourcenote {
+#kyiobqoksp .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2973,63 +2974,63 @@ domain.</p> </caption>
   padding-right: 5px;
 }
 
-#rznbwtsgxt .gt_left {
+#kyiobqoksp .gt_left {
   text-align: left;
 }
 
-#rznbwtsgxt .gt_center {
+#kyiobqoksp .gt_center {
   text-align: center;
 }
 
-#rznbwtsgxt .gt_right {
+#kyiobqoksp .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#rznbwtsgxt .gt_font_normal {
+#kyiobqoksp .gt_font_normal {
   font-weight: normal;
 }
 
-#rznbwtsgxt .gt_font_bold {
+#kyiobqoksp .gt_font_bold {
   font-weight: bold;
 }
 
-#rznbwtsgxt .gt_font_italic {
+#kyiobqoksp .gt_font_italic {
   font-style: italic;
 }
 
-#rznbwtsgxt .gt_super {
+#kyiobqoksp .gt_super {
   font-size: 65%;
 }
 
-#rznbwtsgxt .gt_footnote_marks {
+#kyiobqoksp .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#rznbwtsgxt .gt_asterisk {
+#kyiobqoksp .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#rznbwtsgxt .gt_indent_1 {
+#kyiobqoksp .gt_indent_1 {
   text-indent: 5px;
 }
 
-#rznbwtsgxt .gt_indent_2 {
+#kyiobqoksp .gt_indent_2 {
   text-indent: 10px;
 }
 
-#rznbwtsgxt .gt_indent_3 {
+#kyiobqoksp .gt_indent_3 {
   text-indent: 15px;
 }
 
-#rznbwtsgxt .gt_indent_4 {
+#kyiobqoksp .gt_indent_4 {
   text-indent: 20px;
 }
 
-#rznbwtsgxt .gt_indent_5 {
+#kyiobqoksp .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -3082,7 +3083,7 @@ domain.</p> </caption>
 </section>
 </section>
 <section id="conclusion" class="level1" style="text-align: justify">
-<h1>Conclusion</h1>
+<h1>5. Conclusion</h1>
 <p>In summary, the integration of the WRF model with data assimilation techniques has proven to be a valuable tool for advancing our understanding of regional weather patterns. The outcomes of this study have practical applications in operational forecasting, research endeavors, and emergency response, contributing to the broader field of atmospheric science. These steps collectively demonstrate a comprehensive workflow for importing, processing, and analyzing meteorological data, including visualization and error analysis.</p>
 </section>
 
