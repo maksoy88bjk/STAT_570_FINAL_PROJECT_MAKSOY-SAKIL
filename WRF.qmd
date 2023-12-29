@@ -36,6 +36,10 @@ The WRF model is used for operational weather forecasting and research purposes 
 :::
 
 ::: {style="text-align: justify"}
+The code in the below reads a NetCDF file (**fname**) using the **nc_open** function from the **ncdf4** package. NetCDF is a file format commonly used for storing multidimensional scientific data including NWP model output.
+:::
+
+::: {style="text-align: justify"}
 # Operations on Assimilated WRF Data
 
 There are two files for two different domains as assimilated and non-assimilated predictions of WRF model. Thus, there are four netcdf files totally. We are going to define prediction variables, forecast period and coverage of domains for each file.
@@ -60,9 +64,9 @@ library(ggpubr)
 
 ## Temperature Forecast of WRF in Domain 1
 
-Firstly, we opened the assimilated WRF output for domain 1. Using sink function the content of WRF output at the attachments ([wrfout_d01_2004-08-11_00_00_00.txt](https://github.com/maksoy88bjk/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/blob/main/aswout/wrfout_d01_2004-08-11_00_00_00.txt "wrfout_d01_2004-08-11_00_00_00.txt")) can be created. The data cover time and coverage domain information with meteorological predictions such as potential temperature **(T)**, temperature at 2 meter **(T2)**, wind speed at ten meter **(U10 & V10)**, precipitation **(RAINC & RAINNC)** and etc. We need to use name of the variables to extract specific data variables from the raw data.
+The code in the below reads a NetCDF file (fname) using the *nc_open function* from the ncdf4 package. NetCDF is a file format commonly used for storing multidimensional scientific data including NWP model output.
 
-The code in the below reads a NetCDF file (**fname**) using the **nc_open** function from the **ncdf4** package. NetCDF is a file format commonly used for storing multidimensional scientific data.
+Firstly, we opened the assimilated WRF output for domain 1. Using sink function the content of WRF output at the attachments ([wrfout_d01_2004-08-11_00_00_00.txt](https://github.com/maksoy88bjk/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/blob/main/aswout/wrfout_d01_2004-08-11_00_00_00.txt "wrfout_d01_2004-08-11_00_00_00.txt")) can be created. The data cover time and coverage domain information with meteorological predictions such as potential temperature **(T)**, temperature at 2 meter **(T2)**, wind speed at ten meter **(U10 & V10)**, precipitation **(RAINC & RAINNC)** and etc. We need to use name of the variables to extract specific data variables from the raw data.
 
 ```{r}
 fname <- paste0("D:/Kitaplar/METU-PHD/Thesis/IsmailHocandanAldim_Aksoy_27092023/",
@@ -102,9 +106,9 @@ Spatial resolution of domain 1 is 12 km as you can see below *(DX: 12000, DY:120
     DY: 12000
 ```
 
-There are **41** time steps which means we can get predictions along the domain **(191x115)** for whole period. Additionally, the data includes information for **27** layers from bottom to top of the atmosphere.
+Here, the code extracts specific variables (longitude, latitude, temperature, and time) from the NetCDF file using the *ncvar_get function*.
 
-Here, the code extracts specific variables (longitude, latitude, temperature, and time) from the NetCDF file using the **ncvar_get** function.
+There are **41** time steps which means we can get predictions along the domain **(191x115)** for whole period. Additionally, the data includes information for **27** layers from bottom to top of the atmosphere. Fortunately, we do not have to deal with upper layers' data since we just need to extract temperature predictions at 2 meters.
 
 ```{r}
 long<- ncvar_get(nc_data, "XLONG")
@@ -128,7 +132,7 @@ ymd_hms(t[41]) - ymd_hms(t[1])
 
 @fig-domain1 below shows the coverage of domain 1 where covers Türkiye and its surrounding.
 
-The code in the below creates a list of raster objects for each time step from the extracted temperature from raw WRF data set. Kelvin unit has been converted into Celcius by implementing -273.15. Raster objects are used for working with gridded spatial data. Additionally, **ggplot2** package is used to create a map visualization. It overlays the temperature data onto a map of countries, setting up appropriate coordinate systems and color scales.
+The code in the below creates a list of raster objects for each time step from the extracted temperature from raw WRF data set. Kelvin unit has been converted into Celcius by implementing -273.15. Raster objects are used for working with gridded spatial data. Additionally, *ggplot2* package is used to create a map visualization. It overlays the temperature data onto a map of countries, setting up appropriate coordinate systems and color scales.
 
 ```{r, fig.width=9,fig.height=5}
 #| label: fig-domain1
@@ -203,6 +207,8 @@ ymd_hms(t2[121]) - ymd_hms(t2[1])
 
 @fig-domain2 below shows the comparison of two domains and coverage of domain 2 where covers some part of northwest of Türkiye.
 
+It is clearly seen that the intersection of domain 1 and 2 is the entire domain 2. Thus, our study area become only the entire domain 2.
+
 ```{r, fig.width=9,fig.height=5}
 #| warning: false
 #| label: fig-domain2
@@ -210,10 +216,10 @@ ymd_hms(t2[121]) - ymd_hms(t2[1])
 
 raster_temp_2<- list()
 for (i in 1:dim(temp_2)[3])   {
-    raster_temp_2[[i]] <- raster(t(temp_2[, , i] - 273.15), 
-       xmn=min(long_2), xmx=max(long_2),
-       ymn=min(lat_2), ymx=max(lat_2), 
-       crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))
+  raster_temp_2[[i]] <- raster(t(temp_2[, , i] - 273.15), 
+     xmn=min(long_2), xmx=max(long_2),
+     ymn=min(lat_2), ymx=max(lat_2), 
+     crs=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0"))
                               }
 
 temp_df_2 <-as.data.frame(raster_temp_2[[length(t2)]], xy = TRUE) 
@@ -235,7 +241,7 @@ ggplot(data = world)  + geom_sf(fill = "white") +
 
 Domain 2 covers several provinces which are located northwest of Türkiye. Thus, we need to determine meteorological stations for comparing observation versus assimilated and non-assimilated WRF predictions. The code in the chunk reads data from a delimited text file containing information about meteorological stations. Each specific station was selected for each province to evaluate the performance of both assimilated and non-assimilated WRF predictions. @tbl-gauges-domain2 shows the main gauges across the domain 2.
 
-The code uses the dplyr and gt packages for data manipulation and table creation. it asisst to perform data wrangling and cleaning on the meteorological station data, containing renaming columns, converting province names, and arranging the data. The tolower function is used to convert the province names to lowercase. The str_to_title() function from the stringr package is applied to convert the province names' first letter to title case.
+The code uses the *dplyr and gt* packages for data manipulation and table creation. it assist to perform data wrangling and cleaning on the meteorological station data, containing renaming columns, converting province names, and arranging the data. The *tolower function* is used to convert the province names to lowercase. The *str_to_title() function* from the *stringr* package is applied to convert the province names' first letter to title case.
 
 ```{r}
 #| label: tbl-gauges-domain2
@@ -276,7 +282,7 @@ ggplot(data = world)  + geom_sf(fill = "white") +
 
 ### Obtain Temperature Observations
 
-The code reads temperature observations from an Excel. In the raw dataset, some dates can be missing;however, these are not defined as null. Therefore, leaping values can be detected then it assigned as a null.
+The code reads temperature observations from an excel file. In the raw data, there is no date column but it has multiple columns which are defined for year, month, day and hour information. Therfore, we need to convert them into the single date column by merging them. Then, these columns can be removed by non-selecting. In the raw data set, some dates can be missing;however, these are not defined as null. Therefore, leaping values can be detected then it assigned as a null by using *complete function*.
 
 ```{r}
 temp_obs<- read_excel(paste0("D:/Kitaplar/METU-PHD/COURSES/3-TERM/",
@@ -286,7 +292,7 @@ head(temp_obs)
 
 temp_obs<-
   temp_obs |>
-  mutate(date= as.Date(with(temp_obs, paste(YIL, AY, GUN,sep="-")), "%Y-%m-%d")) |>
+  mutate(date= as.Date(with(temp_obs, paste(YIL,AY,GUN,sep="-")),"%Y-%m-%d")) |>
   mutate(dates= ymd_hms(paste(date, paste(SAAT, 0, 0, sep = ":")), tz="UTC")) |>
   dplyr::select(Istasyon_No, dates, SICAKLIK) |> 
   group_by(Istasyon_No) |> 
@@ -300,7 +306,7 @@ head(temp_obs)
 
 ### Extraction of Temperature Predictions from WRF
 
-This code stacks raster layers and extracts temperature values for meteorological station locations.
+This code stacks raster layers (since time is not constant) and extracts temperature values for meteorological station locations. Gauge locations and prediction values with time need to be combined and data frame columns need to be renamed after extraction procedure. The table below contains three-hour temperature predictions for each province/gauge in domain 1.
 
 ```{r}
 centroids <- df_gauges[,c(1,3,4)]
@@ -323,6 +329,8 @@ colnames(rt_cpv_df) <- append(colnames(rt_cpv_df[1:3]),as.character(t))
 head(rt_cpv_df)[,1:5]
 
 ```
+
+Same procedures applied in previous chunk has to be followed for assimilated data but for domain 2.
 
 ```{r}
 # domain2
