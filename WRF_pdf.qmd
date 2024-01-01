@@ -1,17 +1,19 @@
 ---
 title: "Evaluation of 3D-var Data Assimilation of WRF Temperature Prediction Over Northwestern Türkiye: A Case Study for the Period of 11 and 16 August, 2004"
 author: "Mehmet AKSOY & Sercan AKIL"
-format: html
-editor: visual
-toc: true
-bibliography: references.bib
+format:
+  pdf:
+    toc: true
+    lof: true
+    lot: true
+    code-block-bg: lightgray	
+    cite-method: biblatex
+    bibliography: references.bib
+    classoption: abstract
+    keep-tex: true
+abstract: |
+  In this project, we have been evaluated temperature prediction of assimilated and non assimilated WRF outputs over Northwestern Türkiye for the period of 11-16 August, 2004. Observation of eleven temperature gauges and corresponding WRF predictions in the study area have been compared. Moreover, predictions were extracted from assimilated and non assimilated raw WRF data of different domains with varied spatio-temporal resolutions by using gauges coordinates. For this purpose, visualization of results and calculation of error proceedings were performed in R programming and Quarto publishing system.
 ---
-
-::: {style="text-align: justify; font-size:14px"}
-###### ABSTRACT
-
-In this project, we have been evaluated temperature prediction of assimilated and non assimilated WRF outputs over Northwestern Türkiye for the period of 11-16 August, 2004. Observation of eleven temperature gauges and corresponding WRF predictions in the study area have been compared. Moreover, predictions were extracted from assimilated and non assimilated raw WRF data of different domains with varied spatio-temporal resolutions by using gauges coordinates. For this purpose, visualization of results and calculation of error proceedings were performed in R programming and Quarto publishing system.
-:::
 
 ::: {style="text-align: justify"}
 # 1. Introduction

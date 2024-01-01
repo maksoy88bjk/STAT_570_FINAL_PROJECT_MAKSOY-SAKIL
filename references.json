@@ -1,0 +1,62 @@
+[
+    {
+        "DOI": "10.1038/s41598-022-11936-9",
+        "ISSN": "2045-2322",
+        "URL": "http://dx.doi.org/10.1038/s41598-022-11936-9",
+        "article-number": "7898",
+        "author": [
+            {
+                "family": "Frnda",
+                "given": "Jaroslav"
+            },
+            {
+                "family": "Durica",
+                "given": "Marek"
+            },
+            {
+                "family": "Rozhon",
+                "given": "Jan"
+            },
+            {
+                "family": "Vojtekova",
+                "given": "Maria"
+            },
+            {
+                "family": "Nedoma",
+                "given": "Jan"
+            },
+            {
+                "family": "Martinek",
+                "given": "Radek"
+            }
+        ],
+        "container-title": "Scientific Reports",
+        "container-title-short": "Sci Rep",
+        "id": "frnda2022",
+        "is-referenced-by-count": "12",
+        "issue": "1",
+        "issued": {
+            "date-parts": [
+                [
+                    2022,
+                    5,
+                    12
+                ]
+            ]
+        },
+        "language": "en",
+        "member": "297",
+        "prefix": "10.1038",
+        "providerkey": "doi",
+        "publisher": "Springer Science and Business Media LLC",
+        "reference-count": "36",
+        "references-count": "36",
+        "score": "1",
+        "source": "Crossref",
+        "subject": "Multidisciplinary",
+        "title": "ECMWF short-term prediction accuracy improvement by deep learning",
+        "type": "article-journal",
+        "update-policy": "http://dx.doi.org/10.1007/springer_crossmark_policy",
+        "volume": "12"
+    }
+]
