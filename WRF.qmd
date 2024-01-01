@@ -1,34 +1,33 @@
 ---
 title: "Evaluation of 3D-var Data Assimilation of WRF Temperature Prediction Over Northwestern Türkiye: A Case Study for the Period of 11 and 16 August, 2004"
 author: "Mehmet AKSOY & Sercan AKIL"
-format: html
-editor: visual
-toc: true
-bibliography: references.bib
+format: 
+  html:
+    editor: visual
+    toc: true
+    number-sections: true
+    bibliography: references.bib
+abstract: |
+  In this project, we have been evaluated temperature prediction of assimilated and non assimilated WRF outputs over Northwestern Türkiye for the period of 11-16 August, 2004. Observation of eleven temperature gauges and corresponding WRF predictions in the study area have been compared. Moreover, predictions were extracted from assimilated and non assimilated raw WRF data of different domains with varied spatio-temporal resolutions by using gauges coordinates. For this purpose, visualization of results and calculation of error proceedings were performed in R programming and Quarto publishing system
+css: style.css
 ---
 
-::: {style="text-align: justify; font-size:14px"}
-###### ABSTRACT
-
-In this project, we have been evaluated temperature prediction of assimilated and non assimilated WRF outputs over Northwestern Türkiye for the period of 11-16 August, 2004. Observation of eleven temperature gauges and corresponding WRF predictions in the study area have been compared. Moreover, predictions were extracted from assimilated and non assimilated raw WRF data of different domains with varied spatio-temporal resolutions by using gauges coordinates. For this purpose, visualization of results and calculation of error proceedings were performed in R programming and Quarto publishing system.
-:::
-
 ::: {style="text-align: justify"}
-# 1. Introduction
+# Introduction
 
-## 1.1. Numerical Weather Prediction (NWP) Models
+## Numerical Weather Prediction (NWP) Models
 
 Numerical Weather Prediction (NWP) models are used to predict weather conditions by simulating the atmosphere, oceans, land surface and their interactions. NWP models are based on mathematical equations representing the physical behavior of the atmosphere. These equations are translated into computer code and use governing equations, numerical methods, parameterizations of other physical processes and combined with initial and boundary conditions before running over a geographic area (we call that geographic area as domain). These physical processes need to be approximated in models because of huge simulation computer time which is called as parameterization.
 
 According to ECMWF report, *these processes affect too a small area to be predicted in full detail by NWP models. The major reason lies in the limited computing power that still does not allow us to calculate the all processes for any place on Earth* [@frnda2022].
 
-## 1.2. Data Assimilation
+## Data Assimilation
 
 NWP models start with an initial value and it is the challenge because initial-value effects next predictions with an increasing error. Thus, updating initial-value prediction is a method to improve prediction accuracy which is called as data assimilation. Infrared radiance from the geostationary satellites and on-site radiosonde observation data assimilation are powerful tools to improve the weather forecast have been widely applied with this purpose in the past a few decades [@geer2018].
 
 There are a number of data assimilation techniques used in weather forecasting. One of the most prominent are the three and four dimensional variational data assimilation methods (3D-var and 4D-var). 3D-var incorporates meteorological data only within a time window around the initialization moment and in this method the analysis increment (an increment is introduced due to the actual observations) does not evolve in time, e.g. it has effect only at the beginning of the simulation. On the other hand 4D-var method uses tangent linear and adjoint models which model the propagation of analysis increment and more computing time is needed [@vladimirov2020].
 
-## 1.3. Weather Research and Forecasting (WRF) model
+## Weather Research and Forecasting (WRF) model
 
 The Weather Research and Forecasting (WRF) model is a next-generation open source mesoscale numerical weather prediction system. As it is open source, it has a very flexible structure that allows it to be used by met-offices, universities and atmospheric research centers [@powers2017]. The effort to develop WRF began in the latter 1990's and was a collaborative partnership of the National Center for Atmospheric Research (NCAR), the National Oceanic and Atmospheric Administration (NOAA), the U.S. Air Force, the Naval Research Laboratory, the University of Oklahoma, and the Federal Aviation Administration ([WRF web page](https://www.mmm.ucar.edu/models/wrf)).
 
@@ -36,11 +35,11 @@ The WRF model is used for operational weather forecasting and research purposes 
 :::
 
 ::: {style="text-align: justify"}
-# 2. Operations on Assimilated WRF Data
+# Operations on Assimilated WRF Data
 
 There are two files for two different domains as assimilated and non-assimilated predictions of WRF model. Thus, there are four netcdf files totally. We are going to define prediction variables, forecast period and coverage of domains for each file.
 
-## 2.1. Uploading Necessary Packages
+## Uploading Necessary Packages
 
 We will need several packages for some implementations in R, for instance; opening of the netcdf files of WRF data, handling of WRF outputs, visualization and similar operations [@readxl; @tidyverse; @ggplot2-2; @ggpubr-2; @raster; @rnaturalearth; @ncdf4; @R.utils; @sf; @gt].
 
@@ -58,7 +57,7 @@ library(gt)
 library(ggpubr)
 ```
 
-## 2.2. Temperature Forecast of WRF in Domain 1
+## Temperature Forecast of WRF in Domain 1
 
 The code in the below reads a NetCDF file (fname) using the *nc_open function* from the ncdf4 package. NetCDF is a file format commonly used for storing multidimensional scientific data including NWP model output.
 
@@ -86,7 +85,7 @@ float T2[west_east,south_north,Time]
     coordinates: XLONG XLAT
 ```
 
-### 2.2.1. Spatial Resolution (Domain 1)
+### Spatial Resolution (Domain 1)
 
 Spatial resolution of domain 1 is 12 km as you can see below *(DX: 12000, DY:12000)*.
 
@@ -115,7 +114,7 @@ dim(temp)
 dim(ncvar_get(nc_data, "T"))
 ```
 
-### 2.2.2. Forecast Period & Time Interval (Domain 1)
+### Forecast Period & Time Interval (Domain 1)
 
 We can also obtained the forecast horizon by getting time steps from the data. After getting time steps, we see that forecast period is between 11 and 16 (00:00 UTC) August, 2004. In this case, the time interval for the forecast period up to +120 hours *(or five days)* is three hour.
 
@@ -124,7 +123,7 @@ t <- ncvar_get(nc_data, "Times"); t
 ymd_hms(t[41]) - ymd_hms(t[1])
 ```
 
-### 2.2.3. Study Area (Domain 1)
+### Study Area (Domain 1)
 
 @fig-domain1 below shows the coverage of domain 1 where covers Türkiye and its surrounding.
 
@@ -154,7 +153,7 @@ ggplot(data = world)  + geom_sf(fill = "white") +
   ggtitle("Coverage of Domain 1") + theme(legend.key.height = unit(1, "cm"))
 ```
 
-## 2.3. Temperature Forecast of WRF in Domain 2
+## Temperature Forecast of WRF in Domain 2
 
 There are **121** time steps for second domain since we can inference by dimension of **T2** data.
 
@@ -174,7 +173,7 @@ temp_2<- ncvar_get(nc_data2, "T2")
 dim(temp_2)
 ```
 
-### 2.3.1. Spatial Resolution (Domain 2)
+### Spatial Resolution (Domain 2)
 
 Spatial resolution of domain 2 is 4 km which is a finer resolution than previous one *(DX: 4000, DY: 4000)*.
 
@@ -190,7 +189,7 @@ Spatial resolution of domain 2 is 4 km which is a finer resolution than previous
     DY: 4000
 ```
 
-### 2.3.2. Forecast Period & Time Interval (Domain 2)
+### Forecast Period & Time Interval (Domain 2)
 
 Forecast period for domain 2 is same with previous one. However, the time interval is one hour and it has a finer temporal resolution.
 
@@ -199,7 +198,7 @@ t2 <- ncvar_get(nc_data2, "Times"); t2
 ymd_hms(t2[121]) - ymd_hms(t2[1])
 ```
 
-### 2.3.3. Study Area (Domain 2)
+### Study Area (Domain 2)
 
 @fig-domain2 below shows the comparison of two domains and coverage of domain 2 where covers some part of northwest of Türkiye.
 
@@ -231,9 +230,9 @@ ggplot(data = world)  + geom_sf(fill = "white") +
   ggtitle("Coverage of Domain 2") 
 ```
 
-## 2.4. Derivation of Temperature Prediction & Observation
+## Derivation of Temperature Prediction & Observation
 
-### 2.4.1. Identification of Meteorological Stations
+### Identification of Meteorological Stations
 
 Domain 2 covers several provinces which are located northwest of Türkiye. Thus, we need to determine meteorological stations for comparing observation versus assimilated and non-assimilated WRF predictions. The code in the chunk reads data from a delimited text file containing information about meteorological stations. Each specific station was selected for each province to evaluate the performance of both assimilated and non-assimilated WRF predictions. @tbl-gauges-domain2 shows the main gauges across the domain 2.
 
@@ -276,7 +275,7 @@ ggplot(data = world)  + geom_sf(fill = "white") +
   theme(legend.key.width=unit(3,"cm"), legend.position="bottom")
 ```
 
-### 2.4.2. Obtain Temperature Observations
+### Obtain Temperature Observations
 
 The code reads temperature observations from an excel file. In the raw data, there is no date column but it has multiple columns which are defined for year, month, day and hour information. Therefore, we need to convert them into the single date column by merging them. Then, these columns can be removed by non-selecting. In the raw data set, some dates can be missing;however, these are not defined as null. Therefore, leaping values can be detected then it assigned as a null by using *complete function*.
 
@@ -300,7 +299,7 @@ head(temp_obs)
 
 ```
 
-### 2.4.3. Extraction of Temperature Predictions from WRF
+### Extraction of Temperature Predictions from WRF
 
 This code stacks raster layers (since time is not constant) and extracts temperature values for meteorological station locations. Gauge locations and prediction values with time need to be combined and data frame columns need to be renamed after extraction procedure. The table below contains three-hour temperature predictions for each province/gauge in domain 1.
 
@@ -346,7 +345,7 @@ head(rt_cpv_df_2)[,1:5]
 :::
 
 ::: {style="text-align: justify"}
-# 3. Operations on Non-Assimilated WRF Data
+# Operations on Non-Assimilated WRF Data
 
 We need to apply similar procedures on non-assimilated WRF predictions for extraction as shown above.
 :::
@@ -426,9 +425,9 @@ head(rt_cpv_df_2_nas)[,1:5]
 ```
 
 ::: {style="text-align: justify"}
-# 4. Results
+# Results
 
-## 4.1. Derivation of Data Frames
+## Derivation of Data Frames
 
 There are four data frames, including predictions and observations, to represent each domain and assimilation version. However, these data frames are wider format and it is needed to convert them longer since to use them in visualization.
 
@@ -475,7 +474,7 @@ head(new_df_list[[2]]); head(new_df_list[[4]])
 
 ```
 
-## 4.2. Visualization
+## Visualization
 
 Data frames were manipulated during visualization procedures depend on necessary conditons. For example, non-assimilated *(new_df_list\[\[3\]\])* and assimilated *(new_df_list\[\[1\]\])* predictions for domain 1 are combined with observations while drawing first plot below.
 
@@ -707,7 +706,7 @@ ggplot(aes(x= dates, y=value)) +
 
 ```
 
-## 4.3. Error Analysis
+## Error Analysis
 
 This part calculates various error metrics, including bias, mean squared error (MSE), root mean squared error (RMSE), normalized RMSE (NRMSE), and correlation coefficients for the predictions. @tbl-stats shows the error statistics for both two domains with respect to complete assimilated and non-assimilated predictions.
 
@@ -831,7 +830,7 @@ error_table |>  gt()
 :::
 
 ::: {style="text-align: justify"}
-# 5. Conclusion
+# Conclusion
 
 In summary, the integration of the WRF model with data assimilation techniques has proven to be a valuable tool for advancing our understanding of regional weather patterns. The outcomes of this study have practical applications in operational forecasting, research endeavors, and emergency response, contributing to the broader field of atmospheric science. These steps collectively demonstrate a comprehensive workflow for importing, processing, and analyzing meteorological data, including visualization and error analysis.
 :::

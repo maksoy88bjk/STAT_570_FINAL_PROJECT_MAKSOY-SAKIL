@@ -42,7 +42,7 @@
 \makeatother
 \usepackage{xcolor}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
-\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\setcounter{secnumdepth}{5}
 % Make \paragraph and \subparagraph free-standing
 \ifx\paragraph\undefined\else
   \let\oldparagraph\paragraph
@@ -216,7 +216,7 @@ spatio-temporal resolutions by using gauges coordinates. For this
 purpose, visualization of results and calculation of error proceedings
 were performed in R programming and Quarto publishing system.
 \end{abstract}
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, boxrule=0pt, breakable, borderline west={3pt}{0pt}{shadecolor}, sharp corners, colback={codebgcolor}, enhanced]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[colback={codebgcolor}, sharp corners, enhanced, frame hidden, breakable, borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -227,10 +227,10 @@ were performed in R programming and Quarto publishing system.
 \listoffigures
 \listoftables
 \hypertarget{introduction}{%
-\section{1. Introduction}\label{introduction}}
+\section{Introduction}\label{introduction}}
 
 \hypertarget{numerical-weather-prediction-nwp-models}{%
-\subsection{1.1. Numerical Weather Prediction (NWP)
+\subsection{Numerical Weather Prediction (NWP)
 Models}\label{numerical-weather-prediction-nwp-models}}
 
 Numerical Weather Prediction (NWP) models are used to predict weather
@@ -250,7 +250,7 @@ the limited computing power that still does not allow us to calculate
 the all processes for any place on Earth} \autocite{frnda2022}.
 
 \hypertarget{data-assimilation}{%
-\subsection{1.2. Data Assimilation}\label{data-assimilation}}
+\subsection{Data Assimilation}\label{data-assimilation}}
 
 NWP models start with an initial value and it is the challenge because
 initial-value effects next predictions with an increasing error. Thus,
@@ -273,7 +273,7 @@ which model the propagation of analysis increment and more computing
 time is needed \autocite{vladimirov2020}.
 
 \hypertarget{weather-research-and-forecasting-wrf-model}{%
-\subsection{1.3. Weather Research and Forecasting (WRF)
+\subsection{Weather Research and Forecasting (WRF)
 model}\label{weather-research-and-forecasting-wrf-model}}
 
 The Weather Research and Forecasting (WRF) model is a next-generation
@@ -297,7 +297,7 @@ has a great potential to improve model forecast skill by reducing errors
 of initial conditions \autocite{yucel2014,yucel2015,bao2015,cheng2017}.
 
 \hypertarget{operations-on-assimilated-wrf-data}{%
-\section{2. Operations on Assimilated WRF
+\section{Operations on Assimilated WRF
 Data}\label{operations-on-assimilated-wrf-data}}
 
 There are two files for two different domains as assimilated and
@@ -306,7 +306,7 @@ files totally. We are going to define prediction variables, forecast
 period and coverage of domains for each file.
 
 \hypertarget{uploading-necessary-packages}{%
-\subsection{2.1. Uploading Necessary
+\subsection{Uploading Necessary
 Packages}\label{uploading-necessary-packages}}
 
 We will need several packages for some implementations in R, for
@@ -330,7 +330,7 @@ outputs, visualization and similar operations
 \end{Shaded}
 
 \hypertarget{temperature-forecast-of-wrf-in-domain-1}{%
-\subsection{2.2. Temperature Forecast of WRF in Domain
+\subsection{Temperature Forecast of WRF in Domain
 1}\label{temperature-forecast-of-wrf-in-domain-1}}
 
 The code in the below reads a NetCDF file (fname) using the
@@ -382,7 +382,7 @@ float T2[west_east,south_north,Time]
 \end{verbatim}
 
 \hypertarget{spatial-resolution-domain-1}{%
-\subsubsection{2.2.1. Spatial Resolution (Domain
+\subsubsection{Spatial Resolution (Domain
 1)}\label{spatial-resolution-domain-1}}
 
 Spatial resolution of domain 1 is 12 km as you can see below \emph{(DX:
@@ -435,7 +435,7 @@ data since we just need to extract temperature predictions at 2 meters.
 \end{verbatim}
 
 \hypertarget{forecast-period-time-interval-domain-1}{%
-\subsubsection{2.2.2. Forecast Period \& Time Interval (Domain
+\subsubsection{Forecast Period \& Time Interval (Domain
 1)}\label{forecast-period-time-interval-domain-1}}
 
 We can also obtained the forecast horizon by getting time steps from the
@@ -478,7 +478,7 @@ Time difference of 5 days
 \end{verbatim}
 
 \hypertarget{study-area-domain-1}{%
-\subsubsection{2.2.3. Study Area (Domain 1)}\label{study-area-domain-1}}
+\subsubsection{Study Area (Domain 1)}\label{study-area-domain-1}}
 
 Figure~\ref{fig-domain1} below shows the coverage of domain 1 where
 covers Türkiye and its surrounding.
@@ -525,7 +525,7 @@ coverage of domain 1 for assimilated-WRF predictions.}
 \end{figure}
 
 \hypertarget{temperature-forecast-of-wrf-in-domain-2}{%
-\subsection{2.3. Temperature Forecast of WRF in Domain
+\subsection{Temperature Forecast of WRF in Domain
 2}\label{temperature-forecast-of-wrf-in-domain-2}}
 
 There are \textbf{121} time steps for second domain since we can
@@ -554,7 +554,7 @@ inference by dimension of \textbf{T2} data.
 \end{verbatim}
 
 \hypertarget{spatial-resolution-domain-2}{%
-\subsubsection{2.3.1. Spatial Resolution (Domain
+\subsubsection{Spatial Resolution (Domain
 2)}\label{spatial-resolution-domain-2}}
 
 Spatial resolution of domain 2 is 4 km which is a finer resolution than
@@ -573,7 +573,7 @@ previous one \emph{(DX: 4000, DY: 4000)}.
 \end{verbatim}
 
 \hypertarget{forecast-period-time-interval-domain-2}{%
-\subsubsection{2.3.2. Forecast Period \& Time Interval (Domain
+\subsubsection{Forecast Period \& Time Interval (Domain
 2)}\label{forecast-period-time-interval-domain-2}}
 
 Forecast period for domain 2 is same with previous one. However, the
@@ -640,7 +640,7 @@ Time difference of 5 days
 \end{verbatim}
 
 \hypertarget{study-area-domain-2}{%
-\subsubsection{2.3.3. Study Area (Domain 2)}\label{study-area-domain-2}}
+\subsubsection{Study Area (Domain 2)}\label{study-area-domain-2}}
 
 Figure~\ref{fig-domain2} below shows the comparison of two domains and
 coverage of domain 2 where covers some part of northwest of Türkiye.
@@ -683,11 +683,11 @@ domain 2. Thus, our study area become only the entire domain 2.
 \end{figure}
 
 \hypertarget{derivation-of-temperature-prediction-observation}{%
-\subsection{2.4. Derivation of Temperature Prediction \&
+\subsection{Derivation of Temperature Prediction \&
 Observation}\label{derivation-of-temperature-prediction-observation}}
 
 \hypertarget{identification-of-meteorological-stations}{%
-\subsubsection{2.4.1. Identification of Meteorological
+\subsubsection{Identification of Meteorological
 Stations}\label{identification-of-meteorological-stations}}
 
 Domain 2 covers several provinces which are located northwest of
@@ -778,7 +778,7 @@ Domain 2.}
 \end{figure}
 
 \hypertarget{obtain-temperature-observations}{%
-\subsubsection{2.4.2. Obtain Temperature
+\subsubsection{Obtain Temperature
 Observations}\label{obtain-temperature-observations}}
 
 The code reads temperature observations from an excel file. In the raw
@@ -841,7 +841,7 @@ leaping values can be detected then it assigned as a null by using
 \end{verbatim}
 
 \hypertarget{extraction-of-temperature-predictions-from-wrf}{%
-\subsubsection{2.4.3. Extraction of Temperature Predictions from
+\subsubsection{Extraction of Temperature Predictions from
 WRF}\label{extraction-of-temperature-predictions-from-wrf}}
 
 This code stacks raster layers (since time is not constant) and extracts
@@ -946,7 +946,7 @@ assimilated data but for domain 2.
 \end{verbatim}
 
 \hypertarget{operations-on-non-assimilated-wrf-data}{%
-\section{3. Operations on Non-Assimilated WRF
+\section{Operations on Non-Assimilated WRF
 Data}\label{operations-on-non-assimilated-wrf-data}}
 
 We need to apply similar procedures on non-assimilated WRF predictions
@@ -1039,11 +1039,10 @@ for extraction as shown above.
 \end{verbatim}
 
 \hypertarget{results}{%
-\section{4. Results}\label{results}}
+\section{Results}\label{results}}
 
 \hypertarget{derivation-of-data-frames}{%
-\subsection{4.1. Derivation of Data
-Frames}\label{derivation-of-data-frames}}
+\subsection{Derivation of Data Frames}\label{derivation-of-data-frames}}
 
 There are four data frames, including predictions and observations, to
 represent each domain and assimilation version. However, these data
@@ -1148,7 +1147,7 @@ use them in visualization.
 \end{verbatim}
 
 \hypertarget{visualization}{%
-\subsection{4.2. Visualization}\label{visualization}}
+\subsection{Visualization}\label{visualization}}
 
 Data frames were manipulated during visualization procedures depend on
 necessary conditons. For example, non-assimilated
@@ -1507,7 +1506,7 @@ for each province in both two domains.}
 \end{figure}
 
 \hypertarget{error-analysis}{%
-\subsection{4.3. Error Analysis}\label{error-analysis}}
+\subsection{Error Analysis}\label{error-analysis}}
 
 This part calculates various error metrics, including bias, mean squared
 error (MSE), root mean squared error (RMSE), normalized RMSE (NRMSE),
@@ -1656,7 +1655,7 @@ COR.COEF & 0.8513 & 0.3535 & 0.8473 & 0.3886 \\
 \end{longtable}
 
 \hypertarget{conclusion}{%
-\section{5. Conclusion}\label{conclusion}}
+\section{Conclusion}\label{conclusion}}
 
 In summary, the integration of the WRF model with data assimilation
 techniques has proven to be a valuable tool for advancing our
