@@ -7,7 +7,7 @@ format:
     lof: true
     lot: true
     number-sections: true
-    code-block-bg: lightgray	
+    code-block-bg: "#f8f8f8"	
     cite-method: biblatex
     bibliography: references.bib
     classoption: abstract

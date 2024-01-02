@@ -175,7 +175,7 @@
 \@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
 \makeatother
 \makeatletter
-\@ifundefined{codebgcolor}{\definecolor{codebgcolor}{named}{lightgray}}
+\@ifundefined{codebgcolor}{\definecolor{codebgcolor}{HTML}{f8f8f8}}
 \makeatother
 \makeatletter
 \makeatother
@@ -216,7 +216,7 @@ spatio-temporal resolutions by using gauges coordinates. For this
 purpose, visualization of results and calculation of error proceedings
 were performed in R programming and Quarto publishing system.
 \end{abstract}
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[colback={codebgcolor}, sharp corners, enhanced, frame hidden, breakable, borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[colback={codebgcolor}, boxrule=0pt, frame hidden, enhanced, breakable, borderline west={3pt}{0pt}{shadecolor}, sharp corners]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of contents}
 {
