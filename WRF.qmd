@@ -243,7 +243,7 @@ The code uses the *dplyr and gt* packages for data manipulation and table creati
 #| tbl-cap: Meteorological stations accross the domain 2.
 
 df_gauges <- read.delim(paste0("D:/Kitaplar/METU-PHD/COURSES/3-TERM/",
-"STAT_570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/gauges.txt"), sep="|")
+"STAT570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/gauges.txt"), sep="|")
 
 df_gauges<- df_gauges[,-c(3,4)]
 colnames(df_gauges)<- c("Station","Province","Latitude","Longitude","Altitude") 
@@ -281,7 +281,7 @@ The code reads temperature observations from an excel file. In the raw data, the
 
 ```{r}
 temp_obs<- read_excel(paste0("D:/Kitaplar/METU-PHD/COURSES/3-TERM/",
-"STAT_570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/",
+"STAT570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/",
 "df_2023122096C0-Saatlik_Sicaklik.xlsx"))
 head(temp_obs)
 
@@ -832,5 +832,5 @@ error_table |>  gt()
 ::: {style="text-align: justify"}
 # Conclusion
 
-In summary, the integration of the WRF model with data assimilation techniques has proven to be a valuable tool for advancing our understanding of regional weather patterns. The outcomes of this study have practical applications in operational forecasting, research endeavors, and emergency response, contributing to the broader field of atmospheric science. These steps collectively demonstrate a comprehensive workflow for importing, processing, and analyzing meteorological data, including visualization and error analysis.
+The goal of our study was to identify and analyse the effects of data assimilation of WRF predictions over northwestern Türkiye. For this purpose, we compared the both assimilated and non-assimilated WRF temperature predictions with corresponding observations for between 11 and 16 August, 2004. As shown in the result part, for some locations the predictions and observations agree with each other, while rest of them are not in this case. It is not possible to draw definite conclusions about the effects of data assimilation of WRF based on this example alone. More case studies in the same region and in different seasons should be carried out in order to make clearer determinations. However, the integration of the WRF model with data assimilation techniques has proven to be a valuable tool for advancing our understanding of regional weather patterns. The outcomes of this study have practical applications in operational forecasting, research endeavors, and emergency response, contributing to the broader field of atmospheric science.
 :::
