@@ -243,7 +243,7 @@ The code uses the *dplyr and gt* packages for data manipulation and table creati
 #| tbl-cap: Meteorological stations accross the domain 2.
 
 df_gauges <- read.delim(paste0("D:/Kitaplar/METU-PHD/COURSES/3-TERM/",
-"STAT570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/gauges.txt"), sep="|")
+"STAT_570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/gauges.txt"), sep="|")
 
 df_gauges<- df_gauges[,-c(3,4)]
 colnames(df_gauges)<- c("Station","Province","Latitude","Longitude","Altitude") 
@@ -281,7 +281,7 @@ The code reads temperature observations from an excel file. In the raw data, the
 
 ```{r}
 temp_obs<- read_excel(paste0("D:/Kitaplar/METU-PHD/COURSES/3-TERM/",
-"STAT570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/",
+"STAT_570/STAT_570_FINAL_PROJECT_MAKSOY-SAKIL/",
 "df_2023122096C0-Saatlik_Sicaklik.xlsx"))
 head(temp_obs)
 
