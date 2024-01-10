@@ -1,7 +1,22 @@
 ---
 title: "Evaluation of 3D-var Data Assimilation of WRF Temperature Prediction Over Northwestern Türkiye: A Case Study for the Period of 11 and 16 August, 2004"
-author: "Mehmet AKSOY & Sercan AKIL"
-format: 
+author:
+  - name: Mehmet AKSOY *(aksoy.mehmet@metu.edu.tr)*
+    affiliations:
+    - ref: metu
+    - ref: civil
+  - name: Sercan AKIL  *(sercan.akil@metu.edu.tr)*
+    affiliations:
+    - ref: metu
+    - ref: ggit
+affiliations:
+  - id: metu
+    name: Middle East Technical University, Ankara, Türkiye
+  - id: civil
+    name: Department of Civil Engineering, Water Resources Lab.
+  - id: ggit
+    name: Geodetic and Geographic Information Technologies
+format:
   html:
     editor: visual
     toc: true
